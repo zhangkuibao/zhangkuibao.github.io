@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS世界</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        body {
+            background-color: rgb(248, 246, 231);
+        }
+        .wrapper > div {
+            background-color: #ddd;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .wrapper > div > div {
+            padding: 10px 0;
+            border-bottom: 2px solid rgb(248, 246, 231);
+        }
+        /* .reset {
+            padding-left: 20px;
+            counter-reset: col;
+        }
+        .counter::before {
+            content: counters(col,'-') '.';
+            counter-increment: col;
+        } */
+        h5 {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper "> <!-- 外层wrapper -->
+        <div class="1_概述 "> <!-- 一级标题,以下划线分隔 -->
+            <div class="1_1_name"> <!-- 二级标题 -->
+                1.样式可以层层累加
+            </div>
+            <div class="1_2_尺寸-height/width作用在哪个盒子上">
+                1.默认值: auto的四种不同表现<i>
+                    1.充分利用可用空间: 即width: 100%; 充满整个父级; block;  --- 外部尺寸
+                    2.收缩与包裹: 尺寸由内容决定; float, absolute, inline-block, table;  --- 内部尺寸
+                    3.收缩到最小:; --- 内部尺寸
+                    4.超出容器限制: 长文本不换行 --- 内部尺寸
+                </i>
+                2.外部尺寸与流动特性(没有内容时宽度依然为父级的100%)<i>
+                    1.正常流: block容器宽度默认为父级的100%; 外部尺寸的块级元素设置了宽度就失去了"流动性"(盒模型各部分的空间分配)
+                    2.格式化宽度: 绝对定位元素默认宽度表现为包裹性(内容决定),但是在设置了四个方位值(left,right)时,这时绝对定位元素的尺寸是由外部尺寸决定的;
+                </i>
+                3.内部尺寸与流动特性(元素没有内容时宽度为0则表示其应用的是内部尺寸)<i>
+                    1.收缩与包裹: 默认下尺寸由内容决定且不会超出父级容器,内容过长时会在容器宽度处换行;
+                    2.首选最小宽度: 中文(最小宽度为每个汉字的宽度)、英文(连续英文/数字字符,word-break: break-all;设置英文也使用每个字符的宽度为最小宽度)、图片(元素本身宽度) -- 父级容器宽高为0时的展示规则
+                    3.最大宽度: 连续的内联盒子累加的宽度
+                </i>
+            </div>
+            <div class="1_3_content计数器">
+                1.counter-reset: name 1 name 2;  重置定时器, 定义名称和起始值(默认0), 可同时定义多个;
+                2.counter-increment: name 1 name 2; 计数器递增,可同时让多个计数器自增,可指定增加几个数(默认1),也可以为负数, 无论在何处, 出现一次计数器自增一次
+                3.content: counter(name,style);  通过name引用计数器,counter是方法,style参数与list-style-type接受的参数相同,用于指定展示的字符类型(罗马,英文等),一个content可以有多个counter()
+                4.content: counters(name,string); 创建子序列, string规定用什么字符连接
+            </div>
+            <div class="1_4_其他属性">
+                1.clip: 裁剪元素<i>
+                    1.语法: rect(top,right,bottom,left); top和bottom都是相对于元素上边缘的高度, left和right都是相对于元素左边缘的宽度,
+                    2.范围: 只有position: absolute/fixed;元素才能裁剪
+                    3.应用场景: 可访问性隐藏,rect(0,0,0,0 )
+                    4.特性: 
+                        0.被裁剪的元素依然可被focus
+                        0.原地裁剪
+                        0.被裁剪元素的clientWidth/clientHeight的宽高还是原来的大小
+                </i>
+            </div>
+        </div>
+        <div class="2_盒尺寸">
+            <div class="2_1_padding-box">
+                1.padidng设置百分比值时无论水平还是垂直方向都是相对于宽度计算的,可以用padding: 50%;来设置一个正方形
+                2.内联盒子的padding会换行,且垂直方向的padding会让幽灵空白节点展现
+            </div>
+            <div class="2_2_margin-box">
+                1.margin的百分比值垂直和水平方向都是相对于宽度计算的
+                2.margin合并情况 - 只出现在块级元素之间<i>
+                    1.相邻兄弟元素之间
+                    2.父级和第一个/最后一个子元素之间
+                    3.空元素
+                </i>
+                3.解决margin合并问题: <i>
+                    1.父元素设置为bfc
+                    2.父元素设置border-top/border-bottom
+                    3.父元素和第一个/最后一个子元素之间添加内联元素进行分隔
+                    4.父元素设置height,min-height或max-height
+                </i>
+                4.margin合并的计算规则<i>
+                    1.'正正取最大'
+                    2.'负负取最小'
+                    3.'正负值相加'
+                </i>
+                5.margin合并并不是bug,而是为了让默认样式下的排版更有阅读体验(如ul,li,给li设置margin值时不会上下都顶开)
+                6.margin:auto的填充规则<i>
+                    1.一侧定值,一侧auto,则auto为剩余空间大小
+                    2.两侧均是auto,平分剩余空间
+                </i>
+                7.要想margin:auto生效,有一个前提条件是元素具有对应方向(垂直/水平)的自动填充特性
+            </div>
+            <div class="2_3_border-box">
+                1.border-style的默认样式为none;
+                2.border-width默认宽度为3px: 为了让双实线能正常显示
+                3.双实线的上下两条线宽度永远相等,可利用这一特性实现三条杠效果
+                4.没有指定border-color时会使用当前元素的color值来作为边框颜色
+                5.可以用透明边框来扩大点击事件触发范围(手机端)
+            </div>
+        </div>
+        <div class="3_内联元素与流">
+            <div class="3_1_line-height">
+                1.line-height设置的是两基线之间的距离,决定字符实际占据的高度
+                2.vertical-align的默认值是基线,middle值表示基线往上二分之一x-height的距离(小写字母x的中点),而不是相对于容器中分线对齐
+                3.ex: 相对单位,相对于x-height,可实现一些文字后的小符号垂直对齐(不用vertical-align)
+                4.不设置高度时元素的高度由line-height决定(即使font-size:0,高度还是有,如果line-height:0,无论字体多大都无用)
+                5.纯内联元素的可视高度完全由line-height决定, line-height对块级元素没有作用, 起作用的是块级元素内的内联元素
+                6.行距不一定是上下等分的(取决于x的中心点)
+                7.line-height的值为数值时最好(根据需求来): 设置为数值时所有的子元素都继承数值(随动),而如果设置为百分比或长度值(px,em)则子元素会继承最终的计算值(固定);
+            </div>
+            <div class="3_2_vertical-align">
+                1.概述<i>
+                    0.vertical-align百分比值依赖与line-height的值, line-height的部分值依赖于font-size,如果vertical用ex作为单位则直接与font-size产生联系不用依赖line-height
+                    1.凡是line-height起作用的地方,vertical-align也一定起作用
+                    2.vertical-align的取值为数值/百分比时兼容性好,关键字兼容性不好
+                    3.vertical-align: baseline等同于0;
+                    4.百分比值根据line-height的计算值计算
+                    5.只能作用于内联元素和display:table-cell的元素
+                    6.对字符而言,font-size越大字符的基线位置越靠下,导致字号不同的文字在一起的时候会发生上下位移
+                    7.非主动触发位移的内联元素不可能跑到计算容器外面
+                    8.内联特性导致margin失效(块级元素中的img元素设置margin-top负值,无论多小最终还是有一部分在块级元素中),这是因为img元素之前有一个空白节点,而"非主动触发位移的内联元素不可能跑到计算容器外面",所以img就被空白节点的vertical-align:baseline给限制死了
+                </i>
+                2.线性类属性值<i>
+                    1.baseline
+                        0.文本类的内联元素基线是x的下边缘, 替换元素是替换元素的下边缘
+                        0.对于inline-block元素,如果其中没有内联元素,或者overflow不为visible,该元素的基线是margin底边缘,否则基线就是该元素内最后一行内联元素的基线
+                    2.top/bottom
+                        0.内联元素: 元素顶部和这一行位置最高/低的内联元素对齐(别忘记幽灵空白节点)
+                        0.table-cell元素: 和tr元素上/下边缘对齐
+                    3.middle
+                        0.内联: 元素的垂直中心点和x的垂直中心点(基线往上1/2x-height)对齐
+                        0.table-cell: 单元格填充盒子相对于外面的表格行居中对齐
+                        1.由于大多数字体中x的交叉点都要靠下一点,所以middle实现的垂直居中不是绝对的
+                        2.实现绝对的居中就是让x的垂直中心高度等于元素的垂直中心高度,可以通过设置font-size:0;来实现
+                    4.不常用属性
+                        0.文本类属性值text-top/text-bottom: 盒子的顶部和'父级内容区域'的顶部对齐, '父级内容区域'是指父级元素在当前font-size和font-family下应有的内容区域大小
+                        0.上下标类属性值super/sub: 
+                </i>
+
+            </div>
+        </div>
+        <div class="4_流的破坏与保护">
+            <div class="4_1_float和clear">
+                1.浮动的本质是为了实现文字环绕效果
+                2.浮动的特性: <i>
+                    0.包裹性: 宽高由内容决定
+                    0.块状化并格式化上下文: 一旦设置了float值display就会转化为block
+                    0.破坏文档流
+                    0.没有margin合并
+                    0.让父元素的高度塌陷: 并不是bug,只是为了实现其职能(实现文字环绕)
+                    0.行框盒子和浮动元素不可重叠: 行框盒子(内联元素所在的盒子,而不是外部的块状盒子)会被排列在浮动元素后面
+                </i>
+                3.clear并没有将浮动清除, 而是让'元素盒子的边不能和前面的浮动元素相邻',注意是前一个,由于float的值不是left就是right,所以clear的值为left/right没有意义,直接用both就好
+                4.clear只有块级元素才有效,借助伪元素'清除浮动'时要设置display值(伪元素默认为内联)
+            </div>
+            <div class="4_2_BFC/ overflow/ 锚点">
+                I-1.块级格式化上下文,对应有IFC(inline...), 内联格式化上下文
+                I-2.触发条件<i>
+                    0.html根元素(iframe)
+                    0.float: 不为none (也就是说浮动元素本身也会生成BFC)
+                    0.overflow: auto/scroll/hidden;
+                    0.display: table-cell/ table-caption/ inline-bloxk; (设置为inline-block后会带上内联元素的特性:包裹性等)
+                    0.position: 不为relative和static
+                </i>
+                I-3.BFC元素会自动填充容器中除了浮动元素外的剩余空间
+                I-4.设置BFC与浮动元素之间距离时给BFC元素设置margin值时其值为想要的距离+浮动元素宽度(BFC看不见浮动元素)
+                II-5.overflow的边界是border-box的内边缘 --- 内边缘!!!
+                II-6.尽量避免给滚动容器设置padding-bottom值,ie和firefox会忽略该值, chrome不会;
+                II-7.永远不可能实现一个方向溢出裁剪或滚动,另一方向溢出显示的效果(x/y其中一个值为visible时会被当做auto处理)
+                II-8.pc端中默认滚动条来自html根标签而不是body标签,移动端中不一定
+                II-9.滚动条会占用元素的可用宽度/高度
+                III-10.实现跳转: URL地址锚点(利用id或name)---定位在浏览器窗体的上边缘, 可聚焦元素的focus()---让元素显示到窗口内
+                III-11.URL定位的本质是通过改变容器scroll实现,滚动时会由内而外触发所有可滚动窗体的锚点行为
+                III-12.设置overflow: hidden元素的内容也是可滚动的,仅仅是滚动条不可见
+                III-13.自定义滚动条的思路: 父级设置overflow:hidden, 通过子元素的top或父元素的scrollTop来控制
+            </div>
+            <div class="4_3_定位元素position">
+                1.absolute: <i>
+                    0.'包含块'是第一个position不为static的父级
+                    0.与float同时存在时float无效
+                    0.一旦position值为absolute或fixed,display值就是block或table
+                    0.absolute元素具有'包裹性'(尺寸由内容决定,受'包含块'限制),因此没必要使用display:inline-block
+                    0.height: 100%; 是相对于其包裹块的宽度, height: inherit; 是直接继承父级的高度
+                    0.relative/absolute/fixed都可以对absolute的'包裹性'及定位产生限制,但只有relative能将其限制在正常的文档流中
+                    1.无依赖: 在没有position:relative;的父级时,absolute元素的位置不变,还是在当前位置(无依赖绝对定位),这时可以用margin来辅助定位,不会破坏页面布局,应用场景: 1.图标; 2.表单必填*标志; 3.占位符4.表单校验错误信息
+                    2.与text-align: 内联元素设置了绝对定位后受text-align影响,因为内联元素有'幽灵空白节点', text-align:center;时,由于absolute让元素本身不占空间,空白节点居中,元素跟在空白节点之后展示,就形成了元素左边缘居中(伪居中,前面有一个空白节点,受字体大小影响)的效果,可用margin负值达到居中效果
+                    3.与overflow: 父元素没有定位属性或父子之间没有其他有定位属性元素时不会裁剪绝对定位元素(看不见), transform属性可能对其有影响
+                    4.与方位值: 当absolute遇到left...属性之后才真正变为绝对定位元素 ,同时设置对立方向方位值为0时会被拉伸,元素尺寸由父级决定,具备流动特性
+                </i>
+                2.relative: <i>
+                    0.唯一能将absolute限制在文档流中的属性
+                    0.相对于自身定位, left...等方位值让其相对于自身进行偏移,正数为右/下, 负数为左/上;为百分比值时是相对于包含块计算的
+                    0.定位规则与margin类似,但是定位后不影响其他元素,只改变自身位置
+                    0.同时设置对立方位值时,只有一个会生效,取决于文档流方向,默认top > bottom; left > right
+                    0.使用relative时尽量让其影响范围最小化,因为设置了relative后元素的层叠等级会变化,不利于日后维护
+                </i>
+                3.fixed: 固定定位元素的'包含块'是根元素
+            </div>
+
+        </div>
+        <div class="5_层叠相关">
+            <div class="5_1_z-index">
+                0.z-index只对定位元素(position不为static)和flex盒子的子元素生效
+                1.层叠规则: <i>
+                    0.定位元素相当于z-index:auto/0;
+                    0.float低于定位元素
+                    0.后来居上
+                    0.谁大谁上
+                    0.父元素的层叠上下文包含子元素(结界)
+
+                </i>
+                2.产生层叠上下文: <i>
+                    0.position值为relative/absolute/fixed, 同时z-index不为auto
+                    0.opacity不为1
+                    0.transform不为none. 可用scale(1),不影响视觉效果
+                    0.元素为flex布局元素,同时z-index不为auto
+                </i>
+            </div>
+        </div>
+        <div class="6_文字处理">
+            <div class="6_1_font-size">
+                1.单位<i>
+                    1.ex: 相对于小写x的高度
+                    2.em: 相对于font-size的高度,一般由M的宽度决定(宽高相等), 可以理解为em就是汉字的高度(宽高相等), em是相对于font-size的大小,设置了font-size:2em; 之后的元素如果用em是以font-size(2em)为准
+                    3.rem: 根元素em大小, 不受当前fotn-size影响
+                    4.ch: 相对于0的宽度, 一般用于等宽字体布局
+                </i>
+                2.相对关键字,(相对于当前font-size)<i>
+                    1.larger: 是big元素的默认font-size
+                    2.smaller: small元素
+                </i>
+                3.绝对尺寸关键字(与font-size无关,受浏览器字号影响)<i>
+                    1.xx-large: h1
+                    2.x-large: h2
+                    3.large: 近似h3
+                    4.medium: 默认值, h4
+                    5.small: h5
+                    6.x-small: h6
+                    7.xx-small: 更小
+                </i>
+            </div>
+            <div class="6_2_font-family">
+                0.受操作系统和浏览器共同影响
+                0.可设置多个,从左往右依次找,直到找到可用的,没有则使用默认值;
+            </div>
+            <div class="6_3_font-style">
+                0.表示字体是斜体还是正体
+                0.取值: 
+                <i>
+                    1.normal
+                    2.oblique: 单纯的倾斜
+                    3.italic: 使用当前字体的斜体字体,没有的话解析为oblique
+                </i>
+            </div>
+        </div>
+        <div class="2_示例">
+            <div class="2_1_关于li左侧的圆点 ">
+                <h4>2_1_list-item元素的项目符号</h4>
+                <li>li的默认display属性为list-item,会在块级盒子中创建一个附加盒子展示符号</li>
+                <div style='display: list-item; list-style:inside'>div设置了display:list-item和list-style后效果相同</div>
+            </div>
+            <div class="2_2_文字少时居中,多时左对齐 " >
+                <h4>2_2_文字少时居中,超过一行时左对齐</h4>
+                <!-- 
+                    父元素为block并设置文本居中,子元素为inline-block并设为文本左对齐
+                    inline-block元素的内部尺寸为包裹性, 宽度由内容决定, 最大不会超过容器
+                    注意英文及数字不能随意换行(可修改换行规则)
+                -->
+                <div class="2_2_box" style="width: 240px;border:1px solid red; text-align: center;">
+                    <p style='display:inline-block; text-align: left;'>1-文字居中</p>
+                    <p style='display:inline-block; text-align: left;'>2-中文可随意换行中文可随意换行中文可随意换行中文可随意换行中文可随意换行</p>
+                    <p style='display:inline-block; text-align: left;'>3-数字及英文遇特殊字符换行555555555555555555555 5555555 5555s ssssss ssdddddddsssssssssss</p>
+                </div>
+            </div>
+            <div class="2_3_利用文本特性实现凹凸块体 ">
+                <style>
+                    .ao::before {
+                        content: 'love 你 love';
+                        outline: 1px solid #000;
+                        color: transparent;
+                    }
+                    .to::before {
+                        content: '你 love 你';
+                        outline: 1px solid #000;
+                        color: transparent;
+                    }
+                    </style>
+                <h4>2_3_利用文本特性实现凹凸块体</h4>
+                <div class='ao' style='display: inline-block;width:0;'></div>
+                <div class='to' style='display: inline-block;width:0;margin-left: 100px;'></div>
+            </div>
+            <div class="2_4_替换元素的伪元素 replace ">
+                <style>
+                    .replace img {
+                        width: 362px;
+                        height: 225px;
+                        position: relative;
+                        line-height: 1;
+                    }
+                    .replace img::before {
+                        content: attr(id);
+                        position: absolute;
+                        right:0;
+                        color: red;
+                    }
+                </style>
+                <h4>2_4_替换元素img</h4>
+                <p>替换元素的src如果有值则伪元素after/before的设置都会无效,可以利用这一特性模拟alt的效果</p>
+                <img id='replaceImg'  src="./src/images/1.jpg"></img>
+                <button onclick='showImg()'>添加/删除src</button>
+            </div>
+            <div class="2_5_content属性  ">
+                <style>
+                    .content_1 {
+                        position: relative;
+                        height: 1em;
+                        line-height: 1;
+                        display: inline-block;
+                        overflow: hidden;
+                        font-size: 20px;
+                        color: red;
+                    }
+                    .content_1::after {
+                        content: '...\A..\A.';
+                        display: block;
+                        white-space: pre;
+                        animation: dot 3s infinite step-start both;
+                    }
+                    @keyframes dot {
+                        33% {
+                            transform: translateY(-2em);
+                        }                            
+                        66% {
+                            transform: translateY(-1em)
+                        }
+                    }
+
+                    .content_2 .ask{    
+                        quotes:'提问: "' '"';
+                    }
+                    .content_2 .answer {
+                        quotes:'回答: "' '"';
+                    }
+                    .content_2 .ask::before,
+                    .content_2 .answer::before {
+                        content: open-quote;
+                    }
+                    .content_2 .ask::after,
+                    .content_2 .answer::after {
+                        content: close-quote;
+                    }
+
+                    .content_3 p {
+                        counter-reset: cont1 1 cont2 2;
+                        counter-increment: cont1;
+                    }
+                    .content_3 p::after {
+                        content: counter(cont1);
+                        counter-increment: cont1;
+                    }
+                    .content_3 p::before {
+                        content: counter(cont2, bengali) counter(cont1);
+                    }
+
+                    .content_4 { 
+                        padding-left: 20px; 
+                        counter-reset: wangxiaoer;
+                    }
+                    .content_4  .content_4_counter:before { 
+                        content: counters(wangxiaoer, '-') '. '; 
+                        counter-increment: wangxiaoer;
+                    }
+                </style>
+                <h4>2_5_content属性</h4>
+                <h5>2_5_1.用伪元素的content属性模拟动态的...效果</h5>
+                <div class="content_1"></div>
+                <h5>2_5_2.开启闭合符号生成</h5>
+                <div class='content_2'>
+                    <p class='ask'>111</p>
+                    <p class='answer'>222</p>
+                </div>
+                <h5>2_5_3.attr获取属性值,参见上一个图片例子中用attr获取img元素的id</h5>
+                <h5>2_5_4.计数器</h5>
+                <div class='content_3'>
+                    <p>计数器: </p>
+                </div>
+                <h5>2_5_5.counters()</h5>
+                <div class="content_4">
+                    <div class="content_4_counter">我是王小二
+                        <div class="content_4">
+                            <div class="content_4_counter">我是王小二的大儿子</div>
+                            <div class="content_4_counter">我是王小二的二儿子
+                                <div class="content_4">
+                                    <div class="content_4_counter">我是王小二的二儿子的大孙子</div>
+                                    <div class="content_4_counter">我是王小二的二儿子的二孙子</div>
+                                    <div class="content_4_counter">我是王小二的二儿子的小孙子</div>
+                                </div>
+                            </div>
+                            <div class="content_4_counter">我是王小二的三儿子</div>
+                        </div>
+                    </div>
+                    <div class="content_4_counter">我是王小三</div>
+                    <div class="content_4_counter">我是王小四
+                        <div class="content_4">
+                            <div class="content_4_counter">我是王小四的大儿子</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="2_6_padding-box">
+                <style>
+                    .pd_box {
+                        padding: 10% 50%;
+                        position: relative;
+                    }
+                    .pd_box img {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        left:0;
+                        top:0;
+                    }
+
+                    .pd_box2 {
+                        background: red;
+                        padding:10%;
+                    }
+                    .pd_box2>span {
+                        padding: 50%;
+                        color: #fff;
+                        background: rgba(2,2,2,0.5);
+                    }
+                    .icon_menu {
+                        display: inline-block;
+                        padding:  35px 0;
+                        width:  100px;
+                        height: 10px;
+                        border-top: 10px solid #000;
+                        border-bottom: 10px solid #000;
+                        background-color: currentColor;
+                        background-clip: content-box;
+                    }
+                    .icon_dot {
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        padding: 10px;
+                        border: 5px solid #000;
+                        background-color: #000;
+                        background-clip: content-box; 
+                        /* 保留 content-box */
+                    }
+                </style>
+                <h5>2_6_padding-box</h5>
+                <h5>2_6_1_利用padding撑开内容区域</h5>
+                <div class='pd_box'>
+                    <img src="./src/images/1.jpg" alt="">
+                </div>
+                
+                <!-- <div class='pd_box2'>
+                    <span></span>
+                </div> -->
+                <h5>2_6_2_通过裁剪padding-box实现样式</h5>
+                <div class="icon_menu"></div>
+                <div class="icon_dot"></div>
+            </div>
+            <div class="2_7_margin-box">
+                <style>
+                    /* .margin_box {
+                        overflow: hidden;
+                    }
+                    .margin_box  li {
+                        width: 100px;
+                        height: 100px;
+                        background: #000;
+                        float: left;
+                        margin-right: 10px;
+                    } */
+                    .sameHeight {
+                        width: 200px;
+                        display: inline-block;
+                        overflow: hidden;
+                    }
+                    .sameHeight .sh_right,
+                    .sameHeight .sh_left{
+                        width: 50%;
+                        padding-bottom: 9999px;
+                        margin-bottom: -9999px;
+                        float:left;
+                        display: inline-block;
+                    }
+                    .sameHeight .sh_right {
+                        background: red;
+                    }
+                    .sameHeight .sh_left {
+                        background: blue;
+                    }
+                </style>
+                <!-- <ul class='margin_box'>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul> -->
+                <h4>2_7_margin-box</h4>
+                <h5>2_7_1_等高布局</h5>
+                <p>利用padding: 9999; 撑开下面的空间,再用margin:-9999;将下面拉回来,父级设置溢出隐藏, </p>
+                <div class="sameHeight">
+                    <div class="sh_left">
+                        <div>2</div>
+                    </div>
+                    <div class="sh_right">
+                        <div>2</div>
+                        <div>2</div>
+                        <div>2</div>
+                        <div>2</div>
+                        <div>2</div>
+                        <div>2</div>
+                    </div>
+                </div>
+                <h5>2_7_2_margin合并,子元素设置margin-top, 结果却让父元素被顶了下来</h5>
+                <div style='background: red;width: 100px;
+                height: 100px;'>
+                    <div style='background: yellow;width: 100%;height:10px;margin:20px 0;'></div>
+                    <div style='background: yellow;width: 100%;height:10px;margin:20px 0;'></div>
+                    <div style='background: yellow;width: 100%;height:10px;margin:20px 0;'></div>
+                    <div style='background: yellow;width: 100%;height:10px;margin:20px 0;'></div>
+                </div>
+                <div>父元素同级元素</div>
+                <h5>2_7_3_margin-left:auto实现右对齐</h5>
+                <div style='width: 300px;height: 200px;border: 1px solid #000;'>
+                    <div style='width: 200px;height: 100%;background: red;margin-left: auto;'></div>
+                </div>
+                <h5>2_7_4_margin:auto实现垂直居中</h5>
+                <div style='position: relative;width: 300px;height: 300px;border:1px solid #000'>
+                    给子元素设置为绝对定位,四个方向的值都设置为0, 这时元素的尺寸表现为'格式化宽高';
+                    这时再给元素设置宽高,由于尺寸为固定,原本应该被填充的部分空了出来,空出来的空间就是margin:auto计算的空间
+                    <div style='position: absolute;left: 0;right:0;top:0;bottom:0;background: yellow;height:100px;width: 100px;margin: auto'></div>
+                </div>
+            </div>
+            <div class="2_8_border-box">
+                <style>
+                    .add {
+                        border: dashed #000;
+                        width: 100px;
+                        height: 100px;
+                        color: #000;
+                        position: relative;
+                    }    
+                    .add::before {
+                        content: '';
+                        border-top: 10px solid;
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        top: 50%;
+                        left: calc(50% - 5px);
+                    }
+                    .add::after {
+                        content:'';
+                        height: 20px;
+                        width: 20px;
+                        border-left: 10px solid;
+                        position: absolute;
+                        top: calc(50% - 5px);
+                        left: 50%;
+                    }
+                </style>
+                <div class='add'></div>
+            </div>
+            <div class='2_9_vertical相关'>
+                <style>
+                    .verBox span {
+                        width: 100px;
+                        height: 100px;
+                        background: green;
+                        display: inline-block;
+                    }    
+                </style>
+                <h4>2_9_vertical相关</h4>
+                <h5>1.对于inline-block元素,如果其中没有内联元素,或者overflow不为visible,改元素的基线是margin底边缘,否则基线就是该元素内最后一行内联元素的基线</h5>
+                <div class='verBox'>
+                    <span></span>
+                    <span>cc</span>
+                </div>
+                <!-- <img src='./src/images/1.jpg' style='width: 100%;height: 100%;'> -->
+            </div>
+            <div class="2_10_流,层叠">
+                <style>
+                    h5 {
+                        clear: both;
+                    }
+                    .floatBox > li  {
+                        float: left;
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid #000;
+                        margin: 0 10px;
+                    }
+                    .floatBox > li:nth-child(3) {
+                        clear: left;
+                    }
+
+                    .absBox {
+                        overflow: hidden;
+                    }
+                    .absBox div {
+                        width: 100px;
+                        height: 100px;
+                        background-color: #000;
+                        position: absolute;
+                    }
+                </style>
+                <h3>2_10_流,层叠</h3>
+                <h5>1.clear只能作用于前一个元素</h5>
+                <ul class='floatBox'>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <h5>2.不受overflow裁剪的absolute元素</h5>
+                <div class="absBox">
+                    <div></div>
+                </div>
+                <h5 style='margin-top: 100px;'>3.层叠顺序</h5>
+                <div style='background: red; width: 200px;height: 200px; position: relative;'>
+                    <div style='background:palegoldenrod; width: 100px;height: 100px;position: absolute;left:20px;'>1.绝对定位</div>
+                    <div style='background:green; width: 100px;height: 100px;float: left'>2.浮动</div>
+                    <div style='background:gray; width: 100px;height: 100px;'>3</div>
+                    <div style='background:gray; width: 100px;height: 100px;'>4</div>
+                    <div style='background:gray; width: 100px;height: 100px;'>5</div>
+                    <div style='background:gray; width: 100px;height: 100px;'>6</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        let log = console.log.bind(console);
+        let imgKey = true;
+        function showImg() {
+            var img = document.getElementById('replaceImg');
+            img.src = imgKey ? '' : './src/images/1.jpg';
+            imgKey = !imgKey;
+        }
+
+        let sh_left =  document.getElementsByClassName('sh_left');
+        let sh_right =  document.getElementsByClassName('sh_right');
+        var arr = [1,2,3,4,5];
+    </script>
+</body>
+</html>

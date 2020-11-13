@@ -1,0 +1,44 @@
+html,body {
+    height: 100%;
+    margin:0;
+    padding: 0;
+}
+#wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    min-width: 460px;
+    height: 200px;
+    /* background-color: rgba(42, 104, 201,.8); */
+    border:1px solid rgba(42, 104, 201,.8);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.inp-item {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inp-item input {
+    width: 200px;
+    padding: 0;
+}
+
+#submit {
+    width: 60px;
+    
+}
+.error-box {
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,38 @@
+
+ssh-keygen -t rsa -C 'zkbcrow@163.com' // 生成ssh
+ssh-keygen -t -rsa -C 'zkbcrow@163.com'
+ssh -T git@gitee.com // 添加主机到本机SSH可信列表
+git log // 查看提交日志
+
+git init // 初始化git
+
+git remote rm orgin // 清除现有远程地址
+git remote set-url orgin git@github.com:TheMayy/jsLib.git // 更换远程仓库地址
+git remote add orgin url // 添加新远程仓库
+
+
+git add . // 添加文件到本地缓存
+git commit -m '备注' // 提交文件
+git push -u orgin master // 将代码提交到远程master分支
+git branch // 查看分支
+git branch -r // 同上
+
+git checkout master // 切换到master分支
+
+强制远程文件覆盖本地文件
+git fetch --all
+git reset --hard origin/master
+
+清空本地缓存
+git rm -r --cached .
+
+码云
+
+git init 
+git remote add origin url
+git pull origin master
+git add .
+git commit -m "第一次提交"
+git push origin master
+git push origin master -f // 强制推送,有冲突时会覆盖线上的文件
+git pull origin master // 想保留线上文件的话要先拉一下代码

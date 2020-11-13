@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<script src="./src/vue.js"></script>
+		<script src="./src/vuex.js"></script>
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<hello></hello>
+			<button @click="add">add</button>
+		</div>
+		<script>
+
+			const mapState = Vuex.mapState;
+			const mapGetters = Vuex.mapGetters;
+			var hello = {
+				template: `<div>{{newCount}}</div>`,
+				computed: {
+					...mapState(['count']),
+					count() {
+							return this.$store.state.count
+					},
+					...mapState({
+						newCount(state) {
+							return state.count + 1
+						},
+						mytitle: 'title'
+					}),
+					...mapGetters({
+						newList: 'nameList'
+					})
+					// ...mapGetters(['ageList'])
+				}
+			}
+			const store = new Vuex.Store({
+				state: {
+					count: 0,
+					title:'111',
+					family: [{
+						name: 'z',
+						age: 1
+					},{
+						name: 'x',
+						age: 2
+					}]
+				},
+				getters: {
+					ageList: function(state, getters) {
+						return function(index) {
+							return getters.nameList[index]
+						}
+					},
+					nameList(state) {
+						return state.family.map(ele => ele.name);
+					}
+				},
+				mutations: {
+					// 接收state作为第一个参数
+					// 相当于定义一个事件, increment是事件名, 通过 state.commit('increment') 触发
+					increment(state) {
+						state.count++;
+					}
+				},
+				// action 提交的是mutation
+				actions: {
+					increment({commit}) {
+						commit('increment');
+					}
+				}
+			})
+			var app = new Vue({
+				el: '#wrapper',
+				data: {
+
+				},
+				store,
+				methods: {
+					add() {
+						console.log(store.dispatch('increment'))
+					}
+				},
+				components: {
+					hello
+				}
+				// computed: {
+				// 	count() {
+				// 		return store.state.count
+				// 	}
+				// }
+			})
+		</script>
+	</body>
+
+</html>

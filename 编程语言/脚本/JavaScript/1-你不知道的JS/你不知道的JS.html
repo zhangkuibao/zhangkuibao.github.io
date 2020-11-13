@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS</title>
+</head>
+<body>
+    <script>
+        let log = console.log.bind(console);
+    </script>
+    <div> 
+        <!-- 上卷 -->
+        <div class="1_作用域和闭包"> <!-- 一级标题,以下划线分隔 -->
+            <div class="1_1_编译原理"> <!-- 二级标题 -->
+                1.编译器的两种查询方式<i>
+                    0.简单理解为赋值操作的左侧/右侧
+                    1.LHS, 赋值操作 试图找到变量的容器本身(并不关心原本的值是什么)
+                    2.RHS, 取值操作 试图得到某某的值
+                </i>
+                2.区分查询方式的意义
+                <i>
+                    1.对未声明的变量进行RHS时无法找到该变量(导致报错)
+                    2.对未声明变量进行LHS查询时如果找不到目标变量会在全局作用域中创建一个该名称的变量(严格模式下会报错)
+                </i>
+            </div>
+            <div class="1_2_欺骗词法作用域 - 修改作用域">
+                1.eval: 接收一个字符串作为参数,作用域为当前作用域(作用域为eval执行时的作用域,执行结果可能与预想不同)<script>
+                    // 在严格模式中eval在运行时产生独立的作用域,在其中的变量声明是局部变量
+                    var eval_b = 2;
+                    var eval_str = 'var b = 3'
+                    function eval_foo(str,a) {
+                        eval(str); // 相当于在此处执行 var b = 3;
+                        console.log(a,b); // 输出的b为内部作用域的b
+                    }
+                    eval_foo(eval_str,1); 
+                    console.log('----------------- eval');
+                </script>
+                2.with: 将代码运行在指定的作用域中, with运行时拥有独立的作用域<script>
+                    // 严格模式下with禁用
+                    var with_a = 'window';
+                    var with_obj = {
+                        with_a: 1,
+                        with_b: 2
+                    }
+                    console.log(with_obj.with_a); // 1
+                    with(with_obj) {
+                        console.log(with_a); // 1
+                        with_a = 'inner';
+                        console.log(with_a)
+                    }
+                    console.log('----------------- with');
+                </script>
+                3.这两个机制的副作用是引擎无法在编译时对作用域查找进行优化,会导致运行变慢
+            </div>
+            <div class="1_3_块级作用域">
+                1.for/if: for/if并不会生成独立的作用域,因此无论是在for循环头部定义的变量还是在{}内定义的变量都会挂载在外部作用域上<script>
+                    // 变量声明应该距离使用的地方越接近越好,并最大限度地本地化
+                    function forValue() {
+                        var forName = 9;
+                        for(forName = 0; forName < 1; forName++) {
+                            var forName2 = 100; // for并未生成独立的作用域, 因此forName2会挂载在外部作用域上
+                            console.log('for-inner',forName,forName2);
+                        }
+                        console.log('for-ourter',forName,forName2); // 覆盖了同名变量,for内部定义的变量也会成为当前作用域下的变量
+                        console.log('---块级作用域-for')
+                    }
+                    forValue()
+                </script>
+                2.with: 会生成独立的作用域
+                3.try/catch: catch分句会创造一个独立的作用域
+                4.let: 可以在声明变量时将其绑定在当前的作用域中(通常是在{}中),这一过程是隐式的,如果改变这些代码块可能会造成紊乱
+                    0.let声明的变量不会被提升,也就是说在声明前使用会报错
+                    0.在for循环头部用let声明变量会将变量绑定在for循环的块级作用域中,每次执行都相当于创建一个新的块级作用域和新的变量
+                5.const: 行为与let一致,创建常量, 数据无法被修改(引用类型数据不改变引用地址就不会报错)
+            </div>
+            <div class="1_4_声明提升">
+                1.函数优先,函数声明最后提升(覆盖之前的);
+                2.函数表达式提升时只提升变量名, 函数声明会提升函数体
+            </div>
+            <div class="1_5_模块">
+                1.模块的核心概念<script>
+                    var MyModules = (function Manager() {
+                        var modules = {};
+                        function define(name, deps, impl) { // 模块名字, 依赖的模块列表, 包装函数
+                            for (var i = 0; i < deps.length; i++) {
+                                deps[i] = modules[deps[i]]; // deps[i] - deps中的每一项, modules[deps[i]] - 以deps中的每一项作为键名
+                                // --给依赖的模块列表加入之前已经有的模块
+                            }
+                            modules[name] = impl.apply(impl, deps); // 将依赖的模块列表传给包装函数
+                        }
+                        function get(name) {
+                            return modules[name];
+                        }
+                        return {
+                            define: define,
+                            get: get
+                        };
+                    })();
+
+                    // 定义一个模块
+                    MyModules.define('bar',[],function() {
+                        function hello(who) {
+                            return 'let me introduce: ' + who;
+                        }
+                        return { // 返回一个对象
+                            hello: hello
+                        };
+                    });
+                    // 取出一个模块
+                    var bar = MyModules.get('bar');
+
+                    // 定义一个模块,依赖bar模块
+                    MyModules.define('foo',[bar],function() {
+
+                    })
+                    console.log('---模块')
+                </script>
+                2.模块的特征: <i>
+                    0.为创建内部作用域而调用了一个包装函数；
+                    0.包装函数的返回值必须至少包括一个对内部函数的引用，这样就会创建涵盖整个包装函数内部作用域的闭包。
+                </i>
+            </div>
+            <div class="1_6_补充">
+                1.JS没有动态作用域<script>
+                    // 作用域由调用时的对象决定
+                    function noMove_foo() {
+                        console.log(noMove_a); // 2
+                    }
+                    function noMove_bar() {
+                        var noMove_a = 3;
+                        noMove_foo(); // 相当于window.foo(); 作用域指向window
+                    }
+                    var noMove_a = 2;
+                    noMove_bar();
+                </script>
+                2.ES6之前用try/catch来创建块级作用域,性能很差<script>
+                    try{throw 2;}catch(a) {
+                        console.log(a);
+                    }
+                    console.log('---try/catch创建块级作用域')
+                </script>
+                3.箭头函数的作用域
+                    箭头函数用当前的词法作用域覆盖了this本来的值
+            </div>
+        </div>
+        <div class="2_this和对象原型 - 摧毁错误认知~!!!!!!~">
+            <div class="2_1_this绑定规则">
+                1.默认绑定: 直接调用时默认绑定到window上(严格模式中this会绑定到undefined上)
+                2.隐式绑定: 被谁调用this指向谁(调用链上最后一层会影响this指向),使用别名调用函数时可能会被绑定到window上<script>
+                    // 隐式丢失问题
+                    function Implicit_foo() {
+                            console.log(this.Implicit_a);
+                        }
+                        var Implicit_obj = {
+                            Implicit_a: 2,
+                            Implicit_foo: Implicit_foo
+                        };
+                        var Implicit_bar = Implicit_obj.Implicit_foo; // 函数别名！
+                        var Implicit_a = "oops, global"; // a 是全局对象的属性
+                        Implicit_bar(); // 在window下调用, "oops, global"
+                        // setTimeout( Implicit_obj.Implicit_foo, 0 ); // 传入函数引用,在window下调用"oops, global"
+                        log('...隐式绑定');
+                </script>
+                3.显式绑定: call, apply, bind(不立即执行, 返回一个函数), 一参传null时实际是进行默认绑定到window上;<script>
+                    // 硬绑定
+                        function hardBind_foo() {
+                            log(this.hardBind_a);
+                        }
+                        function hardBind_bar() {
+                            hardBind_foo.call(hardBind_obj); // 利用一个包装函数把作用域绑定到指定对象上
+                        };
+                        var hardBind_obj = {
+                            hardBind_a: 2
+                        };
+                        hardBind_bar(); // 2, 作用域绑定在了固定的对象上
+                        log('---显式绑定')
+                </script>
+                4.new绑定: 创建新对象 - 绑定原型链 - 绑定this(新对象) - 返回对象; 实际上并没有什么所谓的构造函数,只是对函数的"构造调用"
+                5.优先级: new > 显式(硬绑定) > 隐式 > 默认
+            </div>
+            <div class="2_2_对象">
+                1.null的问题: 有时会被当成对象类型(typeof(null)时返回'object')
+                    原理: 原理是这样的，不同的对象在底层都表示为二进制，在 JavaScript 中二进制前三位都为 0 的话会被判断为 object 类型， null 的二进制表示是全 0，自然前三位也是 0，所以执行 typeof 时会返回“ object ”。
+                2.内置对象(Object的子类型): String, Number, Boolean, Object, Function, Array, Date, RegExp, Error
+                    这些内置对象实际上是一些内置函数,经常被当做构造函数使用
+                3.基本数据类型和包装类的区别<script>
+                    var strPrimitive = 'i am a str'; // 实际上一个字符字面量是无法改变的,重新赋值是销毁后新建
+                    typeof strPrimitive; // 'string'
+                    strPrimitive instanceof String; // false
+
+                    var strObject = new String('i am a str');
+                    typeof strObject; // 'object'
+                    strObject instanceof String; // true
+                </script>
+                4.对于Object, Array, Function, RegExp来说, 无论使用字面量还是构造形式,创建出来的都是对象而不是字面量
+                5.对象拷贝<i>
+                    1.Object.assign({}, myObject); 相当于使用 = 操作符,浅拷贝
+                
+                </i>
+                6.JS中没有类,只有对象
+            </div>
+            <div class="2_3_对象特性">
+                1.属性描述符<script>
+                    var detail_obj = {};
+                    Object.defineProperty(detail_obj,'a',{
+                        value: 2,
+                        writable: true,         // 是否可写
+                        configurable: true,     // 是否可配置,设置为false后不可逆
+                        enumerable: true        // 是否可枚举
+                    });
+                    log(detail_obj);
+                    log('---属性描述符')
+                </script>
+                2.不变性: ES5提供了多种方法使对象不可改变,单都是浅不变性(只影响目标对象和它的直接属性,对引用属性无效)<script>
+                    var constantObj = {};
+                    try{
+                        // 1.使一个对象成为常量属性(不可修改,重定义或删除)
+                        Object.defineProperty(constantObj,'a',{
+                            value: 2,
+                            writable: false, // 不可写
+                            configurable: false // 不可配置
+                        })
+                        // 2.禁止对象添加新属性并保留已有属性
+                        Object.preventExtensions(constantObj); 
+                        // 3.密封
+                        Object.seal(constantObj); // 创建一个密封的对象,这个方法实际上会在目标对象上调用Object.preventExtensions()方法并把所有属性标记为不可配置
+                        // 4.冻结
+                        Object.freeze(constantObj); // 冻结对象, 这个方法实际上会在一个现有对象上调用Object.seal()方法并把所有属性设置为不可写(依然是浅冻结)
+
+                        // 以上方法都是浅冻结,想要深度冻结一个对象(引用类型也不可改变)需要遍历出所有的对象对其冻结
+                    }catch(e){}
+                </script>
+            </div>
+            <div class="2_4_属性访问">
+                1.[[Get]]和[[Put]]<script>
+                    var getObj = {a:1,c:undefined};
+                    // 1.[[Get]]
+                        getObj.a; // 1, 在语言规范中,getObj.a在getObj上实际上是实现了[[Get]]操作(类似于函数调用[[Get]]())\
+                        getObj.b; // undefined, 对象内置的[[Get]]操作在对象中查找是否有名称相同的属性,有就返回,没有则会去原型链上查找,原型链上没有则返回undefined
+                        getObj.c; // undefined, c和b的返回值都是undefined但是获取b的值时进行了更复杂的操作
+                    // 2.[[Put]]: 被触发时大致会检查以下内容:
+                        // 1.属性是否是访问描述符(是否设置setter/getter)?
+                        // 2.writable == false? 
+                        // 3.没有上述情况将该值设置为属性的值
+                        // 4.如果对象中没有这个属性会进行更复杂的操作
+                </script>
+                2.Getter和Setter-访问描述符<script>
+                // 1.ES5可以用getter和setter改写默认操作,但是只能应用在单个属性上
+                // 2.给属性定义getter/setter时这个属性会被定义为"访问描述符",js会忽略它们的value和writable特性,取而代之的是set和get特性;
+                    var getterObj = {
+                        a: 1,
+                        b:3,
+                        get a() {
+                            return 2;
+                        }
+                    };
+                    log(getterObj.a); // 2
+                    getterObj.a = 3;
+                    log(getterObj.a); // 2
+
+                    // 示例
+                    var setterObj = {
+                        get a() {
+                            return this._a_; // 用一个中间变量传递
+                        },
+                        set a(val) {
+                            this._a_ = val * 2;
+                        }
+                    }
+                    log('---setter');
+                </script>
+                3.属性的存在性(属性不存在还是值为undefined),判断属性是否存在<script>
+                    // 1.in操作符
+                        log('a' in setterObj); // in操作符会在原型链上查找
+                    // 2.hasOwnProperty()方法
+                        log(setterObj.hasOwnProperty('a'));
+                </script>
+            </div>
+            <div class="2_5_原型链 - 摧毁错误认知~!!!!!!~">
+                1.原型链的尽头: 普通对象最终指向Object.prototype
+                2.所谓原型继承(误): 绑定原型链时并没有完全复制原型链上的属性方法到目标对象,而是在两个对象间建立了连接,目标对象通过委托访问另一个对象(原型链)的属性和函数,所以继承的说法并不严谨
+                3.所谓构造函数(误): 实际上JS中并没有什么所谓的构造函数,只是对函数的"构造调用(函数前加上new,new会劫持所有普通函数并用构造对象的形式来调用它)"<script>
+                    function doSomething(name) {
+                        this.name = name;
+                        log('假装自己是构造函数',name);
+                    }
+                    doSomething.prototype.show = function() {
+                        log(this.name);
+                    }
+                    var a = new doSomething('a');
+                    a.show(); // 'a', a上并没有show方法,会通过委托访问到原型链上找
+                    log(a.constructor == doSomething.prototype.constructor); // true, 同上, a.constructor指向一个函数并不是说这是a的构造函数,而是因为对.constructor这个方法的访问被委托到了原型链上!!!
+                    a.__proto__ = Object.create(null); // 把a的原型链指向一个"空"对象
+                    log(a.constructor); // undefined, 证明之前的.constructor操作是被委托到原型链上了
+                    log('---构造函数的谎言')
+                </script>
+                4.判断原型链的关联关系<script>
+                    // 1. instanceof 操作符
+                        a instanceof doSomething; // 在 a 的整条 [[Prototype]] 链中是否有指向 doSomething.prototype 的对象？
+                    // 2. isPrototypeOf() 方法
+                        doSomething.prototype.isPrototypeOf(a); // 在 a 的整条 [[Prototype]] 链中是否出现过 Foo.prototype
+                </script>
+                5.__proto__的内部实现<script>
+                    try{
+                        throw '__proto__的内部实现';
+                        Object.defineProperty(Object.prototype, "__proto__", {
+                            get: function () {
+                                return Object.getPrototypeOf(this);
+                            },
+                            set: function (o) {
+                                // ES6 中的 setPrototypeOf(..)
+                                Object.setPrototypeOf(this, o);
+                                return o;
+                            }
+                        });
+                    }catch(e) {log(e);}
+                </script>
+                6.用Object.create(null)方法创建一个绝对空对象来存储数据,不会受到原型链的干扰,可称之为字典
+            </div>
+        </div>
+        <!-- 上卷结束, 第二部分中类的概念(而且好像没什么用=_=)大致了解所以未深入阅读,重点： 原型链的委托访问、构造函数的真相 -->
+        
+
+        <!-- 中卷 -->
+        <div class="3_类型和语法">
+            <div class="3_1_类型">
+                1.内置类型: number, string, object, boolean, symbol, undefined, null; 除对象(引用类型)之外,其他类型被称为基本类型<script>
+                    function type_a() {};
+                    typeof null; // object; 机器码前三位判断是否为引用
+                    typeof []; // object; 数组是object 的子类型
+                    typeof type_a; // function; 函数是object的子类型,其实就是一个可调用的对象,内部有一个属性[[Call]]使其可以被调用
+                    typeof j; // undefined; 未声明的变量返回undefined
+                    type_a.otherValue = 'ui'; // 可以为函数添加属性
+
+                    var type_b = [];
+                    type_b['name'] = 'zk'; // 可以在数组中用键值对存值(不推荐),不计入length中
+                </script>
+                2.JS中的变量没有类型, 值才有类型, 变量可以随时持有任何类型的值, typeof操作得到的结果并不是该变量的类型, 而是该变量持有的值的类型
+                3.类数组转换为数组方法: [].slice.call(); Array.from(); [...];
+            </div>
+            <div class="3_2_值">
+                1.字符串<script>
+                    var str = 'string';
+                    // 访问指定位置的字符
+                        str[1]; // t
+                        'string'[1]; // t
+                        str.charAt(1);  // t
+                    // 借助array的方法来处理字符串
+                        log([].join.call(str,'-')); // s-t-r-i-n-g
+                        var d = [].map.call(str,function(ele){
+                            return ele.toUpperCase() + '-';
+                        }).join('');
+                        log(d); // S-T-R-I-N-G-
+                    // 无法借助数组的reserve方法处理字符串,因为字符串是'不可变'的数据类型
+                </script>
+                2.数值<script>
+                    // JS中的整数
+                        (42.0 == 42); // true, JS中没有整数,浮点数的区分,整数实际上就是没有小数的数值
+                    // 42.toFixed(3); // 这样的语法会报错, 因为.被视为常量42的一部分,这样就类似于: 'string'slice();
+                        42..toFixed(3); // 42.000, 这样的操作在语法上是可行的
+                        42 .toFixed(3); // 42.000, 加上空格后也是可行的
+                    // 能够展示的最大值&最小值
+                        Number.MAX_VALUE;
+                        Number.MIN_VALUE;
+                    // 能安全使用的最大整数&最小整数
+                        Number.MAX_SAFE_INTEGER;
+                        Number.MIN_SAFE_INTEGER;
+                </script>
+                3.特殊值<script>
+                    // undefined和null
+                        undefined = 2; // undefined是标识符,可以赋值(没卵用)
+                        log(undefined); // undefined
+                        // null = 2; //null不是标识符,赋值会报错
+                    // void: 让表达式的返回值变为undefined
+                        log(2,void 2); // 2,undefined
+                    // NaN: 
+                        NaN != NaN; //true, 唯一一个不等于自身的值
+                        window.isNaN != Number.isNaN; // true, 注意两个函数的区别,window.isNaN
+                        window.isNaN('dd'); // true, 检查参数是否不是 NaN ，也不是数字
+                        Number.isNaN('dd'); // false, ES6新增的工具方法,正常多了..
+                    // infinity
+                        1 / 0; // Infinity
+                        1 / Infinity; // 0
+                        -1 / Infinity; // -0
+                        Infinity / 1; // Infinity
+                        Infinity / Infinity; // NaN
+                    // 零值,负零的必要性: 如果用数字表示速度,符号表示移动方向,0如果没有符号就无法判断,会丢失一部分信息,保留0的符号位可以防止这类情况
+                        -0 + ''; // 0
+                        +'-0'; // -0
+                        -0 == 0; // true
+                        
+                </script>
+            </div>
+            <div class="3_3_类型转换">
+                1.ToString: 非字符串转换为字符串时隐式调用toString方法<i>
+                    0.对象转化为字符串时默认调用toString()方法,如果对象有自己的toString()方法,字符串化时会隐式调用该方法,否则会去原型链上寻找,即Object.prototype.toString
+                    0.Object.prototype.toString()会返回内部属性[[class]]的值,如: "[object Object]","[object String]"等
+                    <script>
+                        // 极大/极小数字用转换为字符串后依然为指数展示方式
+                        log(Number.MAX_VALUE + ''); // '1.7976931348623157e+308'
+                        // 数组的toString()方法重新定义,将所有元素用','连接起来
+                        log([1, 2, 3] + '')
+                    </script>
+                </i>
+                2.ToNumber: 对象转数字先调用valueOf方法,没有则调用toString,如果两个方法都不返回基本类型值会报错<script>
+                    + undefined; // NaN
+                    + null; // 0
+                </script>
+                3.显式强制类型转换
+                <i>
+                    1.日期转数字,
+                    <script>
+                        log(+ new Date()); // 返回当前时间毫秒数,相当于getTime方法
+                        
+                    </script>
+                </i>
+                4.隐式强制类型转换
+                <script>
+                    [] + {}; // '[object Object]',  {} 出现在 + 运算符表达式中，因此它被当作一个值（空对象）来处理, []被转换为""
+                    {} + []; // 0, {}被当做一个独立的空代码块, 这条语句相当于 +[]
+                </script>
+            </div>
+            <div class="3_4_语句和表达式">
+                1.表达式的副作用
+                <script>
+                    var effect = 1; // 返回值为undefined,因为var表达式的返回值为undefined
+                    effect = 1; // 返回 1
+                    var ef_a = ef_b = ef_c = 1; // 能够链式赋值的原因在于右侧的赋值会返回一个值,这个值会被赋给等号左侧的变量
+                </script>
+                2.没有else if语句
+                <script>
+                    // 在只有单条语句的时候if和else可以省略代码块的{}
+                        if(null) log(b); 
+                        else log(a); 
+                    // 所以else-if的实质是
+                        if(null){
+                            log(b);
+                        }else {
+                            if(undefined) {
+                                log(a)
+                            }
+                        }
+                </script>
+            </div>
+        </div>
+        <div class="4_异步">
+            1.控制台的输出是异步的(I/O异步化),而不是当时的一次快照,所以会出现一些预想之外的输出,用debugger调试更加准确;
+            2.JS 引擎本身所做的只不过是在需要的时候，在给定的任意时刻执行程序中的单个代码块。JS引擎本身没有时间概念,只是一个按需执行JS代码片段的环境
+            3.不要使用同步的ajax请求,这样做会锁定浏览器 UI （按钮、菜单、滚动条等），并阻塞所有的用户交互
+            4.可以给多个异步操作设定同一个回调函数,通过判断来指定后续的操作<script>
+                var a, b;
+                function foo(x) {
+                    a = x * 2;
+                    if (a && b) { // 两个操作都执行完毕后执行回调函数
+                        baz();
+                    }
+                }
+                function bar(y) {
+                    b = y * 2;
+                    if (a && b) {
+                        baz();
+                    }
+                }
+                function baz() {
+                    console.log(a + b);
+                }
+                // ajax(..) 是某个库中的某个 Ajax 函数
+                ajax("http://some.url.1", foo);
+                ajax("http://some.url.2", bar);
+            </script>
+            5.setTimeout(...,0); 可以理解为将这个任务放到任务队列的结尾处(但不能保证,有多个类似操作时不能保证严格按照调用顺序处理)
+            6.不是多任务同时进行,而是快速的上下文切换
+        </div>
+        <div class="5_Promise">
+            1.Promise代表一个占位符,一旦需要的值准备好了(或者请求失败),就可以用promise换取这个值本身
+            2.通过p instanceof Promise来检查是不是promise是不可靠的,因为库或框架可能会实现自己的promise对象,promise值可能是从其他窗口接收到的,这个窗口的Promise和当前的不同,因此无法识别
+        </div>
+
+
+        <!-- 下卷 -->
+        <!-- 第一部分介绍本js的基础语法及本系列书籍的目录(导读) -->
+        <div class="III_ES6">
+            <div class="III_1_语法">
+                1.const定义常量意味着这个值的存储空间在当前词法作用域结束前不会被释放,因为指向这个值的引用没有清除
+                2.默认参数引发暂时性死区导致报错<script>
+                    var w = 1,a = 9,c = 2; 
+                    // a = w + 1; 自己作用域没有,向上寻找
+                    // b = a + 1; 自己作用域有a, 直接使用
+                    // c = c + 1; 自己作用域有c, 但是是一个没有初始化的变量, 未声明之前调用产生暂时性死区
+                    function yfFoo(a = w + 1, b = a + 1 ,c = c + 1) {log(a,b,c)}
+                    var a,b,c;
+                    [a,b,c] = [1,2,3]
+                </script>
+                3.结构默认值 + 参数默认值<script>
+                    // 参数x: {x=10} = {} --- x的默认值是10,
+                    // 参数y: {y} = {y:10} --- {y}的默认值是{y:10}
+                    function f6({ x = 10 } = {}, { y } = { y: 10 }) {console.log(x, y);}
+                    f6(); // 10 10 
+                    f6({},{}); // 10,undefined
+                    f6({x:20},{y:20}); // 20,20
+                </script>
+                4.对象中简写函数具有'支持super'的特质<script>
+                    function runSomething(o) {
+                        var x = Math.random(),
+                            y = Math.random();
+                        return o.something(x, y);
+                    }
+                    // 调用自身 --- ES5代码
+                    runSomething({
+                        something: function something(x, y) { 
+                            // 这里something和function something并不是重复,两者都是必要的
+                            // 第一个something让函数能通过o.something来调用,像是它的公开名称
+                            // 第二个something是一个词法名称,用于在其自身内部引用这个函数
+                            if (x > y) {
+                                // 交换x和y的递归调用
+                                return something(y, x); // 这里通过函数名something来找到自己,也可以用this(不稳健)
+                            }
+                            return y - x;
+                        }
+                    });
+                    // 使用简化版本时会报错
+                    try {
+                        runSomething({
+                            something(x, y) { // 简化写法相当于箭头函数, 是一个匿名函数
+                                if (x > y) {
+                                    return something(y, x); // 无法找到这个方法
+                                }
+                                return y - x;
+                            }
+                        })
+                    }catch{console.log('ES6简化对象字面量中的函数时是匿名函数,无法通过引用找到自身')}
+                </script>
+                5.Getter/Setter <script>
+                    var o = {
+                        __value: 10,
+                        get v() {return this.__value++;},
+                        set v(value) {this.__value = value};
+                    }
+                </script>
+                6.super,只能在简洁方法中出现, 只允许一super.xxx的形式出现<script>
+                    var o1 = {
+                        foo() {
+                            console.log("o1:foo");
+                        }
+                    };
+                    var o2 = {
+                        foo() {
+                            super.foo(); // super相当于Object.getPrototypeOf(o2)
+                            console.log("o2:foo");
+                        }
+                    };
+                    Object.setPrototypeOf(o2, o1);
+                    o2.foo(); // o1:foo
+                              // o2:foo
+                </script>
+                7.模板字符串中可以出现'任何'合法的表达式,其中的空格/换行全部都会被保留,不可滥用<script>
+                    // 1.保留所有换行/空格
+                    log(`
+                    s
+                    x        d
+                    `)
+                    // 2.字符串字面量标签函数 --- 这是一种新的语法!!!
+                    function stFoo(one, ...two) {
+                        log(one, two); // 参数为两个数组,['this is', '!'], ['string','string'], 第一个数组包含所有普通字符串,第二个包含所有变量(不使用...时为第一个)
+                        log(one.raw); // 普通字符串组有一个raw属性存放原始的数据(即自身)
+                    }
+                    var stName = 'string';
+                    stFoo`this is ${stName}!, and ${stName}`; 
+                </script>
+                8.箭头函数总是函数表达式, 不存在函数声明, 无法通过名称引用
+                9.符号Symbol,主要意义是创建一个不与其他任何值冲突的值
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        1.先告一段落, 剩余部分为ES6内容, 包括中卷下部分, 下卷下部分
+    </div>
+</body>
+</html>
