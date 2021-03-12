@@ -1,5 +1,35 @@
+# git 使用手册
 > 为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件
-## 命令
+## git 工作流程
+![git工作流程图](src\git_flow.png)
+### workspace 工作空间
+1. 本地的、正在修改的内容，通常这里的文件状态是最新的
+2. 任何对象都是在工作空间中诞生和被修改
+#### 状态变化
+1. 通过 `git add` 命令将新增、修改的文件添加到<font color=red>暂存区</font>
+2. 通过 `git commit -a` 命令将文件状态直接更新到<font color=red>本地仓库</font>
+3. 通过 `git pull` 命令从<font color=red>远程仓库</font>拉取远程仓库的<font color=orange>最后版本</font>
+4. 通过 `git checkout` 命令从<font color=red>暂存区</font>拉取检出文件（覆盖本地）
+5. 通过 `git checkout <HEAD> | <commit id>` 命令从<font color=red>本地仓库</font>的最新几次提交或指定的某次提交中检出文件（覆盖本地）
+
+### index 暂存区
+1. 标记了当前的工作空间中哪些内容是被 `git` 管理的
+2. 任何修改都是从进入index区才开始被 `git` 版本控制
+#### 状态变化
+1. 通过 `git commit` 命令将本次修改版本提交到<font color=red>本地仓库</font>
+
+### 本地仓库
+1. 保存提交过的各个版本
+2. 只有把修改提交到本地仓库，该修改才能在仓库中留下痕迹
+#### 状态变化
+1. 通过 `git push` 命令将本次修改版本推送到<font color=red>远程仓库</font>
+2. 通过 `git fetch` 命令从<font color=red>远程仓库</font>强制拉取代码覆盖本地
+
+### 远程仓库
+1. 是本地仓库的异地备份，可以被其他协作者共享，这里的文件状态最旧
+2. 要与协作者分享本地的修改，可以把它们 `push` 到远程仓库来共享
+
+## git 命令
 
 ### 配置
 #### 配置用户名和邮箱
@@ -93,3 +123,17 @@
 
 #### `get cherry-pick <commit>`
 > 复制一个指定的提交到当前分支
+
+## 自定义 git
+### `.gitignore` 文件
+部分规则如下
+```
+# 排除所有.开头的隐藏文件:
+.*
+# 排除所有.class文件:
+*.class
+
+# 不排除.gitignore和App.class:
+!.gitignore
+!App.class
+```
