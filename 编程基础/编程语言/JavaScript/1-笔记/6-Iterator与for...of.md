@@ -57,6 +57,71 @@ let obj = {
 };
 ```
 
+### 用 Generator 函数添加 Iterator 接口
+
+```js
+let myIterable = {
+  [Symbol.iterator]: function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+  },
+};
+[...myIterable]; // [1, 2, 3]
+
+// 或者采用下面的简洁写法
+
+let obj = {
+  *[Symbol.iterator]() {
+    yield "hello";
+    yield "world";
+  },
+};
+
+for (let x of obj) {
+  console.log(x);
+}
+// "hello"
+// "world"
+```
+
+### 调用 Iterator 接口的场合
+
+- 数组和 Set 结构进行解构赋值时，会默认调用 Symbol.iterator 方法
+
+- 扩展运算符（...）也会调用默认的 Iterator 接口。
+
+- yield\*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
+
+```js
+let generator = function* () {
+  yield 1;
+  yield* [2, 3, 4];
+  yield 5;
+};
+
+var iterator = generator();
+
+iterator.next(); // { value: 1, done: false }
+iterator.next(); // { value: 2, done: false }
+iterator.next(); // { value: 3, done: false }
+iterator.next(); // { value: 4, done: false }
+iterator.next(); // { value: 5, done: false }
+iterator.next(); // { value: undefined, done: true }
+```
+
+- for...of
+- Array.from()
+- Map(), Set(), WeakMap(), WeakSet()（比如 new Map([['a',1],['b',2]])）
+- Promise.all()
+- Promise.race()
+
+### return() 与 throw()
+自己实现 `Iterator` 接口时，`next()` 是必须部署的，`return()` 和 `throw()` 是否部署是可选的
+
+`return()`：如果 `for...of` 循环提前退出（出错或break），就调用 `return()`
+
+`throw()`：配合 `Generator` 函数使用
 ## for...of
 
-用 `for...of` 遍历数据时会自动去寻找该数据的 `Iterator` 接口
+用 `for...of` 遍历数据时会自动去寻找该数据的 `Iterator` 接口，即该数据上的 `Symbol.iterator` 属性
