@@ -106,3 +106,13 @@
 ##### 周二
 
 完成小程序云开发
+
+##### 周三
+
+iterator接口与for...of循环
+
+##### 周四
+
+1. generator函数与generator的异步编程
+2. async ，async是generator的语法糖
+3. promise不是新的语法功能，而是一种新的写法，允许将回调函数的嵌套改为链式调用
