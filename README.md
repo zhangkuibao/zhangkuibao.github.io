@@ -2,6 +2,9 @@
 
 2. 每月初设定本月计划，月末做总结。
 
+# 2021年计划
+学习英文，做事不怕慢，就怕停
+
 ## 五月
 ### 第二十周（2021-5-17）
 
@@ -116,3 +119,4 @@ iterator接口与for...of循环
 1. generator函数与generator的异步编程
 2. async ，async是generator的语法糖
 3. promise不是新的语法功能，而是一种新的写法，允许将回调函数的嵌套改为链式调用
+ES6：iterator接口与for...of遍历
