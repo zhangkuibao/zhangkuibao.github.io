@@ -20,6 +20,7 @@
 
 #### 对象
 
+##### 普通方法
 ```js
 let obj = {
   a: 1,
@@ -42,6 +43,54 @@ let obj = {
     };
   },
 };
+```
+
+##### Generator 函数
+```js
+function* objectEntries(obj) {
+  let propKeys = Reflect.ownKeys(obj);
+
+  for (let propKey of propKeys) {
+    yield [propKey, obj[propKey]];
+  }
+}
+
+let jane = { first: 'Jane', last: 'Doe' };
+
+for (let [key, value] of objectEntries(jane)) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+或者直接添加到对象的 `Symbol.iterator` 上
+
+```js
+function* objectEntries() {
+  let propKeys = Object.keys(this);
+
+  for (let propKey of propKeys) {
+    yield [propKey, this[propKey]];
+  }
+}
+
+let jane = { first: 'Jane', last: 'Doe' };
+
+jane[Symbol.iterator] = objectEntries;
+
+for (let [key, value] of jane) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+也可以直接加在`Object.prototype`上
+```js
+Object.prototype[Symbol.iterator] = function* objectEntries() {
+  let propKeys = Object.keys(this);
+
+  for (let propKey of propKeys) {
+    yield [propKey, this[propKey]];
+  }
+}
 ```
 
 #### 类数组
@@ -91,7 +140,7 @@ for (let x of obj) {
 
 - 扩展运算符（...）也会调用默认的 Iterator 接口。
 
-- yield\*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
+- yield*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
 
 ```js
 let generator = function* () {
