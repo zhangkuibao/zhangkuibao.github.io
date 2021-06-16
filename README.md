@@ -145,3 +145,7 @@ ES6：iterator接口与for...of遍历
 
 1. 深入学习Promise
 2. 深入学习webpack
+
+
+#### 周三
+从项目中学到了 angular 的类似 v-model 原理的应用，后续需要更深入学习 [(ngModel)] 的原理
