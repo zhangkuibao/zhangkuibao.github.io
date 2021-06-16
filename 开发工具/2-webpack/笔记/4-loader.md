@@ -38,4 +38,15 @@ module.exports = {
 
 ### 内联方式
 
-https://webpack.docschina.org/concepts/loaders/
+```js
+import Styles from 'style-loader!css-loader?modules!./styles.css';
+```
+
+- 使用 ! 前缀，将禁用所有已配置的 normal loader(普通 loader)
+
+- 使用 !! 前缀，将禁用所有已配置的 loader（preLoader, loader, postLoader）
+
+- 使用 -! 前缀，将禁用所有已配置的 preLoader 和 loader，但是不禁用 postLoaders
+
+
+选项可以传递查询参数，例如 ?key=value&foo=bar，或者一个 JSON 对象，例如 ?{"key":"value","foo":"bar"}。
