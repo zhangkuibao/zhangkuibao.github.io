@@ -6,7 +6,44 @@
 
 ## 可配置属性
 
+```ts
+type OutputObject = {
+    filename: string | (pathData:any) => string     // 决定了每个输出 bundle 的名称。这些 bundle 将写入到 output.path 选项指定的目录下。可以使用 'js/[name]/bundle.js' 这样的文件夹结构
+    chunkFilename: string | (pathData:any) => string          // 决定非初始（non-initial）chunk 文件的名称。默认使用 [id].js
+    assetModuleFilename: string | (pathData:any) => string      // 决定 module 文件的名称，默认 [hash][ext][query]
+    path: string                // output 目录对应的绝对路径。require('path').resolve(__dirname, 'dist/assets')
+    publicPath: string | (x) => string          // 加载外部资源的路径
+    scriptType: 'module' | 'text/javascript' | false      // 设置 <script> 标签的 type  值
+    compareBeforeEmit: boolean              // 当要输出的文件已存在并且内容没有变更时，webpack 不会输出该文件。
+
+    library: string | string[] | LibraryObject     // 将 entry 设定的入口输出为一个库（class）。
+    libraryTarget: string
+    auxiliaryComment: string       // 在 output.library 和 output.libraryTarget 一起使用时，此选项允许用户向导出容器(export wrapper)中插入注释。
+    charset: string                // 为 <script> 标签添加 charset="utf-8" 标识
+    chunkLoadTimeout: number       // chunk 请求到期之前的毫秒数，默认为 120000
+    chunkLoading: 'jsonp' | 'import-scripts' | 'require' | 'async-node' | string        // 加载 chunk 的方法，（默认值有 'jsonp' (web)，'importScripts' (WebWorker)，'require' (sync node.js)，'async-node' (async node.js)，还有其他值可由插件添加)。
+    chunkLoadingGlobal: string      // webpack 用于加载 chunk 的全局变量。
+    chunkFormat: 'array-push' | 'commonjs' | string     // chunk 的格式，（默认包含 'array-push' (web/WebWorker)，'commonjs' (node.js)，还有其他情况可由插件添加）。
+    crossOriginLoading: 'anonymous' | 'use-credentials'    // 启用 cross-origin 属性 加载 chunk。仅在 target 设置为 'web' 时生效，通过使用 JSONP 来添加脚本标签，实现按需加载模块。'anonymous' - 不带凭据(credential) 启用跨域加载；'use-credentials' - 携带凭据(credential) 启用跨域加载
+    globalObject: 'self' | 'window' | 'this' | string        // 当输出为 library 时，尤其是当 libraryTarget 为 'umd'时，此选项将决定使用哪个全局对象来挂载 library。默认为 self
+    uniqueName: string          // 在全局环境下为防止多个 webpack 运行时 冲突所使用的唯一名称。默认使用 output.library 名称或者上下文中的 package.json 的 包名称(package name)， 如果两者都不存在，值为 ''。
+    hashDigest: string          // 在生成 hash 时使用的编码方式。对文件名使用 'base64'，可能会出现问题，因为 base64 字母表中具有 / 这个字符(character)。
+    hashDigestLength: string    // hash 长度
+    hashFunction: string | function     // 散列算法。支持 Node.JS crypto.createHash 的所有功能。
+    pathinfo: boolean | 'verbose'           // 在 bundle 中引入「所包含模块信息」的相关注释。development 模式时默认为true，production 模式默认为 false，为 'verbose' 时，会显示更多信息
+    sourceMapFilename: string       // 默认值 [file].map[query]，仅在 devtool 设置为 'source-map' 时有效
+    strictModuleErrorHandling: boolean      // 加载模块时错误的处理方式 https://webpack.docschina.org/configuration/output/#outputstrictmoduleerrorhandling
+    clean: boolean | { dry?: boolean, keep?: RegExp | string | ((filename: string) => boolean) }          // 生成文件前先清空输出目录 https://webpack.docschina.org/configuration/output/#outputclean
+
+    // 现在或未来将被弃用的功能
+    libraryExport           // 使用 output.library.export
+    libraryTarget           // 使用 output.library.type
+    strictModuleExceptionHandling   // 使用 output.strictModuleErrorHandling
+}
+```
+
 ### publicPath
+
 设置加载外部资源的路径。
 
 该选项的值是 runtime(运行时) 或 loader(载入时) 所创建的每个 URL 的前缀。因此，在多数情况下，此选项的值都会以 / 结束。
