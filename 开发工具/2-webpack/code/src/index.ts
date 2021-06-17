@@ -1,2 +1,8 @@
-let zhangkb = 1997
-console.log(zhangkb)
+export const name = 'isIndex';
+export function getName() {
+  return name;
+}
+
+(function(name) {
+    console.log(name);
+})(name)

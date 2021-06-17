@@ -5,13 +5,7 @@ module.exports = {
         index: './src/index.ts',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
-    },
-    module: {
-        rules: [{
-            test: /\.ts$/,
-            use: 'ts-loader'
-        }]
+        library: 'MeLibrary',
+        iife: true
     }
 }

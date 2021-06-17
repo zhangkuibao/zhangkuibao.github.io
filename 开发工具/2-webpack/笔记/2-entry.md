@@ -48,15 +48,15 @@ module.exports = {
 ```ts
 const path = require('path');
 
-interface WebpackConfig = {
+type WebpackConfig = {
     entry: string | string[] | EntryObject         // 入口
 }
 
-interface EntryObject = {
+type EntryObject = {
     [chunkName: string]: string | string[] | EntrySubObject
 }
 
-interface EntrySubObject = {
+type EntrySubObject = {
     dependOn: string | string[]    // 当前入口所依赖的模块。它们必须在该入口被加载前被加载。使用 dependOn 选项你可以与另一个入口 chunk 共享模块
     filename: string               // 指定要输出的文件名称。
     import: string | string[]      // 启动时需加载的模块。
