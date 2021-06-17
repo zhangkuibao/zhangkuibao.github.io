@@ -215,63 +215,63 @@ MyLibrary.getName(); // isIndex;
 
 - 将 entry 设置为一个 array，那么只有数组中的最后一个会被暴露。
 
-  ```js
-  module.exports = {
-    // …
-    entry: ["./src/a.js", "./src/b.js"], // 只有在 b.js 中导出的内容才会被暴露
-    output: {
-      library: "MyLibrary",
-    },
-  };
-  ```
+```js
+module.exports = {
+  // …
+  entry: ["./src/a.js", "./src/b.js"], // 只有在 b.js 中导出的内容才会被暴露
+  output: {
+    library: "MyLibrary",
+  },
+};
+```
 
 - 将 entry 设置为一个 object，所有入口都可以通过 library 的 array 语法暴露
 
-  ```js
-  module.exports = {
-    // …
-    entry: {
-      a: "./src/a.js",
-      b: "./src/b.js",
-    },
-    output: {
-      filename: "[name].js",
-      library: ["MyLibrary", "[name]"], // name is a placeholder here
-    },
-  };
-  ```
+```js
+module.exports = {
+  // …
+  entry: {
+    a: "./src/a.js",
+    b: "./src/b.js",
+  },
+  output: {
+    filename: "[name].js",
+    library: ["MyLibrary", "[name]"], // name is a placeholder here
+  },
+};
+```
 
-  假设 a.js 与 b.js 导出名为 hello 的函数，用下面的方法去访问它：
+假设 a.js 与 b.js 导出名为 hello 的函数，用下面的方法去访问它：
 
-  ```js
-  MyLibrary.a.hello("webpack");
-  MyLibrary.b.hello("webpack");
-  ```
+```js
+MyLibrary.a.hello("webpack");
+MyLibrary.b.hello("webpack");
+```
 
 - 要为每个入口点配置 library 需要在 entry.library 中配置
 
-  ```js
-  module.exports = {
-    entry: {
-      main: {
-        import: "./src/index.js",
-        library: {
-          // `output.library` 下的所有配置项可以在这里使用
-          name: "MyLibrary",
-          type: "umd",
-          umdNamedDefine: true,
-        },
-      },
-      another: {
-        import: "./src/another.js",
-        library: {
-          name: "AnotherLibrary",
-          type: "commonjs2",
-        },
+```js
+module.exports = {
+  entry: {
+    main: {
+      import: "./src/index.js",
+      library: {
+        // `output.library` 下的所有配置项可以在这里使用
+        name: "MyLibrary",
+        type: "umd",
+        umdNamedDefine: true,
       },
     },
-  };
-  ```
+    another: {
+      import: "./src/another.js",
+      library: {
+        name: "AnotherLibrary",
+        type: "commonjs2",
+      },
+    },
+  },
+};
+```
 
 **将功能打包到不同平台并指定不同名称**
 
