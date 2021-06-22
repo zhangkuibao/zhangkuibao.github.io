@@ -2,6 +2,9 @@
 
 插件目的在于解决 loader 无法实现的其他事。
 
+## 官方loader
+https://webpack.docschina.org/plugins/
+
 ## 是什么
 
 webpack 插件是一个具有 apply 方法的 JavaScript 对象。apply 方法会被 webpack compiler 调用，并且在 整个编译生命周期都可以访问 compiler 对象。

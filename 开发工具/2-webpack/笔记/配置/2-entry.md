@@ -46,28 +46,28 @@ module.exports = {
 ### 多入口对象可配置属性
 
 ```ts
-const path = require('path');
+const path = require("path");
 
 type WebpackConfig = {
-    entry: string | string[] | EntryObject         // 入口
-}
+  entry: string | string[] | EntryObject; // 入口
+};
 
 type EntryObject = {
-    [chunkName: string]: string | string[] | EntrySubObject
-}
+  [chunkName: string]: string | string[] | EntrySubObject;
+};
 
 type EntrySubObject = {
-    dependOn: string | string[]    // 当前入口所依赖的模块。它们必须在该入口被加载前被加载。使用 dependOn 选项你可以与另一个入口 chunk 共享模块
-    filename: string               // 指定要输出的文件名称。
-    import: string | string[]      // 启动时需加载的模块。
-    library: object                // 指定 library 选项，为当前 entry 构建一个 library。
-    runtime: string                // 运行时 chunk 的名字。如果设置了，就会创建一个以这个名字命名的运行时 chunk，否则将使用现有的入口作为运行时。
-    publicPath: string             // 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址。请查看 output.publicPath。
-    layer: string
-    chunkLoading: string
-}
+  dependOn: string | string[]; // 当前入口所依赖的模块。它们必须在该入口被加载前被加载。使用 dependOn 选项你可以与另一个入口 chunk 共享模块
+  filename: string; // 指定要输出的文件名称。
+  import: string | string[]; // 启动时需加载的模块。
+  library: object; // 指定 library 选项，为当前 entry 构建一个 library。
+  runtime: string; // 运行时 chunk 的名字。如果设置了，就会创建一个以这个名字命名的运行时 chunk，否则将使用现有的入口作为运行时。
+  publicPath: string; // 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址。请查看 output.publicPath。
+  layer: string;
+  chunkLoading: string;
+};
 
-let config:WebpackConfig = {};
+let config: WebpackConfig = {};
 module.exports = config;
 ```
 
@@ -94,3 +94,48 @@ module.exports = {
 在多页面应用程序中，server 会拉取一个新的 HTML 文档给你的客户端。页面重新加载此新文档，并且资源被重新下载。
 
 这时可以使用 optimization.splitChunks 为页面间共享的代码创建 bundle。多页应用能够复用多个入口起点之间的大量重复代码/模块，从而实现性能优化。
+
+## 每个入口使用多文件类型
+
+在不使用 import 样式文件的应用程序中（预单页应用程序或其他原因），使用一个值数组结构的 entry，并且在其中传入不同类型的文件，可以实现将 CSS 和 JavaScript（和其他）文件分离在不同的 bundle。
+
+```js
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  mode: process.env.NODE_ENV,
+  entry: {
+    home: ["./home.js", "./home.scss"],
+    account: ["./account.js", "./account.scss"],
+  },
+  output: {
+    filename: "[name].js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          // fallback to style-loader in development
+          process.env.NODE_ENV !== "production"
+            ? "style-loader"
+            : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
+};
+```
+
+打包后 ./dist 文件夹内有四个文件：
+- home.js
+- home.css
+- account.js
+- account.css

@@ -4,6 +4,10 @@ webpack 默认只能识别 javascript 和 json 文件，loader 让 webpack 能�
 
 loader 用于对模块的源代码（文件内容本身）进行转换。
 
+## 官方loader
+https://webpack.docschina.org/loaders/
+
+
 ## 用法
 
 ### 在配置文件中配置
