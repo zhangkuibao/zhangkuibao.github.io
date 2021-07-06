@@ -500,6 +500,12 @@ const router = new VueRouter({
 })
 
 ```
+
+### 十、活动class
+
+router-link-exact-active 是精确匹配规则，即只有当前点击router被匹配
+
+[router-link-active 与 router-link-exact-active 区别](https://blog.csdn.net/qq_42068550/article/details/97392471)
 ### 其他
 1. `<router-view/>` 可以被包裹在 `<transition>` 中实现过渡效果
 2. 数据获取有两种方法,用户体验不同
