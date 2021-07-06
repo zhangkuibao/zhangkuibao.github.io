@@ -1,3 +1,4 @@
+传参方式并不受请求类型的影响（post，get），get 请求也可以传递请求体参数（body），post请求也可以传递查询参数（query）。
 ## 请求头参数（header）
 
 将参数携带在 header 中 `[Accept-field]: [Accept-value]`

@@ -16,7 +16,7 @@
 
 ### 上传文件
 
-上传文件时 `Content-type` 设置为 `multipart/form-data; boundary=----WebKitFormBoundarys9jOoKcA1Kwn9sYS` ，用 `new FormData()` 处理参数。
+上传文件时 `Content-type` 为 `multipart/form-data; boundary=----WebKitFormBoundarys9jOoKcA1Kwn9sYS` ，用 `new FormData()` 处理参数。
 
 ```js
 const formData = new FormData();
