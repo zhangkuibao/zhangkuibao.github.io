@@ -4,9 +4,25 @@ Service Worker 可以使你的应用先访问本地缓存资源，所以在离�
 
 如果网站中注册了 Service Worker 那么它可以拦截当前网站的请求，进行判断（需要编写相应的判断程序），如果需要向服务器发起请求的就转给服务器，如果可以直接使用缓存的就直接返回缓存不再转给服务器。
 
-本质上充当Web应用程序（服务器）与浏览器之间的代理服务器（可以拦截全站的请求，并作出相应的动作->由开发者指定的动作），相当于一个 middleware 。
+本质上充当 Web 应用程序（服务器）与浏览器之间的代理服务器（可以拦截全站的请求，并作出相应的动作->由开发者指定的动作），相当于一个 middleware 。
 
 是一个特殊的 worker，所以 worker 的特性对 Service Worker 也适用。
+
+目前只能在 HTTPS 环境下才能使用 Service Worker，因为 SW 的权利比较大，能够直接截取和返回用户的请求，所以要考虑一下安全性问题。
+
+## 特点
+
+- 在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 HTTP 请求。
+- 单独的作用域范围，单独的运行环境和执行线程
+- 事件驱动型服务线程
+- 作用域限制
+
+Service Worker 的注册路径决定了其 scope 默认作用页面的范围。
+
+如果 service-worker.js 是在 /sw/ 页面路径下，这使得该 Service Worker 默认只会收到 页面/sw/ 路径下的 fetch 事件。
+
+如果希望改变它的作用域，可在第二个参数设置 scope 范围。
+
 ## 使用限制
 
 - 浏览器限制
@@ -27,7 +43,7 @@ cache 兼容性很差，可以使用 polyfill，在使用 Service Worker 前要�
 
 - 同步限制
 
-同步API（localStorage）不能在service worker中使用
+同步 API（localStorage）不能在 service worker 中使用
 
 ## Service Worker 工作流程
 
@@ -40,6 +56,15 @@ cache 兼容性很差，可以使用 polyfill，在使用 Service Worker 前要�
 
 1. 指定要缓存的资源。
 2. 指定如何响应资源请求（利用缓存）。
+
+## 生命周期
+
+当用户首次导航至 URL 时，服务器会返回响应的网页。
+
+- 第 1 步：当你调用 register() 函数时， Service Worker 开始下载。
+- 第 2 步：在注册过程中，浏览器会下载、解析并执行 Service Worker ()。如果在此步骤中出现任何错误，register() 返回的 promise 都会执行 reject 操作，并且 Service Worker 会被废弃。
+- 第 3 步：一旦 Service Worker 成功执行了，install 事件就会激活
+- 第 4 步：安装完成，Service Worker 便会激活，并控制在其范围内的一切。如果生命周期中的所有事件都成功了，Service Worker 便已准备就绪，随时可以使用了！
 
 ## API
 
@@ -173,7 +198,7 @@ self.addEventListener("install", function (event) {
 
 ```js
 self.addEventListener("activate", function (event) {
-  var cacheWhitelist = ["v2"];  // 缓存白名单
+  var cacheWhitelist = ["v2"]; // 缓存白名单
 
   event.waitUntil(
     caches.keys().then(function (keyList) {
@@ -188,3 +213,7 @@ self.addEventListener("activate", function (event) {
   );
 });
 ```
+
+## 参考
+
+[讲讲 PWA](https://segmentfault.com/a/1190000012353473)

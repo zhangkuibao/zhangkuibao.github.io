@@ -2,6 +2,8 @@
 
 离线缓存
 
+注意与 `<link rel="manifest" href="./manifest.webmanifest">` 中的 manifest 并不是一个东西。
+
 ## 已停止支持
 
 chrome 在 2020 年 8 月删除了这个特性。
