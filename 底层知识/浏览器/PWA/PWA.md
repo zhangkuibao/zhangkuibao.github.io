@@ -46,6 +46,7 @@ PWA（Progressive Web App），渐进式 WEB 应用。
 使用 HTTP 缓存意味着你要依赖服务器来告诉你何时缓存资源和何时过期。使用 Service Worker 则是将控制权交给前端。
 
 - Service Worker 实现消息推送
+[使用Service Worker发送Push推送](https://blog.csdn.net/yanghaolong/article/details/82664362)
 
 ## 总结
 
