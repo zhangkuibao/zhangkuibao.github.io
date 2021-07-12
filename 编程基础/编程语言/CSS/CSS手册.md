@@ -71,3 +71,25 @@ div {
 	transform: scaleY(0.5);
 }
 ```
+
+# 知识点
+1. (margin-bottom,right) 与 (margin-left,top) 为负时行为不一致，左上是移动本元素，右下是拉动其他元素
+
+## 一、transition和animation区别
+1. transition需要触发事件才能执行， animation需要设置关键帧才能执行；
+2. transition只能指定起始和结束的状态，animation可设置多个关键帧
+3. transition只能执行一次，animation可用 iteration-count 设置执行次数
+
+# 属性
+1. shape-outside;  Shapes布局可以实现不规则的文字环绕效果，需要和浮动配合使用,可以定义文本环绕的几何形状
+2. 绝对定位和固定定位时，同时设置 left 和 right 等同于隐式地设置宽度
+
+# 骚操作
+## 一、画一条0.5像素的线
+思路: 设置容器上边框宽度为1px，再缩放0.5倍
+```css
+div {
+	border-top: 1px solid black;
+	transform: scaleY(0.5);
+}
+```
