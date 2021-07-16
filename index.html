@@ -31,6 +31,21 @@
     <div id="app"></div>
     <script>
       const DocName = "技术笔记";
+      const author = "张魁堡";
+      const vueComponents = {
+        "author-info": {
+          template: `<div style="color: #567;">
+                <p>作者：{{author}}</p>
+                <p>日期：{{date}}</p>
+              </div>`,
+          props: ["date"],
+          data() {
+            return {
+              author
+            }
+          }
+        },
+      };
       window.$docsify = {
         name: DocName,
         // nameLink: '',
@@ -81,6 +96,7 @@
           prefix: DocName,
           seprator: "|",
         },
+        vueComponents,
       };
     </script>
     <!-- Docsify v4 -->
@@ -92,6 +108,7 @@
     <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
     <script src=" //cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js "></script>
     <script src="//cdn.jsdelivr.net/npm/@sujaykumarh/docsify-plugin-title@1.x/dist/plugin.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
     <script>
       if (typeof navigator.serviceWorker !== "undefined") {
         navigator.serviceWorker.register("docsify/sw.js");

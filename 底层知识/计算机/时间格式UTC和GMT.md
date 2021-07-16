@@ -1,3 +1,7 @@
+# 时间格式UTC和GMT
+
+<author-info date="{docsify-updated}"> </author-info>
+
 ## UTC 和 GMT
 
 UTC 和 GMT 是两种不同的计时方式。
@@ -27,4 +31,5 @@ GMT 是根据地球的自转和公转来计算时间，也就是太阳每天经�
 ## 参考
 
 [UTC 和 GMT 时间辨析](https://www.cnblogs.com/focusxxxxy/p/6419320.html)
+
 [GMT 与 UTC 简介](https://www.cnblogs.com/tosee/p/5538007.html)
