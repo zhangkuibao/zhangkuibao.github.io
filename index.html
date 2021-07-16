@@ -13,6 +13,18 @@
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
     />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css"
+    />
+    <style>
+      .sidebar ul {
+        padding-left: 15px;
+      }
+      .content {
+        padding-top: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
@@ -20,10 +32,10 @@
       window.$docsify = {
         // name: "zhangkb",
         // nameLink: '',
-        repo: "http://www.baidu.com",
-        loadSidebar: true,
-        autoHeader: true,
-        loadNavbar: "docsify/_navbar.md",
+        // repo: "http://www.baidu.com",
+        loadSidebar: "docsify/_sidebar.md",
+        // autoHeader: true,
+        // loadNavbar: "docsify/_navbar.md",
         alias: {
           // '/_sidebar.md': ['/编程基础/_sidebar.md','/底层知识/_sidebar.md'],
           // '/编程基础/_sidebar.md': ['/编程基础/编程语言/_sidebar.md'],
@@ -42,6 +54,8 @@
         // },
         // homepage: '',
         // logo: '',
+        subMaxLevel: 3, // 在侧边栏中生成每个页面的目录
+        sidebarDisplayLevel : 2,  // 侧边栏默认展开级别
         search: {
           placeholder: "搜索",
           noData: "找不到结果",
@@ -70,6 +84,7 @@
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
     <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
+    <script src=" //cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js "></script>
     <script>
       if (typeof navigator.serviceWorker !== "undefined") {
         navigator.serviceWorker.register("docsify/sw.js");
