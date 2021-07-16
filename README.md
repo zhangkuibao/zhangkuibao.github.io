@@ -1,4 +1,4 @@
-最近更新时间 {docsify-updated}
+<author-info date="{docsify-updated}"> </author-info>
 
 ## 如何学会一门新技术
 
