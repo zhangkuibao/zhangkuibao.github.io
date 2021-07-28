@@ -7,22 +7,54 @@
       - [Flex 布局](编程基础/编程语言/CSS/笔记/Flex布局.md)
       - [滤镜](编程基础/编程语言/CSS/笔记/滤镜.md)
       - [渐变色](编程基础/编程语言/CSS/笔记/渐变色.md)
+      - [伪元素](编程基础/编程语言/CSS/笔记/伪元素.md)
     - HTML
       - [H5 地理定位](编程基础/编程语言/HTML/笔记/H5地理定位.md)
       - [HTML 标签属性](编程基础/编程语言/HTML/笔记/HTML标签属性.md)
+      - [Web Components](编程基础/编程语言/HTML/笔记/WebComponents/web-components.md)
+        - [custom-elements](编程基础/编程语言/HTML/笔记/WebComponents/custom-elements.md)
+        - [html-template](编程基础/编程语言/HTML/笔记/WebComponents/html-template.md)
+        - [shadow-dom](编程基础/编程语言/HTML/笔记/WebComponents/shadow-dom.md)
     - JavaScript
       - [JS 中的遍历方法及区别](编程基础/编程语言/JavaScript/笔记/JS中的遍历方法及区别.md)
       - [属性描述符](编程基础/编程语言/JavaScript/笔记/属性描述符.md)
       - [函数尾调用](编程基础/编程语言/JavaScript/笔记/函数尾调用.md)
       - [Set&Map 类型](编程基础/编程语言/JavaScript/笔记/Set&Map类型.md)
       - [Generator 函数](编程基础/编程语言/JavaScript/笔记/Generator函数.md)
-  - 后端知识
-
-    - 数据库
-      - [mongodb](编程基础/后端知识/数据库/MongoDB/mongodb.md)
-
+      - [编解码函数](编程基础/编程语言/JavaScript/笔记/编解码函数.md)
+      - [关于 valueOf 方法和 toString 方法](编程基础/编程语言/JavaScript/笔记/关于valueOf方法和toString方法.md)
+      - [数据类型和数据结构](编程基础/编程语言/JavaScript/笔记/数据类型和数据结构.md)
+      - [相等性判断](编程基础/编程语言/JavaScript/笔记/相等性判断.md)
+      - [异常处理](编程基础/编程语言/JavaScript/笔记/异常处理.md)
+      - [正则表达式语法](编程基础/编程语言/JavaScript/笔记/正则表达式语法.md)
+      - 对象
+        - [其他对象](编程基础/编程语言/JavaScript/笔记/对象/其他对象.md)
+        - [Error](编程基础/编程语言/JavaScript/笔记/对象/Error.md)
+        - [Number](编程基础/编程语言/JavaScript/笔记/对象/Number.md)
+        - [Object](编程基础/编程语言/JavaScript/笔记/对象/Object.md)
+        - [String](编程基础/编程语言/JavaScript/笔记/对象/String.md)
+    - Less
+      - [函数](编程基础/编程语言/Less/笔记/函数.md)
+      - [语法](编程基础/编程语言/Less/笔记/语法.md)
+    - Sass
+      - [内置函数](编程基础/编程语言/Sass/笔记/内置函数.md)
+      - [语法](编程基础/编程语言/Sass/笔记/语法.md)
+      - [Sass与Less的异同](编程基础/编程语言/Sass/笔记/Sass与Less的异同.md)
+    - TypeScript
+      - [操作符&关键字](编程基础/编程语言/TypeScript/笔记/操作符&关键字.md)
+      - [泛型](编程基础/编程语言/TypeScript/笔记/泛型.md)
+      - [高级类型](编程基础/编程语言/TypeScript/笔记/高级类型.md)
+      - [函数](编程基础/编程语言/TypeScript/笔记/函数.md)
+      - [基础类型](编程基础/编程语言/TypeScript/笔记/基础类型.md)
+      - [接口](编程基础/编程语言/TypeScript/笔记/接口.md)
+      - [类](编程基础/编程语言/TypeScript/笔记/类.md)
+      - [类型兼容性&声明合并](编程基础/编程语言/TypeScript/笔记/类型兼容性&声明合并.md)
+      - [模块&命名空间](编程基础/编程语言/TypeScript/笔记/模块&命名空间.md)
+      - [配置](编程基础/编程语言/TypeScript/笔记/配置.md)
+      - [声明文件&规范](编程基础/编程语言/TypeScript/笔记/声明文件&规范.md)
+  - 数据库
+    - [mongodb](编程基础/后端知识/数据库/MongoDB/mongodb.md)
   - 类库框架
-
     - [各框架对比](编程基础/类库框架/各框架对比.md)
 
     - Vue
@@ -53,36 +85,20 @@
       - 技巧
         - [监听值的变化](编程基础/类库框架/Angular/技巧/监听值的变化.md)
         - [双向绑定原理](编程基础/类库框架/Angular/技巧/双向绑定原理.md)
-
-    - Nuxt
-      - [部署](编程基础/类库框架/Nuxt/部署.md)
-      - [对于 Vue 的扩展](编程基础/类库框架/Nuxt/对于Vue的扩展.md)
     - React
       - [元素渲染](编程基础/类库框架/React/笔记/元素渲染.md)
       - [值得注意的事情](编程基础/类库框架/React/笔记/值得注意的事情.md)
       - [组件](编程基础/类库框架/React/笔记/组件.md)
       - [JSX](编程基础/类库框架/React/笔记/JSX.md)
+    - Nuxt
+      - [部署](编程基础/类库框架/Nuxt/部署.md)
+      - [对于 Vue 的扩展](编程基础/类库框架/Nuxt/对于Vue的扩展.md)
+    - NodeJS
+      - [模块化](编程基础/类库框架/NodeJS/笔记/模块化.md)
+      - [原生模块](编程基础/类库框架/NodeJS/笔记/原生模块.md)
+      - [原生API](编程基础/类库框架/NodeJS/笔记/原生API.md)
+      - [REST](编程基础/类库框架/NodeJS/笔记/REST.md)
 
-  - WebAPI
-    - CSS
-      - [伪元素](编程基础/WebAPI/CSS/伪元素.md)
-    - DOM
-      - [Web Components](编程基础/WebAPI/DOM/WebComponents/web-components.md)
-        - [custom-elements](编程基础/WebAPI/DOM/WebComponents/custom-elements.md)
-        - [html-template](编程基础/WebAPI/DOM/WebComponents/html-template.md)
-        - [shadow-dom](编程基础/WebAPI/DOM/WebComponents/shadow-dom.md)
-    - ECMAScript
-      - [编解码函数](编程基础/WebAPI/ECMAScript/编解码函数.md)
-      - [关于 valueOf 方法和 toString 方法](编程基础/WebAPI/ECMAScript/关于valueOf方法和toString方法.md)
-      - [数据类型和数据结构](编程基础/WebAPI/ECMAScript/数据类型和数据结构.md)
-      - [相等性判断](编程基础/WebAPI/ECMAScript/相等性判断.md)
-      - 对象
-        - [其他对象](编程基础/WebAPI/ECMAScript/对象/其他对象.md)
-        - [Error](编程基础/WebAPI/ECMAScript/对象/Error.md)
-        - [Number](编程基础/WebAPI/ECMAScript/对象/Number.md)
-        - [Object](编程基础/WebAPI/ECMAScript/对象/Object.md)
-        - [RegExp](编程基础/WebAPI/ECMAScript/对象/RegExp.md)
-        - [String](编程基础/WebAPI/ECMAScript/对象/String.md)
 
 - 底层知识
   - 浏览器
@@ -116,7 +132,7 @@
     - [更新机制](底层知识/小程序/更新机制.md)
     - [架构原理](底层知识/小程序/架构原理.md)
   - 计算机
-    - [时间格式 UTC 和 GMT](底层知识\计算机\时间格式UTC和GMT.md)
+    - [时间格式 UTC 和 GMT](底层知识/计算机/时间格式UTC和GMT.md)
 - 开发工具
 
   - Git
@@ -150,5 +166,5 @@
     - [CLI](开发工具/webpack/笔记/CLI.md)
 
   - npm
-    - [npm 介绍](开发工具\npm\npm介绍.md)
-    - [npx](开发工具\npm\npx.md)
+    - [npm 介绍](开发工具/npm/npm介绍.md)
+    - [npx](开发工具/npm/npx.md)
