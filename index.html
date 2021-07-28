@@ -9,18 +9,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <link rel="shortcut icon" href="docsify/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
   <style>
     .sidebar ul {
       padding-left: 15px;
     }
-
-    .content {
-      padding-top: 0;
-    }
-
-    /* 右侧导航 */
-    .toc-nav {}
 
     /* 滚动条样式 */
 
@@ -67,13 +61,13 @@
       name: DocName,
       // nameLink: '',
       // repo: "http://www.baidu.com",
-      loadSidebar: "docsify/_sidebar.md",
+      // loadSidebar: "docsify/_sidebar.md",
+      loadSidebar: true,
       // autoHeader: true,
-      // loadNavbar: "docsify/_navbar.md",
-      alias: {
-        // '/_sidebar.md': ['/编程基础/_sidebar.md','/底层知识/_sidebar.md'],
-        // '/编程基础/_sidebar.md': ['/编程基础/编程语言/_sidebar.md'],
-      },
+      loadNavbar: "docsify/_navbar.md",
+      // alias: {
+      //   '/_sidebar.md': ['/代码库/_sidebar.md'],
+      // },
       // coverpage: "docsify/_coverpage.md",
       auto2top: true,
       // mergeNavbar: true,
@@ -81,6 +75,7 @@
       // routerMode: 'history',
       notFoundPage: "docsify/_404.md",
       topMargin: 30,
+      // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
       // crossOriginLinks: [],  // 设置跨域链接
       // formatUpdated: function (time) {
       //   console.log(time)

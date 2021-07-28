@@ -1,4 +1,4 @@
-```ts
+```js
     /** blob转base64 */
     blobToBase64(blob) {
         if (blob instanceof Blob) { // 判断是否为blob类型
