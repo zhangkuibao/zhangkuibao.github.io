@@ -41,7 +41,7 @@
 <body>
   <div id="app"></div>
   <script>
-    const DocName = "技术笔记";
+    const DocName = "张魁堡的笔记";
     const author = "张魁堡";
     const vueComponents = {
       "author-info": {
@@ -129,27 +129,6 @@
   <script>
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("docsify/sw.js");
-    }
-  </script>
-  <script>
-    if (
-      "onhashchange" in window &&
-      (typeof document.documentMode == "undefined" || document.documentMode8)
-    ) {
-      // 浏览器支持onhashchange事件
-      window.onhashchange = hashChangeFire; // TODO，对应新的hash执行的操作函数
-    } else {
-      // 不支持则用定时器检测的办法
-      // setInterval(function () {
-      //   var ischanged = isHashChanged(); // TODO，检测hash值或其中某一段是否更改的函数
-      //   if (ischanged) {
-      //     hashChangeFire(); // TODO，对应新的hash执行的操作函数
-      //   }
-      // }, 150);
-    }
-
-    function hashChangeFire() {
-      console.log("URL产生了变化");
     }
   </script>
 </body>
