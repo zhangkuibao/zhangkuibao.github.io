@@ -1,136 +1,143 @@
 <!DOCTYPE html>
 <html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>首页</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="shortcut icon" href="docsify/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css"
+    />
+    <style>
+      .sidebar ul {
+        padding-left: 10px;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <title>首页</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-  <link rel="shortcut icon" href="docsify/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
-  <style>
-    .sidebar ul {
-      padding-left: 10px;
-    }
+      /* 滚动条样式 */
 
-    /* 滚动条样式 */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+      ::-webkit-scrollbar-track {
+        background: #eee;
+        border-radius: 5px;
+      }
 
-    ::-webkit-scrollbar-track {
-      background: #eee;
-      border-radius: 5px;
-    }
+      ::-webkit-scrollbar-thumb {
+        background: rgb(219, 219, 219);
+        border-radius: 8px;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: rgb(219, 219, 219);
-      border-radius: 8px;
-    }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(219, 219, 219);
+      }
+    </style>
+  </head>
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgb(219, 219, 219);
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app"></div>
-  <script>
-    const DocName = "张魁堡的笔记";
-    const author = "张魁堡";
-    const vueComponents = {
-      "author-info": {
-        template: `<div style="color: #567;">
+  <body>
+    <div id="app"></div>
+    <script>
+      const DocName = "张魁堡的笔记";
+      const author = "张魁堡";
+      const vueComponents = {
+        "author-info": {
+          template: `<div style="color: #567;">
                 <p>作者：{{author}}</p>
                 <p>日期：{{date}}</p>
               </div>`,
-        props: ["date"],
-        data() {
-          return {
-            author
-          }
-        }
-      },
-    };
-    window.$docsify = {
-      name: DocName,
-      // nameLink: '',
-      // repo: "http://www.baidu.com",
-      // loadSidebar: "docsify/_sidebar.md",
-      loadSidebar: true,
-      // autoHeader: true,
-      loadNavbar: "docsify/_navbar.md",
-      alias: {
-        '/_sidebar.md': '技术笔记/编程基础/_sidebar.md',
-      },
-      // coverpage: "docsify/_coverpage.md",
-      auto2top: true,
-      // mergeNavbar: true,
-      formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
-      // routerMode: 'history',
-      notFoundPage: "docsify/_404.md",
-      topMargin: 30,
-      // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
-      // crossOriginLinks: [],  // 设置跨域链接
-      // formatUpdated: function (time) {
-      //   console.log(time)
-      //   return time;
-      // },
-      // homepage: '',
-      // logo: '',
-      // subMaxLevel: 2, // 在侧边栏中生成每个页面的目录
-      sidebarDisplayLevel: 2, // 侧边栏默认展开级别
-      search: {
-        placeholder: "搜索",
-        noData: "找不到结果",
-      },
-      copyCode: {
-        buttonText: "复制",
-        errorText: "复制失败",
-        successText: "复制成功",
-      },
-      count: {
-        countable: true,
-        position: "top",
-        margin: "10px",
-        float: "right",
-        fontsize: "0.9em",
-        color: "rgb(90,90,90)",
-        language: "chinese",
-        isExpected: true,
-      },
-      customPageTitle: {
-        prefix: DocName,
-        seprator: "|",
-      },
-      toc: {
-        tocMaxLevel: 6,
-        target: "h2, h3, h4, h5, h6",
-      },
-      vueComponents,
-    };
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
-  <script src=" //cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js "></script>
-  <script src="//cdn.jsdelivr.net/npm/@sujaykumarh/docsify-plugin-title@1.x/dist/plugin.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
-  <script>
-    if (typeof navigator.serviceWorker !== "undefined") {
-      navigator.serviceWorker.register("docsify/sw.js");
-    }
-  </script>
-</body>
-
+          props: ["date"],
+          data() {
+            return {
+              author,
+            };
+          },
+        },
+      };
+      window.$docsify = {
+        name: DocName,
+        // nameLink: '',
+        // repo: "http://www.baidu.com",
+        // loadSidebar: "docsify/_sidebar.md",
+        loadSidebar: true,
+        // autoHeader: true,
+        loadNavbar: "docsify/_navbar.md",
+        alias: {
+          "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
+        },
+        // coverpage: "docsify/_coverpage.md",
+        auto2top: true,
+        // mergeNavbar: true,
+        formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
+        // routerMode: 'history',
+        notFoundPage: "docsify/_404.md",
+        topMargin: 30,
+        // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
+        // crossOriginLinks: [],  // 设置跨域链接
+        // formatUpdated: function (time) {
+        //   console.log(time)
+        //   return time;
+        // },
+        // homepage: '',
+        // logo: '',
+        // subMaxLevel: 2, // 在侧边栏中生成每个页面的目录
+        sidebarDisplayLevel: 2, // 侧边栏默认展开级别
+        search: {
+          placeholder: "搜索",
+          noData: "找不到结果",
+        },
+        copyCode: {
+          buttonText: "复制",
+          errorText: "复制失败",
+          successText: "复制成功",
+        },
+        count: {
+          countable: true,
+          position: "top",
+          margin: "10px",
+          float: "right",
+          fontsize: "0.9em",
+          color: "rgb(90,90,90)",
+          language: "chinese",
+          isExpected: true,
+        },
+        customPageTitle: {
+          prefix: DocName,
+          seprator: "|",
+        },
+        toc: {
+          tocMaxLevel: 6,
+          target: "h2, h3, h4, h5, h6",
+        },
+        vueComponents,
+      };
+    </script>
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-pangu/lib/pangu.min.js"></script>
+    <script src=" //cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js "></script>
+    <script src="//cdn.jsdelivr.net/npm/@sujaykumarh/docsify-plugin-title@1.x/dist/plugin.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
+    <script>
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("docsify/sw.js");
+      }
+    </script>
+  </body>
 </html>
