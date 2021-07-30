@@ -30,6 +30,8 @@
       - [正则表达式语法](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/正则表达式语法.md)
       - [fetch](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/fetch.md)
       - [URL](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/URL.md)
+      - [Blob](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Blob.md)
+      - [FileReader](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/FileReader.md)
 
     - [惰性载入函数](技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [Promise 是如何工作的](技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
