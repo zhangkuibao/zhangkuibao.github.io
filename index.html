@@ -65,6 +65,27 @@
           },
         },
       };
+      // function getTextForDom(dom) {
+      //   for(let i -Array.from(dom.children))
+      // }
+      // function generatorUrlMapForUl(dom) {
+      //   if(['LI','A'].includes(dom.tagName)) {
+      //     return dom.innerText;
+      //   }
+      //   let result = {};
+      //   Array.from(dom).forEach((ele) => {
+
+      //   });
+      // }
+      function plugin(hook, vm) {
+        hook.ready(function () {
+          let ul = document.getElementsByClassName("sidebar-nav")[0].children[0];
+          // let urlMap = generatorUrlMapForUl(ul);
+          // console.log(ul, urlMap);
+
+          console.log(vm);
+        });
+      }
       window.$docsify = {
         name: DocName,
         // nameLink: '',
@@ -120,7 +141,13 @@
           tocMaxLevel: 6,
           target: "h2, h3, h4, h5, h6",
         },
+        progress: {
+          position: "top",
+          color: "var(--theme-color,#42b983)",
+          height: "3px",
+        },
         vueComponents,
+        plugins: [plugin],
       };
     </script>
     <!-- Docsify v4 -->
@@ -133,6 +160,7 @@
     <script src=" //cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js "></script>
     <script src="//cdn.jsdelivr.net/npm/@sujaykumarh/docsify-plugin-title@1.x/dist/plugin.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
     <script>
       if (typeof navigator.serviceWorker !== "undefined") {
