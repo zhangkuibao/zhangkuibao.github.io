@@ -81,30 +81,29 @@
         let a = dom.children[0];
         let span = a.children[0];
 
-        // switch (dom.tagName) {
-        //   case "H2":
-        //     span.innerText =
-        //       titleNumberCountMap[dom.tagName]++ + "." + span.innerText;
-        //     break;
-        //   case "H3":
-        //     span.innerText =
-        //       titleNumberCountMap["H2"] - 1 +
-        //       "." +
-        //       titleNumberCountMap[dom.tagName]++ +
-        //       "." +
-        //       span.innerText;
-        //     break;
-        //   case "H4":
-        //     span.innerText =
-        //       titleNumberCountMap["H2"] - 1 +
-        //       "." +
-        //       titleNumberCountMap["H3"] +
-        //       "." +
-        //       titleNumberCountMap[dom.tagName]++ +
-        //       "." +
-        //       span.innerText;
-        //     break;
-        // }
+        switch (dom.tagName) {
+          case "H2":
+            span.innerText = titleNumberCountMap["H2"]++ + ". " + span.innerText;
+            titleNumberCountMap["H3"] = 1;
+            break;
+          case "H3":
+            span.innerText = `${
+              titleNumberCountMap["H2"] - 1
+            }.${titleNumberCountMap["H3"]++}. ${span.innerText}`;
+            titleNumberCountMap["H4"] = 1;
+            break;
+          case "H4":
+            span.innerText =
+              titleNumberCountMap["H2"] -
+              1 +
+              "." +
+              (titleNumberCountMap["H3"] - 1) +
+              "." +
+              titleNumberCountMap["H4"]++ +
+              ". " +
+              span.innerText;
+            break;
+        }
       }
       const titleNumberCountMap = {
         H2: 1,
