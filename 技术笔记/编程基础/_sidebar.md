@@ -32,6 +32,7 @@
       - [URL](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/URL.md)
       - [Blob](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Blob.md)
       - [FileReader](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/FileReader.md)
+      - [流操作](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/流操作.md)
 
     - [惰性载入函数](技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [Promise 是如何工作的](技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
