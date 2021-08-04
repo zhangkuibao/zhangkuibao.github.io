@@ -54,7 +54,7 @@
       const vueComponents = {
         "author-info": {
           template: `<div style="color: #567;">
-                <p>作者：{{author}}</p>
+                <p v-if="false">作者：{{author}}</p>
                 <p>日期：{{date}}</p>
               </div>`,
           props: ["date"],
@@ -77,13 +77,57 @@
 
       //   });
       // }
+      function handleTitle(dom) {
+        let a = dom.children[0];
+        let span = a.children[0];
+
+        // switch (dom.tagName) {
+        //   case "H2":
+        //     span.innerText =
+        //       titleNumberCountMap[dom.tagName]++ + "." + span.innerText;
+        //     break;
+        //   case "H3":
+        //     span.innerText =
+        //       titleNumberCountMap["H2"] - 1 +
+        //       "." +
+        //       titleNumberCountMap[dom.tagName]++ +
+        //       "." +
+        //       span.innerText;
+        //     break;
+        //   case "H4":
+        //     span.innerText =
+        //       titleNumberCountMap["H2"] - 1 +
+        //       "." +
+        //       titleNumberCountMap["H3"] +
+        //       "." +
+        //       titleNumberCountMap[dom.tagName]++ +
+        //       "." +
+        //       span.innerText;
+        //     break;
+        // }
+      }
+      const titleNumberCountMap = {
+        H2: 1,
+        H3: 1,
+        H4: 1,
+      };
+      function createTitleNumber(main) {
+        console.log(11, main);
+        let hTag = ["H2", "H3", "H4"];
+        Array.from(main.children).forEach((ele) => {
+          if (hTag.includes(ele.tagName)) {
+            handleTitle(ele);
+          }
+        });
+      }
       function plugin(hook, vm) {
         hook.ready(function () {
-          let ul = document.getElementsByClassName("sidebar-nav")[0].children[0];
+          let ul =
+            document.getElementsByClassName("sidebar-nav")[0].children[0];
+          let main = document.getElementById("main");
+          createTitleNumber(main);
           // let urlMap = generatorUrlMapForUl(ul);
           // console.log(ul, urlMap);
-
-          console.log(vm);
         });
       }
       window.$docsify = {
@@ -139,7 +183,7 @@
         },
         toc: {
           tocMaxLevel: 6,
-          target: "h2, h3, h4, h5, h6",
+          target: "H3, H4, h4, h5, h6",
         },
         progress: {
           position: "top",
