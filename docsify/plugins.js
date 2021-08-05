@@ -21,8 +21,10 @@ function synthesisNumber(text, level) {
 function handleTitle(dom) {
   let a = dom.children[0];
   let span = a.children[0];
-  let titleLevel = dom.tagName[1];
-  span.innerText = synthesisNumber(span.innerText, titleLevel);
+  if (span.innerText !== "参考") {
+    let titleLevel = dom.tagName[1];
+    span.innerText = synthesisNumber(span.innerText, titleLevel);
+  }
 }
 
 function createTitleNumber(main) {
