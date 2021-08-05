@@ -41,7 +41,7 @@ window.$docsify = {
   },
   // coverpage: "docsify/_coverpage.md",
   auto2top: true,
-  // mergeNavbar: true,
+  mergeNavbar: true,
   formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
   // routerMode: 'history',
   notFoundPage: "docsify/_404.md",
@@ -66,7 +66,7 @@ window.$docsify = {
     successText: "复制成功",
   },
   count: {
-    countable: true,
+    countable: false,
     position: "top",
     margin: "10px",
     float: "right",
@@ -89,7 +89,7 @@ window.$docsify = {
     height: "3px",
   },
   vueComponents,
-  plugins: [plugin],
+  // plugins: [plugin],
 };
 
 if (typeof navigator.serviceWorker !== "undefined") {
