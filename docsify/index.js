@@ -17,7 +17,7 @@ const vueComponents = {
   "author-info": {
     template: `<div style="color: #567;">
           <p v-if="false">作者：{{author}}</p>
-          <p>日期：{{date}}</p>
+          <p>最后更新日期：{{date}}</p>
         </div>`,
     props: ["date"],
     data() {
@@ -38,6 +38,7 @@ window.$docsify = {
   loadNavbar: "docsify/_navbar.md",
   alias: {
     "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
+    ".*/_navbar.md": "docsify/_navbar.md",
   },
   // coverpage: "docsify/_coverpage.md",
   auto2top: true,
@@ -89,9 +90,18 @@ window.$docsify = {
     height: "3px",
   },
   vueComponents,
-  plugins: [plugin],
+  // plugins: [titleNumberPlugin.install, sidebarCollapsePlugin.install],
 };
 
 if (typeof navigator.serviceWorker !== "undefined") {
   navigator.serviceWorker.register("docsify/sw.js");
 }
+
+function docsifyInstallPlugin(plugin) {
+  window.$docsify.plugins
+    ? window.$docsify.plugins.push(plugin.install)
+    : (window.$docsify.plugins = [plugin.install]);
+}
+
+docsifyInstallPlugin(titleNumberPlugin)
+docsifyInstallPlugin(sidebarCollapsePlugin)
