@@ -89,7 +89,7 @@ window.$docsify = {
     height: "3px",
   },
   vueComponents,
-  // plugins: [plugin],
+  plugins: [plugin],
 };
 
 if (typeof navigator.serviceWorker !== "undefined") {

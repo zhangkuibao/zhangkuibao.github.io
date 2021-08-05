@@ -28,13 +28,16 @@
       - [Iterator 与 for...of](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Iterator与for...of.md)
       - [Set&Map 类型](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Set&Map类型.md)
       - [正则表达式语法](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/正则表达式语法.md)
-      - [fetch](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/fetch.md)
-      - [URL](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/URL.md)
-      - [Blob](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Blob.md)
-      - [FileReader](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/FileReader.md)
-      - [流操作](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/流操作.md)
-      - [ArrayBuffer](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/ArrayBuffer.md)
-      - [媒体录制](技术笔记/编程基础/编程语言/JavaScript/ECMAScript/媒体录制.md)
+
+    - WebAPI
+
+      - [fetch](技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
+      - [URL](技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
+      - [Blob](技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
+      - [FileReader](技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
+      - [流操作](技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
+      - [ArrayBuffer](技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
+      - [媒体录制](技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
 
     - [惰性载入函数](技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [Promise 是如何工作的](技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
