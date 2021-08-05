@@ -13,7 +13,6 @@ function synthesisNumber(text, level) {
   titleArr[level] = titleArr[level] ? titleArr[level] + 1 : 1;
   titleArr = titleArr.slice(0, level + 1);
   let number = titleArr.filter((ele) => ele).join(".");
-  console.log(titleArr);
   //   return number + " " + text;
   return transferTitleNumber(number, text);
 }
@@ -50,20 +49,21 @@ function plugin(hook, vm) {
   //     return content;
   //   });
 
-  //   hook.afterEach(function (html, next) {
-  //     // 解析成 html 后调用。
-  //     // beforeEach 和 afterEach 支持处理异步逻辑
-  //     // ...
-  //     // 异步处理完成后调用 next(html) 返回结果
-  //     next(html);
-  //   });
-
-  hook.doneEach(function () {
-    // 每次路由切换时数据全部加载完成后调用，没有参数。
-    let main = document.getElementById("main");
+  hook.afterEach(function (html, next) {
+    let div = document.createElement("div");
+    div.innerHTML = html;
     titleArr = [];
-    createTitleNumber(main);
+    createTitleNumber(div);
+    // 解析成 html 后调用。
+    // beforeEach 和 afterEach 支持处理异步逻辑
+    // ...
+    // 异步处理完成后调用 next(html) 返回结果
+    next(div.innerHTML);
   });
+
+  // hook.doneEach(function () {
+  //   // 每次路由切换时数据全部加载完成后调用，没有参数。
+  // });
 
   //   hook.mounted(function () {
   //     // 初始化并第一次加载完成数据后调用，只触发一次，没有参数。
