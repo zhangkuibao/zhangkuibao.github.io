@@ -4,11 +4,11 @@
 
 为了让 JavaScript 与显卡之间进行大量的、实时的数据交换，它们之间的数据通信必须是二进制，而不能是传统的文本格式，ArrayBuffer 就是在这样的背景下 诞生的。
 
-不能直接操作 ArrayBuffer 的内容，而是要通过类型化数组（TypedArray）或 DataView 对象来操作。
-
 ## ArrayBuffer
 
 ArrayBuffer 对象用来表示通用的、固定长度的原始二进制数据缓冲区，它是 JavaScript 操作二进制数据的一个接口。
+
+不能直接操作 ArrayBuffer 的内容，而是要通过类型化数组（TypedArray）或 DataView 对象来操作。
 
 ### 构造函数
 
@@ -62,7 +62,7 @@ console.log(bf.byteLength); // 40
 
 TypedArray 并不是一个全局属性或是构造函数，它代表了一系列不同的全局属性和构造函数。
 
-1 byte = 8 字节，如 Int8Array 每一位字节数为 1，Int16Array 每一位字节数为 2。
+1 byte = 8 bit（字节），如 Int8Array 每一位字节数为 1，Int16Array 每一位字节数为 2。
 
 TypedArray 其实就是普通数组，语法没有什么不同，只不过它直接针对内存进行操作，而且每个成员都有确定的数据类型。所以，TypedArray 就被叫做“类型化数组”。
 
@@ -174,6 +174,10 @@ var amountDueView = new Float32Array(buffer, 20, 1);
 DataView 是另一种操作 ArrayBuffer 的对象。
 
 [DataView——MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/DataView)
+
+## 内存分配
+
+关于 ArrayBuffer 的内存分配可以看看这篇文章：[谈谈 ArrayBuffer 吧](https://zhuanlan.zhihu.com/p/133491261)
 
 ## 应用
 
