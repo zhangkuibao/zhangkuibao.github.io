@@ -90,7 +90,7 @@ window.$docsify = {
     height: "3px",
   },
   vueComponents,
-  // plugins: [titleNumberPlugin.install, sidebarCollapsePlugin.install],
+  // plugins: [TitleNumberPlugin.install, SidebarCollapsePlugin.install],
 };
 
 if (typeof navigator.serviceWorker !== "undefined") {
@@ -103,5 +103,5 @@ function docsifyInstallPlugin(plugin) {
     : (window.$docsify.plugins = [plugin.install]);
 }
 
-docsifyInstallPlugin(titleNumberPlugin)
-docsifyInstallPlugin(sidebarCollapsePlugin)
+docsifyInstallPlugin(TitleNumberPlugin)
+docsifyInstallPlugin(SidebarCollapsePlugin)

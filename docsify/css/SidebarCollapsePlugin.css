@@ -1,0 +1,47 @@
+.sidebar-nav ul {
+  overflow: hidden;
+  transition: 0.3s;
+  height: auto;
+}
+
+.sidebar-nav ul.collapse-hide {
+  height: 0 !important;
+}
+
+.sidebar-nav p {
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar-nav p::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: rotateZ(45deg);
+  width: 7px;
+  height: 2px;
+  background: #000;
+  transition: 0.3s;
+}
+.sidebar-nav p::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: calc(1em + 4.5px);
+  top: 50%;
+  transform: rotateZ(-45deg);
+  width: 7px;
+  height: 2px;
+  background: #000;
+  transition: 0.3s;
+}
+
+.sidebar-nav p.collapse-menu-hide::before {
+  transform: rotateZ(-45deg);
+}
+
+.sidebar-nav p.collapse-menu-hide::after {
+  transform: rotateZ(45deg);
+}

@@ -1,45 +1,45 @@
-let titleArr = [];
+class TitleNumberPlugin {
+ titleArr = [];
 
-function transferTitleNumber(title, text) {
-  let arr = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
-  if (title.length === 1) {
-    return arr[title[0]] + "、" + text;
-  }
-  return title + " " + text;
-}
-
-function synthesisNumber(text, level) {
-  level = Number(level);
-  titleArr[level] = titleArr[level] ? titleArr[level] + 1 : 1;
-  titleArr = titleArr.slice(0, level + 1);
-  let number = titleArr.filter((ele) => ele).join(".");
-  //   return number + " " + text;
-  return transferTitleNumber(number, text);
-}
-
-function handleTitle(dom) {
-  let a = dom.children[0];
-  let span = a.children[0];
-  if (span.innerText !== "参考") {
-    let titleLevel = dom.tagName[1];
-    span.innerText = synthesisNumber(span.innerText, titleLevel);
-  }
-}
-
-function createTitleNumber(main) {
-  Array.from(main.children).forEach((ele) => {
-    if (
-      ele.tagName.length == 2 &&
-      ele.tagName !== "H1" &&
-      ele.tagName[0] === "H"
-    ) {
-      handleTitle(ele);
+  static transferTitleNumber(title, text) {
+    let arr = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+    if (title.length === 1) {
+      return arr[title[0]] + "、" + text;
     }
-  });
-}
+    return title + " " + text;
+  }
 
-class titleNumberPlugin {
-  install(hook, vm) {
+  static synthesisNumber(text, level) {
+    level = Number(level);
+    TitleNumberPlugin.titleArr[level] = TitleNumberPlugin.titleArr[level] ? TitleNumberPlugin.titleArr[level] + 1 : 1;
+    TitleNumberPlugin.titleArr = TitleNumberPlugin.titleArr.slice(0, level + 1);
+    let number = TitleNumberPlugin.titleArr.filter((ele) => ele).join(".");
+    //   return number + " " + text;
+    return TitleNumberPlugin.transferTitleNumber(number, text);
+  }
+
+  static handleTitle(dom) {
+    if(!dom.children) return;
+    let a = dom.children[0];
+    let span = a.children[0];
+    if (span.innerText !== "参考") {
+      let titleLevel = dom.tagName[1];
+      span.innerText = TitleNumberPlugin.synthesisNumber(span.innerText, titleLevel);
+    }
+  }
+
+  static createTitleNumber(main) {
+    Array.from(main.children).forEach((ele) => {
+      if (
+        ele.tagName.length == 2 &&
+        ele.tagName !== "H1" &&
+        ele.tagName[0] === "H"
+      ) {
+        TitleNumberPlugin.handleTitle(ele);
+      }
+    });
+  }
+  static install(hook, vm) {
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
     //   });
@@ -53,8 +53,8 @@ class titleNumberPlugin {
     hook.afterEach(function (html, next) {
       let div = document.createElement("div");
       div.innerHTML = html;
-      titleArr = [];
-      createTitleNumber(div);
+      TitleNumberPlugin.titleArr = [];
+      TitleNumberPlugin.createTitleNumber(div);
       // 解析成 html 后调用。
       // beforeEach 和 afterEach 支持处理异步逻辑
       // ...
