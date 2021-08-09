@@ -37,8 +37,10 @@ window.$docsify = {
   // autoHeader: true,
   loadNavbar: "docsify/_navbar.md",
   alias: {
-    "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
     ".*/_navbar.md": "docsify/_navbar.md",
+    "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
+    // "/技术笔记/编程基础/编程语言/CSS/_sidebar.md": "/技术笔记/编程基础/_sidebar.md",
+    // "/.*/_sidebar.md": "/_sidebar.md", // See #301
   },
   // coverpage: "docsify/_coverpage.md",
   auto2top: true,
@@ -103,5 +105,5 @@ function docsifyInstallPlugin(plugin) {
     : (window.$docsify.plugins = [plugin.install]);
 }
 
-docsifyInstallPlugin(TitleNumberPlugin)
-docsifyInstallPlugin(SidebarCollapsePlugin)
+docsifyInstallPlugin(TitleNumberPlugin);
+docsifyInstallPlugin(SidebarCollapsePlugin);

@@ -8,12 +8,12 @@
   height: 0 !important;
 }
 
-.sidebar-nav p {
+.sidebar-nav .hasChild {
   cursor: pointer;
   position: relative;
 }
 
-.sidebar-nav p::before {
+.sidebar-nav .hasChild::before {
   content: "";
   display: block;
   position: absolute;
@@ -25,7 +25,7 @@
   background: #000;
   transition: 0.3s;
 }
-.sidebar-nav p::after {
+.sidebar-nav .hasChild::after {
   content: "";
   display: block;
   position: absolute;
@@ -38,10 +38,10 @@
   transition: 0.3s;
 }
 
-.sidebar-nav p.collapse-menu-hide::before {
+.sidebar-nav .hasChild.collapse-menu-hide::before {
   transform: rotateZ(-45deg);
 }
 
-.sidebar-nav p.collapse-menu-hide::after {
+.sidebar-nav .hasChild.collapse-menu-hide::after {
   transform: rotateZ(45deg);
 }

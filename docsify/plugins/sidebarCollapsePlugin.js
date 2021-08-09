@@ -26,10 +26,10 @@ class SidebarCollapsePlugin {
     hook.doneEach(function () {
       let dom = document.getElementsByClassName("sidebar-nav")[0].children[0];
       // 每次路由切换时数据全部加载完成后调用，没有参数。
-      SidebarCollapsePlugin.sideWrapperDom =
-        SidebarCollapsePlugin.sideWrapperDom || dom;
+      SidebarCollapsePlugin.sideWrapperDom = dom;
       SidebarCollapsePlugin.bindEvent();
-      SidebarCollapsePlugin.replaceSidebar();
+      SidebarCollapsePlugin.bindCollapseClass(dom);
+      // SidebarCollapsePlugin.replaceSidebar();
     });
     //   hook.mounted(function () {
     //     // 初始化并第一次加载完成数据后调用，只触发一次，没有参数。
@@ -39,9 +39,21 @@ class SidebarCollapsePlugin {
     //   });
   }
 
+  static bindCollapseClass(UL) {
+    if(UL.children) {
+      Array.from(UL.children).forEach(li => {
+        let subUl = li.querySelector('ul');
+        if(subUl) {
+          li.children[0].classList.add('hasChild');
+          SidebarCollapsePlugin.bindCollapseClass(subUl)
+        }
+      })
+    }
+  }
+
   static bindEvent() {
     if (SidebarCollapsePlugin.firstRender) {
-      SidebarCollapsePlugin.firstRender = false;
+      // SidebarCollapsePlugin.firstRender = false;
       SidebarCollapsePlugin.sideWrapperDom.addEventListener(
         "transitionend",
         SidebarCollapsePlugin.transitionendEvent
@@ -54,6 +66,9 @@ class SidebarCollapsePlugin {
   }
 
   static findLI(dom) {
+    if(dom.tagName === "UL") {
+      return null;
+    }
     while (dom.tagName !== "LI") {
       if (dom.classList.contains("sidebar-nav") || dom.tagName === "P") {
         dom = null;
@@ -64,11 +79,11 @@ class SidebarCollapsePlugin {
     return dom;
   }
 
-  static replaceSidebar() {
-    document
-      .getElementsByClassName("sidebar-nav")[0]
-      .children[0].replaceWith(SidebarCollapsePlugin.sideWrapperDom);
-  }
+  // static replaceSidebar() {
+  //   document
+  //     .getElementsByClassName("sidebar-nav")[0]
+  //     .children[0].replaceWith(SidebarCollapsePlugin.sideWrapperDom);
+  // }
 
   static transitionendEvent(e) {
     e.target.style.height = "";
