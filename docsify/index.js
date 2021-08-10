@@ -48,7 +48,7 @@ window.$docsify = {
   formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
   // routerMode: 'history',
   notFoundPage: "docsify/_404.md",
-  topMargin: 30,
+  topMargin: 70,
   // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
   // crossOriginLinks: [],  // 设置跨域链接
   // formatUpdated: function (time) {
