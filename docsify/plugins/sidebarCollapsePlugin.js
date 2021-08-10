@@ -39,15 +39,20 @@ class SidebarCollapsePlugin {
     //   });
   }
 
-  static bindCollapseClass(UL) {
-    if(UL.children) {
-      Array.from(UL.children).forEach(li => {
-        let subUl = li.querySelector('ul');
-        if(subUl) {
-          li.children[0].classList.add('hasChild');
-          SidebarCollapsePlugin.bindCollapseClass(subUl)
+  static setLiLevel(li, level) {
+    li.classList.add("level-" + level);
+  }
+
+  static bindCollapseClass(UL, level = 1) {
+    if (UL.children) {
+      Array.from(UL.children).forEach((li) => {
+        let subUl = li.querySelector("ul");
+        SidebarCollapsePlugin.setLiLevel(li, level);
+        if (subUl) {
+          li.children[0].classList.add("hasChild");
+          SidebarCollapsePlugin.bindCollapseClass(subUl, level + 1);
         }
-      })
+      });
     }
   }
 
@@ -66,7 +71,7 @@ class SidebarCollapsePlugin {
   }
 
   static findLI(dom) {
-    if(dom.tagName === "UL") {
+    if (dom.tagName === "UL") {
       return null;
     }
     while (dom.tagName !== "LI") {
@@ -116,15 +121,14 @@ class SidebarCollapsePlugin {
       if (nextSibling.classList.contains("collapse-hide")) {
         setTimeout(() => {
           nextSibling.classList.remove("collapse-hide");
-          e.target.classList.remove('collapse-menu-hide');
+          e.target.classList.remove("collapse-menu-hide");
         });
       } else {
-        if (e.target.tagName !== "A") {
-          setTimeout(() => {
-            nextSibling.classList.add("collapse-hide");
-            e.target.classList.add('collapse-menu-hide');
+        // if (e.target.tagName !== "A") {}
+        setTimeout(() => {
+          nextSibling.classList.add("collapse-hide");
+          e.target.classList.add("collapse-menu-hide");
         });
-        }
       }
     }
     if (LiDom) {

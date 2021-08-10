@@ -44,7 +44,7 @@ window.$docsify = {
   },
   // coverpage: "docsify/_coverpage.md",
   auto2top: true,
-  mergeNavbar: true,
+  // mergeNavbar: true,
   formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
   // routerMode: 'history',
   notFoundPage: "docsify/_404.md",
@@ -107,3 +107,4 @@ function docsifyInstallPlugin(plugin) {
 
 docsifyInstallPlugin(TitleNumberPlugin);
 docsifyInstallPlugin(SidebarCollapsePlugin);
+docsifyInstallPlugin(BreadcrumbPlugin);
