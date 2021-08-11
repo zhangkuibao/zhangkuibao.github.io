@@ -1,6 +1,6 @@
 class SidebarCollapsePlugin {
   static sideWrapperDom;
-  static lastSideWrapperDom;
+  static lastRootBreadcrumbText;
   static install(hook, vm) {
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
@@ -24,12 +24,13 @@ class SidebarCollapsePlugin {
     //   next(html)
     // });
     hook.doneEach(function () {
+      // 每次路由切换时数据全部加载完成后调用，没有参数。
       let dom = document
         .getElementsByClassName("sidebar-nav")[0]
         .querySelector("ul")
         .cloneNode(true);
-      // 每次路由切换时数据全部加载完成后调用，没有参数。
-      SidebarCollapsePlugin.sideWrapperDom = dom;
+
+      SidebarCollapsePlugin.initRootDom(dom);
       SidebarCollapsePlugin.removeEvent();
       SidebarCollapsePlugin.bindEvent();
       SidebarCollapsePlugin.bindCollapseClass(dom);
@@ -41,6 +42,20 @@ class SidebarCollapsePlugin {
     //   hook.ready(function () {
     //     // 初始化并第一次加载完成数据后调用，没有参数。
     //   });
+  }
+
+  static initRootDom(dom) {
+    let RootBreadcrumbText = SidebarCollapsePlugin.getRootBreadcrumbText();
+    // 根路径切换时才替换侧边栏，解决切换路由时侧栏样式重置问题。
+    if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText) {
+      SidebarCollapsePlugin.sideWrapperDom = dom;
+    }
+    SidebarCollapsePlugin.lastRootBreadcrumbText = RootBreadcrumbText;
+  }
+
+  static getRootBreadcrumbText() {
+    let wrap = document.getElementsByClassName("sidebar-nav")[0];
+    return wrap.querySelector("#root-breadcrumb")?.innerHTML;
   }
 
   static setLiLevel(li, level) {

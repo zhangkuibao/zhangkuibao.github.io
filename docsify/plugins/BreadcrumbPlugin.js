@@ -52,12 +52,15 @@ class BreadcrumbPlugin {
   }
 
   static addRootDir() {
-    let firstDir = document
-      .getElementsByClassName("sidebar-nav")[0]
-      .querySelector("#root-breadcrumb")?.innerHTML;
+    let firstDir = BreadcrumbPlugin.getRootBreadcrumbText();
     if (firstDir) {
       BreadcrumbPlugin.breadcrumbList.unshift(firstDir);
     }
+  }
+
+  static getRootBreadcrumbText() {
+    let wrap = document.getElementsByClassName("sidebar-nav")[0];
+    return wrap.querySelector("#root-breadcrumb")?.innerHTML;
   }
 
   static ergodicLI(dom) {
