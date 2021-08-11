@@ -53,6 +53,10 @@
   .breadcrumb {
     max-width: 150px;
   }
+
+  .sidebar-pin {
+    display: none;
+  }
 }
 
 /* 原始导航栏调整结束 */
