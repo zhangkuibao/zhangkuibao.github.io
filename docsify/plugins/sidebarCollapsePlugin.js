@@ -165,27 +165,38 @@ class SidebarCollapsePlugin {
     dom.classList.add("active");
   }
 
+  static changeUlHeight(ul) {
+    ul.style.height = SidebarCollapsePlugin.getDomOffsetHeight(ul) + "px";
+  }
+
+  static changeTagExtendStatus(target, nextSibling) {
+    // a标签后跟子列表时只在a标签被选中后才可开合
+    if (
+      target.tagName === "A" &&
+      !target.parentNode.classList.contains("active")
+    ) {
+      return;
+    }
+    SidebarCollapsePlugin.changeUlHeight(nextSibling);
+    if (nextSibling.classList.contains("collapse-hide")) {
+      setTimeout(() => {
+        nextSibling.classList.remove("collapse-hide");
+        target.classList.remove("collapse-menu-hide");
+      });
+    } else {
+      setTimeout(() => {
+        nextSibling.classList.add("collapse-hide");
+        target.classList.add("collapse-menu-hide");
+      });
+    }
+  }
+
   static ulClickEvent(e) {
     let nextSibling = e.target.nextElementSibling;
     let LiDom = SidebarCollapsePlugin.findLI(e.target);
     if (nextSibling?.tagName === "UL") {
       SidebarCollapsePlugin.bindDomOffsetHeight(nextSibling);
-      nextSibling.style.height =
-        SidebarCollapsePlugin.getDomOffsetHeight(nextSibling) + "px";
-      if (nextSibling.classList.contains("collapse-hide")) {
-        setTimeout(() => {
-          nextSibling.classList.remove("collapse-hide");
-          e.target.classList.remove("collapse-menu-hide");
-        });
-      } else {
-        setTimeout(() => {
-          nextSibling.classList.add("collapse-hide");
-          e.target.classList.add("collapse-menu-hide");
-        });
-        // if (e.target.tagName !== "A") {
-
-        // }
-      }
+      SidebarCollapsePlugin.changeTagExtendStatus(e.target, nextSibling);
     }
     if (LiDom) {
       SidebarCollapsePlugin.changeActiveClass(LiDom);
