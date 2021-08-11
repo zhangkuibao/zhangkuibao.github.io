@@ -1,32 +1,5 @@
-// function getTextForDom(dom) {
-//   for(let i -Array.from(dom.children))
-// }
-// function generatorUrlMapForUl(dom) {
-//   if(['LI','A'].includes(dom.tagName)) {
-//     return dom.innerText;
-//   }
-//   let result = {};
-//   Array.from(dom).forEach((ele) => {
-
-//   });
-// }
-
 const DocName = "张魁堡的笔记";
 const author = "张魁堡";
-const vueComponents = {
-  "author-info": {
-    template: `<div style="color: #567;">
-          <p v-if="false">作者：{{author}}</p>
-          <p>最后更新日期：{{date}}</p>
-        </div>`,
-    props: ["date"],
-    data() {
-      return {
-        author,
-      };
-    },
-  },
-};
 
 window.$docsify = {
   name: DocName,
@@ -91,7 +64,7 @@ window.$docsify = {
     color: "var(--theme-color,#42b983)",
     height: "3px",
   },
-  vueComponents,
+  // vueComponents,
   // plugins: [TitleNumberPlugin.install, SidebarCollapsePlugin.install],
 };
 
@@ -105,6 +78,19 @@ function docsifyInstallPlugin(plugin) {
     : (window.$docsify.plugins = [plugin.install]);
 }
 
+function docsifyInstallComponent(comp) {
+  let instance = new comp();
+  let compObj = {
+    [instance.name]: instance
+  }
+  if(window.$docsify.vueComponents) {
+    Object.assign(window.$docsify.vueComponents, compObj);
+  }else {
+    window.$docsify.vueComponents = compObj;
+  }
+}
+
 docsifyInstallPlugin(TitleNumberPlugin);
 docsifyInstallPlugin(SidebarCollapsePlugin);
 docsifyInstallPlugin(BreadcrumbPlugin);
+docsifyInstallComponent(AuthorInfoComponent);

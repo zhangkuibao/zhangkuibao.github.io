@@ -1,3 +1,6 @@
+<div class="sidebar-title">阅读笔记</div>
+<template id="root-breadcrumb">读书</template>
+
 - 成长
 
   - [格局](阅读笔记/读书/个人成长/格局---吴军.md)

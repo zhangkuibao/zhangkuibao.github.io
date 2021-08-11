@@ -20,9 +20,9 @@ class TitleNumberPlugin {
 
   static handleTitle(dom) {
     if(!dom.children) return;
-    let a = dom.children[0];
-    let span = a.children[0];
-    if (span.innerText !== "参考") {
+    let a = dom.firstElementChild;
+    let span = a?.firstElementChild;
+    if (span && span.innerText !== "参考") {
       let titleLevel = dom.tagName[1];
       span.innerText = TitleNumberPlugin.synthesisNumber(span.innerText, titleLevel);
     }

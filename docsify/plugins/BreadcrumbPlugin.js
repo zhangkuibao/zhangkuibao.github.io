@@ -23,10 +23,13 @@ class BreadcrumbPlugin {
     // });
     hook.doneEach(function () {
       // 每次路由切换时数据全部加载完成后调用，没有参数。
-      let dom = document.getElementsByClassName("sidebar-nav")[0].children[0];
+      let dom = document
+        .getElementsByClassName("sidebar-nav")[0]
+        .querySelector("ul");
       let active = dom.querySelector(".active");
       BreadcrumbPlugin.initRoot();
       BreadcrumbPlugin.ergodicLI(active);
+      BreadcrumbPlugin.addRootDir();
       BreadcrumbPlugin.generateBreadcrumb();
       BreadcrumbPlugin.appendBreadcrumbRoot2Body();
     });
@@ -43,16 +46,25 @@ class BreadcrumbPlugin {
   static intervalText = "/";
 
   static initRoot() {
+    BreadcrumbPlugin.breadcrumbList = [];
     BreadcrumbPlugin.breadcrumbRoot = document.createElement("div");
     BreadcrumbPlugin.breadcrumbRoot.classList.add("breadcrumb");
-    BreadcrumbPlugin.breadcrumbList = [];
+  }
+
+  static addRootDir() {
+    let firstDir = document
+      .getElementsByClassName("sidebar-nav")[0]
+      .querySelector("#root-breadcrumb")?.innerHTML;
+    if (firstDir) {
+      BreadcrumbPlugin.breadcrumbList.unshift(firstDir);
+    }
   }
 
   static ergodicLI(dom) {
     if (!dom) return;
     while (!dom.classList.contains("sidebar-nav")) {
       if (dom.tagName === "LI") {
-        let text = dom.children[0].innerText;
+        let text = dom.firstElementChild.innerText;
         BreadcrumbPlugin.breadcrumbList.unshift(text);
       }
       dom = dom.parentNode;
@@ -67,7 +79,6 @@ class BreadcrumbPlugin {
   }
 
   static generateBreadcrumb() {
-    console.log(BreadcrumbPlugin.breadcrumbList);
     BreadcrumbPlugin.breadcrumbList.forEach((text, index) => {
       let subDom = BreadcrumbPlugin.createSubTitle(text);
       BreadcrumbPlugin.insertSubDom2Root(subDom);
@@ -75,7 +86,6 @@ class BreadcrumbPlugin {
         BreadcrumbPlugin.insertBeforeInterval();
       }
     });
-    console.log(BreadcrumbPlugin.breadcrumbRoot);
   }
 
   static insertSubDom2Root(child) {
