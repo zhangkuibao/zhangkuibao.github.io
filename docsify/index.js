@@ -41,16 +41,6 @@ window.$docsify = {
     errorText: "复制失败",
     successText: "复制成功",
   },
-  count: {
-    countable: false,
-    position: "top",
-    margin: "10px",
-    float: "right",
-    fontsize: "0.9em",
-    color: "rgb(90,90,90)",
-    language: "chinese",
-    isExpected: true,
-  },
   customPageTitle: {
     prefix: DocName,
     seprator: "|",
