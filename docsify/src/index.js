@@ -10,10 +10,7 @@ docsifyInstallPlugin(SidebarCollapsePlugin);
 docsifyInstallPlugin(BreadcrumbPlugin);
 docsifyInstallComponent(AuthorInfoComponent);
 
-// 加载docsify官方插件
-import "../assets/cdn/docsify@4.js";
-
-
+// 加载sw
 if (typeof navigator.serviceWorker !== "undefined") {
   navigator.serviceWorker.register("docsify/assets/sw.js");
 }
