@@ -1,4 +1,4 @@
-class AuthorInfoComponent {
+export default class AuthorInfoComponent {
   name = "author-info";
 
   template = `

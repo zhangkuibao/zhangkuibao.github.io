@@ -1,4 +1,4 @@
-class BreadcrumbPlugin {
+export default class BreadcrumbPlugin {
   static install(hook, vm) {
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。

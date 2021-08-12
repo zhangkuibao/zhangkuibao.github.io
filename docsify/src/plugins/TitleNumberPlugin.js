@@ -1,5 +1,5 @@
-class TitleNumberPlugin {
- titleArr = [];
+export default class TitleNumberPlugin {
+  titleArr = [];
 
   static transferTitleNumber(title, text) {
     let arr = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
@@ -11,7 +11,9 @@ class TitleNumberPlugin {
 
   static synthesisNumber(text, level) {
     level = Number(level);
-    TitleNumberPlugin.titleArr[level] = TitleNumberPlugin.titleArr[level] ? TitleNumberPlugin.titleArr[level] + 1 : 1;
+    TitleNumberPlugin.titleArr[level] = TitleNumberPlugin.titleArr[level]
+      ? TitleNumberPlugin.titleArr[level] + 1
+      : 1;
     TitleNumberPlugin.titleArr = TitleNumberPlugin.titleArr.slice(0, level + 1);
     let number = TitleNumberPlugin.titleArr.filter((ele) => ele).join(".");
     //   return number + " " + text;
@@ -19,12 +21,15 @@ class TitleNumberPlugin {
   }
 
   static handleTitle(dom) {
-    if(!dom.children) return;
+    if (!dom.children) return;
     let a = dom.firstElementChild;
     let span = a?.firstElementChild;
     if (span && span.innerText !== "参考") {
       let titleLevel = dom.tagName[1];
-      span.innerText = TitleNumberPlugin.synthesisNumber(span.innerText, titleLevel);
+      span.innerText = TitleNumberPlugin.synthesisNumber(
+        span.innerText,
+        titleLevel
+      );
     }
   }
 
@@ -40,6 +45,7 @@ class TitleNumberPlugin {
     });
   }
   static install(hook, vm) {
+    console.log(111)
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
     //   });

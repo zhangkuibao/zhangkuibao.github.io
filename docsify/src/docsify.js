@@ -1,16 +1,16 @@
 const DocName = "张魁堡的笔记";
 const author = "张魁堡";
 
-window.$docsify = {
+export const docsify = {
   name: DocName,
   // nameLink: '',
   // repo: "http://www.baidu.com",
   // loadSidebar: "docsify/_sidebar.md",
   loadSidebar: true,
   // autoHeader: true,
-  loadNavbar: "docsify/_navbar.md",
+  loadNavbar: "docsify/assets/_navbar.md",
   alias: {
-    ".*/_navbar.md": "docsify/_navbar.md",
+    ".*/_navbar.md": "docsify/assets/_navbar.md",
     "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
     // "/技术笔记/编程基础/编程语言/CSS/_sidebar.md": "/技术笔记/编程基础/_sidebar.md",
     // "/.*/_sidebar.md": "/_sidebar.md", // See #301
@@ -20,7 +20,7 @@ window.$docsify = {
   // mergeNavbar: true,
   formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
   // routerMode: 'history',
-  notFoundPage: "docsify/_404.md",
+  notFoundPage: "docsify/assets/_404.md",
   topMargin: 70,
   // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
   // crossOriginLinks: [],  // 设置跨域链接
@@ -58,29 +58,21 @@ window.$docsify = {
   // plugins: [TitleNumberPlugin.install, SidebarCollapsePlugin.install],
 };
 
-if (typeof navigator.serviceWorker !== "undefined") {
-  navigator.serviceWorker.register("docsify/sw.js");
+export function docsifyInstallPlugin(plugin) {
+  docsify.plugins
+    ? docsify.plugins.push(plugin.install)
+    : (docsify.plugins = [plugin.install]);
 }
-
-function docsifyInstallPlugin(plugin) {
-  window.$docsify.plugins
-    ? window.$docsify.plugins.push(plugin.install)
-    : (window.$docsify.plugins = [plugin.install]);
-}
-
-function docsifyInstallComponent(comp) {
+export function docsifyInstallComponent(comp) {
   let instance = new comp();
   let compObj = {
-    [instance.name]: instance
-  }
-  if(window.$docsify.vueComponents) {
-    Object.assign(window.$docsify.vueComponents, compObj);
-  }else {
-    window.$docsify.vueComponents = compObj;
+    [instance.name]: instance,
+  };
+  if (docsify.vueComponents) {
+    Object.assign(docsify.vueComponents, compObj);
+  } else {
+    docsify.vueComponents = compObj;
   }
 }
 
-docsifyInstallPlugin(TitleNumberPlugin);
-docsifyInstallPlugin(SidebarCollapsePlugin);
-docsifyInstallPlugin(BreadcrumbPlugin);
-docsifyInstallComponent(AuthorInfoComponent);
+window.$docsify = docsify;

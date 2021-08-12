@@ -1,4 +1,4 @@
-class SidebarCollapsePlugin {
+export default class SidebarCollapsePlugin {
   static sideWrapperDom;
   static lastRootBreadcrumbText;
   static install(hook, vm) {
