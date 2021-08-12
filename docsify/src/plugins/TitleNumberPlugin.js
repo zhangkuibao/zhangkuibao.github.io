@@ -45,7 +45,6 @@ export default class TitleNumberPlugin {
     });
   }
   static install(hook, vm) {
-    console.log(111)
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
     //   });

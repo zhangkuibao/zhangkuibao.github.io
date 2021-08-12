@@ -63,9 +63,8 @@ export function docsifyInstallPlugin(plugin) {
     : (docsify.plugins = [plugin.install]);
 }
 export function docsifyInstallComponent(comp) {
-  let instance = new comp();
   let compObj = {
-    [instance.name]: instance,
+    [comp.name]: comp,
   };
   if (docsify.vueComponents) {
     Object.assign(docsify.vueComponents, compObj);
