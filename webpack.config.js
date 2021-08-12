@@ -7,7 +7,7 @@ module.exports = {
     index: "./docsify/src/index.js",
   },
   output: {
-    filename: '[name].js',
+    filename: "[name].js",
     path: path.resolve(__dirname, "docsify/dist"),
   },
   module: {
@@ -24,10 +24,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./docsify/src/index.html", //模板文件
+      template: "./docsify/src/html/index.html", //模板文件
       filename: path.resolve(__dirname, "index.html"), //目标文件
       scriptLoading: "blocking",
-        inject: "head",
+      inject: "head",
     }),
   ],
   watch: true,

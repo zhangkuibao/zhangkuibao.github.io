@@ -1,5 +1,4 @@
 const DocName = "张魁堡的笔记";
-const author = "张魁堡";
 
 export const docsify = {
   name: DocName,

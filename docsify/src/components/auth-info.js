@@ -11,7 +11,7 @@ export default class AuthorInfoComponent {
 
   data = function () {
     return {
-      author,
+      author: '张魁堡',
     };
   };
 }

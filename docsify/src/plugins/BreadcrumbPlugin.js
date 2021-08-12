@@ -53,7 +53,7 @@ export default class BreadcrumbPlugin {
 
   static addRootDir() {
     let firstDir = BreadcrumbPlugin.getRootBreadcrumbText();
-    if (firstDir) {
+    if (firstDir && BreadcrumbPlugin.breadcrumbList.length) {
       BreadcrumbPlugin.breadcrumbList.unshift(firstDir);
     }
   }
