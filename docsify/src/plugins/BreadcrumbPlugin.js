@@ -31,7 +31,7 @@ export default class BreadcrumbPlugin {
       BreadcrumbPlugin.ergodicLI(active);
       BreadcrumbPlugin.addRootDir();
       BreadcrumbPlugin.generateBreadcrumb();
-      BreadcrumbPlugin.appendBreadcrumbRoot2Body();
+      setTimeout(BreadcrumbPlugin.appendBreadcrumbRoot2Body)
     });
     //   hook.mounted(function () {
     //     // 初始化并第一次加载完成数据后调用，只触发一次，没有参数。
