@@ -11,8 +11,11 @@ export const docsify = {
   alias: {
     ".*/_navbar.md": "docsify/assets/_navbar.md",
     "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
-    // "/技术笔记/编程基础/编程语言/CSS/_sidebar.md": "/技术笔记/编程基础/_sidebar.md",
-    // "/.*/_sidebar.md": "/_sidebar.md", // See #301
+    [encodeURI("/技术笔记/编程基础/.*/_sidebar.md")]: "技术笔记/编程基础/_sidebar.md",
+    [encodeURI("/技术笔记/底层知识/.*/_sidebar.md")]: "技术笔记/底层知识/_sidebar.md",
+    [encodeURI("/技术笔记/解决方案/.*/_sidebar.md")]: "技术笔记/解决方案/_sidebar.md",
+    [encodeURI("/技术笔记/开发工具/.*/_sidebar.md")]: "技术笔记/开发工具/_sidebar.md",
+    [encodeURI("/技术笔记/代码库/.*/_sidebar.md")]: "技术笔记/解决方案/_sidebar.md",
   },
   // coverpage: "docsify/_coverpage.md",
   auto2top: true,
