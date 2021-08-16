@@ -37,7 +37,7 @@ export const docsify = {
   // homepage: '',
   // logo: '',
   // subMaxLevel: 2, // 在侧边栏中生成每个页面的目录
-  sidebarDisplayLevel: 3, // 侧边栏默认展开级别
+  // sidebarDisplayLevel: 1, // 侧边栏默认展开级别
   search: {
     placeholder: "搜索",
     noData: "找不到结果",
