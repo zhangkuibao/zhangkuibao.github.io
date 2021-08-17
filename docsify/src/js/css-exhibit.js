@@ -1,4 +1,13 @@
 import { docsifyInstallComponent } from "../docsify";
-import border from '../components/css-exhibit/border.vue'
+import Vue from 'vue'
 
-docsifyInstallComponent(border)
+const requireComponent = require.context(
+  "../components/css-exhibit",
+  false,
+  /\w+\.(vue|js)$/
+);
+
+requireComponent.keys().forEach((fileName) => {
+  let cmp = requireComponent(fileName).default;
+  docsifyInstallComponent(cmp);
+});

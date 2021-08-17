@@ -80,7 +80,21 @@ export let docsify = window.$docsify
         color: "var(--theme-color,#42b983)",
         height: "3px",
       },
-      // vueComponents,
+      vueComponents: {},
+      vueGlobalOptions: {
+        data() {
+          let vueComponentsList = [];
+          for(let prop in docsify.vueComponents) {
+            let item = docsify.vueComponents[prop];
+            if(item['css-exhibit-component']) {
+              vueComponentsList.push(item);
+            }
+          }
+          return {
+            vueComponentsList
+          }
+        }
+      },
       // plugins: [TitleNumberPlugin.install, SidebarCollapsePlugin.install],
     };
 

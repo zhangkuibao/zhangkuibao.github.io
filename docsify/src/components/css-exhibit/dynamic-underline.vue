@@ -1,0 +1,44 @@
+<template>
+  <css-exhibit-example title="动态下划线">
+    <div class="content underline">动态下划线</div>
+  </css-exhibit-example>
+</template>
+
+<script>
+export default {
+  name: "css-exhibit-dynamic_underline",
+  'css-exhibit-component': true
+};
+</script>
+
+<style scoped>
+/* 2.动态下划线 */
+.underline {
+  font-size: 20px;
+  position: relative;
+  height: auto;
+  top: 40%;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+@keyframes move1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.underline::before {
+  content: "";
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  transform: translate(-100%);
+  background: linear-gradient(to right, red, blue);
+}
+.underline:hover::before {
+  animation: move1 1s linear infinite;
+}
+</style>
