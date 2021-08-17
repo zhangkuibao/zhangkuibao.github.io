@@ -21,10 +21,6 @@ export default {
   margin: 10px 10px 30px 10px;
   border: 1px dashed #000;
   position: relative;
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  flex-direction: column;
   user-select: none;
   /* 取消事件响应 */
   /* pointer-events: none;  */
@@ -33,6 +29,7 @@ export default {
   margin-bottom: 10px;
   line-height: 2;
   color: #333;
+  text-align: center;
 }
 
 .example-content {
@@ -41,5 +38,6 @@ export default {
   display: flex;
   align-content: center;
   justify-content: center;
+  height: calc(100% - 2em - 10px);
 }
 </style>
