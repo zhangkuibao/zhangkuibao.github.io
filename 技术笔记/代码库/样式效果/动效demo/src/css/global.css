@@ -1,0 +1,64 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    background-color: #ddd;
+    font-size: 14px;
+}
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+.part {
+    width: 170px;
+    height: 170px;
+    margin: 10px 10px 30px 10px;
+    border: 1px dashed #000;
+    float:left;
+    position: relative;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+    /* 取消事件响应 */
+    /* pointer-events: none;  */
+}
+.part::after {
+    content:'查看详情';
+    position: absolute;
+    bottom: -2em;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+    border-top:none;
+    /* 开启事件响应 */
+    pointer-events: auto;
+}
+.part h3 {
+    margin-top: 5px;
+}
+.descript {
+    margin-bottom: 10px;
+    line-height: 2;
+    color: #333;
+}
+.details {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    display: none;
+}
+.details span {
+    text-align: left;
+    display: inline-block;
+}
+.content {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+.bug {
+    display: none;
+}

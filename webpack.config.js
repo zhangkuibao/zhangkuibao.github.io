@@ -6,7 +6,7 @@ module.exports = {
   mode: "production",
   entry: {
     index: "./docsify/src/index.js",
-    cssExhibit: "./技术笔记/代码库/样式效果/src/index.js",
+    'css-exhibit': "./docsify/src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
@@ -36,14 +36,14 @@ module.exports = {
       filename: path.resolve(__dirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
-      chunks: ["index"],
+      // chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      template: "./技术笔记/代码库/样式效果/src/index.html", // 模板文件
+      template: "./docsify/src/html/css-exhibit.html", // 模板文件
       filename: path.resolve("./技术笔记/代码库/样式效果/", "index.html"), // 目标文件
       scriptLoading: "blocking",
       // inject: "head",
-      chunks: ["cssExhibit"],
+      chunks: [],
     }),
   ],
   watch: true,
