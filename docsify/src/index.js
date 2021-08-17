@@ -3,7 +3,8 @@ import "./css/index.scss";
 import TitleNumberPlugin from "./plugins/TitleNumberPlugin";
 import SidebarCollapsePlugin from "./plugins/SidebarCollapsePlugin";
 import BreadcrumbPlugin from "./plugins/BreadcrumbPlugin";
-import AuthorInfoComponent from "./components/auth-info";
+import AuthorInfoComponent from "./components/auth-info.vue";
+
 import { docsifyInstallPlugin, docsifyInstallComponent } from "./docsify";
 docsifyInstallPlugin(TitleNumberPlugin);
 docsifyInstallPlugin(SidebarCollapsePlugin);
