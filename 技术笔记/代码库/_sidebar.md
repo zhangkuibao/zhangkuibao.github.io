@@ -1,6 +1,8 @@
 <div class="sidebar-title" >技术笔记</div>
 <template id="root-breadcrumb">代码库</template>
 
+- [样式效果](技术笔记/代码库/样式效果/index.md ":include :type=iframe width=100% height=400px")
+
 - 功能实现
 
   - [分享链接](技术笔记/代码库/功能实现/分享链接.md)
@@ -18,5 +20,3 @@
   - [NodeJS](技术笔记/代码库/常用代码/NodeJS.md)
   - [Sass](技术笔记/代码库/常用代码/Sass.md)
   - [JS 兼容](技术笔记/代码库/常用代码/JS兼容.md)
-
-- [样式效果](技术笔记/代码库/样式效果/index.md ':include :type=iframe width=100% height=400px' )
