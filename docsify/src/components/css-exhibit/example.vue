@@ -6,7 +6,7 @@
     <div class="example-content">
       <slot />
     </div>
-    <el-collapse @click.native="clickCollapse()">
+    <el-collapse>
       <el-collapse-item title="显示代码">
         <div style="margin-bottom: 10px;">文件位置：{{ exampleFileUrl }}</div>
         <div style="background-color: #f8f8f8;padding:16px;">
@@ -43,13 +43,10 @@ export default {
       codeHtml: "",
       exampleFileUrl: "",
       exampleFileName: "",
+      showCollapse: 0,
     };
   },
   methods: {
-    clickCollapse() {
-      console.log(111);
-      this.initExampleCodeHtml();
-    },
     initExampleFileInfo() {
       this.exampleFileUrl = this.$parent.$options.__file;
       let arr = this.exampleFileUrl.split("/");
@@ -67,6 +64,7 @@ export default {
   },
   mounted() {
     this.initExampleFileInfo();
+    this.initExampleCodeHtml();
   },
 };
 </script>
