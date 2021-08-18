@@ -6,7 +6,7 @@ module.exports = {
   mode: "production",
   entry: {
     index: "./docsify/src/index.js",
-    "css-exhibit": "./docsify/src/js/css-exhibit.js",
+    // "css-exhibit": "./docsify/src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
