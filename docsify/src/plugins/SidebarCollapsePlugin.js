@@ -178,14 +178,12 @@ export default class SidebarCollapsePlugin {
       return;
     }
     SidebarCollapsePlugin.changeUlHeight(nextSibling);
-    if (nextSibling.classList.contains("collapse-hide")) {
+    if (target.classList.contains("collapse-menu-hide")) {
       setTimeout(() => {
-        nextSibling.classList.remove("collapse-hide");
         target.classList.remove("collapse-menu-hide");
       });
     } else {
       setTimeout(() => {
-        nextSibling.classList.add("collapse-hide");
         target.classList.add("collapse-menu-hide");
       });
     }

@@ -15,6 +15,20 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        options: {
+          loaders: {
+            scss: "vue-style-loader!css-loader!sass-loader",
+            sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax",
+          },
+        },
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -34,16 +48,8 @@ module.exports = {
         },
       },
       {
-        test: /\.vue$/,
-        loader: "vue-loader",
-      },
-      {
-        test: /\.scss$/,
-        use: ["vue-style-loader", "css-loader", "sass-loader"],
-      },
-      {
         test: /\.css$/,
-        use: ["vue-style-loader", "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
