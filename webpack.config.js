@@ -55,14 +55,6 @@ module.exports = {
       filename: path.resolve(__dirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
-      // chunks: ["index"],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./docsify/src/html/css-exhibit.html", // 模板文件
-      filename: path.resolve("./技术笔记/代码库/样式效果/", "index.html"), // 目标文件
-      scriptLoading: "blocking",
-      // inject: "head",
-      chunks: [],
     }),
   ],
   watch: true,

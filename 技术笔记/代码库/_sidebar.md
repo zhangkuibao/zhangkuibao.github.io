@@ -19,4 +19,4 @@
   - [Sass](技术笔记/代码库/常用代码/Sass.md)
   - [JS 兼容](技术笔记/代码库/常用代码/JS兼容.md)
 
-- [样式效果](技术笔记/代码库/样式效果/index.html ':include :type=iframe width=100% height=400px' )
+- [样式效果](技术笔记/代码库/样式效果/index.md ':include :type=iframe width=100% height=400px' )
