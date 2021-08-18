@@ -4,10 +4,15 @@
   "description": "<author-info date=\"{docsify-updated}\"> </author-info>",
   "main": "index.js",
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-component": "^1.1.1",
     "css-loader": "^6.2.0",
     "docsify": "^4.12.1",
     "html-webpack-plugin": "^5.3.2",
     "node-sass": "^6.0.1",
+    "prismjs": "^1.24.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
@@ -26,5 +31,8 @@
     "url": "git@gitee.com:zhangkb/learning-Notes.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "element-ui": "^2.15.5"
+  }
 }

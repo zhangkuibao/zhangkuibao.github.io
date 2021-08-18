@@ -1,12 +1,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require("vue-loader");
 module.exports = {
   mode: "production",
   entry: {
     index: "./docsify/src/index.js",
-    'css-exhibit': "./docsify/src/js/css-exhibit.js",
+    "css-exhibit": "./docsify/src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
@@ -14,6 +14,25 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: [
+              [
+                "component",
+                {
+                  libraryName: "element-ui",
+                  styleLibraryName: "theme-chalk",
+                },
+              ],
+            ],
+          },
+        },
+      },
       {
         test: /\.vue$/,
         loader: "vue-loader",
