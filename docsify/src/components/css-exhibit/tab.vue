@@ -1,5 +1,5 @@
 <template>
-  <css-exhibit-example title="纯css选项卡">
+  <app-example title="纯css选项卡">
     <div class="cssTag">
       <div class="demo">
         <div class="tag">1<input type="text" id="tag1" /></div>
@@ -22,7 +22,7 @@
         focus事件在移动端会默认调起输入法, 用radio不会出现这种情况
       </div>
     </template>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

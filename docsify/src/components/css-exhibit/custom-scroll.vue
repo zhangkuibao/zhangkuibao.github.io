@@ -1,5 +1,5 @@
 <template>
-  <css-exhibit-example title="自定义滚动条样式">
+  <app-example title="自定义滚动条样式">
     <div class="scroll">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
@@ -8,7 +8,7 @@
         Quisquam enim qui iure, consequatur velit sit?
       </p>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

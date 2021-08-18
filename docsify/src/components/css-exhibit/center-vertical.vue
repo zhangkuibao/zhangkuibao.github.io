@@ -1,12 +1,12 @@
 <template>
-  <css-exhibit-example title="vertical实现垂直居中">
+  <app-example title="vertical实现垂直居中">
     <button id="toggleVer">显示/隐藏</button>
     <div class="verBox" ref="verBox">
       <div class="vbWrap">
         <div class="vbContent">内容</div>
       </div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

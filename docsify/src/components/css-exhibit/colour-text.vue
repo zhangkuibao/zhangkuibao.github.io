@@ -1,7 +1,7 @@
 <template>
-  <css-exhibit-example title="彩色字体">
+  <app-example title="彩色字体">
     <div class="colour-text">I am colour</div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

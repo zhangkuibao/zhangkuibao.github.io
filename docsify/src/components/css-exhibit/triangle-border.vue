@@ -1,7 +1,7 @@
 <template>
-  <css-exhibit-example title="三角边框">
+  <app-example title="三角边框">
     <div class="find-div-body"></div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

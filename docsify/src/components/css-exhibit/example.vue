@@ -28,7 +28,7 @@ import {
 } from "element-ui";
 import Prism from "prismjs";
 export default {
-  name: "css-exhibit-example",
+  name: "app-example",
   props: ["title", "file"],
   components: {
     [Tabs.name]: Tabs,

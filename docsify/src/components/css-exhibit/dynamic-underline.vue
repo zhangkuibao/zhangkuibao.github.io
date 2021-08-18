@@ -1,7 +1,7 @@
 <template>
-  <css-exhibit-example title="动态下划线">
+  <app-example title="动态下划线">
     <div class="underline">hover me</div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <css-exhibit-example title="border实现等高">
+  <app-example title="border实现等高">
     <div class="sameHeight_borderBox">
       <div class="left">
         <div>1</div>
@@ -9,7 +9,7 @@
         <div>1</div>
       </div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
-  <css-exhibit-example title="点击涟漪效果">
+  <app-example title="点击涟漪效果">
     <div class="paper" ref="paper">
       <div class="ripple"></div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

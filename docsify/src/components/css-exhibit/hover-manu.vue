@@ -1,5 +1,5 @@
 <template>
-  <css-exhibit-example title="菜单">
+  <app-example title="菜单">
     <div class="hoverManu">
       <div class="cont" tabindex="1">
         聚焦或hover时显示菜单
@@ -9,7 +9,7 @@
         </ul>
       </div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

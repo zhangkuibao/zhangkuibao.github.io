@@ -1,5 +1,5 @@
 <template>
-  <css-exhibit-example title="等高布局">
+  <app-example title="等高布局">
     <div class="sameHeight">
       <div class="sh_left">
         <div>1</div>
@@ -10,7 +10,7 @@
         <div>1</div>
       </div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

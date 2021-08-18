@@ -1,7 +1,7 @@
 <template>
-  <css-exhibit-example title="蛇形边框">
+  <app-example title="蛇形边框">
     <div class="snake-border"></div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

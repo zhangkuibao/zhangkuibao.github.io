@@ -1,10 +1,10 @@
 <template>
-  <css-exhibit-example title="同心圆">
+  <app-example title="同心圆">
     <div class="clipPadding">
       <!-- <div class="icon_menu"></div> -->
       <div class="icon_dot"></div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>

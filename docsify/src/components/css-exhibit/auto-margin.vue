@@ -1,9 +1,9 @@
 <template>
-  <css-exhibit-example title="margin:auto垂直居中">
+  <app-example title="margin:auto垂直居中">
     <div class="autoMargin">
       <div></div>
     </div>
-  </css-exhibit-example>
+  </app-example>
 </template>
 
 <script>
