@@ -14,12 +14,9 @@ export default {
 <style scoped>
 .underline {
   font-size: 20px;
-  position: relative;
-  padding-bottom: 5px;
   overflow: hidden;
-  display: inline-block;
-  line-height: 1em;
-  height: 1em;
+  position: relative;
+  cursor: context-menu;
 }
 
 .underline::before {
@@ -28,7 +25,7 @@ export default {
   width: 100%;
   position: absolute;
   bottom: 0px;
-  transform: translate(-100%);
+  right: 100%;
   background: linear-gradient(to right, red, blue);
 }
 .underline:hover::before {
@@ -36,10 +33,10 @@ export default {
 }
 @keyframes move1 {
   0% {
-    transform: translateX(-100%);
+    right: 100%;
   }
   100% {
-    transform: translateX(100%);
+    right: -100%;
   }
 }
 </style>

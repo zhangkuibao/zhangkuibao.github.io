@@ -38,9 +38,6 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.paper:hover {
   cursor: pointer;
 }
 
@@ -60,7 +57,7 @@ export default {
 
 @keyframes ripple {
   100% {
-    transform: scale(20);
+    transform: scale(50);
     background-color: transparent;
   }
 }

@@ -15,8 +15,8 @@ export default {
 
 <style scoped>
 .autoMargin {
-  width: 80%;
-  height: 80%;
+  width: 100px;
+  height: 100px;
   border: 1px solid #000;
   position: relative;
 }

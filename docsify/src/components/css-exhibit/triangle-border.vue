@@ -15,9 +15,8 @@ export default {
 /* 5.三角边框 */
 .find-div-body {
   position: relative;
-  right: 0px;
-  width: 80%;
-  height: 80%;
+  width: 100px;
+  height: 50px;
   padding: 8px;
   background-color: #ffffff;
   border: #cccccc solid 1px;

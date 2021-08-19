@@ -34,8 +34,12 @@ export default {
 
 <style scoped>
 .cssTag {
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 200px;
+}
+
+.cssTag .tag {
+  padding: 8px;
 }
 .cssTag .demo {
   height: 70%;

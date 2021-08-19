@@ -1,5 +1,5 @@
 <template>
-  <app-example title="等高布局">
+  <app-example title="padding 实现等高布局">
     <div class="sameHeight">
       <div class="sh_left">
         <div>1</div>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "css-exhibit-same_height",
+  name: "css-exhibit-same_height_padding",
   "css-exhibit-component": true,
 };
 </script>

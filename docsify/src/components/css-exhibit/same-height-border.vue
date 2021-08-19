@@ -1,11 +1,12 @@
 <template>
-  <app-example title="border实现等高">
+  <app-example title="border 实现等高布局">
     <div class="sameHeight_borderBox">
       <div class="left">
         <div>1</div>
-        <div>1</div>
       </div>
       <div class="right">
+        <div>1</div>
+        <div>1</div>
         <div>1</div>
       </div>
     </div>
@@ -25,6 +26,7 @@ export default {
   background: blue;
   border-left: 70px solid red;
   height: auto;
+  width: 80%;
   color: #fff;
 }
 .sameHeight_borderBox .left {

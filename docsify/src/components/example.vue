@@ -75,10 +75,11 @@ export default {
 }
 
 .example-content {
-  height: 200px;
+  /* height: 200px; */
   display: flex;
   align-content: center;
   justify-content: center;
+  margin-bottom: 20px;
   /* width: 100%;
   flex: 1;
 

@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style scoped>
+
+#toggleVer {
+  height: 2em;
+}
 .verBox {
   visibility: hidden;
   width: auto;

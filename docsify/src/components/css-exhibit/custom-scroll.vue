@@ -22,9 +22,9 @@ export default {
 /* 3.自定义滚动条 */
 .scroll {
   width: 100%;
-  height: 100%;
+  height: 100px;
   overflow: auto;
-  padding: 10px 10px;
+  text-align: center;
 }
 
 /* 
