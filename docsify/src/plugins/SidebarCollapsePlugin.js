@@ -4,7 +4,6 @@ export default class SidebarCollapsePlugin {
   static closeLevel;  // 默认收起等级
   static install(hook, vm) {
     SidebarCollapsePlugin.closeLevel = vm?.config?.sidebarCollapse?.closeLevel || 2;
-    console.log(SidebarCollapsePlugin.closeLevel)
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
     //   });

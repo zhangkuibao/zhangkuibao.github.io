@@ -1,5 +1,5 @@
 <template>
-  <app-example title="margin:auto垂直居中">
+  <app-example title="margin:auto 实现水平垂直居中">
     <div class="autoMargin">
       <div></div>
     </div>
