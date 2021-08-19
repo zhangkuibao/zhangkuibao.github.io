@@ -80,6 +80,9 @@ export let docsify = window.$docsify
         color: "var(--theme-color,#42b983)",
         height: "3px",
       },
+      sidebarCollapse: {
+        closeLevel: 2,  // 默认收起等级
+      },
       vueComponents: {},
       vueGlobalOptions: {
         data() {

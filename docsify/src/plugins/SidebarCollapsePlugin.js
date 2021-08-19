@@ -1,7 +1,10 @@
 export default class SidebarCollapsePlugin {
   static sideWrapperDom;
   static lastRootBreadcrumbText;
+  static closeLevel;  // 默认收起等级
   static install(hook, vm) {
+    SidebarCollapsePlugin.closeLevel = vm?.config?.sidebarCollapse?.closeLevel || 2;
+    console.log(SidebarCollapsePlugin.closeLevel)
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有参数。
     //   });
@@ -23,7 +26,7 @@ export default class SidebarCollapsePlugin {
     //   // next(div.innerHTML);
     //   next(html)
     // });
-    hook.doneEach(function () {
+    hook.doneEach(function() {
       // 每次路由切换时数据全部加载完成后调用，没有参数。
       let dom = document
         .getElementsByClassName("sidebar-nav")[0]
@@ -74,6 +77,10 @@ export default class SidebarCollapsePlugin {
         if (subUl) {
           li.firstElementChild.classList.add("hasChild");
           SidebarCollapsePlugin.bindCollapseClass(subUl, level + 1);
+          // 在这里可以先设置一个ul的data-height值，让第一次展开有动画，ul未渲染，offsetHeight为0
+        }
+        if (level >= SidebarCollapsePlugin.closeLevel) {
+          SidebarCollapsePlugin.closeUl(li.firstElementChild);
         }
       });
     }
@@ -169,6 +176,21 @@ export default class SidebarCollapsePlugin {
     ul.style.height = SidebarCollapsePlugin.getDomOffsetHeight(ul) + "px";
   }
 
+  // 判断是否闭合
+  static isClose(firstNode) {
+    return firstNode.classList.contains("collapse-menu-hide");
+  }
+
+  // 展开
+  static extendUl(firstNode) {
+    firstNode.classList.remove("collapse-menu-hide");
+  }
+
+  // 收起
+  static closeUl(firstNode) {
+    firstNode.classList.add("collapse-menu-hide");
+  }
+
   static changeTagExtendStatus(target, nextSibling) {
     // a标签后跟子列表时只在a标签被选中后才可开合
     if (
@@ -178,13 +200,13 @@ export default class SidebarCollapsePlugin {
       return;
     }
     SidebarCollapsePlugin.changeUlHeight(nextSibling);
-    if (target.classList.contains("collapse-menu-hide")) {
+    if (SidebarCollapsePlugin.isClose(target)) {
       setTimeout(() => {
-        target.classList.remove("collapse-menu-hide");
+        SidebarCollapsePlugin.extendUl(target);
       });
     } else {
       setTimeout(() => {
-        target.classList.add("collapse-menu-hide");
+        SidebarCollapsePlugin.closeUl(target);
       });
     }
   }
