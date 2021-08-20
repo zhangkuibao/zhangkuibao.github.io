@@ -1,4 +1,4 @@
-const DocName = "张魁堡的笔记";
+const DocName = "十年磨一剑";
 
 export let docsify = window.$docsify
   ? window.$docsify
