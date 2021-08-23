@@ -29,7 +29,7 @@ import {
 import Prism from "prismjs";
 export default {
   name: "app-example",
-  props: ["title", "file"],
+  props: ["title"],
   components: {
     [Tabs.name]: Tabs,
     [TabPane.name]: TabPane,
@@ -77,7 +77,8 @@ export default {
 .example-content {
   /* height: 200px; */
   display: flex;
-  align-content: center;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
   /* width: 100%;
