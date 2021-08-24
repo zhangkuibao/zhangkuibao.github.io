@@ -106,6 +106,8 @@
       - [查看 vue.config.js 生成的 webpack 配置](技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
       - [对于 vue 的理解](技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
       - [使用异步组件时的 resolve 函数](技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
+      - [获取作用域插槽](技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
+      - [vue router 页面刷新时渲染不同的组件](技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
 
   - Angular
 
@@ -139,6 +141,7 @@
   - NodeJS
 
     - 模块
+
       - [path 路径](技术笔记\编程基础\类库框架\NodeJS\模块\path路径.md)
 
     - [模块化](技术笔记/编程基础/类库框架/NodeJS/笔记/模块化.md)
