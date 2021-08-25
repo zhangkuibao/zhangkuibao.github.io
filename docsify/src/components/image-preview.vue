@@ -7,6 +7,7 @@
         :style="imageStyle"
         ref="image"
         @mousedown="handleMouseDown"
+        @dblclick="imageScale(scaleMagnificationClick)"
       />
     </div>
     <div class="image_view-operate">
@@ -20,15 +21,6 @@
 </template>
 
 <script>
-// 功能点：
-// 1. 关闭按钮
-// 2. 放大缩小按钮
-// 3. 滚动缩放
-// 4. 旋转
-// 5. 恢复初始状态
-// 6. 移动
-
-// 缩放倍率问题
 export default {
   name: "image-preview",
   data() {
