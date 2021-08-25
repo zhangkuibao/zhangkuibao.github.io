@@ -1,5 +1,19 @@
 <author-info date="{docsify-updated}"> </author-info>
 
+## 访问地址
+
+https://zhangkuibao.github.io/
+
+gitee pages 无法正常发布并且要手动更新，操作太繁琐，在 github 上同步一份代码，只需要将代码推送到 github 的仓库上就能自动更新。
+
+gitee ssh url：`git@gitee.com:zhangkb/zhangkb.git`
+
+gitee https url：`https://gitee.com/zhangkb/zhangkb.git`
+
+github ssh url：`git@github.com:zhangkuibao/zhangkuibao.github.io.git`
+
+github https url：`https://github.com/zhangkuibao/zhangkuibao.github.io.git`
+
 ## 如何学会一门新技术
 
 学一个技术之前要考虑学习这个技术能得到什么，如果心中没有答案就需要仔细思考，调研；如果答案是什么都得不到，就不要开始。
