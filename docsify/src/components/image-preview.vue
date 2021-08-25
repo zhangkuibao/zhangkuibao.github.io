@@ -39,6 +39,7 @@ export default {
       scaleMagnificationClick: 0.5, // 按钮缩放倍率
       minScale: 0.3,  // 最小缩小比例
       stepDeg: 90, // 一次旋转的角度
+      dragKey: false,
       transform: {
         offsetX: 0,
         offsetY: 0,
@@ -56,6 +57,7 @@ export default {
     imageStyle() {
       return {
         transform: `rotate(${this.transform.rotate}deg) scale(${this.transform.scale})`,
+        cursor: this.dragKey ? 'grabbing' : 'grab'
       };
     },
   },
@@ -75,6 +77,7 @@ export default {
       let startY = e.clientY;
       let startOffsetLeft = _t.transform.offsetX;
       let startOffsetTop = _t.transform.offsetY;
+      this.dragKey = true;
 
       function handleMousemove(e) {
         _t.transform.offsetX = startOffsetLeft + (e.clientX - startX); // e.clientX - startX 为移动距离
@@ -84,6 +87,7 @@ export default {
       function handleMouseup() {
         document.removeEventListener("mouseup", handleMouseup);
         document.removeEventListener("mousemove", handleMousemove);
+        _t.dragKey = false;
       }
 
       document.addEventListener("mousemove", handleMousemove);
