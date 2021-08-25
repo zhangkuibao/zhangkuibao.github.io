@@ -26,6 +26,7 @@ export default class DocumentTitlePlugin {
     // });
     hook.doneEach(function () {
       // 每次路由切换时数据全部加载完成后调用，没有参数。
+      if(DocumentTitlePlugin.prefix === document.title) return;
       document.title = `${DocumentTitlePlugin.prefix} ${document.title ? DocumentTitlePlugin.seprator : ''} ${document.title}`
     });
     //   hook.mounted(function () {
