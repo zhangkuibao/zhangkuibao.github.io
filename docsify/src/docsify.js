@@ -67,10 +67,6 @@ export let docsify = window.$docsify
         errorText: "复制失败",
         successText: "复制成功",
       },
-      customPageTitle: {
-        prefix: DocName,
-        seprator: "|",
-      },
       toc: {
         tocMaxLevel: 6,
         target: "H2, H3, H4, h5, h6",
