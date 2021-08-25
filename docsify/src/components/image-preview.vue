@@ -125,6 +125,7 @@ export default {
     close() {
       this.showViewKey = false;
       document.removeEventListener("mousewheel", this.handleMousewheel);
+      this.reset();
     },
     showStatus() {
       return this.showViewKey;
