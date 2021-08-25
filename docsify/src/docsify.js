@@ -45,7 +45,7 @@ export let docsify = window.$docsify
       auto2top: true,
       // mergeNavbar: true,
       formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
-      // routerMode: 'history',
+      routerMode: 'history',
       notFoundPage: "docsify/assets/_404.md",
       topMargin: 70,
       // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
@@ -76,9 +76,9 @@ export let docsify = window.$docsify
         color: "var(--theme-color,#42b983)",
         height: "3px",
       },
-      sidebarCollapse: {
-        closeLevel: 2,  // 默认收起等级
-      },
+      // sidebarCollapse: {
+      //   closeLevel: 2,  // 默认收起等级
+      // },
       vueComponents: {},
       vueGlobalOptions: {
         data() {
