@@ -1,7 +1,7 @@
 <template>
   <div class="image_view" v-if="showViewKey">
     <div class="image_view-close_btn" @click.stop="close"></div>
-    <div class="image_view-image_container">
+    <div class="image_view-image_container" :style="imageContainerStyle">
       <img
         :src="imageSrc"
         :style="imageStyle"
@@ -10,11 +10,11 @@
       />
     </div>
     <div class="image_view-operate">
-      <div class="image_view-operate-item" @click="imageScale(-1 * scaleMagnificationClick)">small</div>
-      <div class="image_view-operate-item" @click="imageScale(scaleMagnificationClick)">big</div>
-      <div class="image_view-operate-item" @click="reset()">reset</div>
-      <div class="image_view-operate-item" @click="roteteImage(-1)">left</div>
-      <div class="image_view-operate-item" @click="roteteImage(1)">right</div>
+      <div class="image_view-operate-item iconfont icon-zoom-in" @click="imageScale(-1 * scaleMagnificationClick)"></div>
+      <div class="image_view-operate-item iconfont icon-zoom-out" @click="imageScale(scaleMagnificationClick)"></div>
+      <div class="image_view-operate-item iconfont icon-reset" @click="reset()"></div>
+      <div class="image_view-operate-item iconfont icon-turn-left" @click="roteteImage(-1)"></div>
+      <div class="image_view-operate-item iconfont icon-turn-right" @click="roteteImage(1)"></div>
     </div>
   </div>
 </template>
@@ -27,27 +27,35 @@
 // 4. 旋转
 // 5. 恢复初始状态
 // 6. 移动
+
+// 缩放倍率问题
 export default {
   name: "image-preview",
   data() {
     return {
       showViewKey: false,
       imageSrc: "",
-      scaleMagnificationWhell: 0.03, // 滚轮缩放倍率
-      scaleMagnificationClick: 0.5, // 滚轮缩放倍率
+      scaleMagnificationWhell: 0.05, // 滚轮缩放倍率
+      scaleMagnificationClick: 0.5, // 按钮缩放倍率
+      minScale: 0.3,  // 最小缩小比例
       stepDeg: 90, // 一次旋转的角度
       transform: {
         offsetX: 0,
         offsetY: 0,
         scale: 1,
         rotate: 0,
-      },
+      }
     };
   },
   computed: {
+    imageContainerStyle() {
+      return {
+        transform: `translate3d(${this.transform.offsetX}px,${this.transform.offsetY}px, 0)`,
+      }
+    },
     imageStyle() {
       return {
-        transform: `rotate(${this.transform.rotate}deg) scale(${this.transform.scale}) translate3d(${this.transform.offsetX}px,${this.transform.offsetY}px, 0)`,
+        transform: `rotate(${this.transform.rotate}deg) scale(${this.transform.scale})`,
       };
     },
   },
@@ -67,16 +75,10 @@ export default {
       let startY = e.clientY;
       let startOffsetLeft = _t.transform.offsetX;
       let startOffsetTop = _t.transform.offsetY;
-      let key = true;
 
       function handleMousemove(e) {
-        if (!key) return;
         _t.transform.offsetX = startOffsetLeft + (e.clientX - startX); // e.clientX - startX 为移动距离
         _t.transform.offsetY = startOffsetTop + (e.clientY - startY);
-        key = false;
-        setTimeout(() => {
-          key = true;
-        }, 50);
       }
 
       function handleMouseup() {
@@ -90,9 +92,13 @@ export default {
     },
 
     imageScale(magnification = 1) {
+      if(this.transform.scale <= 0.5 && magnification < 0) {
+        this.transform.scale = this.minScale;
+        return;
+      }
       
       // 控制缩放
-      this.transform.scale += magnification;
+      this.transform.scale *= (magnification + 1);
     },
 
     handleMousewheel(e) {
@@ -104,7 +110,6 @@ export default {
         // 缩小
         this.imageScale(-1 * this.scaleMagnificationWhell);
       }
-      console.log(e);
     },
     reset() {
       this.transform.rotate = 0;
@@ -143,6 +148,7 @@ export default {
   z-index: 1000;
 
   .image_view-close_btn {
+    z-index: 1;
     top: 40px;
     right: 40px;
     width: 40px;
@@ -186,7 +192,7 @@ export default {
 
     img {
       max-height: 100%;
-      transition: 0.3s;
+      transition: transform .3s cubic-bezier(.215,.61,.355,1) 0s;
     }
   }
 
@@ -208,6 +214,7 @@ export default {
 
     .image_view-operate-item {
       cursor: pointer;
+      font-size: 20px;
     }
   }
 }
