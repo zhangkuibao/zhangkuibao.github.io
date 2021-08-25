@@ -29,6 +29,9 @@ export let docsify = window.$docsify
           "/技术笔记/代码库/.*/_sidebar.md"
         )]: "技术笔记/代码库/_sidebar.md",
         [encodeURI(
+          "/技术笔记/学习规划/.*/_sidebar.md"
+        )]: "技术笔记/学习规划/_sidebar.md",
+        [encodeURI(
           "/阅读笔记/电子栏目/.*/_sidebar.md"
         )]: "阅读笔记/电子栏目/_sidebar.md",
         [encodeURI(
