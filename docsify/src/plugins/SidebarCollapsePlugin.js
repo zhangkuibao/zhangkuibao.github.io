@@ -49,7 +49,7 @@ export default class SidebarCollapsePlugin {
   static initRootDom(dom) {
     let RootBreadcrumbText = SidebarCollapsePlugin.getRootBreadcrumbText();
     // 根路径切换时才替换侧边栏，解决切换路由时侧栏样式重置问题。
-    if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText) {
+    if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText !== null) {
       SidebarCollapsePlugin.sideWrapperDom = dom;
     }
     SidebarCollapsePlugin.lastRootBreadcrumbText = RootBreadcrumbText;
