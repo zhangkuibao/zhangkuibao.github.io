@@ -1,4 +1,4 @@
-<author-info date="1629968842187"></author-info>
+<author-info date="1629971014359"></author-info>
 
 # path 路径
 
@@ -12,15 +12,15 @@ const path = require("path");
 
 path 用于处理路径，可以从文件路径中获取文件名、后缀名等信息。
 
-- 要获取**文件名**（含后缀）可以用 [path.basename()](#pathbasenamepath-ext) 方法，在二参加入文件后缀可只返回文件名，如 `path.basename(filePath, '.js')`。
+- 获取**文件名**（含后缀）用 [path.basename()](#pathbasenamepath-ext) 方法，在二参加入文件后缀可只返回文件名，如 `path.basename(filePath, '.js')`。
 
-- 要获取**目录名**可以用 [path.dirname()](#pathdirnamepath) 方法。
+- 获取**目录名**用 [path.dirname()](#pathdirnamepath) 方法。
 
-- 要获取**后缀名**（含 `.`）可以用 [path.extname()](#pathextnamepath) 方法。
+- 获取**后缀名**（含 `.`）用 [path.extname()](#pathextnamepath) 方法。
 
 - 可用 [path.join()](#pathjoinpaths) 方法**合并路径**，避免平台差异导致路径问题。
 
-- 要判断 path **是否为绝对路径**可以用 `path.isAbsolute()` 方法。
+- 判断 path **是否为绝对路径**用 `path.isAbsolute()` 方法。
 
 - [path.format()](http://nodejs.cn/api/path.html#path_path_format_pathobject) 和 [path.parse()](http://nodejs.cn/api/path.html#path_path_parse_path) 可以将路径与[路径对象](#路径对象)互相转换。
 
