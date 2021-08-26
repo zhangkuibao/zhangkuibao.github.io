@@ -1,7 +1,5 @@
 # Sass 函数
 
-<author-info date="{docsify-updated}"> </author-info>
-
 ## 多行文本超出打点
 
 ```scss

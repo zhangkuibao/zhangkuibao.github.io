@@ -1,6 +1,6 @@
 # 时间格式UTC和GMT
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 ## UTC 和 GMT
 

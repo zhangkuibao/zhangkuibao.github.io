@@ -1,6 +1,6 @@
 # URL
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 URL 接口用于解析，构造，规范化和编码 URLs。
 

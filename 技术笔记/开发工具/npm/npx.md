@@ -1,6 +1,6 @@
 # npx 使用教程
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 npm 从 5.2 版开始，增加了 npx 命令。npx 是一个工具，一个 npm 包执行器，旨在提高从 npm 注册表使用软件包时的体验。
 

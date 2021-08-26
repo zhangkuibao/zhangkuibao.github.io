@@ -1,6 +1,6 @@
 # gzip 压缩
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 ## http 压缩与 gzip
 

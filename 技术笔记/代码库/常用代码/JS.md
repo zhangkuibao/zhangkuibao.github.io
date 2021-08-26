@@ -1,7 +1,5 @@
 # JS 方法
 
-<author-info date="{docsify-updated}"> </author-info>
-
 ## cookie
 
 ```js

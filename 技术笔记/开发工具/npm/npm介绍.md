@@ -1,6 +1,6 @@
 # npm 介绍
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 npm 是用 node 写的一个包管理工具（Node Package Manager）。
 

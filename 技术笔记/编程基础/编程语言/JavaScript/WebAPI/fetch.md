@@ -1,6 +1,6 @@
 # fetch API
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 fetch 用于发送 http 请求，比 XMLHttpRequest 更强大且更灵活。
 

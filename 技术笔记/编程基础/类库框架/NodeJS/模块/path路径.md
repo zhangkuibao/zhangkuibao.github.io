@@ -1,6 +1,6 @@
 # path 路径
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 ## 引用方式
 

@@ -1,7 +1,5 @@
 # NodeJS
 
-<author-info date="{docsify-updated}"> </author-info>
-
 ## 遍历文件夹
 
 ```js

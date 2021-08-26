@@ -1,6 +1,6 @@
 # ArrayBuffer 和类型化数组
 
-<author-info date="{docsify-updated}"> </author-info>
+
 
 为了让 JavaScript 与显卡之间进行大量的、实时的数据交换，它们之间的数据通信必须是二进制，而不能是传统的文本格式，ArrayBuffer 就是在这样的背景下 诞生的。
 
