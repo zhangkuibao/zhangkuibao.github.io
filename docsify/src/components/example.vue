@@ -71,15 +71,10 @@ export default {
 }
 
 .example-content {
-  /* height: 200px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  /* width: 100%;
-  flex: 1;
-
-  height: calc(100% - 2em - 10px); */
 }
 </style>
