@@ -8,7 +8,7 @@ const chokidar = require("chokidar");
 
 const watcher = chokidar
   .watch(".", {
-    ignored: /.git|node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts/,
+    ignored: /.git|node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts|_sidebar.md|_navbar.md/,
   })
   .on("change", async (filePath) => {
     let extname = path.extname(filePath);

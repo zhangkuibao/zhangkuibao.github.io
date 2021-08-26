@@ -1,6 +1,6 @@
+<author-info date="1629968842187"></author-info>
+
 # path 路径
-
-
 
 ## 引用方式
 
@@ -25,10 +25,6 @@ path 用于处理路径，可以从文件路径中获取文件名、后缀名等
 - [path.format()](http://nodejs.cn/api/path.html#path_path_format_pathobject) 和 [path.parse()](http://nodejs.cn/api/path.html#path_path_parse_path) 可以将路径与[路径对象](#路径对象)互相转换。
 
 - [path.relative()](http://nodejs.cn/api/path.html#path_path_relative_from_to) 和 [path.resolve()](http://nodejs.cn/api/path.html#path_path_resolve_paths)可以实现相对路径/绝对路径之间的转换。
-
-## 注意
-
-各平台路径分隔符会有差异，要连接路径尽量用 `path.join()` 方法。
 
 ## 方法及属性
 
@@ -103,6 +99,10 @@ type pathObjectType = {
     │ root │              │ name │ ext │
     "  /    home/user/dir / file  .txt "
     └──────┴──────────────┴──────┴─────┘
+
+## 注意
+
+各平台路径分隔符会有差异，要连接路径尽量用 `path.join()` 方法。
 
 ## 参考
 
