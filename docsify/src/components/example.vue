@@ -42,15 +42,11 @@ export default {
     return {
       codeHtml: "",
       exampleFileUrl: "",
-      exampleFileName: "",
-      showCollapse: 0,
     };
   },
   methods: {
     initExampleFileInfo() {
       this.exampleFileUrl = this.$parent.$options.__file;
-      let arr = this.exampleFileUrl.split("/");
-      this.exampleFileName = arr.slice(arr.length - 2).join("/");
     },
     initExampleCodeHtml() {
       if (this.exampleFileUrl) {
