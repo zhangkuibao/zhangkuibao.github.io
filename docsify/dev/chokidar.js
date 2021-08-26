@@ -19,29 +19,17 @@ const watcher = chokidar
     });
   });
 
-function getFullTime() {
-  let date = new Date(), //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-    Y = date.getFullYear() + "",
-    M =
-      date.getMonth() + 1 < 10
-        ? "0" + (date.getMonth() + 1)
-        : date.getMonth() + 1,
-    D = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(),
-    h = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
-    m = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
-    s = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-  return `${Y}-${M}-${D} ${h}:${m}:${s}`;
-}
-
 function changeFile(filePath, callback) {
   fs.readFile(filePath, "utf-8", (err, data) => {
     if (err) throw err;
-    if (/^`最后修改时间：/.test(data)) {
-      console.log("替换", getFullTime());
-      data = data.replace(/(?<=`最后修改时间：).*?(?=`)/, getFullTime());
+    let time = new Date().getTime();
+    // <author-info date="1629961964463"></author-info>
+    if (/^<author-info/.test(data)) {
+      data = data.replace(/(?<=<author-info date=").*?(?="><\/author-info>)/, time);
+      console.log("更新修改日期", filePath);
     } else {
-      data = `\`最后修改时间：${getFullTime()}\`\n\n${data}`;
-      console.log("添加", getFullTime());
+      data = `<author-info date="${time}"></author-info>\n\n${data}`;
+      console.log("添加修改日期", filePath);
     }
 
     fs.writeFile(filePath, data, (err) => {

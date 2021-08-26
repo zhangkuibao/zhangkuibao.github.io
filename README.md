@@ -1,16 +1,16 @@
-`最后修改时间：2021-08-26 14:56:14`
+<author-info date="1629962074860"></author-info>
 
 ## 访问地址
 
 https://zhangkuibao.github.io/
 
-gitee pages 无法正常发布并且要手动更新，操作太繁琐，在 github 上同步一份代码，只需要将代码推送到 github 的仓库上就能自动更新。
+gitee pages 无法正常发布并且要手动更新，操作太 繁琐，在 github 上同步一份代码，只需要将代码推送到 github 的仓库上就能自动更新。
 
 gitee ssh url：`git@gitee.com:zhangkb/zhangkb.git`
 
 gitee https url：`https://gitee.com/zhangkb/zhangkb.git`
 
-github ssh url：`git@github.com:zhangkuibao/zhangkuibao.github.io.git`
+github ssh url：`git@github.com:zhangkuibao/zhangkuib ao.github.io.git`
 
 github https url：`https://github.com/zhangkuibao/zhangkuibao.github.io.git`
 
