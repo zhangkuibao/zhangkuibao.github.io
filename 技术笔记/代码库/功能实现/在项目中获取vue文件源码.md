@@ -1,10 +1,12 @@
 <author-info date="1630046046816"></author-info>
 
-# 在项目中获取 *.vue 文件源码
+# 在项目中获取 `*.vue` 文件源码
 
 项目中有些场景下需要展示文件的源码，比如 Element UI 和其他一些 UI 框架中做的“显示代码”功能。
 
 这里介绍两种获取组件源码的方式。
+
+[vue-cli 项目示例](https://gitee.com/zhangkb/get-vue-source-code)。
 
 ## 网络请求获取
 

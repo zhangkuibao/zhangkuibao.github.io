@@ -16,6 +16,7 @@
     "opn": "^6.0.0",
     "prismjs": "^1.24.1",
     "sass-loader": "^12.1.0",
+    "shelljs": "^0.8.4",
     "style-loader": "^3.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.14",
