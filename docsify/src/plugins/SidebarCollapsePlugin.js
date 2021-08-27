@@ -5,7 +5,7 @@ export default class SidebarCollapsePlugin {
   static install(hook, vm) {
     SidebarCollapsePlugin.closeLevel = vm?.config?.sidebarCollapse?.closeLevel || 2;
     //   hook.init(function () {
-    //     // 初始化完成后调用，只调用一次，没有参数。
+    //     // 初始化完成后调用，只调用一次，没有 参数。
     //   });
     //   hook.beforeEach(function (content) {
     //     // 每次开始解析 Markdown 内容时调用
@@ -48,7 +48,7 @@ export default class SidebarCollapsePlugin {
 
   static initRootDom(dom) {
     let RootBreadcrumbText = SidebarCollapsePlugin.getRootBreadcrumbText();
-    // 根路径切换时才替换侧边栏，解决切换路由时侧栏样式重置问题。
+    // 根路径切换时才替换侧边栏，解决切换路由时侧栏样式重置问题 。
     if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText) {
       SidebarCollapsePlugin.sideWrapperDom = dom;
     }

@@ -1,8 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
-require('./docsify/dev/chokidar')
 
 module.exports = {
   mode: "production",
