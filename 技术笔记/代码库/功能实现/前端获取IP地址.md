@@ -1,4 +1,4 @@
-<author-info date="1630051172646"></author-info>
+<author-info date="1630051295494"></author-info>
 
 # 前端获取 IP 地址
 
@@ -11,9 +11,7 @@ async function getIp() {
     script.src = "http://pv.sohu.com/cityjson?ie=utf-8";
     script.onload = function() {
       resolve(returnCitySN);
-      setTimeout(() => {
-        document.body.removeChild(script);
-      });
+      document.body.removeChild(script);
     };
     script.onerror = function(err) {
       reject(err);
