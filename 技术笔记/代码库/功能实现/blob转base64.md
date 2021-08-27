@@ -1,3 +1,5 @@
+<author-info date="1630046046816"></author-info>
+
 ```js
     /** blob转base64 */
     blobToBase64(blob) {
