@@ -5,8 +5,8 @@ const { VueLoaderPlugin } = require("vue-loader");
 module.exports = {
   mode: "production",
   entry: {
-    index: "./docsify/src/index.js",
-    // "css-exhibit": "./docsify/src/js/css-exhibit.js",
+    index: "../src/index.js",
+    // "css-exhibit": "../src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
@@ -57,7 +57,7 @@ module.exports = {
     new VueLoaderPlugin(),
     // 主页
     new HtmlWebpackPlugin({
-      template: "./docsify/src/html/index.html", // 模板文件
+      template: "../src/html/index.html", // 模板文件
       filename: path.resolve(__dirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
