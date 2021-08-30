@@ -1,13 +1,16 @@
 const path = require("path");
 const fs = require("fs");
-const absDirname = path.resolve(__dirname, "../../");
+const { clearTimeout } = require("timers");
+const absDirname = path.resolve(__dirname, "../../../");
 const ergodicDirname = path.resolve(absDirname, "document");
 const ignoreFilenameList = ["README", "_sidebar"];
+let finishTimmer;
 const dirMap = {
-    files: [],
-    childDir: {}
+  files: [],
+  childDir: {},
 };
 
+// 路径解析为数组
 function parseDir(dir) {
   dir = dir.replace(ergodicDirname, "");
   let result = dir.split(path.sep);
@@ -15,6 +18,7 @@ function parseDir(dir) {
   return result;
 }
 
+// 根据路径数组获取深层对象
 function getDeepMap(DirList) {
   let result = dirMap;
   while (DirList.length) {
@@ -23,24 +27,28 @@ function getDeepMap(DirList) {
   return result;
 }
 
-function addPathToMap(dir, path, isDir) {
+// 将路径信息添加至map
+function addPathToMap(dir, filepath, isDir) {
   let DirList = parseDir(dir);
-  console.log(DirList)
   let deepMap = getDeepMap(DirList);
-  // console.log(parseDir(dir))
-  console.log(deepMap);
 
   if (isDir) {
-    deepMap["childDir"][path] = {
-        files: [],
-        childDir: {}
+    deepMap["childDir"][filepath] = {
+      files: [],
+      childDir: {},
     };
   } else {
-    deepMap.files = deepMap.files ? deepMap.files.concat([path]) : [path];
+    let extname = path.extname(filepath);
+    let filename = path.basename(filepath, ".md");
+    if (extname === ".md" && !ignoreFilenameList.includes(filename)) {
+      deepMap.files = deepMap.files
+        ? deepMap.files.concat([filepath])
+        : [filepath];
+    }
   }
 }
 
-function ergodicDir(dir, callback, finish) {
+function ergodicDir(dir, finish) {
   fs.readdir(dir, function(err, files) {
     if (err) {
       console.error(err);
@@ -55,24 +63,10 @@ function ergodicDir(dir, callback, finish) {
           return;
         }
         if (stats.isDirectory()) {
-          ergodicDir(fullpath,finish, callback);
+          ergodicDir(fullpath, finish);
           addPathToMap(dir, filepath, true);
         } else if (stats.isFile()) {
-          let extname = path.extname(fullpath);
-          let filename = path.basename(fullpath, ".md");
           addPathToMap(dir, filepath, false);
-          if (extname === ".md" && !ignoreFilenameList.includes(filename)) {
-            callback && callback(fullpath);
-          }
-
-          // 读取文件内容
-          // fs.readFile(pathname, (err, data) => {
-          //   if (err) {
-          //     console.error(err)
-          //     return
-          //   }
-          //   callback && callback(data)
-          // })
         }
       });
       if (index === files.length - 1) {
@@ -82,13 +76,15 @@ function ergodicDir(dir, callback, finish) {
   });
 }
 
-let cont = 0;
-ergodicDir(ergodicDirname, function(file) {
-  cont++;
-  //   console.log(1111, file);
-
-  // 读取文件后的处理
-}, () => {
-    console.log(111)
-    fs.writeFile('./test.json', JSON.stringify(dirMap), () => {})
-});
+exports.getSideBarConfig = () => {
+  return new Promise(resolve => {
+    ergodicDir(ergodicDirname, () => {
+        clearTimeout(finishTimmer);
+        finishTimmer = setTimeout(() => {
+        //   console.log("build success: sidebarConfig");
+          // fs.writeFile("./test.json", JSON.stringify(dirMap), () => {});
+          resolve(dirMap);
+        }, 100);
+      });
+  })
+};
