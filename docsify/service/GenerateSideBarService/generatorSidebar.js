@@ -28,9 +28,9 @@ function generateSidbarPart(dirMap) {
     for (let prop in rootMap) {
       let item = rootMap[prop];
       sidbarMdMap[root] += `${spaceStr(level)}- ${prop}\n\n`;
-    //   if (Object.keys(item.childDir).length) {
-    //     ergodic(item, level + 1);
-    //   }
+      if (Object.keys(item.childDir).length) {
+        ergodic(item.childDir, level + 1);
+      }
 
       if(item.files.length) {
           item.files.forEach(file => {
@@ -57,7 +57,7 @@ function generateNavbar() {
   clearTimeout(finishTimmer);
   finishTimmer = setTimeout(() => {
     let keys = Object.keys(sidbarMdMap);
-    fs.writeFile("./sidbar.md", sidbarMdMap[keys[0]], () => {
+    fs.writeFile("./sidbar.md", sidbarMdMap[keys[2]], () => {
       //   console.log(`${targetDirname} 写入成功`);
       Object.keys(sidbarMdMap).forEach((ele) => {});
     });
