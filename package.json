@@ -27,7 +27,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "start": "node ./docsify/dev/start.js"
+    "start": "node ./docsify/service/index.js"
   },
   "repository": {
     "type": "git",

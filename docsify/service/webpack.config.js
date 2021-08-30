@@ -7,7 +7,6 @@ module.exports = {
   mode: "production",
   entry: {
     index: path.resolve(absDirname, "docsify/src/index.js"),
-    // "css-exhibit": "../src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
