@@ -1,12 +1,11 @@
 let fs = require("fs");
 let path = require("path");
+let { spaceStr } = require('./util');
 let finishTimmer;
 let absDirname = path.resolve(__dirname, '../../../');
 let navbarMd = '';
 let ignoreDirname = ['收藏夹'];
 let targetDirname = path.resolve(absDirname, 'docsify/src/assets/_navbar.md');
-let { fixFilePath } = require('./util')
-console.log(absDirname);
 
 function ergodicConfig(dirMap, level = 0) {
   // 处理目录
@@ -33,15 +32,11 @@ function ergodicConfig(dirMap, level = 0) {
 function getFirstFilepath(item) {
   while (item) {
     if (item?.files?.length) {
-      return fixFilePath(item.files[0].fullpath);
+      return item.files[0].fullpath
     }
     let keys = Object.keys(item.childDir);
     item = item.childDir[keys[0]];
   }
-}
-
-function spaceStr(num) {
-  return "  ".repeat(num);
 }
 
 function generateNavbar(str) {

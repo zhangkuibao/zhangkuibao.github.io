@@ -4,6 +4,7 @@ const { clearTimeout } = require("timers");
 const absDirname = path.resolve(__dirname, "../../../");
 const ergodicDirname = path.resolve(absDirname, "document");
 const ignoreFilenameList = ["README", "_sidebar"];
+let { fixFilePath } = require('./util')
 let finishTimmer;
 const dirMap = {
   files: [],
@@ -42,7 +43,7 @@ function addPathToMap(dir, filepath, isDir) {
     let filename = path.basename(filepath, ".md");
     if (extname === ".md" && !ignoreFilenameList.includes(filename)) {
       let fileItem = {
-        fullpath: path.resolve(dir, filepath),
+        fullpath: fixFilePath(path.resolve(dir, filepath)),
         filename,
       };
       deepMap.files = deepMap.files
