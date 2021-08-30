@@ -1,4 +1,4 @@
-import { docsifyInstallComponent } from "../docsify";
+import { docsifyInstallComponent } from "../js/docsify";
 const requireComponent = require.context("./", true, /\w+\.(vue|js)$/);
 const ignoreFileList = ['./index.js','./image-preview.vue'];
 requireComponent.keys().forEach((fileName) => {
