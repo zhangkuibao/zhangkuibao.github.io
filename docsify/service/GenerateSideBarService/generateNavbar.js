@@ -5,6 +5,8 @@ let absDirname = path.resolve(__dirname, '../../../');
 let navbarMd = '';
 let ignoreDirname = ['收藏夹'];
 let targetDirname = path.resolve(absDirname, 'docsify/src/assets/_navbar.md');
+let { fixFilePath } = require('./util')
+console.log(absDirname);
 
 function ergodicConfig(dirMap, level = 0) {
   // 处理目录
@@ -12,10 +14,10 @@ function ergodicConfig(dirMap, level = 0) {
     let item = dirMap.childDir[prop];
     if (level <= 1) {
       if (level === 1) {
-        navbarMd += `${spaceStr(level)}- [${prop}](${getFirstFile(item)})\n\n`;
+        navbarMd += `${spaceStr(level)}- [${prop}](${getFirstFilepath(item)})\n\n`;
       } else if(!ignoreDirname.includes(prop)) {
         if (Object.keys(item.childDir).length === 0) {
-          navbarMd += `${spaceStr(level)}- [${prop}](${getFirstFile(
+          navbarMd += `${spaceStr(level)}- [${prop}](${getFirstFilepath(
             item
           )})\n\n`;
         } else {
@@ -28,10 +30,10 @@ function ergodicConfig(dirMap, level = 0) {
   }
 }
 
-function getFirstFile(item) {
+function getFirstFilepath(item) {
   while (item) {
     if (item?.files?.length) {
-      return item.files[0].fullpath;
+      return fixFilePath(item.files[0].fullpath);
     }
     let keys = Object.keys(item.childDir);
     item = item.childDir[keys[0]];
