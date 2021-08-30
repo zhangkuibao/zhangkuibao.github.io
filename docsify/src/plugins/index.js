@@ -1,4 +1,4 @@
-import { docsifyInstallPlugin } from "../docsify";
+import { docsifyInstallPlugin } from "../js/docsify";
 const requirePlugin = require.context("./", true, /\w+\.js$/);
 requirePlugin.keys().forEach((fileName) => {
   if (fileName !== "./index.js") {
