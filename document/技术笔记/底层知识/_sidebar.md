@@ -5,53 +5,53 @@
 
   - 缓存
 
-    - [http 缓存](技术笔记/底层知识/浏览器/缓存/http缓存.md)
-    - [离线缓存](技术笔记/底层知识/浏览器/缓存/离线缓存/离线缓存.md)
-      - [ApplicationCache](技术笔记/底层知识/浏览器/缓存/离线缓存/ApplicationCache.md)
-      - [ServiceWorker](技术笔记/底层知识/浏览器/缓存/离线缓存/ServiceWorker.md)
+    - [http 缓存](document/技术笔记/底层知识/浏览器/缓存/http缓存.md)
+    - [离线缓存](document/技术笔记/底层知识/浏览器/缓存/离线缓存/离线缓存.md)
+      - [ApplicationCache](document/技术笔记/底层知识/浏览器/缓存/离线缓存/ApplicationCache.md)
+      - [ServiceWorker](document/技术笔记/底层知识/浏览器/缓存/离线缓存/ServiceWorker.md)
 
   - 浏览器渲染
 
-    - [浏览器文字渲染过程](技术笔记/底层知识/浏览器/浏览器渲染/浏览器中的文字渲染过程.md)
-    - [浏览器中的字体](技术笔记/底层知识/浏览器/浏览器渲染/浏览器中的字体.md)
+    - [浏览器文字渲染过程](document/技术笔记/底层知识/浏览器/浏览器渲染/浏览器中的文字渲染过程.md)
+    - [浏览器中的字体](document/技术笔记/底层知识/浏览器/浏览器渲染/浏览器中的字体.md)
 
   - 事件队列
 
-    - [事件循环](技术笔记/底层知识/浏览器/事件队列/事件循环.md)
-    - [PWA](技术笔记/底层知识/浏览器/PWA/PWA.md)
-    - [manifest](技术笔记/底层知识/浏览器/PWA/manifest.md)
+    - [事件循环](document/技术笔记/底层知识/浏览器/事件队列/事件循环.md)
+    - [PWA](document/技术笔记/底层知识/浏览器/PWA/PWA.md)
+    - [manifest](document/技术笔记/底层知识/浏览器/PWA/manifest.md)
 
-  - [像素](技术笔记/底层知识/浏览器/像素.md)
-  - [前端存储](技术笔记/底层知识/浏览器/前端存储.md)
-  - [垃圾回收机制](技术笔记/底层知识/浏览器/垃圾回收机制.md)
+  - [像素](document/技术笔记/底层知识/浏览器/像素.md)
+  - [前端存储](document/技术笔记/底层知识/浏览器/前端存储.md)
+  - [垃圾回收机制](document/技术笔记/底层知识/浏览器/垃圾回收机制.md)
 
 - 网络
 
-  - [前端网络知识点](技术笔记/底层知识/网络/前端网络知识点.md)
-  - [网络攻击](技术笔记/底层知识/网络/网络攻击/网络攻击.md)
-  - [DNS](技术笔记/底层知识/网络/dns/DNS.md)
-  - [HTTP 协议](技术笔记/底层知识/网络/http协议/http协议.md)
-    - [ContentType 对传参格式的影响](技术笔记/底层知识/网络/http协议/ContentType对传参格式的影响.md)
-    - [HTTP 协议传参及后端参数解析方式](技术笔记/底层知识/网络/http协议/http协议传参及后端参数解析方式.md)
-    - [HTTP 协议跨域](技术笔记/底层知识/网络/http协议/http协议跨域.md)
-    - [HTTPS 协议](技术笔记/底层知识/网络/http协议/https协议.md)
-    - [post 和 get 的区别](技术笔记/底层知识/网络/http协议/post和get的区别.md)
-    - [gzip 压缩](技术笔记/底层知识/网络/http协议/gzip压缩.md)
-  - [TCP](技术笔记/底层知识/网络/tcp/tcp.md)
-  - [端口](技术笔记/底层知识/网络/端口.md)
-  - [输入一个 url 到显示页面的过程](技术笔记/底层知识/网络/输入一个url到显示页面的过程.md)
-  - [套接字](技术笔记/底层知识/网络/套接字.md)
+  - [前端网络知识点](document/技术笔记/底层知识/网络/前端网络知识点.md)
+  - [网络攻击](document/技术笔记/底层知识/网络/网络攻击/网络攻击.md)
+  - [DNS](document/技术笔记/底层知识/网络/dns/DNS.md)
+  - [HTTP 协议](document/技术笔记/底层知识/网络/http协议/http协议.md)
+    - [ContentType 对传参格式的影响](document/技术笔记/底层知识/网络/http协议/ContentType对传参格式的影响.md)
+    - [HTTP 协议传参及后端参数解析方式](document/技术笔记/底层知识/网络/http协议/http协议传参及后端参数解析方式.md)
+    - [HTTP 协议跨域](document/技术笔记/底层知识/网络/http协议/http协议跨域.md)
+    - [HTTPS 协议](document/技术笔记/底层知识/网络/http协议/https协议.md)
+    - [post 和 get 的区别](document/技术笔记/底层知识/网络/http协议/post和get的区别.md)
+    - [gzip 压缩](document/技术笔记/底层知识/网络/http协议/gzip压缩.md)
+  - [TCP](document/技术笔记/底层知识/网络/tcp/tcp.md)
+  - [端口](document/技术笔记/底层知识/网络/端口.md)
+  - [输入一个 url 到显示页面的过程](document/技术笔记/底层知识/网络/输入一个url到显示页面的过程.md)
+  - [套接字](document/技术笔记/底层知识/网络/套接字.md)
 
 - 小程序
 
-  - [更新机制](技术笔记/底层知识/小程序/更新机制.md)
-  - [架构原理](技术笔记/底层知识/小程序/架构原理.md)
+  - [更新机制](document/技术笔记/底层知识/小程序/更新机制.md)
+  - [架构原理](document/技术笔记/底层知识/小程序/架构原理.md)
 
 - 计算机
 
-  - [时间格式 UTC 和 GMT](技术笔记/底层知识/计算机/时间格式UTC和GMT.md)
-  - [流媒体](技术笔记/底层知识/计算机/流媒体.md)
+  - [时间格式 UTC 和 GMT](document/技术笔记/底层知识/计算机/时间格式UTC和GMT.md)
+  - [流媒体](document/技术笔记/底层知识/计算机/流媒体.md)
 
 - 操作系统
 
-  - [unix常用命令](技术笔记/底层知识/操作系统/unix常用命令.md)
+  - [unix常用命令](document/技术笔记/底层知识/操作系统/unix常用命令.md)

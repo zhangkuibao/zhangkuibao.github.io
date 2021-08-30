@@ -12,37 +12,37 @@ export let docsify = window.$docsify
       loadNavbar: "docsify/src/assets/_navbar.md",
       alias: {
         ".*/_navbar.md": "docsify/src/assets/_navbar.md",
-        "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
+        "/_sidebar.md": "document/技术笔记/编程基础/_sidebar.md",
         [encodeURI(
-          "/技术笔记/编程基础/.*/_sidebar.md"
-        )]: "技术笔记/编程基础/_sidebar.md",
+          "/document/技术笔记/编程基础/.*/_sidebar.md"
+        )]: "document/技术笔记/编程基础/_sidebar.md",
         [encodeURI(
-          "/技术笔记/底层知识/.*/_sidebar.md"
-        )]: "技术笔记/底层知识/_sidebar.md",
+          "/document/技术笔记/底层知识/.*/_sidebar.md"
+        )]: "document/技术笔记/底层知识/_sidebar.md",
         [encodeURI(
-          "/技术笔记/解决方案/.*/_sidebar.md"
-        )]: "技术笔记/解决方案/_sidebar.md",
+          "/document/技术笔记/解决方案/.*/_sidebar.md"
+        )]: "document/技术笔记/解决方案/_sidebar.md",
         [encodeURI(
-          "/技术笔记/开发工具/.*/_sidebar.md"
-        )]: "技术笔记/开发工具/_sidebar.md",
+          "/document/技术笔记/开发工具/.*/_sidebar.md"
+        )]: "document/技术笔记/开发工具/_sidebar.md",
         [encodeURI(
-          "/技术笔记/代码库/.*/_sidebar.md"
-        )]: "技术笔记/代码库/_sidebar.md",
+          "/document/技术笔记/代码库/.*/_sidebar.md"
+        )]: "document/技术笔记/代码库/_sidebar.md",
         [encodeURI(
-          "/技术笔记/学习规划/.*/_sidebar.md"
-        )]: "技术笔记/学习规划/_sidebar.md",
+          "/document/技术笔记/学习规划/.*/_sidebar.md"
+        )]: "document/技术笔记/学习规划/_sidebar.md",
         [encodeURI(
-          "/阅读笔记/电子栏目/.*/_sidebar.md"
-        )]: "阅读笔记/电子栏目/_sidebar.md",
+          "/document/阅读笔记/电子栏目/.*/_sidebar.md"
+        )]: "document/阅读笔记/电子栏目/_sidebar.md",
         [encodeURI(
-          "/阅读笔记/读书/.*/_sidebar.md"
-        )]: "阅读笔记/读书/_sidebar.md",
+          "/document/阅读笔记/读书/.*/_sidebar.md"
+        )]: "document/阅读笔记/读书/_sidebar.md",
         [encodeURI(
-          "/阅读笔记/好句/.*/_sidebar.md"
-        )]: "阅读笔记/好句/_sidebar.md",
+          "/document/阅读笔记/好句/.*/_sidebar.md"
+        )]: "document/阅读笔记/好句/_sidebar.md",
         [encodeURI(
-          "/阅读笔记/知识/.*/_sidebar.md"
-        )]: "阅读笔记/知识/_sidebar.md",
+          "/document/阅读笔记/知识/.*/_sidebar.md"
+        )]: "document/阅读笔记/知识/_sidebar.md",
       },
       // coverpage: "docsify/_coverpage.md",
       auto2top: true,
@@ -51,7 +51,7 @@ export let docsify = window.$docsify
       // routerMode: 'history',
       notFoundPage: "docsify/src/assets/_404.md",
       topMargin: 70,
-      // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
+      // homepage: 'document/技术笔记/编程基础/编程语言/CSS/CSS手册.md',
       // crossOriginLinks: [],  // 设置跨域链接
       // formatUpdated: function (time) {
       //   console.log(time)
