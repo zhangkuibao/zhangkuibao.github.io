@@ -41,9 +41,13 @@ function addPathToMap(dir, filepath, isDir) {
     let extname = path.extname(filepath);
     let filename = path.basename(filepath, ".md");
     if (extname === ".md" && !ignoreFilenameList.includes(filename)) {
+      let fileItem = {
+        fullpath: path.resolve(dir, filepath),
+        filename,
+      };
       deepMap.files = deepMap.files
-        ? deepMap.files.concat([filepath])
-        : [filepath];
+        ? deepMap.files.concat([fileItem])
+        : [fileItem];
     }
   }
 }
@@ -76,15 +80,14 @@ function ergodicDir(dir, finish) {
   });
 }
 
-exports.getSideBarConfig = () => {
-  return new Promise(resolve => {
+exports.getConfigJSON = () => {
+  return new Promise((resolve) => {
     ergodicDir(ergodicDirname, () => {
-        clearTimeout(finishTimmer);
-        finishTimmer = setTimeout(() => {
+      clearTimeout(finishTimmer);
+      finishTimmer = setTimeout(() => {
         //   console.log("build success: sidebarConfig");
-          // fs.writeFile("./test.json", JSON.stringify(dirMap), () => {});
-          resolve(dirMap);
-        }, 100);
-      });
-  })
+        resolve(dirMap);
+      }, 100);
+    });
+  });
 };

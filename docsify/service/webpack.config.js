@@ -57,7 +57,7 @@ module.exports = {
     new VueLoaderPlugin(),
     // 主页
     new HtmlWebpackPlugin({
-      template: path.resolve(absDirname, "docsify/src/html/index.html"), // 模板文件
+      template: path.resolve(absDirname, "docsify/src/template/index.html"), // 模板文件
       filename: path.resolve(absDirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
