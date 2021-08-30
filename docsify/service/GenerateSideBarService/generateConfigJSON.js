@@ -37,6 +37,7 @@ function addPathToMap(dir, filepath, isDir) {
     deepMap["childDir"][filepath] = {
       files: [],
       childDir: {},
+      dir: path.resolve(dir, filepath)
     };
   } else {
     let extname = path.extname(filepath);

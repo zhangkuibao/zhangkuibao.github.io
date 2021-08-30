@@ -1,19 +1,45 @@
 let fs = require("fs");
 let path = require("path");
-let { spaceStr } = require('./util');
-let absDirname = path.resolve(__dirname, '../../../');
+let { spaceStr } = require("./util");
+let absDirname = path.resolve(__dirname, "../../../");
 let finishTimmer;
 let sidbarMdMap = {};
 
 function ergodicConfig(dirMap, level = 0) {
   // 处理目录
+  if (level === 2) {
+    generateSidbarPart(dirMap);
+  }
   for (let prop in dirMap.childDir) {
     let item = dirMap.childDir[prop];
-    // if(level === 2) {
-    //     console.log(prop);
-    // }
-    console.log(spaceStr(level) + prop)
     ergodicConfig(item, level + 1);
+  }
+}
+
+function generateSidbarPart(dirMap) {
+  // console.log(dirMap);
+  let root = dirMap.dir;
+  let level = 0;
+  sidbarMdMap[root] = "";
+
+  ergodic(dirMap["childDir"]);
+
+  function ergodic(rootMap, level = 0) {
+    for (let prop in rootMap) {
+      let item = rootMap[prop];
+      sidbarMdMap[root] += `${spaceStr(level)}- ${prop}\n\n`;
+    //   if (Object.keys(item.childDir).length) {
+    //     ergodic(item, level + 1);
+    //   }
+
+      if(item.files.length) {
+          item.files.forEach(file => {
+              console.log(file)
+            sidbarMdMap[root] += `${spaceStr(level + 1)}- [${file.filename}](${file.fullpath})\n\n`;
+          })
+      }
+      generateNavbar();
+    }
   }
 }
 
@@ -27,13 +53,15 @@ function getFirstFilepath(item) {
   }
 }
 
-function generateNavbar(str) {
+function generateNavbar() {
   clearTimeout(finishTimmer);
-  str += fs.readFileSync(path.resolve(absDirname, 'docsify/src/template/_navbar.md'));
   finishTimmer = setTimeout(() => {
-    // fs.writeFile(targetDirname, str, () => {
-    //   console.log(`${targetDirname} 写入成功`);
-    // });
+    let keys = Object.keys(sidbarMdMap);
+    fs.writeFile("./sidbar.md", sidbarMdMap[keys[0]], () => {
+      //   console.log(`${targetDirname} 写入成功`);
+      Object.keys(sidbarMdMap).forEach((ele) => {});
+    });
+    console.log(sidbarMdMap);
   }, 100);
 }
 
