@@ -9,9 +9,9 @@ export let docsify = window.$docsify
       // loadSidebar: "docsify/_sidebar.md",
       loadSidebar: true,
       // autoHeader: true,
-      loadNavbar: "docsify/assets/_navbar.md",
+      loadNavbar: "docsify/src/assets/_navbar.md",
       alias: {
-        ".*/_navbar.md": "docsify/assets/_navbar.md",
+        ".*/_navbar.md": "docsify/src/assets/_navbar.md",
         "/_sidebar.md": "技术笔记/编程基础/_sidebar.md",
         [encodeURI(
           "/技术笔记/编程基础/.*/_sidebar.md"
@@ -49,7 +49,7 @@ export let docsify = window.$docsify
       // mergeNavbar: true,
       formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
       // routerMode: 'history',
-      notFoundPage: "docsify/assets/_404.md",
+      notFoundPage: "docsify/src/assets/_404.md",
       topMargin: 70,
       // homepage: '技术笔记/编程基础/编程语言/CSS/CSS手册.md',
       // crossOriginLinks: [],  // 设置跨域链接

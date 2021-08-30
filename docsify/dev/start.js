@@ -1,4 +1,4 @@
-// require("./server");
+require("./server");
 require("./webpackBuild");
 require("./changeDateWatcher");
 require("./gitLogService");

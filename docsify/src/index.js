@@ -9,5 +9,5 @@ import "./components";
 
 // 注册sw
 if (typeof navigator.serviceWorker !== "undefined") {
-  navigator.serviceWorker.register("docsify/assets/sw.js");
+  navigator.serviceWorker.register("docsify/src/assets/sw.js");
 }

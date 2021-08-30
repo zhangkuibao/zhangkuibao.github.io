@@ -1,16 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
+const absDirname = path.resolve(__dirname,'../../');
 
 module.exports = {
   mode: "production",
   entry: {
-    index: "../src/index.js",
+    index: path.resolve(absDirname, "docsify/src/index.js"),
     // "css-exhibit": "../src/js/css-exhibit.js",
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "docsify/dist"),
+    path: path.resolve(absDirname, "docsify/dist"),
   },
   module: {
     rules: [
@@ -57,8 +58,8 @@ module.exports = {
     new VueLoaderPlugin(),
     // 主页
     new HtmlWebpackPlugin({
-      template: "../src/html/index.html", // 模板文件
-      filename: path.resolve(__dirname, "index.html"), // 目标文件
+      template: path.resolve(absDirname, "docsify/src/html/index.html"), // 模板文件
+      filename: path.resolve(absDirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
     }),
