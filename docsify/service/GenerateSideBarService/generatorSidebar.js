@@ -24,6 +24,10 @@ function generateSidbarPart(dirMap) {
   function ergodic(rootMap, level = 0) {
     for (let prop in rootMap) {
       let item = rootMap[prop];
+
+      // 自身及深层没有文件时退出
+      if (!hasFile(item)) continue;
+
       sidbarMdMap[root] += `${spaceStr(level)}- ${prop}\n\n`;
 
       // 有子目录
@@ -42,6 +46,27 @@ function generateSidbarPart(dirMap) {
       generateSidbar();
     }
   }
+
+  function hasFile(rootMap) {
+    if (rootMap?.files?.length) {
+      return true;
+    }
+    for (let prop in rootMap.childDir) {
+      let item = rootMap.childDir[prop];
+      let childResult = [];
+      if (item?.files?.length) {
+        return true;
+      }
+      Object.keys(item.childDir).forEach((prop) => {
+        childResult.push(hasFile(item.childDir[prop]));
+      });
+      // console.log(item.dir, hasFile(item.childDir))
+      if (childResult.some((ele) => ele)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 function generateSidbar() {
@@ -49,7 +74,9 @@ function generateSidbar() {
   finishTimmer = setTimeout(() => {
     Object.keys(sidbarMdMap).forEach((prop) => {
       let targetDirname = path.resolve(prop, "_sidbarsss.md");
-      fs.writeFile(targetDirname, sidbarMdMap[prop], () => {
+      let urlList = prop.split(path.sep);
+      let topTitle = `<div class="sidebar-title">${urlList[urlList.length - 2]}</div>\n<template id="root-breadcrumb">${urlList[urlList.length - 1]}</template>\n\n`;
+      fs.writeFile(targetDirname, topTitle + sidbarMdMap[prop], () => {
         console.log(`${targetDirname} 写入成功`);
       });
     });
