@@ -73,7 +73,7 @@ function generateSidbar() {
   clearTimeout(finishTimmer);
   finishTimmer = setTimeout(() => {
     Object.keys(sidbarMdMap).forEach((prop) => {
-      let targetDirname = path.resolve(prop, "_sidbarsss.md");
+      let targetDirname = path.resolve(prop, "_sidebar.md");
       let urlList = prop.split(path.sep);
       let topTitle = `<div class="sidebar-title">${urlList[urlList.length - 2]}</div>\n<template id="root-breadcrumb">${urlList[urlList.length - 1]}</template>\n\n`;
       fs.writeFile(targetDirname, topTitle + sidbarMdMap[prop], () => {
