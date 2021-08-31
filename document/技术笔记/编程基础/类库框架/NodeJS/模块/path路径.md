@@ -20,6 +20,8 @@ path 用于处理路径，可以从文件路径中获取文件名、后缀名等
 
 - 可用 [path.join()](#pathjoinpaths) 方法**合并路径**，避免平台差异导致路径问题。
 
+- `path.sep` 可以获取当前系统下的路径分隔符。
+
 - 判断 path **是否为绝对路径**用 `path.isAbsolute()` 方法。
 
 - [path.format()](http://nodejs.cn/api/path.html#path_path_format_pathobject) 和 [path.parse()](http://nodejs.cn/api/path.html#path_path_parse_path) 可以将路径与[路径对象](#路径对象)互相转换。
