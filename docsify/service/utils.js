@@ -28,3 +28,7 @@ exports.arrLaggingSort = function(target, limit) {
   });
   return target;
 }
+
+exports.serviceLoadLog = function(log) {
+    console.log(`service-load: ${log}`)
+}

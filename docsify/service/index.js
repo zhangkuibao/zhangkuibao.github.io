@@ -1,5 +1,5 @@
 // require("./httpService");
 require("./webpackService");
 require("./changeDateService");
-require("./gitLogService");
+// require("./gitLogService");
 require("./GenerateSideBarService");

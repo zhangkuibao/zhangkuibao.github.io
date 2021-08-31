@@ -2,6 +2,8 @@
 
 const path = require("path");
 const fs = require("fs");
+const { serviceLoadLog } = require('./utils')
+
 
 // 监控文件变化
 const chokidar = require("chokidar");
@@ -18,10 +20,10 @@ function changeFile(filePath, callback) {
         /(?<=<author-info date=").*?(?="><\/author-info>)/,
         time
       );
-      console.log("更新修改日期", filePath);
+      console.log("修改更新日期", filePath);
     } else {
       data = `<author-info date="${time}"></author-info>\n\n${data}`;
-      console.log("添加修改日期", filePath);
+      console.log("添加更新日期", filePath);
     }
 
     fs.writeFile(filePath, data, (err) => {
@@ -46,7 +48,6 @@ async function changeDateWatcher() {
     });
 }
 
-console.log("change-date-watcher:start");
 changeDateWatcher().then(() => {
-  console.log("change-date-watcher:success");
+  serviceLoadLog('自动添加最后更新日期')
 });

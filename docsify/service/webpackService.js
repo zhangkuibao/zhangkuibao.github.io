@@ -1,9 +1,9 @@
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
+const { serviceLoadLog } = require('./utils')
 
-console.log("webpack-building:start");
 webpack(webpackConfig, (err, stats) => {
-  console.log("webpack-building:success");
+  serviceLoadLog('webpack')
   if (err || stats.hasErrors()) {
     // [在这里处理错误](#error-handling)
     console.log(stats)

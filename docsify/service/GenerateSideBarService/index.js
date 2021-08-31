@@ -2,7 +2,7 @@ const path = require("path");
 const { getConfigJSON } = require("./generateConfigJSON");
 const { generateNavbar } = require("./generateNavbar");
 const { generateSidbar } = require("./generatorSidebar");
-const { throttle } = require("../utils");
+const { throttle, serviceLoadLog } = require("../utils");
 const chokidar = require("chokidar");
 const absDirname = path.resolve(__dirname, "../../../");
 const callback = throttle(function(changePath) {
@@ -12,15 +12,15 @@ const callback = throttle(function(changePath) {
   });
 }, 2000);
 const watcher = chokidar
-  .watch(path.resolve(absDirname, 'document'), {
+  .watch(path.resolve(absDirname, "document"), {
     ignored: /.git|node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts|_sidebar.md|_navbar.md/,
   })
-  .on('ready', () => {
-    console.log('service load: 自动生成sidebar和navbar')
+  .on("ready", () => {
+    serviceLoadLog("自动生成sidebar和navbar");
     watcher.on("all", (event, filepath) => {
       if (["add", "unlink"].includes(event)) {
-        console.log('change', filepath)
+        console.log("change", filepath);
         callback(filepath);
       }
-    })
-  })
+    });
+  });
