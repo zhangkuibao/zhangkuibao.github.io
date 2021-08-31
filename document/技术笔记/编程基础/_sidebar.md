@@ -84,6 +84,7 @@
     - 笔记
 
       - [API](document/技术笔记/编程基础/类库框架/Vue/笔记/API.md)
+      - [vue-router-api](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router-api.md)
       - [vue-router](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router.md)
       - [Vuex](document/技术笔记/编程基础/类库框架/Vue/笔记/Vuex.md)
       - [可复用内容](document/技术笔记/编程基础/类库框架/Vue/笔记/可复用内容.md)
@@ -91,7 +92,6 @@
       - [源码解析](document/技术笔记/编程基础/类库框架/Vue/笔记/源码解析.md)
       - [用法补充](document/技术笔记/编程基础/类库框架/Vue/笔记/用法补充.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/笔记/组件.md)
-      - [vue-router-api](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router-api.md)
 
 - 编程语言
 

@@ -30,7 +30,7 @@ function generateSidbarPart(partDirMap) {
         })\n${rootMap.files.length - 1 === index ? "\n" : ""}`;
       });
     }
-    for (let prop in rootMap.childDir) {
+    Object.keys(rootMap.childDir).forEach(prop => {
       let item = rootMap.childDir[prop];
 
       // 自身及深层没有文件时退出
@@ -40,7 +40,7 @@ function generateSidbarPart(partDirMap) {
       }
 
       generateSidbar();
-    }
+    })
   }
 }
 
