@@ -2,6 +2,22 @@
 
 # JS 方法
 
+## 节流函数
+
+```js
+function throttle(fn, interval = 100) {
+  let timmer;
+  return function(...args) {
+    clearTimeout(timmer);
+    timmer = setTimeout(fn, interval, ...args);
+  }
+}
+
+const consoleArg = throttle(function(arg) {
+  console.log(arg)
+})
+```
+
 ## 获取时间日期字符串
 
 ```js
