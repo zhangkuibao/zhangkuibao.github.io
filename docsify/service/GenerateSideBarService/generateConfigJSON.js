@@ -23,7 +23,7 @@ function parseDir(dir) {
 function getDeepMap(DirList) {
   let result = dirMap;
   while (DirList.length) {
-    result = result["childDir"][DirList.shift()];
+    result = result?.["childDir"]?.[DirList.shift()];
   }
   return result;
 }

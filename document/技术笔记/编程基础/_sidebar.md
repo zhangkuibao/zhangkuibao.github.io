@@ -76,8 +76,8 @@
     - 其他
 
       - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
-      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
       - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
+      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
       - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
       - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
 
@@ -85,12 +85,12 @@
 
       - [API](document/技术笔记/编程基础/类库框架/Vue/笔记/API.md)
       - [vue-router-api](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router-api.md)
-      - [vue-router](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router.md)
       - [Vuex](document/技术笔记/编程基础/类库框架/Vue/笔记/Vuex.md)
+      - [vue-router](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router.md)
       - [可复用内容](document/技术笔记/编程基础/类库框架/Vue/笔记/可复用内容.md)
+      - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/笔记/服务端渲染.md)
       - [源码解析](document/技术笔记/编程基础/类库框架/Vue/笔记/源码解析.md)
       - [用法补充](document/技术笔记/编程基础/类库框架/Vue/笔记/用法补充.md)
-      - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/笔记/服务端渲染.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/笔记/组件.md)
 
 - 编程语言
