@@ -1,9 +1,13 @@
 const { exec } = require("child_process");
+const { absDirname, serviceLoadLog } = require("./utils");
 const chokidar = require("chokidar");
 const fs = require("fs");
+const path = require("path");
+const targetDirname = path.resolve(absDirname, 'docsify/src/assets/commit.json');
+const watchFileName = path.resolve(absDirname, '.git/logs/HEAD');
 function buildCommitJSON() {
-  exec('git log --pretty=format:"%ad","%s" > commit.log', (err) => {
-    fs.readFile("./commit.log", "utf-8", (err, data) => {
+  exec(`git log --pretty=format:"%ad","%s" > ${targetDirname}`, (err) => {
+    fs.readFile(targetDirname, "utf-8", (err, data) => {
       let arr = data.split("\n");
       let result = arr.map((ele) => {
         let subArr = ele.split(",");
@@ -14,18 +18,23 @@ function buildCommitJSON() {
       });
 
       // console.log(arr);
-      fs.writeFile("./commit.json", JSON.stringify(result), (err) => {
+      fs.writeFile(targetDirname, JSON.stringify(result), (err) => {
         if (err) {
           console.log(err);
         } else {
-          console.log("build success: commit.json");
-          fs.rm("./commit.log", (err) => {
-            // console.log(err);
-          });
+          console.log(`commit.json 已更新: ${targetDirname}`);
         }
       });
     });
   });
 }
 
-buildCommitJSON();
+const watcher = chokidar
+  .watch(watchFileName)
+  .on('ready', () => {
+    serviceLoadLog('自动提取git-commit信息')
+    buildCommitJSON();
+  })
+  .on("change", () => {
+    buildCommitJSON();
+  });
