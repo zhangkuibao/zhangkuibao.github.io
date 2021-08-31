@@ -1,6 +1,7 @@
 let path = require("path");
-const { clearTimeout } = require("timers");
-let absDirname = path.resolve(__dirname, "../../../");
+let { clearTimeout } = require("timers");
+let absDirname = path.resolve(__dirname, "../../");
+console.log(111, absDirname)
 exports.fixFilePath = function(filepath) {
   filepath = filepath.replace(absDirname + path.sep, "");
   return filepath.replace(new RegExp(`\\${path.sep}`, "g"), "\/");
@@ -32,3 +33,5 @@ exports.arrLaggingSort = function(target, limit) {
 exports.serviceLoadLog = function(log) {
     console.log(`service-load: ${log}`)
 }
+
+exports.absDirname = absDirname;

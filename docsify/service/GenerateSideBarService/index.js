@@ -2,9 +2,8 @@ const path = require("path");
 const { getConfigJSON } = require("./generateConfigJSON");
 const { generateNavbar } = require("./generateNavbar");
 const { generateSidbar } = require("./generatorSidebar");
-const { throttle, serviceLoadLog } = require("../utils");
+const { throttle, serviceLoadLog, absDirname } = require("../utils");
 const chokidar = require("chokidar");
-const absDirname = path.resolve(__dirname, "../../../");
 const callback = throttle(function(changePath) {
   getConfigJSON().then((res) => {
     generateNavbar(res);

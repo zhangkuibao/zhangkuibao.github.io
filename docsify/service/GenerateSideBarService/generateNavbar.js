@@ -1,7 +1,6 @@
 let fs = require("fs");
 let path = require("path");
-let { spaceStr, throttle, arrLaggingSort } = require("../utils");
-let absDirname = path.resolve(__dirname, "../../../");
+let { spaceStr, throttle, arrLaggingSort, absDirname } = require("../utils");
 let ignoreDirname = [];
 let targetDirname = path.resolve(absDirname, "docsify/src/assets/_navbar.md");
 let laggingDirList = ["其他"];
