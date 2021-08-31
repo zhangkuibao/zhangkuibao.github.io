@@ -1,7 +1,6 @@
 let fs = require("fs");
 let path = require("path");
-let { spaceStr } = require("./util");
-let finishTimmer;
+let { spaceStr, throttle } = require("./util");
 let sidbarMdMap = {};
 
 function ergodicConfig(dirMap, level = 0) {
@@ -66,22 +65,19 @@ function hasFile(rootMap) {
   return false;
 }
 
-function generateSidbar() {
-  clearTimeout(finishTimmer);
-  finishTimmer = setTimeout(() => {
-    Object.keys(sidbarMdMap).forEach((prop) => {
-      let targetDirname = path.resolve(prop, "_sidebar.md");
-      let urlList = prop.split(path.sep);
-      let topTitle = `<div class="sidebar-title">${
-        urlList[urlList.length - 2]
-      }</div>\n<template id="root-breadcrumb">${
-        urlList[urlList.length - 1]
-      }</template>\n\n`;
-      fs.writeFile(targetDirname, topTitle + sidbarMdMap[prop], () => {
-        console.log(`${targetDirname} 写入成功`);
-      });
+const generateSidbar = throttle(function generateSidbar() {
+  Object.keys(sidbarMdMap).forEach((prop) => {
+    let targetDirname = path.resolve(prop, "_sidebar.md");
+    let urlList = prop.split(path.sep);
+    let topTitle = `<div class="sidebar-title">${
+      urlList[urlList.length - 2]
+    }</div>\n<template id="root-breadcrumb">${
+      urlList[urlList.length - 1]
+    }</template>\n\n`;
+    fs.writeFile(targetDirname, topTitle + sidbarMdMap[prop], () => {
+      console.log(`${targetDirname} 写入成功`);
     });
-  }, 100);
-}
+  });
+});
 
 exports.generateSidbar = ergodicConfig;
