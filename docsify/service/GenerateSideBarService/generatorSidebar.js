@@ -3,18 +3,6 @@ let path = require("path");
 let { spaceStr, throttle } = require("./util");
 let sidbarMdMap = {};
 
-function ergodicConfig(dirMap, level = 0) {
-  // 处理目录
-  if (level === 2) {
-    generateSidbarPart(dirMap);
-    return;
-  }
-  for (let prop in dirMap.childDir) {
-    let item = dirMap.childDir[prop];
-    ergodicConfig(item, level + 1);
-  }
-}
-
 function generateSidbarPart(partDirMap) {
   let root = partDirMap.dir;
   sidbarMdMap[root] = "";
@@ -30,7 +18,7 @@ function generateSidbarPart(partDirMap) {
         })\n${rootMap.files.length - 1 === index ? "\n" : ""}`;
       });
     }
-    Object.keys(rootMap.childDir).forEach(prop => {
+    Object.keys(rootMap.childDir).forEach((prop) => {
       let item = rootMap.childDir[prop];
 
       // 自身及深层没有文件时退出
@@ -39,8 +27,8 @@ function generateSidbarPart(partDirMap) {
         ergodic(item, level + 1);
       }
 
-      generateSidbar();
-    })
+    });
+    generateSidbar();
   }
 }
 
@@ -75,9 +63,23 @@ const generateSidbar = throttle(function generateSidbar() {
       urlList[urlList.length - 1]
     }</template>\n\n`;
     fs.writeFile(targetDirname, topTitle + sidbarMdMap[prop], () => {
-      console.log(`${targetDirname} 写入成功`);
+      console.log(`sidebar修改: ${targetDirname}`);
     });
   });
 });
 
-exports.generateSidbar = ergodicConfig;
+exports.generateSidbar = function(dirMap, changPath) {
+  ergodicConfig(dirMap);
+
+  function ergodicConfig(dirMap, level = 0) {
+    // 处理目录
+    if (level === 2 && changPath.includes(dirMap.dir)) {
+      generateSidbarPart(dirMap);
+      return;
+    }
+    for (let prop in dirMap.childDir) {
+      let item = dirMap.childDir[prop];
+      ergodicConfig(item, level + 1);
+    }
+  }
+};

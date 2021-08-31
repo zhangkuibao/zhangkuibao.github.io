@@ -21,7 +21,7 @@ const generateNavbar = throttle(function(str) {
     path.resolve(absDirname, "docsify/src/template/_navbar.md")
   );
   fs.writeFile(targetDirname, str, () => {
-    console.log(`${targetDirname} 写入成功`);
+    console.log(`navbar修改: ${targetDirname}`);
   });
 });
 

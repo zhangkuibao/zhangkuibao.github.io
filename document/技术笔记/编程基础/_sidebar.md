@@ -52,8 +52,8 @@
 
     - 笔记
 
-      - [REST](document/技术笔记/编程基础/类库框架/NodeJS/笔记/REST.md)
       - [原生API](document/技术笔记/编程基础/类库框架/NodeJS/笔记/原生API.md)
+      - [REST](document/技术笔记/编程基础/类库框架/NodeJS/笔记/REST.md)
       - [原生模块](document/技术笔记/编程基础/类库框架/NodeJS/笔记/原生模块.md)
       - [模块化](document/技术笔记/编程基础/类库框架/NodeJS/笔记/模块化.md)
 
@@ -85,8 +85,8 @@
 
       - [API](document/技术笔记/编程基础/类库框架/Vue/笔记/API.md)
       - [vue-router-api](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router-api.md)
-      - [vue-router](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router.md)
       - [Vuex](document/技术笔记/编程基础/类库框架/Vue/笔记/Vuex.md)
+      - [vue-router](document/技术笔记/编程基础/类库框架/Vue/笔记/vue-router.md)
       - [可复用内容](document/技术笔记/编程基础/类库框架/Vue/笔记/可复用内容.md)
       - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/笔记/服务端渲染.md)
       - [源码解析](document/技术笔记/编程基础/类库框架/Vue/笔记/源码解析.md)
@@ -150,13 +150,13 @@
 
     - WebAPI
 
-      - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
       - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
       - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
+      - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
       - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
       - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
-      - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
       - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
+      - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
 
     - 对象
 
@@ -186,6 +186,7 @@
     - 笔记
 
       - [index](document/技术笔记/编程基础/编程语言/TypeScript/笔记/index.md)
+      - [函数](document/技术笔记/编程基础/编程语言/TypeScript/笔记/函数.md)
       - [基础类型](document/技术笔记/编程基础/编程语言/TypeScript/笔记/基础类型.md)
       - [声明文件&规范](document/技术笔记/编程基础/编程语言/TypeScript/笔记/声明文件&规范.md)
       - [接口](document/技术笔记/编程基础/编程语言/TypeScript/笔记/接口.md)
@@ -196,5 +197,4 @@
       - [类型兼容性&声明合并](document/技术笔记/编程基础/编程语言/TypeScript/笔记/类型兼容性&声明合并.md)
       - [配置](document/技术笔记/编程基础/编程语言/TypeScript/笔记/配置.md)
       - [高级类型](document/技术笔记/编程基础/编程语言/TypeScript/笔记/高级类型.md)
-      - [函数](document/技术笔记/编程基础/编程语言/TypeScript/笔记/函数.md)
 
