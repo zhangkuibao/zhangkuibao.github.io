@@ -1,7 +1,6 @@
 let fs = require("fs");
 let path = require("path");
 let { spaceStr } = require("./util");
-let absDirname = path.resolve(__dirname, "../../../");
 let finishTimmer;
 let sidbarMdMap = {};
 
@@ -17,9 +16,7 @@ function ergodicConfig(dirMap, level = 0) {
 }
 
 function generateSidbarPart(dirMap) {
-  // console.log(dirMap);
   let root = dirMap.dir;
-  let level = 0;
   sidbarMdMap[root] = "";
 
   ergodic(dirMap["childDir"]);
@@ -28,40 +25,34 @@ function generateSidbarPart(dirMap) {
     for (let prop in rootMap) {
       let item = rootMap[prop];
       sidbarMdMap[root] += `${spaceStr(level)}- ${prop}\n\n`;
+
+      // 有子目录
       if (Object.keys(item.childDir).length) {
         ergodic(item.childDir, level + 1);
       }
 
-      if(item.files.length) {
-          item.files.forEach(file => {
-              console.log(file)
-            sidbarMdMap[root] += `${spaceStr(level + 1)}- [${file.filename}](${file.fullpath})\n\n`;
-          })
+      // 有文件
+      if (item.files.length) {
+        item.files.forEach((file, index) => {
+          sidbarMdMap[root] += `${spaceStr(level + 1)}- [${file.filename}](${
+            file.fullpath
+          })\n${item.files.length - 1 === index ? "\n" : ""}`;
+        });
       }
-      generateNavbar();
+      generateSidbar();
     }
   }
 }
 
-function getFirstFilepath(item) {
-  while (item) {
-    if (item?.files?.length) {
-      return item.files[0].fullpath;
-    }
-    let keys = Object.keys(item.childDir);
-    item = item.childDir[keys[0]];
-  }
-}
-
-function generateNavbar() {
+function generateSidbar() {
   clearTimeout(finishTimmer);
   finishTimmer = setTimeout(() => {
-    let keys = Object.keys(sidbarMdMap);
-    fs.writeFile("./sidbar.md", sidbarMdMap[keys[2]], () => {
-      //   console.log(`${targetDirname} 写入成功`);
-      Object.keys(sidbarMdMap).forEach((ele) => {});
+    Object.keys(sidbarMdMap).forEach((prop) => {
+      let targetDirname = path.resolve(prop, "_sidbarsss.md");
+      fs.writeFile(targetDirname, sidbarMdMap[prop], () => {
+        console.log(`${targetDirname} 写入成功`);
+      });
     });
-    console.log(sidbarMdMap);
   }, 100);
 }
 
