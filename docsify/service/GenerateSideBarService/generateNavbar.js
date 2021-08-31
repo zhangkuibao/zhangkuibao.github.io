@@ -1,9 +1,10 @@
 let fs = require("fs");
 let path = require("path");
-let { spaceStr, throttle } = require("./util");
+let { spaceStr, throttle, arrLaggingSort } = require("./util");
 let absDirname = path.resolve(__dirname, "../../../");
-let ignoreDirname = ["收藏夹"];
+let ignoreDirname = [];
 let targetDirname = path.resolve(absDirname, "docsify/src/assets/_navbar.md");
+let laggingDirList = ["其他"];
 
 function getFirstFilepath(item) {
   while (item) {
@@ -29,8 +30,9 @@ exports.generateNavbar = function(dirMap) {
   ergodicConfig(dirMap);
 
   function ergodicConfig(dirMap, level = 0) {
+    let keys = Object.keys(dirMap.childDir);
     // 处理目录
-    for (let prop in dirMap.childDir) {
+    arrLaggingSort(keys, laggingDirList).forEach((prop) => {
       let item = dirMap.childDir[prop];
       if (level <= 1) {
         if (level === 1) {
@@ -49,6 +51,6 @@ exports.generateNavbar = function(dirMap) {
         generateNavbar(navbarMd);
       }
       ergodicConfig(item, level + 1);
-    }
+    });
   }
 };

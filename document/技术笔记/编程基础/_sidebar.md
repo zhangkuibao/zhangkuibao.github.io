@@ -186,7 +186,6 @@
     - 笔记
 
       - [index](document/技术笔记/编程基础/编程语言/TypeScript/笔记/index.md)
-      - [函数](document/技术笔记/编程基础/编程语言/TypeScript/笔记/函数.md)
       - [基础类型](document/技术笔记/编程基础/编程语言/TypeScript/笔记/基础类型.md)
       - [声明文件&规范](document/技术笔记/编程基础/编程语言/TypeScript/笔记/声明文件&规范.md)
       - [接口](document/技术笔记/编程基础/编程语言/TypeScript/笔记/接口.md)
@@ -197,4 +196,5 @@
       - [类型兼容性&声明合并](document/技术笔记/编程基础/编程语言/TypeScript/笔记/类型兼容性&声明合并.md)
       - [配置](document/技术笔记/编程基础/编程语言/TypeScript/笔记/配置.md)
       - [高级类型](document/技术笔记/编程基础/编程语言/TypeScript/笔记/高级类型.md)
+      - [函数](document/技术笔记/编程基础/编程语言/TypeScript/笔记/函数.md)
 

@@ -17,3 +17,14 @@ exports.throttle = function(fn, interval = 100) {
     timmer = setTimeout(fn, interval, ...args);
   }
 }
+
+exports.arrLaggingSort = function(target, limit) {
+  limit.forEach((ele) => {
+    let index = target.indexOf(ele);
+    if (index !== -1) {
+      target.splice(index, 1);
+      target.push(ele);
+    }
+  });
+  return target;
+}
