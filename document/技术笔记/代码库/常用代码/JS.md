@@ -1,21 +1,67 @@
-<author-info date="1629962082326"></author-info>
+<author-info date="1630395381336"></author-info>
 
 # JS 方法
 
-## 节流函数
+## 数组按指定顺序排序
+
+- 一参：目标数组。
+- 二参：排序规则，一参中的数组按照这个数组元素顺序排序。
+- 三参：被排序元素相对其他元素的位置，默认放在其他元素后面。
 
 ```js
-function throttle(fn, interval = 100) {
+function arrLaggingSort(target, sortList, insertHead = false) {
+  if (insertHead) {
+    sortList.reverse();
+  }
+  sortList.forEach((ele) => {
+    let index = target.indexOf(ele);
+    if (index !== -1) {
+      target.splice(index, 1);
+      if (insertHead) {
+        target.unshift(ele);
+      } else {
+        target.push(ele);
+      }
+    }
+  });
+  return target;
+}
+```
+
+- 示例
+
+```js
+let arr = [1, 2, 3, 4, 5, 6];
+let sortList = [3, 5];
+arrLaggingSort(arr, sortList, true); // [3, 5, 1, 2, 4, 6]
+arrLaggingSort(arr, sortList); //[(1, 2, 4, 6, 3, 5)];
+```
+
+## 防抖函数
+
+在延迟范围内重复调用只执行最后一次。
+
+- 一参：待执行函数。
+- 二参：延迟多久后执行。
+
+```js
+function antiShake(fn, interval = 100) {
   let timmer;
   return function(...args) {
     clearTimeout(timmer);
     timmer = setTimeout(fn, interval, ...args);
-  }
+  };
 }
+```
 
-const consoleArg = throttle(function(arg) {
-  console.log(arg)
-})
+- 示例
+
+```js
+const consoleArg = antiShake(function(arg) {
+  console.log(arg);
+});
+
+consoleArg(123);  // 123
 ```
 
 ## 获取时间日期字符串
