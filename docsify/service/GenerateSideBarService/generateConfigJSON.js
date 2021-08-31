@@ -4,7 +4,7 @@ const { clearTimeout } = require("timers");
 const absDirname = path.resolve(__dirname, "../../../");
 const ergodicDirname = path.resolve(absDirname, "document");
 const ignoreFilenameList = ["README", "_sidebar"];
-let { fixFilePath } = require('./util')
+let { fixFilePath } = require('../utils')
 let finishTimmer;
 const dirMap = {
   files: [],

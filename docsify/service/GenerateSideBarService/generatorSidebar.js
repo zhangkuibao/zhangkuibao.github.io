@@ -1,6 +1,6 @@
 let fs = require("fs");
 let path = require("path");
-let { spaceStr, throttle } = require("./util");
+let { spaceStr, throttle } = require("../utils");
 let sidbarMdMap = {};
 
 function generateSidbarPart(partDirMap) {
