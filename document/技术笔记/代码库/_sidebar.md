@@ -1,6 +1,14 @@
 <div class="sidebar-title">技术笔记</div>
 <template id="root-breadcrumb">代码库</template>
 
+- 常用代码
+
+  - [JS](document/技术笔记/代码库/常用代码/JS.md)
+  - [JS兼容](document/技术笔记/代码库/常用代码/JS兼容.md)
+  - [NodeJS](document/技术笔记/代码库/常用代码/NodeJS.md)
+  - [Sass](document/技术笔记/代码库/常用代码/Sass.md)
+  - [正则](document/技术笔记/代码库/常用代码/正则.md)
+
 - 功能实现
 
   - [blob转base64](document/技术笔记/代码库/功能实现/blob转base64.md)
@@ -12,14 +20,6 @@
   - [录制屏幕](document/技术笔记/代码库/功能实现/录制屏幕.md)
   - [获取元素相对于页面的位置](document/技术笔记/代码库/功能实现/获取元素相对于页面的位置.md)
   - [获取剪贴板内容](document/技术笔记/代码库/功能实现/获取剪贴板内容.md)
-
-- 常用代码
-
-  - [JS](document/技术笔记/代码库/常用代码/JS.md)
-  - [JS兼容](document/技术笔记/代码库/常用代码/JS兼容.md)
-  - [NodeJS](document/技术笔记/代码库/常用代码/NodeJS.md)
-  - [Sass](document/技术笔记/代码库/常用代码/Sass.md)
-  - [正则](document/技术笔记/代码库/常用代码/正则.md)
 
 - 样式效果
 
