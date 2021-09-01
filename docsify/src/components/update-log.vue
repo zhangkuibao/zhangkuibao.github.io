@@ -8,7 +8,7 @@
             v-for="(subItem, subProp) in item"
             :key="subProp"
           >
-            <h4 class="card-item-title">{{ subProp }}</h4>
+            <div class="card-item-title">{{ subProp }}</div>
             <ul
               class="card-item-list"
               v-for="textItem in subItem"
@@ -83,6 +83,8 @@ export default {
           return "新增文档";
         case "delete":
           return "删除文档";
+        case "function":
+          return "功能";
         default:
           return "优化";
       }
@@ -91,7 +93,6 @@ export default {
       fetch("./docsify/src/assets/commit.json").then((res) => {
         res.json().then((json) => {
           this.commitList = json;
-          console.log(this.showCommitMap);
         });
       });
     },
@@ -116,3 +117,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card-item-title {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.25rem;
+  box-sizing: border-box;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+</style>
