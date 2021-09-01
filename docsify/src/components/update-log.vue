@@ -71,23 +71,11 @@ export default {
   },
   methods: {
     extractCommitMessage(msg) {
-      return msg.replace(/【(.*?)】/g, "");
+      return msg.replace(/^【(.*?)】/g, "");
     },
     extractCommitType(msg) {
-      let match = /【(.*?)】/g.exec(msg);
-      let type = match?.[1];
-      switch (type) {
-        case "update":
-          return "更新文档";
-        case "new":
-          return "新增文档";
-        case "delete":
-          return "删除文档";
-        case "function":
-          return "功能";
-        default:
-          return "优化";
-      }
+      let match = /^【(.*?)】/g.exec(msg);
+      return match?.[1] || '优化';
     },
     getCommitLog() {
       fetch("./docsify/src/assets/commit.json").then((res) => {
