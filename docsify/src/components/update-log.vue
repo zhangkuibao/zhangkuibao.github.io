@@ -1,24 +1,25 @@
 <template>
   <el-timeline>
-    <template v-for="(item, prop) in showCommitMap">
-      <el-timeline-item :timestamp="prop" placement="top" :key="prop">
+    <template v-for="(monthMap, monthIndex) in showCommitMap">
+      <h2 :key="monthIndex">{{monthIndex}}</h2>
+      <el-timeline-item v-for="(dayMap, dayIndex) in monthMap" :timestamp="dayIndex" placement="top" :key="dayIndex">
         <el-card>
           <div
             class="card-item"
-            v-for="(subItem, subProp) in item"
-            :key="subProp"
+            v-for="(msgMap, msgIndex) in dayMap"
+            :key="msgIndex"
           >
-            <div class="card-item-title">{{ subProp }}</div>
+            <div class="card-item-title">{{ msgIndex }}</div>
             <ul
               class="card-item-list"
-              v-for="textItem in subItem"
-              :key="textItem.date"
+              v-for="msgItem in msgMap"
+              :key="msgItem.date"
             >
               <li class="card-item-list-item">
                 <span style="margin-right:20px;color:#999">{{
-                  textItem.time
+                  msgItem.time
                 }}</span>
-                <span>{{ textItem.msg }}</span>
+                <span>{{ msgItem.msg }}</span>
               </li>
             </ul>
           </div>
@@ -51,36 +52,51 @@ export default {
         let time = this.getFullTime(ele.date);
         let dateArr = time.split(" ");
         let date = dateArr[0];
+        let yearMonth = this.extractYearMonth(date);
         let type = this.extractCommitType(ele.message);
         Object.assign(ele, {
           msg: this.extractCommitMessage(ele.message),
           time: dateArr[1],
         });
-        if (result[date]) {
-          result[date][type]
-            ? result[date][type].unshift(ele)
-            : (result[date][type] = [ele]);
-        } else {
-          result[date] = {
+        if (result[yearMonth]) {
+          if (result[yearMonth][date]) {
+            result[yearMonth][date][type]
+              ? result[yearMonth][date][type].unshift(ele)
+              : (result[yearMonth][date][type] = [ele]);
+          } else {
+            result[yearMonth][date] = {
+              [type]: [ele],
+            };
+          }
+          result[yearMonth];
+        }else {
+          result[yearMonth] = {};
+          result[yearMonth][date] = {
             [type]: [ele],
-          };
+          }
         }
       });
       return result;
     },
   },
   methods: {
+    extractYearMonth(dateStr) {
+      let dateArr = dateStr.split("-");
+      dateArr.pop();
+      return dateArr.join("-");
+    },
     extractCommitMessage(msg) {
       return msg.replace(/^【(.*?)】/g, "");
     },
     extractCommitType(msg) {
       let match = /^【(.*?)】/g.exec(msg);
-      return match?.[1] || '优化';
+      return match?.[1] || "优化";
     },
     getCommitLog() {
       fetch("./docsify/src/assets/commit.json").then((res) => {
         res.json().then((json) => {
           this.commitList = json;
+          console.log(this.showCommitMap);
         });
       });
     },
