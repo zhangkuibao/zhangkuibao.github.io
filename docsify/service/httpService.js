@@ -1,42 +1,79 @@
-const http = require("http");
+"use strict";
 const fs = require("fs");
-const url = require("url");
-const opn = require("opn");
+const serveStatic = require("serve-static");
+const connect = require("connect");
+const livereload = require("connect-livereload");
+const lrserver = require("livereload");
+const open = require("open");
+const chalk = require("chalk");
+const getPort = require("get-port");
+const resolve = (exports.resolve = require("path").resolve);
+const { absDirname } = require('./utils')
 
-async function createServer() {
-  //创建服务器
-  http
-    .createServer(function(request, response) {
-      //解析请求，包括文件名
-      var pathname = decodeURI(url.parse(request.url).pathname);
-      //输出请求的文件名
-    //   console.log("Request for " + pathname + "  received.");
-      if(pathname === '/') {
-        pathname = '/index.html';
+
+function exists(path) {
+  if (fs.existsSync(path)) {
+    return path;
+  }
+
+  return undefined;
+}
+function serve(path, openInBrowser, port, livereloadPort, indexName) {
+  getPort({ port })
+    .then((p) => {
+      port = p;
+      return getPort({ port: livereloadPort });
+    })
+    .then((p) => {
+      livereloadPort = p;
+    })
+    .then((_) => {
+      path = resolve(path || ".");
+      const indexFile = resolve(path, indexName || "index.html");
+
+      if (!exists(indexFile)) {
+        const msg =
+          "\nNo docs found " +
+          indexFile +
+          "\nPlease run " +
+          chalk.green("docsify init") +
+          " first.\n";
+        console.log(msg);
+        process.exit(0);
       }
 
-      //从文件系统中都去请求的文件内容
-      fs.readFile(pathname.substr(1), function(err, data) {
-        if (err) {
-          // console.log(err);
-          response.writeHead(404);
-        } else {
-          //HTTP 状态码 200 ： OK
-          //Content Type:text/plain
-          response.writeHead(200);
+      const server = connect();
+      server.use(
+        livereload({
+          port: livereloadPort,
+        })
+      );
+      server.use(serveStatic(path, { index: indexName }));
+      server.listen(port);
+      lrserver
+        .createServer({
+          extraExts: ["md"],
+          exclusions: ["node_modules/"],
+          port: livereloadPort,
+        })
+        .watch(path);
 
-          //写会相应内容
-          response.write(data.toString());
-        }
-        //发送响应数据
-        response.end();
-      });
+      if (openInBrowser) {
+        open(`http://localhost:${port}`);
+      }
+
+      const msg =
+        "\nServing " +
+        chalk.green(`${path}`) +
+        " now.\n" +
+        "Listening at " +
+        chalk.green(`http://localhost:${port}`) +
+        "\n";
+      console.log(msg);
     })
-    .listen(8888);
+    .catch((err) => {
+      console.error(err.message);
+    });
 }
 
-createServer().then(res => {
-    opn('http://127.0.0.1:8888/')
-})
-
-console.log("Server running at http://127.0.0.1:8888/");
+serve(absDirname);
