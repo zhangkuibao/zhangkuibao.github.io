@@ -1,6 +1,6 @@
-<author-info date="1630051295494"></author-info>
+<author-info date="1630658564537"></author-info>
 
-# 前端获取 IP 地址
+# 获取客户端 IP 地址
 
 前端无法获取用户 IP，但是能通过后端接口实现，这里借助搜狐的 api 获取 ip 信息。
 

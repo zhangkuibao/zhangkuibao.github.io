@@ -3,7 +3,7 @@ let path = require("path");
 let { spaceStr, throttle, arrLaggingSort, absDirname } = require("../utils");
 let ignoreDirname = [];
 let targetDirname = path.resolve(absDirname, "docsify/src/assets/_navbar.md");
-let laggingDirList = ["其他"];
+let laggingDirList = ["技术笔记", "阅读笔记", "其他"];
 
 function getFirstFilepath(item) {
   while (item) {
