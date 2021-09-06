@@ -1,4 +1,4 @@
-<author-info date="1630898609575"></author-info>
+<author-info date="1630899434153"></author-info>
 
 # Node 框架
 
@@ -13,6 +13,12 @@
 [官网地址](https://koa.bootcss.com/)
 
 koa 是由 Express 原班人马打造的，使用方法和 API 与 express 相似，它没有内置中间件，所以体积更小；在 koa 中可以使用高级语法，也属于底层框架。
+
+## nuxt
+
+[官网地址](https://www.nuxtjs.cn/)
+
+nuxt 是 vue 的通用框架，也就是 “框架的框架”，一般用它来实现 vue 项目的 SSR。性能不太好。
 
 ## nest 和 express、koa 的区别
 

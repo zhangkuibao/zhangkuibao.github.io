@@ -58,6 +58,9 @@ module.exports = {
     // 主页
     new HtmlWebpackPlugin({
       template: path.resolve(absDirname, "docsify/src/template/index.html"), // 模板文件
+      templateParameters: {
+        title: 'zNote'
+      },
       filename: path.resolve(absDirname, "index.html"), // 目标文件
       scriptLoading: "blocking",
       inject: "head",
