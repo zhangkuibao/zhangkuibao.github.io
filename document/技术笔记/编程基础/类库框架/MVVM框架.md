@@ -1,3 +1,15 @@
+<author-info date="1630896966359"></author-info>
+
+# 前端 MVVM 框架
+
+## MVVM 架构
+
+M(model)V(view)VM(viewModel)，MVVM 架构是 MVC 架构的改良版本。
+
+MVC 架构下视图与逻辑分离但是数据与视图的映射逻辑需要自己处理，比如用 js + html 写一个列表，需要拿到列表数据，用列表数据生成 dom，然后将 dom 放到页面中。
+
+MVVM 架构中将根据数据生成 dom 的操作交给框架去处理，前端只需要拿到列表数据，然后将列表数据按照框架的规则与 dom 关联即可。
+
 ## Angular 与 Vue 对比
 
 1. 体积和性能
