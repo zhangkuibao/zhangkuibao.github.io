@@ -1,9 +1,10 @@
 export default class SidebarCollapsePlugin {
   static sideWrapperDom;
   static lastRootBreadcrumbText;
-  static closeLevel;  // 默认收起等级
+  static closeLevel; // 默认收起等级
   static install(hook, vm) {
-    SidebarCollapsePlugin.closeLevel = vm?.config?.sidebarCollapse?.closeLevel || 2;
+    SidebarCollapsePlugin.closeLevel =
+      vm?.config?.sidebarCollapse?.closeLevel || 2;
     //   hook.init(function () {
     //     // 初始化完成后调用，只调用一次，没有 参数。
     //   });
@@ -32,6 +33,7 @@ export default class SidebarCollapsePlugin {
         .querySelector("ul")
         .cloneNode(true);
 
+      SidebarCollapsePlugin.initPathArr();
       SidebarCollapsePlugin.initRootDom(dom);
       SidebarCollapsePlugin.removeEvent();
       SidebarCollapsePlugin.bindEvent();
@@ -46,12 +48,19 @@ export default class SidebarCollapsePlugin {
     //   });
   }
 
+  static initPathArr() {
+    let path = decodeURI(location.hash.slice(2));
+    let pathArr = path.split("/").slice(3);
+    SidebarCollapsePlugin.pathArr = pathArr;
+  }
+
   static initRootDom(dom) {
     let RootBreadcrumbText = SidebarCollapsePlugin.getRootBreadcrumbText();
     // 根路径切换时才替换侧边栏，解决切换路由时侧栏样式重置问题 。
-    if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText) {
-      SidebarCollapsePlugin.sideWrapperDom = dom;
-    }
+    // 路由切换时展开当前活动的侧边栏目录，此处修改为总是替换侧边栏 —— 2021-9-7
+    // if (RootBreadcrumbText !== SidebarCollapsePlugin.lastRootBreadcrumbText) {
+    SidebarCollapsePlugin.sideWrapperDom = dom;
+    // }
     SidebarCollapsePlugin.lastRootBreadcrumbText = RootBreadcrumbText;
   }
 
@@ -68,21 +77,40 @@ export default class SidebarCollapsePlugin {
     if (UL.children) {
       Array.from(UL.children).forEach((li) => {
         let subUl = li.querySelector("ul");
+        let liText = SidebarCollapsePlugin.getLiText(li);
+        let extend = liText === SidebarCollapsePlugin.pathArr[0];
+        SidebarCollapsePlugin.setLiLevel(li, level);
+
         // 调整li中第一个元素为p包裹a的结构。侧边栏中有些a标签是被p标签包裹着的，导致样式问题。
         if (SidebarCollapsePlugin.isPAroundA(li)) {
           SidebarCollapsePlugin.deletePAround(li);
         }
-        SidebarCollapsePlugin.setLiLevel(li, level);
+
+        // 展开或收起
+        if (level >= SidebarCollapsePlugin.closeLevel) {
+          SidebarCollapsePlugin.closeUl(li.firstElementChild);
+        }
+
+        if (extend) {
+          SidebarCollapsePlugin.extendUl(li.firstElementChild);
+          SidebarCollapsePlugin.pathArr.shift();
+
+          if (SidebarCollapsePlugin.pathArr.length === 0) {
+            SidebarCollapsePlugin.changeActiveClass(li);
+          }
+        }
+
         if (subUl) {
           li.firstElementChild.classList.add("hasChild");
           SidebarCollapsePlugin.bindCollapseClass(subUl, level + 1);
           // 在这里可以先设置一个ul的data-height值，让第一次展开有动画，ul未渲染，offsetHeight为0
         }
-        if (level >= SidebarCollapsePlugin.closeLevel) {
-          SidebarCollapsePlugin.closeUl(li.firstElementChild);
-        }
       });
     }
+  }
+
+  static getLiText(li) {
+    return li.firstElementChild.innerText;
   }
 
   // 删除li第一个元素的p元素包裹

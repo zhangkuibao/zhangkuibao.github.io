@@ -26,7 +26,6 @@ function generateSidbarPart(partDirMap) {
         sidbarMdMap[root] += `${spaceStr(level)}- ${prop}\n\n`;
         ergodic(item, level + 1);
       }
-
     });
     generateSidbar();
   }
@@ -57,8 +56,8 @@ const generateSidbar = throttle(function generateSidbar() {
   Object.keys(sidbarMdMap).forEach((prop) => {
     let targetDirname = path.resolve(prop, "_sidebar.md");
     let urlList = prop.split(path.sep);
-    let topTitle = `<div class="sidebar-title">${
-      urlList[urlList.length - 2]
+    let topTitle = `<div class="sidebar-title">${urlList[urlList.length - 2]} — ${
+      urlList[urlList.length - 1]
     }</div>\n<template id="root-breadcrumb">${
       urlList[urlList.length - 1]
     }</template>\n\n`;
