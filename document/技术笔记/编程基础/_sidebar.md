@@ -40,6 +40,7 @@
 
     - [中间件](document/技术笔记/编程基础/类库框架/Nest/中间件.md)
     - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/依赖注入.md)
+    - [守卫](document/技术笔记/编程基础/类库框架/Nest/守卫.md)
     - [异常处理](document/技术笔记/编程基础/类库框架/Nest/异常处理.md)
     - [控制器](document/技术笔记/编程基础/类库框架/Nest/控制器.md)
     - [模块](document/技术笔记/编程基础/类库框架/Nest/模块.md)
@@ -51,8 +52,8 @@
 
       - express
 
-        - [中间件](document/技术笔记/编程基础/类库框架/NodeJS/扩展/express/中间件.md)
         - [路由](document/技术笔记/编程基础/类库框架/NodeJS/扩展/express/路由.md)
+        - [中间件](document/技术笔记/编程基础/类库框架/NodeJS/扩展/express/中间件.md)
 
     - 模块
 
@@ -62,8 +63,8 @@
 
     - 笔记
 
-      - [REST](document/技术笔记/编程基础/类库框架/NodeJS/笔记/REST.md)
       - [原生API](document/技术笔记/编程基础/类库框架/NodeJS/笔记/原生API.md)
+      - [REST](document/技术笔记/编程基础/类库框架/NodeJS/笔记/REST.md)
       - [原生模块](document/技术笔记/编程基础/类库框架/NodeJS/笔记/原生模块.md)
       - [模块化](document/技术笔记/编程基础/类库框架/NodeJS/笔记/模块化.md)
 
@@ -137,16 +138,16 @@
 
   - JavaScript
 
-    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
     - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
+    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
     - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
     - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [关于valueOf方法和toString方法](document/技术笔记/编程基础/编程语言/JavaScript/关于valueOf方法和toString方法.md)
     - [函数尾调用](document/技术笔记/编程基础/编程语言/JavaScript/函数尾调用.md)
     - [属性描述符](document/技术笔记/编程基础/编程语言/JavaScript/属性描述符.md)
     - [异常处理](document/技术笔记/编程基础/编程语言/JavaScript/异常处理.md)
-    - [数据类型和数据结构](document/技术笔记/编程基础/编程语言/JavaScript/数据类型和数据结构.md)
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
+    - [数据类型和数据结构](document/技术笔记/编程基础/编程语言/JavaScript/数据类型和数据结构.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
     - [编解码函数](document/技术笔记/编程基础/编程语言/JavaScript/编解码函数.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
@@ -158,14 +159,6 @@
       - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/ECMAScript/Set&Map类型.md)
       - [正则表达式语法](document/技术笔记/编程基础/编程语言/JavaScript/ECMAScript/正则表达式语法.md)
 
-    - 对象
-
-      - [Error](document/技术笔记/编程基础/编程语言/JavaScript/对象/Error.md)
-      - [Number](document/技术笔记/编程基础/编程语言/JavaScript/对象/Number.md)
-      - [Object](document/技术笔记/编程基础/编程语言/JavaScript/对象/Object.md)
-      - [String](document/技术笔记/编程基础/编程语言/JavaScript/对象/String.md)
-      - [其他对象](document/技术笔记/编程基础/编程语言/JavaScript/对象/其他对象.md)
-
     - WebAPI
 
       - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
@@ -175,6 +168,14 @@
       - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
       - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
       - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
+
+    - 对象
+
+      - [Error](document/技术笔记/编程基础/编程语言/JavaScript/对象/Error.md)
+      - [Number](document/技术笔记/编程基础/编程语言/JavaScript/对象/Number.md)
+      - [Object](document/技术笔记/编程基础/编程语言/JavaScript/对象/Object.md)
+      - [String](document/技术笔记/编程基础/编程语言/JavaScript/对象/String.md)
+      - [其他对象](document/技术笔记/编程基础/编程语言/JavaScript/对象/其他对象.md)
 
   - Less
 
