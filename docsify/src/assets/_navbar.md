@@ -8,7 +8,7 @@
 
   - [开发工具](document/技术笔记/开发工具/git/git使用手册.md)
 
-  - [编程基础](document/技术笔记/编程基础/后端知识/数据库/MongoDB/mongodb.md)
+  - [编程基础](document/技术笔记/编程基础/算法/待整理方法.md)
 
   - [解决方案](document/技术笔记/解决方案/上传图片前查看缩略图.md)
 
