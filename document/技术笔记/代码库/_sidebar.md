@@ -1,4 +1,4 @@
-<div class="sidebar-title">技术笔记</div>
+<div class="sidebar-title">技术笔记 — 代码库</div>
 <template id="root-breadcrumb">代码库</template>
 
 - 功能实现

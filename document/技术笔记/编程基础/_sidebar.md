@@ -1,4 +1,4 @@
-<div class="sidebar-title">技术笔记</div>
+<div class="sidebar-title">技术笔记 — 编程基础</div>
 <template id="root-breadcrumb">编程基础</template>
 
 - 后端知识
@@ -164,8 +164,8 @@
 
       - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
       - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
-      - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
       - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
+      - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
       - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
       - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
       - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)

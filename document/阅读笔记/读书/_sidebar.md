@@ -1,4 +1,4 @@
-<div class="sidebar-title">阅读笔记</div>
+<div class="sidebar-title">阅读笔记 — 读书</div>
 <template id="root-breadcrumb">读书</template>
 
 - [书单](document/阅读笔记/读书/书单.md)

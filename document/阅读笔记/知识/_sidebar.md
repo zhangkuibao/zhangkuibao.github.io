@@ -1,4 +1,4 @@
-<div class="sidebar-title">阅读笔记</div>
+<div class="sidebar-title">阅读笔记 — 知识</div>
 <template id="root-breadcrumb">知识</template>
 
 - [内燃机原理](document/阅读笔记/知识/内燃机原理.md)

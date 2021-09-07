@@ -1,4 +1,4 @@
-<div class="sidebar-title">技术笔记</div>
+<div class="sidebar-title">技术笔记 — 解决方案</div>
 <template id="root-breadcrumb">解决方案</template>
 
 - [上传图片前查看缩略图](document/技术笔记/解决方案/上传图片前查看缩略图.md)

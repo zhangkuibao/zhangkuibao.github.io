@@ -1,4 +1,4 @@
-<div class="sidebar-title">技术笔记</div>
+<div class="sidebar-title">技术笔记 — 开发工具</div>
 <template id="root-breadcrumb">开发工具</template>
 
 - git

@@ -1,4 +1,4 @@
-<div class="sidebar-title">技术笔记</div>
+<div class="sidebar-title">技术笔记 — 学习规划</div>
 <template id="root-breadcrumb">学习规划</template>
 
 - [如何提高](document/技术笔记/学习规划/如何提高.md)

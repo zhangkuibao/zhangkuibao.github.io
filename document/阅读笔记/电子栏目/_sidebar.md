@@ -1,4 +1,4 @@
-<div class="sidebar-title">阅读笔记</div>
+<div class="sidebar-title">阅读笔记 — 电子栏目</div>
 <template id="root-breadcrumb">电子栏目</template>
 
 - 硅谷来信
