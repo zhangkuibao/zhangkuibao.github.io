@@ -2,7 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
-const { serviceLoadLog } = require('./utils')
+const { serviceLoadLog, absDirname } = require('./utils')
 
 
 // 监控文件变化
@@ -35,10 +35,11 @@ function changeFile(filePath, callback) {
 
 async function changeDateWatcher() {
   watcher = chokidar
-    .watch(".", {
-      ignored: /.git|node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts|_sidebar.md|_navbar.md/,
+    .watch(path.resolve(absDirname, 'document'), {
+      ignored: /.git|node_modules|_sidebar.md|_navbar.md/,
     })
     .on("change", async (filePath) => {
+      console.log('change', filePath)
       let extname = path.extname(filePath);
       if (extname !== ".md") return;
       await watcher.unwatch(filePath);
