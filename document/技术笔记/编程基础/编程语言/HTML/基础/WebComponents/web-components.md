@@ -1,3 +1,7 @@
+<author-info date="1631094831004"></author-info>
+
+# web-components
+
 ## 介绍
 
 Web Components 是 W3C 正在向 HTML 和 DOM 规范添加的一套标准，它允许在 Web 应用程序中创建可重用的组件。
@@ -10,7 +14,7 @@ Web Components 由三项主要技术组成：
 
 - Custom elements（自定义元素）
 
-它使开发者能够将HTML页面的功能封装为 custom elements（自定义标签）、即封装组件。
+它使开发者能够将 HTML 页面的功能封装为 custom elements（自定义标签）、即封装组件。
 
 - Shadow DOM（影子 DOM）
 

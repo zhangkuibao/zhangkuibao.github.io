@@ -29,12 +29,12 @@
     - 笔记
 
       - [CLI命令](document/技术笔记/编程基础/类库框架/Angular/笔记/CLI命令.md)
+      - [指令](document/技术笔记/编程基础/类库框架/Angular/笔记/指令.md)
       - [模块](document/技术笔记/编程基础/类库框架/Angular/笔记/模块.md)
+      - [模板语法](document/技术笔记/编程基础/类库框架/Angular/笔记/模板语法.md)
       - [管道](document/技术笔记/编程基础/类库框架/Angular/笔记/管道.md)
       - [组件](document/技术笔记/编程基础/类库框架/Angular/笔记/组件.md)
-      - [模板语法](document/技术笔记/编程基础/类库框架/Angular/笔记/模板语法.md)
       - [路由](document/技术笔记/编程基础/类库框架/Angular/笔记/路由.md)
-      - [指令](document/技术笔记/编程基础/类库框架/Angular/笔记/指令.md)
 
   - Nest
 
@@ -85,6 +85,14 @@
 
   - Vue
 
+    - 其他
+
+      - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
+      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
+      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
+      - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
+      - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
+
     - 笔记
 
       - [API](document/技术笔记/编程基础/类库框架/Vue/笔记/API.md)
@@ -97,20 +105,12 @@
       - [用法补充](document/技术笔记/编程基础/类库框架/Vue/笔记/用法补充.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/笔记/组件.md)
 
-    - 其他
-
-      - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
-      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
-      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
-      - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
-      - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
-
 - 编程语言
 
   - CSS
 
-    - [z-index-七阶层叠水平](document/技术笔记/编程基础/编程语言/CSS/z-index-七阶层叠水平.md)
     - [dom元素上的位置信息](document/技术笔记/编程基础/编程语言/CSS/dom元素上的位置信息.md)
+    - [z-index-七阶层叠水平](document/技术笔记/编程基础/编程语言/CSS/z-index-七阶层叠水平.md)
     - [事件对象上的位置信息](document/技术笔记/编程基础/编程语言/CSS/事件对象上的位置信息.md)
 
     - 基础
@@ -123,17 +123,17 @@
 
   - HTML
 
-    - 笔记
+    - 基础
 
-      - [H5地理定位](document/技术笔记/编程基础/编程语言/HTML/笔记/H5地理定位.md)
-      - [HTML标签属性](document/技术笔记/编程基础/编程语言/HTML/笔记/HTML标签属性.md)
+      - [H5地理定位](document/技术笔记/编程基础/编程语言/HTML/基础/H5地理定位.md)
+      - [HTML标签属性](document/技术笔记/编程基础/编程语言/HTML/基础/HTML标签属性.md)
 
       - WebComponents
 
-        - [custom-elements](document/技术笔记/编程基础/编程语言/HTML/笔记/WebComponents/custom-elements.md)
-        - [html-template](document/技术笔记/编程基础/编程语言/HTML/笔记/WebComponents/html-template.md)
-        - [shadow-dom](document/技术笔记/编程基础/编程语言/HTML/笔记/WebComponents/shadow-dom.md)
-        - [web-components](document/技术笔记/编程基础/编程语言/HTML/笔记/WebComponents/web-components.md)
+        - [custom-elements](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/custom-elements.md)
+        - [html-template](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/html-template.md)
+        - [shadow-dom](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/shadow-dom.md)
+        - [web-components](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/web-components.md)
 
   - JavaScript
 

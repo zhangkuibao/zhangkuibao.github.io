@@ -1,3 +1,7 @@
+<author-info date="1631094821070"></author-info>
+
+# shadow-dom
+
 ## 介绍
 
 Shadow DOM 可以将一个隐藏的、独立的 DOM 附加到一个元素上。
@@ -26,8 +30,8 @@ Shadow DOM 内部的元素始终不会影响到它外部的元素（除了 :focu
 如果你想将一个 Shadow DOM 附加到 custom element 上，可以在 custom element 的构造函数中添加如下实现（目前，这是 shadow DOM 最实用的用法）：
 
 ```js
-let shadow = this.attachShadow({mode: 'open'});
-let div = document.createElement('div');
+let shadow = this.attachShadow({ mode: "open" });
+let div = document.createElement("div");
 shadow.appendChild(div);
 ```
 

@@ -1,3 +1,7 @@
+<author-info date="1631094783920"></author-info>
+
+# custom-elements
+
 ## 介绍
 
 custom elements 自定义元素，即自定义标签，可以将一个组件封装到一个标签中，使用自定义的标签名使用。
