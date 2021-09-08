@@ -1,4 +1,8 @@
-## Error类型
+<author-info date="1631095387529"></author-info>
+
+# Error
+
+## Error 类型
 
 ### Error
 
@@ -15,36 +19,39 @@
 错误类型：无效引用
 
 ### SyntaxError
+
 错误类型：`eval()` 在解析代码过程中发生语法错误
 
 ### TypeError
+
 错误类型：变量或参数不属于有效类型
 
 ### URIError
-错误类型：给 `encodeURI()`或  `decodeURl()`传递的参数无效
+
+错误类型：给 `encodeURI()`或 `decodeURl()`传递的参数无效
 
 ## 捕获特点类型的错误
 
 ```js
 try {
-    foo();
+  foo();
 } catch (e) {
-    if (e instanceof RangeError) {
-        console.log(e.name + ": " + e.message);
-    } else if (e instanceof ReferenceError) {
-        console.log(e.name + ": " + e.message);
-    }
+  if (e instanceof RangeError) {
+    console.log(e.name + ": " + e.message);
+  } else if (e instanceof ReferenceError) {
+    console.log(e.name + ": " + e.message);
+  }
 }
 ```
 
 ## 自定义错误类型
 
 ```js
-class MyError extends Error{
-    constructor(message) {
-        super();
-        this.message = message;
-        this.name = 'MyError';
-    }
+class MyError extends Error {
+  constructor(message) {
+    super();
+    this.message = message;
+    this.name = "MyError";
+  }
 }
 ```

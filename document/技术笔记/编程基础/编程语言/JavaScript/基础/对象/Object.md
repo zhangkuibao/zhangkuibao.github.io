@@ -1,6 +1,10 @@
+<author-info date="1631095486481"></author-info>
+
+# Object
+
 ## 静态方法
 
-### Object.assign(target, ...sources) 
+### Object.assign(target, ...sources)
 
 将所有**可枚举属性**的值从一个或多个源对象分配到 `target` ，返回合并后的 `target`
 
@@ -17,11 +21,11 @@
 #### descrioptor 可配置属性
 
 1. configurable，能否修改该属性的描述符，默认为 `false`
-2. enumerable，能否被枚举，默认false
+2. enumerable，能否被枚举，默认 false
 3. value，该属性的值，默认为 `undefined`
 4. writable，值可否被修改
-5. get，属性的getter
-6. set，属性的setter
+5. get，属性的 getter
+6. set，属性的 setter
 
 #### 继承属性
 
@@ -37,7 +41,7 @@ Object.defineProperty(myclass.prototype, "x", {
   },
   set(x) {
     value = x;
-  }
+  },
 });
 
 var a = new myclass();
@@ -53,14 +57,14 @@ console.log(b.x); // 1
 ```js
 var obj = {};
 Object.defineProperties(obj, {
-  'property1': {
+  property1: {
     value: true,
-    writable: true
+    writable: true,
   },
-  'property2': {
-    value: 'Hello',
-    writable: false
-  }
+  property2: {
+    value: "Hello",
+    writable: false,
+  },
   // etc. etc.
 });
 ```
@@ -70,18 +74,20 @@ Object.defineProperties(obj, {
 可在创建对象时设置属性及属性的属性描述符
 
 ```js
-Object.create({}, {
-  'property1': {
-    value: true,
-    writable: true
-  },
-  'property2': {
-    value: 'Hello',
-    writable: false
+Object.create(
+  {},
+  {
+    property1: {
+      value: true,
+      writable: true,
+    },
+    property2: {
+      value: "Hello",
+      writable: false,
+    },
+    // etc. etc.
   }
-  // etc. etc.
-});
-
+);
 ```
 
 ### Object.freeze(obj)
@@ -103,7 +109,7 @@ Object.create({}, {
 返回值为对象。没有 `getter` 和 `setter` 时返回对象上没有这两个属性
 
 ```js
-Object.getOwnPropertyDescriptor({a: 1}, 'a');
+Object.getOwnPropertyDescriptor({ a: 1 }, "a");
 /*{
     configurable: true
     enumerable: true
@@ -120,9 +126,9 @@ Object.getOwnPropertyDescriptor({a: 1}, 'a');
 
 ```js
 Object.entries({
-    age: 1,
-    name: 2
-})
+  age: 1,
+  name: 2,
+});
 // [[age,1],['name',1]]
 ```
 
@@ -146,7 +152,7 @@ Object.entries({
 
 设置对象原型
 
-------
+---
 
 ### 不常用但感觉有用的方法
 
@@ -154,10 +160,8 @@ Object.entries({
 
 ### 其他方法
 
-1. ` Object.is(value1, value2)` 见《相似性判断》文章
-2. `Object.prototype.valueOf()`  和`Object.prototype.toString()` 见 《关于valueOf方法和toString方法》文章
-
-
+1. `Object.is(value1, value2)` 见《相似性判断》文章
+2. `Object.prototype.valueOf()` 和`Object.prototype.toString()` 见 《关于 valueOf 方法和 toString 方法》文章
 
 ## 原型方法
 
@@ -171,7 +175,7 @@ Object.entries({
 
 ### obj1.isPrototypeOf(obj2)
 
-判断obj1是否存在于obj2的原型链上
+判断 obj1 是否存在于 obj2 的原型链上
 
 ## 对象的状态
 
@@ -193,5 +197,4 @@ Object.entries({
 
 被冻结的对象不能做任何操作
 
-用 `Object.freeze(obj)` 将对象冻结，`Object.isFrozen(obj)` 方法判断对象是否冻结 
-
+用 `Object.freeze(obj)` 将对象冻结，`Object.isFrozen(obj)` 方法判断对象是否冻结

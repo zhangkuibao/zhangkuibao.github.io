@@ -1,3 +1,7 @@
+<author-info date="1631095576982"></author-info>
+
+# Generator 函数
+
 ## Generator 函数的特性
 
 `Generator` 函数的返回值为一个 `Iterator` 对象，需要手动调用 `next` 方法让函数执行
@@ -71,13 +75,13 @@ function* g2() {
 }
 
 let a = g2();
-a.next();   // g2_1
-a.next();   // g1_1
-a.next();   // g1_2
-a.next();   // g1_3
-a.next();   // g2_2
+a.next(); // g2_1
+a.next(); // g1_1
+a.next(); // g1_2
+a.next(); // g1_3
+a.next(); // g2_2
 
-[...g2()]   // ["g2_1", "g1_1", "g1_2", "g1_3", "g2_2"]
+[...g2()]; // ["g2_1", "g1_1", "g1_2", "g1_3", "g2_2"]
 ```
 
 ## Generator 函数与 for...of 循环
