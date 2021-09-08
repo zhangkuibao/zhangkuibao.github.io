@@ -1,32 +1,40 @@
 <template>
-  <el-timeline>
-    <template v-for="(monthMap, monthIndex) in showCommitMap">
-      <h2 :key="monthIndex">{{monthIndex}}</h2>
-      <el-timeline-item v-for="(dayMap, dayIndex) in monthMap" :timestamp="dayIndex" placement="top" :key="dayIndex">
-        <el-card>
-          <div
-            class="card-item"
-            v-for="(msgMap, msgIndex) in dayMap"
-            :key="msgIndex"
-          >
-            <div class="card-item-title">{{ msgIndex }}</div>
-            <ul
-              class="card-item-list"
-              v-for="msgItem in msgMap"
-              :key="msgItem.date"
+  <div>
+    <update-chart :list="commitList"/>
+    <el-timeline>
+      <template v-for="(monthMap, monthIndex) in showCommitMap">
+        <h2 :key="monthIndex">{{ monthIndex }}</h2>
+        <el-timeline-item
+          v-for="(dayMap, dayIndex) in monthMap"
+          :timestamp="dayIndex"
+          placement="top"
+          :key="dayIndex"
+        >
+          <el-card>
+            <div
+              class="card-item"
+              v-for="(msgMap, msgIndex) in dayMap"
+              :key="msgIndex"
             >
-              <li class="card-item-list-item">
-                <span style="margin-right:20px;color:#999">{{
-                  msgItem.time
-                }}</span>
-                <span>{{ msgItem.msg }}</span>
-              </li>
-            </ul>
-          </div>
-        </el-card>
-      </el-timeline-item>
-    </template>
-  </el-timeline>
+              <div class="card-item-title">{{ msgIndex }}</div>
+              <ul
+                class="card-item-list"
+                v-for="msgItem in msgMap"
+                :key="msgItem.date"
+              >
+                <li class="card-item-list-item">
+                  <span style="margin-right:20px;color:#999">{{
+                    msgItem.time
+                  }}</span>
+                  <span>{{ msgItem.msg }}</span>
+                </li>
+              </ul>
+            </div>
+          </el-card>
+        </el-timeline-item>
+      </template>
+    </el-timeline>
+  </div>
 </template>
 
 <script>
@@ -69,11 +77,11 @@ export default {
             };
           }
           result[yearMonth];
-        }else {
+        } else {
           result[yearMonth] = {};
           result[yearMonth][date] = {
             [type]: [ele],
-          }
+          };
         }
       });
       return result;
@@ -96,7 +104,6 @@ export default {
       fetch("./docsify/src/assets/commit.json").then((res) => {
         res.json().then((json) => {
           this.commitList = json;
-          console.log(this.showCommitMap);
         });
       });
     },
