@@ -1,4 +1,4 @@
-<author-info date="1630048499535"></author-info>
+<author-info date="1631093784752"></author-info>
 
 ## 访问地址
 
@@ -37,3 +37,9 @@ github https url: `https://github.com/zhangkuibao/zhangkuibao.github.io.git`
 ## 具体到功能
 
 学习技术文档时要有具体的实例，技术是为需求服务的，得知道它能做什么，又是怎么做到的。
+
+## 具体项目的目录结构
+
+- CSS
+  - 基础      在文档目录下存放基础知识，即从官方文档中学习整理的内容
+  - 技巧.md   在根目录下存放其他内容，可根据用途不同进行分类（分目录）存放

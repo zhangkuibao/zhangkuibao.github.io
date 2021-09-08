@@ -38,7 +38,6 @@ export default class BackToTopPlugin {
     //   });
 
     hook.ready(function() {
-      console.log("ready");
       BackToTopPlugin.init();
       window.addEventListener("scroll", (o) => {
         if(window.scrollY > 400) {

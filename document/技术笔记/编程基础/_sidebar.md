@@ -29,12 +29,12 @@
     - 笔记
 
       - [CLI命令](document/技术笔记/编程基础/类库框架/Angular/笔记/CLI命令.md)
-      - [指令](document/技术笔记/编程基础/类库框架/Angular/笔记/指令.md)
       - [模块](document/技术笔记/编程基础/类库框架/Angular/笔记/模块.md)
-      - [模板语法](document/技术笔记/编程基础/类库框架/Angular/笔记/模板语法.md)
       - [管道](document/技术笔记/编程基础/类库框架/Angular/笔记/管道.md)
       - [组件](document/技术笔记/编程基础/类库框架/Angular/笔记/组件.md)
+      - [模板语法](document/技术笔记/编程基础/类库框架/Angular/笔记/模板语法.md)
       - [路由](document/技术笔记/编程基础/类库框架/Angular/笔记/路由.md)
+      - [指令](document/技术笔记/编程基础/类库框架/Angular/笔记/指令.md)
 
   - Nest
 
@@ -85,14 +85,6 @@
 
   - Vue
 
-    - 其他
-
-      - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
-      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
-      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
-      - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
-      - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
-
     - 笔记
 
       - [API](document/技术笔记/编程基础/类库框架/Vue/笔记/API.md)
@@ -105,23 +97,29 @@
       - [用法补充](document/技术笔记/编程基础/类库框架/Vue/笔记/用法补充.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/笔记/组件.md)
 
+    - 其他
+
+      - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
+      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
+      - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
+      - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
+      - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
+
 - 编程语言
 
   - CSS
 
-    - [CSS手册](document/技术笔记/编程基础/编程语言/CSS/CSS手册.md)
+    - [z-index-七阶层叠水平](document/技术笔记/编程基础/编程语言/CSS/z-index-七阶层叠水平.md)
+    - [dom元素上的位置信息](document/技术笔记/编程基础/编程语言/CSS/dom元素上的位置信息.md)
+    - [事件对象上的位置信息](document/技术笔记/编程基础/编程语言/CSS/事件对象上的位置信息.md)
 
-    - 技巧
+    - 基础
 
-      - [文本两端对齐](document/技术笔记/编程基础/编程语言/CSS/技巧/文本两端对齐.md)
-
-    - 笔记
-
-      - [Flex布局](document/技术笔记/编程基础/编程语言/CSS/笔记/Flex布局.md)
-      - [伪元素](document/技术笔记/编程基础/编程语言/CSS/笔记/伪元素.md)
-      - [渐变色](document/技术笔记/编程基础/编程语言/CSS/笔记/渐变色.md)
-      - [滤镜](document/技术笔记/编程基础/编程语言/CSS/笔记/滤镜.md)
-      - [选择器](document/技术笔记/编程基础/编程语言/CSS/笔记/选择器.md)
+      - [Flex布局](document/技术笔记/编程基础/编程语言/CSS/基础/Flex布局.md)
+      - [伪元素](document/技术笔记/编程基础/编程语言/CSS/基础/伪元素.md)
+      - [渐变色](document/技术笔记/编程基础/编程语言/CSS/基础/渐变色.md)
+      - [滤镜](document/技术笔记/编程基础/编程语言/CSS/基础/滤镜.md)
+      - [选择器](document/技术笔记/编程基础/编程语言/CSS/基础/选择器.md)
 
   - HTML
 
@@ -164,8 +162,8 @@
 
       - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
       - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
-      - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
       - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
+      - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
       - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
       - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
       - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
