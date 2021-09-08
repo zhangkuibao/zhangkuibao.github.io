@@ -1,9 +1,14 @@
-Promise V8 源码分析(一) https://zhuanlan.zhihu.com/p/264944183
-从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节  https://juejin.cn/post/6945319439772434469?utm_campaign=sembaidu&utm_medium=sem_baidu_jj_pc_dc01&utm_source=bdpcjj00232
-【V8源码补充篇】从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节  https://juejin.cn/post/6953452438300917790
-深度揭秘 Promise 微任务注册和执行过程   https://juejin.cn/post/6844903987183894535#heading-6
+<author-info date="1631096398874"></author-info>
 
-## 一道面试题
+# Promise 与微任务
+
+[Promise V8 源码分析(一)](https://zhuanlan.zhihu.com/p/264944183)
+
+[从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节](https://juejin.cn/post/6945319439772434469?utm_campaign=sembaidu&utm_medium=sem_baidu_jj_pc_dc01&utm_source=bdpcjj00232)
+
+[【V8 源码补充篇】从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节](https://juejin.cn/post/6953452438300917790)
+
+[深度揭秘 Promise 微任务注册和执行过程](https://juejin.cn/post/6844903987183894535#heading-6)
 
 ```js
 Promise.resolve()

@@ -1,8 +1,10 @@
+<author-info date="1631096022887"></author-info>
+
+# valueOf 方法和 toString 方法
+
 `Object.prototype.valueOf()` 和 `Object.prototype.toString()` 两个方法存在于 Object.prototype 上，几乎所有的对象都会继承这两个方法。
 
-
-
-### valueOf()
+## valueOf()
 
 将对象转换为原始值
 
@@ -19,9 +21,8 @@
 | String   | 字符串值。                                               |
 |          | Math 和 Error 对象没有 valueOf 方法。                    |
 
-### toString()
+## toString()
 
 当该对象被表示为一个**文本值**时，或者一个对象以预期的**字符串方式引用**时自动调用。
 
 默认返回 `[object type]` ，`type` 是对象的类型
-

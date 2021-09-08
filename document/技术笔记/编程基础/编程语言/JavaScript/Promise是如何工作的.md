@@ -1,3 +1,7 @@
+<author-info date="1631096293018"></author-info>
+
+# Promise 是如何工作的
+
 ## Promise 使用方式
 
 ### 给 resolve 传入非对象
@@ -41,7 +45,7 @@ new Promise((resolve) => {
   表示 `Promise` 的状态，包括：`pending`，`fulfilled` 和 `rejected`，控制 `Promise` 对其 `then` 方法的传入调用做何反应
 
 - `[[PromiseResult]]`
-  表示 `Promise` 的状态是否转为已完成。只有在` [[PromiseState]]` 不是 `pending` 时才有意义
+  表示 `Promise` 的状态是否转为已完成。只有在`[[PromiseState]]` 不是 `pending` 时才有意义
 
 - `[[PromiseFulfillReactions]]`
   数组，调用 then 时如果 promise 的状态还是 padding 就把 resolve 处理程序添加到这个数组
@@ -168,7 +172,6 @@ catch(onRejected) {
 }
 ```
 
-
 ## 示例
 
 ### 多个 then 时添加微任务队列的顺讯
@@ -210,7 +213,7 @@ Promise.resolve()
 ```
 
 ### finally() 方法可以有多个
- 
+
 ```js
 Promise.resolve()
   .then(() => {

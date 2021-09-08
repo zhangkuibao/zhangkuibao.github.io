@@ -1,3 +1,7 @@
+<author-info date="1631096270055"></author-info>
+
+# JS 中的异步编程
+
 ## 概念
 
 所谓"异步"，简单说就是一个任务不是连续完成的，可以理解成该任务被人为分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。
@@ -151,7 +155,7 @@ async function fn(args) {}
 // 等同于
 
 function fn(args) {
-  return spawn(function* () {
+  return spawn(function*() {
     // spawn 就是 Generator 的自动执行器
     // ...
   });
@@ -162,7 +166,7 @@ function fn(args) {
 
 ```js
 function spawn(genF) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     const gen = genF();
     function step(nextF) {
       let next;
@@ -175,19 +179,19 @@ function spawn(genF) {
         return resolve(next.value);
       }
       Promise.resolve(next.value).then(
-        function (v) {
-          step(function () {
+        function(v) {
+          step(function() {
             return gen.next(v);
           });
         },
-        function (e) {
-          step(function () {
+        function(e) {
+          step(function() {
             return gen.throw(e);
           });
         }
       );
     }
-    step(function () {
+    step(function() {
       return gen.next(undefined);
     });
   });
