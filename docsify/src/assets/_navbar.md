@@ -2,15 +2,15 @@
 
   - [代码库](document/技术笔记/代码库/功能实现/blob转base64.md)
 
-  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
-
   - [学习规划](document/技术笔记/学习规划/如何提高.md)
+
+  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
 
   - [开发工具](document/技术笔记/开发工具/git/git使用手册.md)
 
   - [编程基础](document/技术笔记/编程基础/后端知识/数据库/MongoDB/mongodb.md)
 
-  - [解决方案](document/技术笔记/解决方案/上传图片前查看缩略图.md)
+  - [解决方案](document/技术笔记/解决方案/前端安全.md)
 
 - 阅读笔记
 
