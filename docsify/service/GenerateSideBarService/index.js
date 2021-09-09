@@ -12,7 +12,7 @@ const callback = throttle(function(changePath) {
 }, 2000);
 const watcher = chokidar
   .watch(path.resolve(absDirname, "document"), {
-    ignored: /.git|node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts|_sidebar.md|_navbar.md/,
+    ignored: /node_modules|.js|.vue|.html|.png|.css|.js|.jpg|.map|.less|.ts|_sidebar.md|_navbar.md/,
   })
   .on("ready", () => {
     serviceLoadLog("自动生成sidebar和navbar");

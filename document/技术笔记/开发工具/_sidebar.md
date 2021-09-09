@@ -4,12 +4,9 @@
 - git
 
   - [git使用手册](document/技术笔记/开发工具/git/git使用手册.md)
-
-  - 技巧
-
-    - [git回退到上一版本并上传到远程仓库](document/技术笔记/开发工具/git/技巧/git回退到上一版本并上传到远程仓库.md)
-    - [从其他分支复制指定commit到当前分支](document/技术笔记/开发工具/git/技巧/从其他分支复制指定commit到当前分支.md)
-    - [合并两个不同仓库](document/技术笔记/开发工具/git/技巧/合并两个不同仓库.md)
+  - [git回退到上一版本并上传到远程仓库](document/技术笔记/开发工具/git/git回退到上一版本并上传到远程仓库.md)
+  - [从其他分支复制指定commit到当前分支](document/技术笔记/开发工具/git/从其他分支复制指定commit到当前分支.md)
+  - [合并两个不同仓库](document/技术笔记/开发工具/git/合并两个不同仓库.md)
 
 - npm
 
@@ -37,8 +34,8 @@
       - [externals](document/技术笔记/开发工具/webpack/笔记/配置/externals.md)
       - [loader](document/技术笔记/开发工具/webpack/笔记/配置/loader.md)
       - [mode](document/技术笔记/开发工具/webpack/笔记/配置/mode.md)
-      - [module](document/技术笔记/开发工具/webpack/笔记/配置/module.md)
       - [optimization](document/技术笔记/开发工具/webpack/笔记/配置/optimization.md)
+      - [module](document/技术笔记/开发工具/webpack/笔记/配置/module.md)
       - [output](document/技术笔记/开发工具/webpack/笔记/配置/output.md)
       - [plugin](document/技术笔记/开发工具/webpack/笔记/配置/plugin.md)
       - [resolve](document/技术笔记/开发工具/webpack/笔记/配置/resolve.md)
