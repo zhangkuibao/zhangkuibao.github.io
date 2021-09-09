@@ -1,3 +1,7 @@
+<author-info date="1631170411631"></author-info>
+
+# SEO 优化
+
 ## SEO 优化具体方法
 
 1. 网站结构扁平化，实现通过首页可以到达任何页面
@@ -16,7 +20,7 @@
 
 1. WWW 前缀的二级域名权重最高
 
-www.xxx.com比aaa. xxx.com 权重要高
+www.xxx.com 比 aaa. xxx.com 权重要高
 
 2. 二级域名比目录有优势
 
@@ -30,8 +34,8 @@ www. xxx.com/aaa/比 www. xxx.com/aaa/bbb/ 权重要高
 
 4. 目录权重比一个静态网页高
 
-www.xxx.com/aaa/比www. xxx.com/aaa.htm 权重高
+www.xxx.com/aaa/比 www. xxx.com/aaa.htm 权重高
 
 5. 静态 URL 比动态 URL 权重高
 
-www.xxx.com/aaa.htm比www.xxx.com/aaa.asp?a=123
+www.xxx.com/aaa.htm 比 www.xxx.com/aaa.asp?a=123
