@@ -26,24 +26,26 @@
 
     - 基础
 
+      - [CLI命令](document/技术笔记/编程基础/类库框架/Angular/基础/CLI命令.md)
       - [指令](document/技术笔记/编程基础/类库框架/Angular/基础/指令.md)
+      - [模块](document/技术笔记/编程基础/类库框架/Angular/基础/模块.md)
       - [模板语法](document/技术笔记/编程基础/类库框架/Angular/基础/模板语法.md)
       - [管道](document/技术笔记/编程基础/类库框架/Angular/基础/管道.md)
       - [组件](document/技术笔记/编程基础/类库框架/Angular/基础/组件.md)
       - [路由](document/技术笔记/编程基础/类库框架/Angular/基础/路由.md)
-      - [模块](document/技术笔记/编程基础/类库框架/Angular/基础/模块.md)
-      - [CLI命令](document/技术笔记/编程基础/类库框架/Angular/基础/CLI命令.md)
 
   - Nest
 
-    - [Nest](document/技术笔记/编程基础/类库框架/Nest/Nest.md)
-    - [中间件](document/技术笔记/编程基础/类库框架/Nest/中间件.md)
-    - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/依赖注入.md)
-    - [守卫](document/技术笔记/编程基础/类库框架/Nest/守卫.md)
-    - [异常处理](document/技术笔记/编程基础/类库框架/Nest/异常处理.md)
-    - [控制器](document/技术笔记/编程基础/类库框架/Nest/控制器.md)
-    - [模块](document/技术笔记/编程基础/类库框架/Nest/模块.md)
-    - [管道](document/技术笔记/编程基础/类库框架/Nest/管道.md)
+    - 基础
+
+      - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
+      - [中间件](document/技术笔记/编程基础/类库框架/Nest/基础/中间件.md)
+      - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/基础/依赖注入.md)
+      - [守卫](document/技术笔记/编程基础/类库框架/Nest/基础/守卫.md)
+      - [异常处理](document/技术笔记/编程基础/类库框架/Nest/基础/异常处理.md)
+      - [控制器](document/技术笔记/编程基础/类库框架/Nest/基础/控制器.md)
+      - [模块](document/技术笔记/编程基础/类库框架/Nest/基础/模块.md)
+      - [管道](document/技术笔记/编程基础/类库框架/Nest/基础/管道.md)
 
   - NodeJS
 
@@ -69,8 +71,8 @@
 
   - Nuxt
 
-    - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
     - [对于Vue的扩展](document/技术笔记/编程基础/类库框架/Nuxt/对于Vue的扩展.md)
+    - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
 
   - React
 
@@ -86,10 +88,10 @@
     - 其他
 
       - [vue_router页面刷新时渲染不同的组件](document/技术笔记/编程基础/类库框架/Vue/其他/vue_router页面刷新时渲染不同的组件.md)
+      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
       - [对于vue的理解](document/技术笔记/编程基础/类库框架/Vue/其他/对于vue的理解.md)
       - [查看vue.config.js生成的webpack配置](document/技术笔记/编程基础/类库框架/Vue/其他/查看vue.config.js生成的webpack配置.md)
       - [获取作用域插槽](document/技术笔记/编程基础/类库框架/Vue/其他/获取作用域插槽.md)
-      - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/其他/使用异步组件时的resolve函数.md)
 
     - 笔记
 
@@ -136,15 +138,15 @@
   - JavaScript
 
     - [dom和bom的包含关系](document/技术笔记/编程基础/编程语言/JavaScript/dom和bom的包含关系.md)
+    - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
     - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
+    - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
+    - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [valueOf方法和toString方法](document/技术笔记/编程基础/编程语言/JavaScript/valueOf方法和toString方法.md)
     - [函数尾调用](document/技术笔记/编程基础/编程语言/JavaScript/函数尾调用.md)
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
-    - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
-    - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
-    - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
 
     - 基础
 
@@ -165,10 +167,10 @@
         - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/ArrayBuffer.md)
         - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/Blob.md)
         - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
+        - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/FileReader.md)
+        - [URL](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/URL.md)
         - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/媒体录制.md)
         - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/流操作.md)
-        - [URL](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/URL.md)
-        - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/FileReader.md)
 
       - 对象
 
