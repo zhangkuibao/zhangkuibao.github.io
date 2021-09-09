@@ -79,8 +79,8 @@
     - 笔记
 
       - [JSX](document/技术笔记/编程基础/类库框架/React/笔记/JSX.md)
-      - [元素渲染](document/技术笔记/编程基础/类库框架/React/笔记/元素渲染.md)
       - [值得注意的事情](document/技术笔记/编程基础/类库框架/React/笔记/值得注意的事情.md)
+      - [元素渲染](document/技术笔记/编程基础/类库框架/React/笔记/元素渲染.md)
       - [组件](document/技术笔记/编程基础/类库框架/React/笔记/组件.md)
 
   - Vue
@@ -182,18 +182,18 @@
 
   - Less
 
-    - 笔记
+    - 基础
 
-      - [函数](document/技术笔记/编程基础/编程语言/Less/笔记/函数.md)
-      - [语法](document/技术笔记/编程基础/编程语言/Less/笔记/语法.md)
+      - [函数](document/技术笔记/编程基础/编程语言/Less/基础/函数.md)
+      - [语法](document/技术笔记/编程基础/编程语言/Less/基础/语法.md)
 
   - Sass
 
-    - 笔记
+    - 基础
 
-      - [Sass与Less的异同](document/技术笔记/编程基础/编程语言/Sass/笔记/Sass与Less的异同.md)
-      - [内置函数](document/技术笔记/编程基础/编程语言/Sass/笔记/内置函数.md)
-      - [语法](document/技术笔记/编程基础/编程语言/Sass/笔记/语法.md)
+      - [Sass与Less的异同](document/技术笔记/编程基础/编程语言/Sass/基础/Sass与Less的异同.md)
+      - [内置函数](document/技术笔记/编程基础/编程语言/Sass/基础/内置函数.md)
+      - [语法](document/技术笔记/编程基础/编程语言/Sass/基础/语法.md)
 
   - TypeScript
 
