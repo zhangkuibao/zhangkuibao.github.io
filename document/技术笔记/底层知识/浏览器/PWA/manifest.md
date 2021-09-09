@@ -1,3 +1,7 @@
+<author-info date="1631169513906"></author-info>
+
+# manifest
+
 ## 介绍
 
 这个 manifest 并不是 ApplicationCache 中的那个 manifest，而是在 link 标签中引入的、告知如何安装 web 应用的 json 文件

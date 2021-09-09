@@ -1,3 +1,7 @@
+<author-info date="1631169674760"></author-info>
+
+# ContentType 对传参格式的影响
+
 ## 传参格式
 
 在 chrome 中观察参数格式会发现有三种情况：`Query String Parameters`、`Form Data`、`Request Payload`，主要是因为 `Content-Type` 与请求方式的不同导致的。
@@ -21,12 +25,12 @@
 ```js
 const formData = new FormData();
 formData.append("label", "ID_photo-front");
-formData.append("file", document.querySelector('input[type=file]').files[0]);
+formData.append("file", document.querySelector("input[type=file]").files[0]);
 
 fetch("http://localhost:3000/upload", {
   method: "POST",
   body: formData,
-  processData: false,       // data 值是 formdata 对象，不需要对数据做处理
+  processData: false, // data 值是 formdata 对象，不需要对数据做处理
 });
 ```
 

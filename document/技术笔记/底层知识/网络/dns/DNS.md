@@ -1,3 +1,7 @@
+<author-info date="1631169586686"></author-info>
+
+# DNS
+
 ## 介绍
 
 DNS（Domain Name System）是互联网的一项服务。它作为将域名和 IP 地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS 使用 UDP 端口 53。当前，对于每一级域名长度的限制是 63 个字符，域名总长度则不能超过 253 个字符。
@@ -8,6 +12,10 @@ DNS（Domain Name System）是互联网的一项服务。它作为将域名和 I
 
 DNS 是域名和 IP 地址相互映射的分布式数据库。
 
+### DNS 解析流程
+
+![DNS解析流程](/src/DNS解析流程.png)
+
 ### DNS 查询方式
 
 当前 DNS 服务器无法解析出结果时需要去其他 DNS 服务器查询，这时有两种方式：
@@ -17,8 +25,6 @@ DNS 是域名和 IP 地址相互映射的分布式数据库。
 2. 迭代解析：当前 DNS 服务器把其他 DNS 服务器的 ip 返回给客户端 DNS 程序，由客户端向新的 DNS 服务器发起请求
 
 ### DNS 查询流程
-
-[How the Domain Name System (DNS) Works](https://www.verisign.com/en_US/website-presence/online/how-dns-works/index.xhtml)
 
 1. 在本地域名服务器中根据域名查询 IP 地址。
 2. 本地未找到时本地域名服务器会向根域名服务器发送一个请求。
@@ -72,3 +78,5 @@ NS 记录的优先级高于 A 记录如果一个主机地址同时存在 NS 记�
 ## 参考
 
 [深入浅出经典面试题：从浏览器中输入 URL 到页面加载发生了什么 - Part 1](https://www.cnblogs.com/confach/p/10050013.html)
+
+[How the Domain Name System (DNS) Works](https://www.verisign.com/en_US/website-presence/online/how-dns-works/index.xhtml)

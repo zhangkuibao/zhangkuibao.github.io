@@ -1,3 +1,7 @@
+<author-info date="1631169138241"></author-info>
+
+# ServiceWorker
+
 ## 作用
 
 Service Worker 可以使你的应用先访问本地缓存资源，所以在离线状态时，在没有通过网络接收到更多的数据前，仍可以提供基本的功能。
@@ -92,7 +96,7 @@ cache 兼容性很差，可以使用 polyfill，在使用 Service Worker 前要�
 
 ```js
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
+  window.addEventListener("load", function() {
     navigator.serviceWorker.register("/service.js").then(
       (registration) => {
         // Registration was successful
@@ -115,10 +119,10 @@ if ("serviceWorker" in navigator) {
 填充缓存需要用到 cache，cache 是一个 service worker 上的全局对象，它使我们可以存储网络响应发来的资源，并且根据它们的请求来生成 key。
 
 ```js
-self.addEventListener("install", function (event) {
+self.addEventListener("install", function(event) {
   // Perform install steps
   event.waitUntil(
-    caches.open("v1").then(function (cache) {
+    caches.open("v1").then(function(cache) {
       return cache.addAll([
         "/index.html",
         "index.js",
@@ -146,7 +150,7 @@ caches.match(event.request) 允许我们对网络请求的资源和 cache 里可
 在 event 中可以获取到请求的详细信息，event.request.url、event.request.method 等。
 
 ```js
-this.addEventListener("fetch", function (event) {
+this.addEventListener("fetch", function(event) {
   event.respondWith(caches.match(event.request));
 });
 ```
@@ -156,22 +160,22 @@ this.addEventListener("fetch", function (event) {
 Service Worker 接收到请求时先检查缓存，如果缓存中没有则请求服务器资源，如果从服务器拿到资源就返回并把资源存入缓存，如果服务器也没有获取到就可以在 catch 中设置一个默认的文件。
 
 ```js
-this.addEventListener("fetch", function (event) {
+this.addEventListener("fetch", function(event) {
   event.respondWith(
     caches
       .match(event.request)
-      .then(function (cacheRes) {
+      .then(function(cacheRes) {
         return (
           cacheRes ||
-          fetch(event.request).then(function (response) {
-            return caches.open("v1").then(function (cache) {
+          fetch(event.request).then(function(response) {
+            return caches.open("v1").then(function(cache) {
               cache.put(event.request, response.clone());
               return response;
             });
           })
         );
       })
-      .catch(function () {
+      .catch(function() {
         return caches.match("/assets/gallery/myLittleVader.jpg");
       })
   );
@@ -185,9 +189,9 @@ this.addEventListener("fetch", function (event) {
 修改版本号（缓存名称）来实现更新缓存。
 
 ```js
-self.addEventListener("install", function (event) {
+self.addEventListener("install", function(event) {
   event.waitUntil(
-    caches.open("v2").then(function (cache) {
+    caches.open("v2").then(function(cache) {
       return cache.addAll([]);
     })
   );
@@ -197,13 +201,13 @@ self.addEventListener("install", function (event) {
 - 删除旧缓存
 
 ```js
-self.addEventListener("activate", function (event) {
+self.addEventListener("activate", function(event) {
   var cacheWhitelist = ["v2"]; // 缓存白名单
 
   event.waitUntil(
-    caches.keys().then(function (keyList) {
+    caches.keys().then(function(keyList) {
       return Promise.all(
-        keyList.map(function (key) {
+        keyList.map(function(key) {
           if (cacheWhitelist.indexOf(key) === -1) {
             return caches.delete(key);
           }

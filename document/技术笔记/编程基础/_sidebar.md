@@ -38,8 +38,8 @@
 
     - 基础
 
-      - [中间件](document/技术笔记/编程基础/类库框架/Nest/基础/中间件.md)
       - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
+      - [中间件](document/技术笔记/编程基础/类库框架/Nest/基础/中间件.md)
       - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/基础/依赖注入.md)
       - [守卫](document/技术笔记/编程基础/类库框架/Nest/基础/守卫.md)
       - [异常处理](document/技术笔记/编程基础/类库框架/Nest/基础/异常处理.md)
@@ -61,6 +61,16 @@
 
     - [对于Vue的扩展](document/技术笔记/编程基础/类库框架/Nuxt/对于Vue的扩展.md)
     - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
+
+  - React
+
+    - [值得注意的事情](document/技术笔记/编程基础/类库框架/React/值得注意的事情.md)
+
+    - 基础
+
+      - [JSX](document/技术笔记/编程基础/类库框架/React/基础/JSX.md)
+      - [元素渲染](document/技术笔记/编程基础/类库框架/React/基础/元素渲染.md)
+      - [组件](document/技术笔记/编程基础/类库框架/React/基础/组件.md)
 
   - Vue
 
@@ -84,21 +94,12 @@
       - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/基础/服务端渲染.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/基础/组件.md)
 
-  - React
-
-    - [值得注意的事情](document/技术笔记/编程基础/类库框架/React/值得注意的事情.md)
-
-    - 基础
-
-      - [JSX](document/技术笔记/编程基础/类库框架/React/基础/JSX.md)
-      - [元素渲染](document/技术笔记/编程基础/类库框架/React/基础/元素渲染.md)
-      - [组件](document/技术笔记/编程基础/类库框架/React/基础/组件.md)
-
 - 编程语言
 
   - CSS
 
     - [dom元素上的位置信息](document/技术笔记/编程基础/编程语言/CSS/dom元素上的位置信息.md)
+    - [link和@import引入css的区别](document/技术笔记/编程基础/编程语言/CSS/link和@import引入css的区别.md)
     - [z-index-七阶层叠水平](document/技术笔记/编程基础/编程语言/CSS/z-index-七阶层叠水平.md)
     - [事件对象上的位置信息](document/技术笔记/编程基础/编程语言/CSS/事件对象上的位置信息.md)
 
@@ -106,8 +107,8 @@
 
       - [Flex布局](document/技术笔记/编程基础/编程语言/CSS/基础/Flex布局.md)
       - [伪元素](document/技术笔记/编程基础/编程语言/CSS/基础/伪元素.md)
-      - [渐变色](document/技术笔记/编程基础/编程语言/CSS/基础/渐变色.md)
       - [滤镜](document/技术笔记/编程基础/编程语言/CSS/基础/滤镜.md)
+      - [渐变色](document/技术笔记/编程基础/编程语言/CSS/基础/渐变色.md)
       - [选择器](document/技术笔记/编程基础/编程语言/CSS/基础/选择器.md)
 
   - HTML
@@ -128,6 +129,7 @@
 
     - [dom和bom的包含关系](document/技术笔记/编程基础/编程语言/JavaScript/dom和bom的包含关系.md)
     - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
+    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
     - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
     - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [valueOf方法和toString方法](document/技术笔记/编程基础/编程语言/JavaScript/valueOf方法和toString方法.md)
@@ -135,7 +137,6 @@
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
-    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
 
     - 基础
 
@@ -148,18 +149,18 @@
       - ECMAScript
 
         - [Generator函数](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Generator函数.md)
-        - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Set&Map类型.md)
         - [Iterator接口](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Iterator接口.md)
+        - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Set&Map类型.md)
 
       - WebAPI
 
         - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/ArrayBuffer.md)
         - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/Blob.md)
+        - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
         - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/FileReader.md)
         - [URL](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/URL.md)
         - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/媒体录制.md)
         - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/流操作.md)
-        - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
 
       - 对象
 

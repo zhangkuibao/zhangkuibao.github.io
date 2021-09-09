@@ -7,7 +7,7 @@
 
 - 小程序
 
-  - [更新机制](document/技术笔记/底层知识/小程序/更新机制.md)
+  - [启动和更新机制](document/技术笔记/底层知识/小程序/启动和更新机制.md)
   - [架构原理](document/技术笔记/底层知识/小程序/架构原理.md)
 
 - 操作系统
@@ -19,6 +19,7 @@
   - [像素](document/技术笔记/底层知识/浏览器/像素.md)
   - [前端存储](document/技术笔记/底层知识/浏览器/前端存储.md)
   - [垃圾回收机制](document/技术笔记/底层知识/浏览器/垃圾回收机制.md)
+  - [详解URL](document/技术笔记/底层知识/浏览器/详解URL.md)
 
   - PWA
 
@@ -51,30 +52,24 @@
   - [端口](document/技术笔记/底层知识/网络/端口.md)
   - [输入一个url到显示页面的过程](document/技术笔记/底层知识/网络/输入一个url到显示页面的过程.md)
 
-  - dns
+  - DNS
 
-    - [DNS](document/技术笔记/底层知识/网络/dns/DNS.md)
+    - [DNS](document/技术笔记/底层知识/网络/DNS/DNS.md)
 
   - http协议
 
-    - [ContentType对传参格式的影响](document/技术笔记/底层知识/网络/http协议/ContentType对传参格式的影响.md)
     - [gzip压缩](document/技术笔记/底层知识/网络/http协议/gzip压缩.md)
     - [https协议](document/技术笔记/底层知识/网络/http协议/https协议.md)
     - [http协议](document/技术笔记/底层知识/网络/http协议/http协议.md)
     - [http协议传参及后端参数解析方式](document/技术笔记/底层知识/网络/http协议/http协议传参及后端参数解析方式.md)
-    - [http协议跨域](document/技术笔记/底层知识/网络/http协议/http协议跨域.md)
+    - [http响应状态码](document/技术笔记/底层知识/网络/http协议/http响应状态码.md)
     - [post和get的区别](document/技术笔记/底层知识/网络/http协议/post和get的区别.md)
-
-  - tcp
-
-    - [tcp](document/技术笔记/底层知识/网络/tcp/tcp.md)
-
-  - 网络攻击
-
-    - [网络攻击](document/技术笔记/底层知识/网络/网络攻击/网络攻击.md)
+    - [http协议跨域](document/技术笔记/底层知识/网络/http协议/http协议跨域.md)
+    - [ContentType对传参格式的影响](document/技术笔记/底层知识/网络/http协议/ContentType对传参格式的影响.md)
 
 - 计算机
 
   - [时间格式UTC和GMT](document/技术笔记/底层知识/计算机/时间格式UTC和GMT.md)
   - [流媒体](document/技术笔记/底层知识/计算机/流媒体.md)
+  - [计算机网络体系结构](document/技术笔记/底层知识/计算机/计算机网络体系结构.md)
 

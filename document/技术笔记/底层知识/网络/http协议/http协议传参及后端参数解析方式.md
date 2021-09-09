@@ -1,4 +1,9 @@
-传参方式并不受请求类型的影响（post，get），get 请求也可以传递请求体参数（body），post请求也可以传递查询参数（query）。
+<author-info date="1631169736213"></author-info>
+
+# http 协议传参及后端参数解析方式
+
+传参方式并不受请求类型的影响（post，get），get 请求也可以传递请求体参数（body），post 请求也可以传递查询参数（query）。
+
 ## 请求头参数（header）
 
 将参数携带在 header 中 `[Accept-field]: [Accept-value]`
@@ -34,6 +39,7 @@ app.post("/", (req, res) => {
 跟在路径后面，用 / 分隔
 
 ### 传参
+
 ```js
 $.ajax({
   url: "http://localhost:3000/999",
@@ -41,17 +47,18 @@ $.ajax({
 ```
 
 ### 后台解析
+
 ```js
 const express = require("express");
 const app = express();
 
-app.post('/:num', (req,res) => {
+app.post("/:num", (req, res) => {
   let params = req.params["num"];
-})
+});
 
-app.post('/:num', (req,res) => {
+app.post("/:num", (req, res) => {
   let params = req.params["num"];
-})
+});
 ```
 
 ## 查询参数（query）
@@ -92,8 +99,8 @@ app.post("/", (req, res) => {
 $.ajax({
   url: "http://localhost:3000",
   data: {
-      namg: 'zkb'
-  }
+    namg: "zkb",
+  },
 });
 ```
 
