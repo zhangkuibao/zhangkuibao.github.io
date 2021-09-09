@@ -1,7 +1,13 @@
+<author-info date="1631152901923"></author-info>
+
+# 对于 Vue 的扩展
+
 ## Nuxt.js 为页面提供的特殊配置项：
 
 ### asyncData
+
 数量的风景
+
 1. 在**页面组件** 每次加载前被调用
 2. 在该函数中无法通过 `this` 获取组件实例
 3. 返回一个 `Promise`，在 `Promise` 解析后才会渲染组件
@@ -9,8 +15,10 @@
 5. 返回值可以是这些类型：`Promise`, `对象`, `二参的回调函数`
 
 #### 参数
+
 1. 一参是当前页面的上下文对象，[见官方文档](https://www.nuxtjs.cn/api/context)
 2. 二参是回调函数，如下
+
 ```js
 ƒ (err, data) {
     if (err) {
@@ -56,6 +64,7 @@
 关于页面配置项的详细信息，请参考 页面 API。
 
 ### watchQuery
+
 监听参数变化
 
 如果定义的字符串发生变化，将调用所有组件方法(asyncData, fetch, validate, layout, ...)。
