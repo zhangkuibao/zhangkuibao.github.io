@@ -9,11 +9,6 @@
 
       - [mongodb](document/技术笔记/编程基础/后端知识/数据库/MongoDB/mongodb.md)
 
-- 算法
-
-  - [待整理方法](document/技术笔记/编程基础/算法/待整理方法.md)
-  - [算法及思路](document/技术笔记/编程基础/算法/算法及思路.md)
-
 - 类库框架
 
   - [MVVM框架](document/技术笔记/编程基础/类库框架/MVVM框架.md)
@@ -43,8 +38,8 @@
 
     - 基础
 
-      - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
       - [中间件](document/技术笔记/编程基础/类库框架/Nest/基础/中间件.md)
+      - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
       - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/基础/依赖注入.md)
       - [守卫](document/技术笔记/编程基础/类库框架/Nest/基础/守卫.md)
       - [异常处理](document/技术笔记/编程基础/类库框架/Nest/基础/异常处理.md)
@@ -67,16 +62,6 @@
     - [对于Vue的扩展](document/技术笔记/编程基础/类库框架/Nuxt/对于Vue的扩展.md)
     - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
 
-  - React
-
-    - [值得注意的事情](document/技术笔记/编程基础/类库框架/React/值得注意的事情.md)
-
-    - 基础
-
-      - [JSX](document/技术笔记/编程基础/类库框架/React/基础/JSX.md)
-      - [元素渲染](document/技术笔记/编程基础/类库框架/React/基础/元素渲染.md)
-      - [组件](document/技术笔记/编程基础/类库框架/React/基础/组件.md)
-
   - Vue
 
     - [使用异步组件时的resolve函数](document/技术笔记/编程基础/类库框架/Vue/使用异步组件时的resolve函数.md)
@@ -98,6 +83,16 @@
       - [可复用内容](document/技术笔记/编程基础/类库框架/Vue/基础/可复用内容.md)
       - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/基础/服务端渲染.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/基础/组件.md)
+
+  - React
+
+    - [值得注意的事情](document/技术笔记/编程基础/类库框架/React/值得注意的事情.md)
+
+    - 基础
+
+      - [JSX](document/技术笔记/编程基础/类库框架/React/基础/JSX.md)
+      - [元素渲染](document/技术笔记/编程基础/类库框架/React/基础/元素渲染.md)
+      - [组件](document/技术笔记/编程基础/类库框架/React/基础/组件.md)
 
 - 编程语言
 
@@ -133,7 +128,6 @@
 
     - [dom和bom的包含关系](document/技术笔记/编程基础/编程语言/JavaScript/dom和bom的包含关系.md)
     - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
-    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
     - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
     - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [valueOf方法和toString方法](document/技术笔记/编程基础/编程语言/JavaScript/valueOf方法和toString方法.md)
@@ -141,6 +135,7 @@
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
+    - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
 
     - 基础
 
@@ -153,18 +148,18 @@
       - ECMAScript
 
         - [Generator函数](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Generator函数.md)
-        - [Iterator接口](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Iterator接口.md)
         - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Set&Map类型.md)
+        - [Iterator接口](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Iterator接口.md)
 
       - WebAPI
 
         - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/ArrayBuffer.md)
         - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/Blob.md)
-        - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
         - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/FileReader.md)
         - [URL](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/URL.md)
         - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/媒体录制.md)
         - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/流操作.md)
+        - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
 
       - 对象
 

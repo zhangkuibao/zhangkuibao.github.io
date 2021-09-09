@@ -17,11 +17,24 @@
 - 常用代码
 
   - [CSS](document/技术笔记/代码库/常用代码/CSS.md)
-  - [JS](document/技术笔记/代码库/常用代码/JS.md)
-  - [JS兼容](document/技术笔记/代码库/常用代码/JS兼容.md)
   - [NodeJS](document/技术笔记/代码库/常用代码/NodeJS.md)
   - [Sass](document/技术笔记/代码库/常用代码/Sass.md)
   - [正则](document/技术笔记/代码库/常用代码/正则.md)
+
+  - JS
+
+    - [Cookie](document/技术笔记/代码库/常用代码/JS/Cookie.md)
+    - [JS兼容函数](document/技术笔记/代码库/常用代码/JS/JS兼容函数.md)
+    - [其他](document/技术笔记/代码库/常用代码/JS/其他.md)
+    - [字符串](document/技术笔记/代码库/常用代码/JS/字符串.md)
+    - [数组](document/技术笔记/代码库/常用代码/JS/数组.md)
+    - [日期](document/技术笔记/代码库/常用代码/JS/日期.md)
+    - [算法及思路](document/技术笔记/代码库/常用代码/JS/算法及思路.md)
+    - [防抖节流](document/技术笔记/代码库/常用代码/JS/防抖节流.md)
+
+- 思路
+
+  - [循环选取数组元素](document/技术笔记/代码库/思路/循环选取数组元素.md)
 
 - 样式效果
 
