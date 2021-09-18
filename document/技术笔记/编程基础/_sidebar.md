@@ -123,6 +123,15 @@
         - [shadow-dom](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/shadow-dom.md)
         - [web-components](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/web-components.md)
 
+  - Java
+
+    - 基础
+
+      - [修饰符](document/技术笔记/编程基础/编程语言/Java/基础/修饰符.md)
+      - [抽象类](document/技术笔记/编程基础/编程语言/Java/基础/抽象类.md)
+      - [接口](document/技术笔记/编程基础/编程语言/Java/基础/接口.md)
+      - [静态属性和静态方法](document/技术笔记/编程基础/编程语言/Java/基础/静态属性和静态方法.md)
+
   - JavaScript
 
     - [dom和bom的包含关系](document/技术笔记/编程基础/编程语言/JavaScript/dom和bom的包含关系.md)
