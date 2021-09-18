@@ -1,13 +1,11 @@
 <div class="sidebar-title">技术笔记 — 编程基础</div>
 <template id="root-breadcrumb">编程基础</template>
 
-- 后端知识
+- 数据库
 
-  - 数据库
+  - MongoDB
 
-    - MongoDB
-
-      - [mongodb](document/技术笔记/编程基础/后端知识/数据库/MongoDB/mongodb.md)
+    - [mongodb](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
 
 - 类库框架
 
@@ -107,8 +105,8 @@
 
       - [Flex布局](document/技术笔记/编程基础/编程语言/CSS/基础/Flex布局.md)
       - [伪元素](document/技术笔记/编程基础/编程语言/CSS/基础/伪元素.md)
-      - [滤镜](document/技术笔记/编程基础/编程语言/CSS/基础/滤镜.md)
       - [渐变色](document/技术笔记/编程基础/编程语言/CSS/基础/渐变色.md)
+      - [滤镜](document/技术笔记/编程基础/编程语言/CSS/基础/滤镜.md)
       - [选择器](document/技术笔记/编程基础/编程语言/CSS/基础/选择器.md)
 
   - HTML
