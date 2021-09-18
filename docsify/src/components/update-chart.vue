@@ -52,7 +52,7 @@ export default {
     calendarRange() {
       if (this.seriesData.length === 0) return [];
       return [
-        this.seriesData[0][0],
+        this.getFullTime(Date.now()),
         this.seriesData[this.seriesData.length - 1][0],
       ];
     },
