@@ -8,6 +8,16 @@
   - [从其他分支复制指定commit到当前分支](document/技术笔记/工具/git/从其他分支复制指定commit到当前分支.md)
   - [合并两个不同仓库](document/技术笔记/工具/git/合并两个不同仓库.md)
 
+- nginx
+
+  - [启动、停止和重新加载配置](document/技术笔记/工具/nginx/启动、停止和重新加载配置.md)
+
+  - 常用配置
+
+    - [代理服务器](document/技术笔记/工具/nginx/常用配置/代理服务器.md)
+    - [本地服务器](document/技术笔记/工具/nginx/常用配置/本地服务器.md)
+    - [负载均衡](document/技术笔记/工具/nginx/常用配置/负载均衡.md)
+
 - npm
 
   - [npm介绍](document/技术笔记/工具/npm/npm介绍.md)
