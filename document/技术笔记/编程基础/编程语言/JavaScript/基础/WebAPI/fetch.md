@@ -1,6 +1,6 @@
+<author-info date="1636360440831"></author-info>
+
 # fetch API
-
-
 
 fetch 用于发送 http 请求，比 XMLHttpRequest 更强大且更灵活。
 
@@ -12,10 +12,24 @@ XMLHttpRequest 不支持数据流，所有数据必须放在缓存中，不支�
 
 ## fetch 用法
 
+### 发送请求
+
 fetch() 方法接收两个参数，一参为 URL，二参是配置对象
 
 ```js
 fetch(url, optionObj);
+```
+
+#### post 请求传参
+
+```js
+fetch(`/generateConfigure/submit`, {
+  method: "post",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(params),
+});
 ```
 
 ### Response 对象
