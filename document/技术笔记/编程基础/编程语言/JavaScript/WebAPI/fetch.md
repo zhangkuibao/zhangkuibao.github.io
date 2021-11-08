@@ -1,4 +1,4 @@
-<author-info date="1636360440831"></author-info>
+<author-info date="1636365523542"></author-info>
 
 # fetch API
 
@@ -9,6 +9,42 @@ fetch 用于发送 http 请求，比 XMLHttpRequest 更强大且更灵活。
 fetch() 通过数据流（stream 对象）处理对象，可以分块读取，有利于提高网站性能，减少内存占用，对于请求大文件或者网速慢的场景相当有用。
 
 XMLHttpRequest 不支持数据流，所有数据必须放在缓存中，不支持分块读取，必须等到全部拿到后，再一次性吐出来。
+
+## fetch 封装
+
+### post
+
+```js
+function request(url, params) {
+  return fetch(url, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  })
+    .then(async (res) => {
+      return await res.json();
+    })
+    .catch(() => {
+      return null;
+    });
+}
+```
+
+### get
+
+```js
+function get() {
+  return fetch(`${HOST_DOMAIN}/generateConfigure/getCompanyMap`)
+    .then(async (res) => {
+      return await res.json();
+    })
+    .catch(() => {
+      return null;
+    });
+}
+```
 
 ## fetch 用法
 
