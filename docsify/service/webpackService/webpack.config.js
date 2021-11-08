@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
-const absDirname = path.resolve(__dirname,'../../');
+const { absDirname } = require("../utils");
 
 module.exports = {
   mode: "production",
@@ -59,7 +59,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(absDirname, "docsify/src/template/index.html"), // 模板文件
       templateParameters: {
-        title: 'zNote'
+        title: "zNote",
       },
       filename: path.resolve(absDirname, "index.html"), // 目标文件
       scriptLoading: "blocking",

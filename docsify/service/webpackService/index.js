@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
-const { serviceLoadLog } = require('./utils')
+const { serviceLoadLog } = require('../utils')
 
 webpack(webpackConfig, (err, stats) => {
   serviceLoadLog('webpack')

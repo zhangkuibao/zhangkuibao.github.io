@@ -1,5 +1,5 @@
 const { exec } = require("child_process");
-const { absDirname, serviceLoadLog } = require("./utils");
+const { absDirname, serviceLoadLog } = require("../utils");
 const chokidar = require("chokidar");
 const fs = require("fs");
 const path = require("path");

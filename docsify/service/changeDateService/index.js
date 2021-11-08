@@ -2,7 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
-const { serviceLoadLog, absDirname } = require('./utils')
+const { serviceLoadLog, absDirname } = require('../utils')
 
 
 // 监控文件变化
