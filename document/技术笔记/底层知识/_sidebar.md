@@ -13,6 +13,7 @@
 - 操作系统
 
   - [unix常用命令](document/技术笔记/底层知识/操作系统/unix常用命令.md)
+  - [回车与换行的区别-CRLF](document/技术笔记/底层知识/操作系统/回车与换行的区别-CRLF.md)
 
 - 浏览器
 
@@ -25,6 +26,10 @@
 
     - [manifest](document/技术笔记/底层知识/浏览器/PWA/manifest.md)
     - [PWA](document/技术笔记/底层知识/浏览器/PWA/PWA.md)
+
+  - 事件队列
+
+    - [事件循环](document/技术笔记/底层知识/浏览器/事件队列/事件循环.md)
 
   - 浏览器渲染
 
@@ -41,10 +46,6 @@
       - [ApplicationCache](document/技术笔记/底层知识/浏览器/缓存/离线缓存/ApplicationCache.md)
       - [ServiceWorker](document/技术笔记/底层知识/浏览器/缓存/离线缓存/ServiceWorker.md)
       - [离线缓存](document/技术笔记/底层知识/浏览器/缓存/离线缓存/离线缓存.md)
-
-  - 事件队列
-
-    - [事件循环](document/技术笔记/底层知识/浏览器/事件队列/事件循环.md)
 
 - 网络
 
@@ -71,6 +72,6 @@
 - 计算机
 
   - [时间格式UTC和GMT](document/技术笔记/底层知识/计算机/时间格式UTC和GMT.md)
-  - [计算机网络体系结构](document/技术笔记/底层知识/计算机/计算机网络体系结构.md)
   - [流媒体](document/技术笔记/底层知识/计算机/流媒体.md)
+  - [计算机网络体系结构](document/技术笔记/底层知识/计算机/计算机网络体系结构.md)
 
