@@ -137,13 +137,29 @@
     - [dom和bom的包含关系](document/技术笔记/编程基础/编程语言/JavaScript/dom和bom的包含关系.md)
     - [JS中的异步编程](document/技术笔记/编程基础/编程语言/JavaScript/JS中的异步编程.md)
     - [JS中的遍历方法及区别](document/技术笔记/编程基础/编程语言/JavaScript/JS中的遍历方法及区别.md)
-    - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
-    - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [valueOf方法和toString方法](document/技术笔记/编程基础/编程语言/JavaScript/valueOf方法和toString方法.md)
+    - [Promise是如何工作的](document/技术笔记/编程基础/编程语言/JavaScript/Promise是如何工作的.md)
     - [函数尾调用](document/技术笔记/编程基础/编程语言/JavaScript/函数尾调用.md)
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
+    - [Promise与微任务](document/技术笔记/编程基础/编程语言/JavaScript/Promise与微任务.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
+
+    - ECMAScript新特性
+
+      - [Generator函数](document/技术笔记/编程基础/编程语言/JavaScript/ECMAScript新特性/Generator函数.md)
+      - [Iterator接口](document/技术笔记/编程基础/编程语言/JavaScript/ECMAScript新特性/Iterator接口.md)
+      - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/ECMAScript新特性/Set&Map类型.md)
+
+    - WebAPI
+
+      - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
+      - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
+      - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
+      - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
+      - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
+      - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
+      - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
 
     - 基础
 
@@ -152,22 +168,6 @@
       - [数据类型和数据结构](document/技术笔记/编程基础/编程语言/JavaScript/基础/数据类型和数据结构.md)
       - [正则表达式语法](document/技术笔记/编程基础/编程语言/JavaScript/基础/正则表达式语法.md)
       - [编解码函数](document/技术笔记/编程基础/编程语言/JavaScript/基础/编解码函数.md)
-
-      - ECMAScript
-
-        - [Generator函数](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Generator函数.md)
-        - [Iterator接口](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Iterator接口.md)
-        - [Set&Map类型](document/技术笔记/编程基础/编程语言/JavaScript/基础/ECMAScript/Set&Map类型.md)
-
-      - WebAPI
-
-        - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/ArrayBuffer.md)
-        - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/Blob.md)
-        - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/fetch.md)
-        - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/FileReader.md)
-        - [URL](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/URL.md)
-        - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/媒体录制.md)
-        - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/基础/WebAPI/流操作.md)
 
       - 对象
 
