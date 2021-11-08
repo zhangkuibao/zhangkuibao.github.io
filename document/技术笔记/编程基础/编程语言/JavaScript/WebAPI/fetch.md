@@ -1,4 +1,4 @@
-<author-info date="1636365523542"></author-info>
+<author-info date="1636365787528"></author-info>
 
 # fetch API
 
@@ -35,8 +35,8 @@ function request(url, params) {
 ### get
 
 ```js
-function get() {
-  return fetch(`${HOST_DOMAIN}/generateConfigure/getCompanyMap`)
+function get(url, params) {
+  return fetch(`${url}?${serialize(params)}`)
     .then(async (res) => {
       return await res.json();
     })
