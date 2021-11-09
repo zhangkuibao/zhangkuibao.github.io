@@ -6,7 +6,7 @@
 
   - [工具](document/技术笔记/工具/git/git使用手册.md)
 
-  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
+  - [底层知识](document/技术笔记/底层知识/小程序/启动和更新机制.md)
 
   - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
 
