@@ -60,4 +60,10 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .breadcrumb {
+    display: none;
+  }
+}
+
 /* 原始导航栏调整结束 */
