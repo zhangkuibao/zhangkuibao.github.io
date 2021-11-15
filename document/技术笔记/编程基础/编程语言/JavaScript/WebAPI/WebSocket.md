@@ -1,4 +1,4 @@
-<author-info date="1636956270438"></author-info>
+<author-info date="1636957533713"></author-info>
 
 # Websocket
 
@@ -122,12 +122,16 @@ npm i nodejs-websocket
 ```js
 let ws = require("nodejs-websocket");
 let port = 3000;
-let server, connection;
+let server;
+let websocketUrl = "ws://localhost:";
+let serverConnection = false;
 
 exports.initWebsocket = function () {
   return new Promise((resolve) => {
     function websocketConnection() {
-      resolve();
+      websocketUrl += port;
+      serverConnection = true;
+      resolve(websocketUrl);
     }
 
     function reconstruction() {
@@ -138,8 +142,7 @@ exports.initWebsocket = function () {
     function createServer() {
       server = ws
         .createServer(function (conn) {
-          connection = conn;
-          console.log("New connection");
+          console.log("New connection", server.connections.length);
           conn.on("text", function (str) {
             console.log("Received " + str);
             conn.sendText(str.toUpperCase() + "!!!");
@@ -160,8 +163,15 @@ exports.initWebsocket = function () {
   });
 };
 
+function broadcast(server, msg) {
+  // 给所有客户端发送消息
+  server.connections.forEach(function (conn) {
+    conn.sendText(msg);
+  });
+}
+
 exports.sendData = function (data) {
-  connection.sendText(JSON.stringify(data));
+  broadcast(server, JSON.stringify(data));
 };
 ```
 
