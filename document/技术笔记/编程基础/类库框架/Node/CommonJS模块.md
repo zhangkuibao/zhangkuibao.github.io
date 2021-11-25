@@ -1,8 +1,8 @@
-<author-info date="1637813224105"></author-info>
+<author-info date="1637814319241"></author-info>
 
 # CommonJS 模块
 
-在 Node.js 模块系统中，每个文件都被视为独立的模块。
+在 Node.js 模块系统中，每个文件都被视为独立的模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。
 
 ## 摘要
 
