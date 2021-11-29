@@ -5,8 +5,16 @@
 
   - [git使用手册](document/技术笔记/工具/git/git使用手册.md)
   - [git回退到上一版本并上传到远程仓库](document/技术笔记/工具/git/git回退到上一版本并上传到远程仓库.md)
+  - [stash](document/技术笔记/工具/git/stash.md)
+  - [worktree](document/技术笔记/工具/git/worktree.md)
   - [从其他分支复制指定commit到当前分支](document/技术笔记/工具/git/从其他分支复制指定commit到当前分支.md)
   - [合并两个不同仓库](document/技术笔记/工具/git/合并两个不同仓库.md)
+
+- gulp
+
+  - [task任务](document/技术笔记/工具/gulp/task任务.md)
+  - [处理文件](document/技术笔记/工具/gulp/处理文件.md)
+  - [文件监控](document/技术笔记/工具/gulp/文件监控.md)
 
 - nginx
 

@@ -1,8 +1,8 @@
 - 技术笔记
 
-  - [学习规划](document/技术笔记/学习规划/如何提高.md)
-
   - [代码库](document/技术笔记/代码库/功能实现/blob转base64.md)
+
+  - [学习规划](document/技术笔记/学习规划/如何提高.md)
 
   - [工具](document/技术笔记/工具/git/git使用手册.md)
 
