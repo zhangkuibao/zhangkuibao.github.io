@@ -1,4 +1,4 @@
-<author-info date="1629972936877"></author-info>
+<author-info date="1638861954630"></author-info>
 
 # fs 文件系统
 
@@ -12,7 +12,7 @@ const fs = require("fs");
 
 fs 用于处理文件和目录，可以完成读、写、修改和删除操作。
 
-- **判断文件是否存在**用 [fs.access()](#fsaccesspath-mode-callback) 方法。
+- **判断路径是否存在**用 [fs.access()](#fsaccesspath-mode-callback) 方法。
 - **读取文件**内容用 [fs.readFile()](#fsreadfilepath-options-callback) 方法。
 - **写入文件**内容用 [fs.writeFile()](#fswritefilefile-data-options-callback) 方法，文件不存在时自动创建。
 - **创建目录**用[fs.mkdir()](#fsmkdirpath-options-callback) 方法。

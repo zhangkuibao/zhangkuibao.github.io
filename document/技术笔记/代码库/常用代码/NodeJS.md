@@ -1,4 +1,4 @@
-<author-info date="1631152586628"></author-info>
+<author-info date="1638861893511"></author-info>
 
 # NodeJS
 
@@ -11,7 +11,7 @@ const fs = require("fs");
 const basePath = "D:/work/ruite/src/views/print/report"; // 目标目录
 
 function mapDir(dir, callback, finish) {
-  fs.readdir(dir, function(err, files) {
+  fs.readdir(dir, function (err, files) {
     if (err) {
       console.error(err);
       return;
@@ -52,11 +52,11 @@ function mapDir(dir, callback, finish) {
 
 mapDir(
   basePath,
-  function(file) {
+  function (file) {
     console.log(file.split(".")[0]);
     // 读取文件后的处理
   },
-  function() {
+  function () {
     // console.log('xxx文件目录遍历完了')
   }
 );
@@ -86,4 +86,34 @@ function removeBom(pathname) {
 
   return bin.toString("utf-8");
 }
+```
+
+## 创建深层目录
+
+`fs` 模块提供的 `fs.mkdir()` 在创建深层目录时如果遇到不存在的路径会报错。
+
+```js
+const fs = require("fs");
+const path = require("path");
+
+function mkdirDeep(dirname, callback = () => {}) {
+  fs.access(dirname, function (err) {
+    if (err) {
+      mkdirDeep(path.dirname(dirname), function () {
+        fs.mkdir(dirname, callback);
+      });
+    } else {
+      callback();
+    }
+  });
+}
+```
+
+`mkdirDeep(dir, callback?)` 接收两个参数：
+
+- dir：待创建目录路径。
+- callback：创建完毕后的回调函数。
+
+```js
+mkdirDeep("./name/sss/dfdfs/sdfa/sdf");
 ```
