@@ -1,4 +1,4 @@
-<author-info date="1638861893511"></author-info>
+<author-info date="1639031009426"></author-info>
 
 # NodeJS
 
@@ -92,6 +92,8 @@ function removeBom(pathname) {
 
 `fs` 模块提供的 `fs.mkdir()` 在创建深层目录时如果遇到不存在的路径会报错。
 
+### 回调函数版
+
 ```js
 const fs = require("fs");
 const path = require("path");
@@ -116,4 +118,69 @@ function mkdirDeep(dirname, callback = () => {}) {
 
 ```js
 mkdirDeep("./name/sss/dfdfs/sdfa/sdf");
+```
+
+### promise 版
+
+```js
+function mkdirDeep(dirname) {
+  function innerMkdir(dirname, callback = () => {}) {
+    fs.access(dirname, function (err) {
+      if (err) {
+        innerMkdir(path.dirname(dirname), function () {
+          fs.mkdir(dirname, callback);
+        });
+      } else {
+        callback();
+      }
+    });
+  }
+  return new Promise((resolve) => {
+    innerMkdir(dirname, resolve);
+  });
+}
+```
+
+`mkdirDeep(dir)` 接收一个参数：
+
+- dir：待创建目录路径。
+
+```js
+mkdirDeep("./name/sss/dfdfs/sdfa/sdf");
+```
+
+## 发送请求
+
+### 等待数据返回完毕
+
+```js
+function spiderPage(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url).then((response) => {
+      let data = "";
+      response.setEncoding("utf-8");
+      response.on("data", (chunk) => {
+        data += chunk;
+      });
+      response.on("end", (err) => {
+        if (err) {
+          console.log("数据接收出错");
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  });
+}
+```
+
+`spiderPage(url)` 方法接收一个参数：
+
+- url：请求地址。
+
+```js
+spiderPage("https://www.baidu.com").then((res) => {
+  console.log(res);
+});
 ```
