@@ -22,17 +22,19 @@
   - JS
 
     - [Cookie](document/技术笔记/代码库/常用代码/JS/Cookie.md)
-    - [Dom](document/技术笔记/代码库/常用代码/JS/Dom.md)
-    - [JS兼容函数](document/技术笔记/代码库/常用代码/JS/JS兼容函数.md)
     - [其他](document/技术笔记/代码库/常用代码/JS/其他.md)
     - [字符串](document/技术笔记/代码库/常用代码/JS/字符串.md)
+    - [并发限制器](document/技术笔记/代码库/常用代码/JS/并发限制器.md)
     - [数组](document/技术笔记/代码库/常用代码/JS/数组.md)
     - [日期](document/技术笔记/代码库/常用代码/JS/日期.md)
     - [算法及思路](document/技术笔记/代码库/常用代码/JS/算法及思路.md)
     - [防抖节流](document/技术笔记/代码库/常用代码/JS/防抖节流.md)
+    - [Dom](document/技术笔记/代码库/常用代码/JS/Dom.md)
+    - [JS兼容函数](document/技术笔记/代码库/常用代码/JS/JS兼容函数.md)
 
 - 思路
 
+  - [可取消的Promise](document/技术笔记/代码库/思路/可取消的Promise.md)
   - [循环选取数组元素](document/技术笔记/代码库/思路/循环选取数组元素.md)
 
 - 样式效果
