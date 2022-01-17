@@ -4,11 +4,11 @@
 
   - [学习规划](document/技术笔记/学习规划/如何提高.md)
 
+  - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
+
   - [工具](document/技术笔记/工具/git/git使用手册.md)
 
   - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
-
-  - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
 
   - [解决方案](document/技术笔记/解决方案/上传图片前查看缩略图.md)
 
@@ -16,13 +16,13 @@
 
   - [好句](document/阅读笔记/好句/好句.md)
 
-  - [技术书籍](document/阅读笔记/技术书籍/编写可维护的JavaScript.md)
-
-  - [读书](document/阅读笔记/读书/书单.md)
-
   - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信1.md)
 
+  - [技术书籍](document/阅读笔记/技术书籍/编写可维护的JavaScript.md)
+
   - [知识](document/阅读笔记/知识/内燃机原理.md)
+
+  - [读书](document/阅读笔记/读书/书单.md)
 
 - 其他
 
