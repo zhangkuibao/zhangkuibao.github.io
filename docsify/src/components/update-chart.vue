@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "update-chart",
-  props: ["list"],
+  props: ["list", "currentYear"],
   data() {
     return {
       maxCommitCount: 0, // 最大提交数
@@ -18,9 +18,9 @@ export default {
         this.updateChart();
       }
     },
-    // option() {
-    //   this.updateChart();
-    // },
+    currentYear() {
+      this.updateChart();
+    }
   },
   computed: {
     continueList() {
@@ -52,8 +52,8 @@ export default {
     calendarRange() {
       if (this.seriesData.length === 0) return [];
       return [
-        this.getFullTime(Date.now()),
-        this.seriesData[this.seriesData.length - 1][0],
+        `${this.currentYear}-01-01`,
+        `${this.currentYear}-12-31`,
       ];
     },
     seriesData() {
@@ -117,7 +117,7 @@ export default {
           padding: 10,
           backgroundColor: "#eee",
           borderWidth: 0,
-          formatter: function(obj) {
+          formatter: function (obj) {
             var value = obj.value;
             return (
               '<div style="font-size: 14px;">' +
@@ -157,7 +157,8 @@ export default {
         },
         calendar: [
           {
-            left: "center",
+            left: 50,
+            right: 0,
             range: this.calendarRange,
             cellSize: 18,
             splitLine: {

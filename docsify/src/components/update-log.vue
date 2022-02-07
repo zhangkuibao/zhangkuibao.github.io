@@ -1,6 +1,13 @@
 <template>
   <div>
-    <update-chart :list="commitList"/>
+    <el-date-picker
+      v-model="currentYear"
+      type="year"
+      placeholder="选择年"
+      value-format="yyyy"
+      :clearable="false"
+    />
+    <update-chart :list="commitList" :currentYear="currentYear"/>
     <el-timeline>
       <template v-for="(monthMap, monthIndex) in showCommitMap">
         <h2 :key="monthIndex">{{ monthIndex }}</h2>
@@ -23,7 +30,7 @@
                 :key="msgItem.date"
               >
                 <li class="card-item-list-item">
-                  <span style="margin-right:20px;color:#999">{{
+                  <span style="margin-right: 20px; color: #999">{{
                     msgItem.time
                   }}</span>
                   <span>{{ msgItem.msg }}</span>
@@ -40,17 +47,19 @@
 <script>
 // commit时添加【new】前缀表示是一次添加操作
 // commit时添加【update】前缀表示是一次更新操作
-import { Timeline, TimelineItem, Card } from "element-ui";
+import { Timeline, TimelineItem, Card, DatePicker } from "element-ui";
 export default {
   components: {
     [Card.name]: Card,
     [TimelineItem.name]: TimelineItem,
     [Timeline.name]: Timeline,
+    [DatePicker.name]: DatePicker,
   },
   name: "app-update-log",
   data() {
     return {
       commitList: [],
+      currentYear: String(new Date().getFullYear()),
     };
   },
   computed: {
