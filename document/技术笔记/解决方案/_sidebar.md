@@ -2,7 +2,6 @@
 <template id="root-breadcrumb">解决方案</template>
 
 - [上传图片前查看缩略图](document/技术笔记/解决方案/上传图片前查看缩略图.md)
-- [前端安全](document/技术笔记/解决方案/前端安全.md)
 - [如何正确检测用户的设备](document/技术笔记/解决方案/如何正确检测用户的设备.md)
 - [跨域解决方案](document/技术笔记/解决方案/跨域解决方案.md)
 

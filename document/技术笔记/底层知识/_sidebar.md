@@ -1,14 +1,14 @@
 <div class="sidebar-title">技术笔记 — 底层知识</div>
 <template id="root-breadcrumb">底层知识</template>
 
-- 小程序
-
-  - [启动和更新机制](document/技术笔记/底层知识/小程序/启动和更新机制.md)
-  - [架构原理](document/技术笔记/底层知识/小程序/架构原理.md)
-
 - 图片
 
   - [图片格式](document/技术笔记/底层知识/图片/图片格式.md)
+
+- 小程序
+
+  - [架构原理](document/技术笔记/底层知识/小程序/架构原理.md)
+  - [启动和更新机制](document/技术笔记/底层知识/小程序/启动和更新机制.md)
 
 - 操作系统
 
@@ -63,12 +63,17 @@
     - [ContentType对传参格式的影响](document/技术笔记/底层知识/网络/http协议/ContentType对传参格式的影响.md)
     - [gzip压缩](document/技术笔记/底层知识/网络/http协议/gzip压缩.md)
     - [https协议](document/技术笔记/底层知识/网络/http协议/https协议.md)
+    - [http协议](document/技术笔记/底层知识/网络/http协议/http协议.md)
     - [http协议传参及后端参数解析方式](document/技术笔记/底层知识/网络/http协议/http协议传参及后端参数解析方式.md)
     - [http协议跨域](document/技术笔记/底层知识/网络/http协议/http协议跨域.md)
     - [http响应状态码](document/技术笔记/底层知识/网络/http协议/http响应状态码.md)
     - [keep-alive详解](document/技术笔记/底层知识/网络/http协议/keep-alive详解.md)
     - [post和get的区别](document/技术笔记/底层知识/网络/http协议/post和get的区别.md)
-    - [http协议](document/技术笔记/底层知识/网络/http协议/http协议.md)
+
+  - 网络安全
+
+    - [前端安全](document/技术笔记/底层知识/网络/网络安全/前端安全.md)
+    - [网络攻击类型](document/技术笔记/底层知识/网络/网络安全/网络攻击类型.md)
 
 - 计算机
 
