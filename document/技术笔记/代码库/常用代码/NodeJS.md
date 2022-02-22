@@ -62,6 +62,64 @@ mapDir(
 );
 ```
 
+## 读取资源目录建立索引，深层目录扁平化处理
+
+```js
+class DirService {
+  // 读取多个资源目录并建立索引
+  static generatorMultipleSourceMap(dirList) {
+    let sourceList = [];
+    return new Promise((resolve) => {
+      dirList.forEach(async (dir) => {
+        let subSourceMap = await this.generatorSourceMap(dir);
+        sourceList.push(subSourceMap);
+        if (sourceList.length === dirList.length) {
+          let sourceMap = Object.assign(...sourceList);
+          return resolve(sourceMap);
+        }
+      });
+    });
+  }
+  // 读取资源目录建立索引，深层目录扁平化处理
+  static async generatorSourceMap(rootDir) {
+    let isSecurity = await DeviceService.checkDir(rootDir);
+    let _t = this;
+    return new Promise((resolve, reject) => {
+      let sourceMap = {};
+      if (!isSecurity) {
+        return resolve(sourceMap);
+      } else {
+        fs.readdir(rootDir, function (err, files) {
+          if (err) {
+            return reject(err);
+          }
+          let count = 0;
+          let maxLength = files.length;
+          files.forEach(async (destroyName) => {
+            let destroyPath = path.join(rootDir, destroyName);
+            let isFile = await DeviceService.isFile(destroyPath);
+            if (isFile) {
+              if (sourceMap[rootDir]) {
+                sourceMap[rootDir].push(destroyPath);
+              } else {
+                sourceMap[rootDir] = [destroyPath];
+              }
+            } else {
+              let subSourceMap = await _t.generatorSourceMap(destroyPath);
+              Object.assign(sourceMap, subSourceMap);
+            }
+            count++;
+            if (count === maxLength) {
+              return resolve(sourceMap);
+            }
+          });
+        });
+      }
+    });
+  }
+}
+```
+
 ## 删除文本文档头部的 bom
 
 windows 在以 utf-8 编码保存 txt 文件时会在头部添加一段 bom 标记, 如果在合并文件时把这个标记也合并会导致出错
