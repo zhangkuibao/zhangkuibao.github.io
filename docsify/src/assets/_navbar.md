@@ -16,7 +16,7 @@
 
   - [好句](document/阅读笔记/好句/好句.md)
 
-  - [技术书籍](document/阅读笔记/技术书籍/编写可维护的JavaScript.md)
+  - [技术书籍](document/阅读笔记/技术书籍/高性能JavaScript编程.md)
 
   - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信1.md)
 

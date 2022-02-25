@@ -1,4 +1,4 @@
-<author-info date="1645756419183"></author-info>
+<author-info date="1645775083699"></author-info>
 
 # 高性能 JavaScript 编程
 
@@ -10,7 +10,7 @@
 
 ### 摘要
 
-1. 减少请求 `JS` 文件数量，可通过一个 `HTTP` 请求多个 `JS` 文件。
+1. 减少请求 `JS` 文件数量，可通过联合加载的方式用一个 `HTTP` 请求多个 `JS` 文件。
 2. 避免前置加载 `<script>` 标签，因为它会阻塞浏览器进程。
 
 ### `<script>` 标签的位置
@@ -188,3 +188,73 @@ while (iterations--) {
 递归可能会导致浏览器报 `栈溢出` 错误，可以使用 `尾递归` 和 `缓存` 的方式优化递归函数。
 
 [栈溢出与递归优化](/document/技术笔记/解决方案/栈溢出与递归优化)
+
+## 响应
+
+### 摘要
+
+1. 将单一 `JavaScript` 操作执行时间控制在 `50ms` 以内。
+
+### 优化长 JS 任务
+
+浏览器的 `UI线程` 与 `JS线程` 是互斥的，当 `JS` 脚本执行时 `UI线程` 将被挂起，具体表现就是浏览器不会响应用户的操作，也不会更新页面展现。
+
+[处理长任务](/document/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/%E8%AE%A9%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E6%9B%B4%E6%B5%81%E7%95%85?id=%e5%a4%84%e7%90%86%e9%95%bf%e4%bb%bb%e5%8a%a1)
+
+## 优化与服务器的通信时间
+
+### Beacons
+
+如果你只关心将数据发送到服务器端，比如发送用户当前访问页面，可以通过 `Image` 对象来实现。
+
+```js
+var url = "/status_tracker.php";
+var params = ["step=2", "time=1248027314"];
+new Image().src = url + "?" + params.join("&");
+```
+
+这种方式并不需要在页面中插入 `img` 元素就会发送请求，由于没有元素接收返回信息，浏览器不会下载任何内容。
+
+### 减少传输数据
+
+一个标准的 `JSON` 格式用户表结构如下：
+
+```js
+[ 
+ {"id":1, "username":"alice", "realname": "Alice Smith", "email":"alice@alicesmith.com"}, 
+ {"id":2, "username":"bob", "realname": "Bob Jones", "email":"bob@bobjones.com"}, 
+ {"id":3, "username":"carol", "realname": "Carol Williams","email":"carol@carolwilliams.com"}, 
+ {"id":4, "username":"dave", "realname": "Dave Johnson", "email":"dave@davejohnson.com"} 
+]
+```
+
+可以将其精简为：
+
+```js
+[
+ [ 1, "alice", "Alice Smith", "alice@alicesmith.com" ], 
+ [ 2, "bob", "Bob Jones", "bob@bobjones.com" ], 
+ [ 3, "carol", "Carol Williams", "carol@carolwilliams.com" ], 
+ [ 4, "dave", "Dave Johnson", "dave@davejohnson.com" ] 
+]
+```
+
+配合一个解析函数：
+
+```js
+function parseJSON(responseText) {
+  var users = [];
+  var usersArray = "(" + responseText + ")";
+  for (var i = 0, len = usersArray.length; i < len; i++) {
+    users[i] = {
+      id: usersArray[i][0],
+      username: usersArray[i][1],
+      realname: usersArray[i][2],
+      email: usersArray[i][3],
+    };
+  }
+  return users;
+}
+```
+
+本质上讲，这种方式是用一个更复杂的解析函数换取了较小的文件尺寸和更快的响应时间。
