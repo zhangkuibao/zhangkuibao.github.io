@@ -1,6 +1,10 @@
-<author-info date="1645775083699"></author-info>
+<author-info date="1646017250862"></author-info>
 
 # 高性能 JavaScript 编程
+
+作者：Nicholas C.Zakas
+
+出版社：电子工业出版社
 
 ## 加载和运行
 

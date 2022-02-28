@@ -36,14 +36,14 @@
 
     - 基础
 
-      - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
       - [中间件](document/技术笔记/编程基础/类库框架/Nest/基础/中间件.md)
+      - [Nest](document/技术笔记/编程基础/类库框架/Nest/基础/Nest.md)
       - [依赖注入](document/技术笔记/编程基础/类库框架/Nest/基础/依赖注入.md)
       - [守卫](document/技术笔记/编程基础/类库框架/Nest/基础/守卫.md)
       - [异常处理](document/技术笔记/编程基础/类库框架/Nest/基础/异常处理.md)
       - [控制器](document/技术笔记/编程基础/类库框架/Nest/基础/控制器.md)
-      - [模块](document/技术笔记/编程基础/类库框架/Nest/基础/模块.md)
       - [管道](document/技术笔记/编程基础/类库框架/Nest/基础/管道.md)
+      - [模块](document/技术笔记/编程基础/类库框架/Nest/基础/模块.md)
 
   - Node
 
@@ -58,6 +58,11 @@
       - [process进程](document/技术笔记/编程基础/类库框架/Node/原生模块/process进程.md)
       - [stream流](document/技术笔记/编程基础/类库框架/Node/原生模块/stream流.md)
       - [url网址](document/技术笔记/编程基础/类库框架/Node/原生模块/url网址.md)
+
+  - Nuxt
+
+    - [对于Vue的扩展](document/技术笔记/编程基础/类库框架/Nuxt/对于Vue的扩展.md)
+    - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
 
   - React
 
@@ -84,33 +89,14 @@
       - [API](document/技术笔记/编程基础/类库框架/Vue/基础/API.md)
       - [Vue-Loader](document/技术笔记/编程基础/类库框架/Vue/基础/Vue-Loader.md)
       - [vue-router-api](document/技术笔记/编程基础/类库框架/Vue/基础/vue-router-api.md)
-      - [Vuex](document/技术笔记/编程基础/类库框架/Vue/基础/Vuex.md)
       - [vue-router](document/技术笔记/编程基础/类库框架/Vue/基础/vue-router.md)
+      - [Vuex](document/技术笔记/编程基础/类库框架/Vue/基础/Vuex.md)
       - [vue生命周期钩子](document/技术笔记/编程基础/类库框架/Vue/基础/vue生命周期钩子.md)
       - [可复用内容](document/技术笔记/编程基础/类库框架/Vue/基础/可复用内容.md)
       - [服务端渲染](document/技术笔记/编程基础/类库框架/Vue/基础/服务端渲染.md)
       - [组件](document/技术笔记/编程基础/类库框架/Vue/基础/组件.md)
 
-  - Nuxt
-
-    - [对于Vue的扩展](document/技术笔记/编程基础/类库框架/Nuxt/对于Vue的扩展.md)
-    - [部署](document/技术笔记/编程基础/类库框架/Nuxt/部署.md)
-
 - 编程语言
-
-  - HTML
-
-    - 基础
-
-      - [H5地理定位](document/技术笔记/编程基础/编程语言/HTML/基础/H5地理定位.md)
-      - [HTML标签属性](document/技术笔记/编程基础/编程语言/HTML/基础/HTML标签属性.md)
-
-      - WebComponents
-
-        - [custom-elements](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/custom-elements.md)
-        - [html-template](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/html-template.md)
-        - [shadow-dom](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/shadow-dom.md)
-        - [web-components](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/web-components.md)
 
   - CSS
 
@@ -127,6 +113,20 @@
       - [渐变色](document/技术笔记/编程基础/编程语言/CSS/基础/渐变色.md)
       - [滤镜](document/技术笔记/编程基础/编程语言/CSS/基础/滤镜.md)
       - [选择器](document/技术笔记/编程基础/编程语言/CSS/基础/选择器.md)
+
+  - HTML
+
+    - 基础
+
+      - [H5地理定位](document/技术笔记/编程基础/编程语言/HTML/基础/H5地理定位.md)
+      - [HTML标签属性](document/技术笔记/编程基础/编程语言/HTML/基础/HTML标签属性.md)
+
+      - WebComponents
+
+        - [custom-elements](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/custom-elements.md)
+        - [html-template](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/html-template.md)
+        - [shadow-dom](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/shadow-dom.md)
+        - [web-components](document/技术笔记/编程基础/编程语言/HTML/基础/WebComponents/web-components.md)
 
   - Java
 
@@ -148,6 +148,7 @@
     - [函数尾调用](document/技术笔记/编程基础/编程语言/JavaScript/函数尾调用.md)
     - [惰性载入函数](document/技术笔记/编程基础/编程语言/JavaScript/惰性载入函数.md)
     - [相等性判断](document/技术笔记/编程基础/编程语言/JavaScript/相等性判断.md)
+    - [闭包和内存管理](document/技术笔记/编程基础/编程语言/JavaScript/闭包和内存管理.md)
     - [零散知识点](document/技术笔记/编程基础/编程语言/JavaScript/零散知识点.md)
 
     - ECMAScript新特性
@@ -159,18 +160,18 @@
     - WebAPI
 
       - [ArrayBuffer](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/ArrayBuffer.md)
+      - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
       - [fetch](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/fetch.md)
       - [FileReader](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/FileReader.md)
       - [URL](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/URL.md)
       - [WebSocket](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/WebSocket.md)
       - [媒体录制](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/媒体录制.md)
       - [流操作](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/流操作.md)
-      - [Blob](document/技术笔记/编程基础/编程语言/JavaScript/WebAPI/Blob.md)
 
     - 基础
 
-      - [异常处理](document/技术笔记/编程基础/编程语言/JavaScript/基础/异常处理.md)
       - [属性描述符](document/技术笔记/编程基础/编程语言/JavaScript/基础/属性描述符.md)
+      - [异常处理](document/技术笔记/编程基础/编程语言/JavaScript/基础/异常处理.md)
       - [数据类型和数据结构](document/技术笔记/编程基础/编程语言/JavaScript/基础/数据类型和数据结构.md)
       - [正则表达式语法](document/技术笔记/编程基础/编程语言/JavaScript/基础/正则表达式语法.md)
       - [编解码函数](document/技术笔记/编程基础/编程语言/JavaScript/基础/编解码函数.md)
@@ -208,8 +209,8 @@
       - [声明文件&规范](document/技术笔记/编程基础/编程语言/TypeScript/基础/声明文件&规范.md)
       - [接口](document/技术笔记/编程基础/编程语言/TypeScript/基础/接口.md)
       - [操作符&关键字](document/技术笔记/编程基础/编程语言/TypeScript/基础/操作符&关键字.md)
-      - [泛型](document/技术笔记/编程基础/编程语言/TypeScript/基础/泛型.md)
       - [模块&命名空间](document/技术笔记/编程基础/编程语言/TypeScript/基础/模块&命名空间.md)
+      - [泛型](document/技术笔记/编程基础/编程语言/TypeScript/基础/泛型.md)
       - [类](document/技术笔记/编程基础/编程语言/TypeScript/基础/类.md)
       - [类型兼容性&声明合并](document/技术笔记/编程基础/编程语言/TypeScript/基础/类型兼容性&声明合并.md)
       - [配置](document/技术笔记/编程基础/编程语言/TypeScript/基础/配置.md)
