@@ -1,12 +1,12 @@
 - 技术笔记
 
-  - [代码库](document/技术笔记/代码库/功能实现/blob转base64.md)
-
   - [学习规划](document/技术笔记/学习规划/如何提高.md)
 
-  - [工具](document/技术笔记/工具/git/git回退到上一版本并上传到远程仓库.md)
+  - [工具](document/技术笔记/工具/git/git使用手册.md)
 
   - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
+
+  - [代码库](document/技术笔记/代码库/功能实现/上传下载文件.md)
 
   - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
 
@@ -18,11 +18,11 @@
 
   - [技术书籍](document/阅读笔记/技术书籍/JavaScript设计模式与开发实践.md)
 
-  - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信1.md)
-
   - [知识](document/阅读笔记/知识/内燃机原理.md)
 
   - [读书](document/阅读笔记/读书/书单.md)
+
+  - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信2.md)
 
 - 其他
 
