@@ -1,20 +1,20 @@
 - 计硕408
 
-  - [基础综合](document/计硕408/基础综合/计算机网络/计算机网络（第7版）-谢希仁/笔记索引.md)
+  - [基础综合](document/计硕408/基础综合/计算机网络/计算机网络（第7版）-谢希仁/概述.md)
 
 - 技术笔记
 
-  - [代码库](document/技术笔记/代码库/常用代码/CSS.md)
+  - [代码库](document/技术笔记/代码库/功能实现/上传下载文件.md)
 
-  - [学习规划](document/技术笔记/学习规划/待学习.md)
+  - [学习规划](document/技术笔记/学习规划/如何提高.md)
 
-  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
+  - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
 
-  - [工具](document/技术笔记/工具/git/git使用手册.md)
+  - [工具](document/技术笔记/工具/gulp/gulp.md)
 
   - [解决方案](document/技术笔记/解决方案/上传图片前查看缩略图.md)
 
-  - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
+  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
 
 - 阅读笔记
 
@@ -22,16 +22,16 @@
 
   - [技术书籍](document/阅读笔记/技术书籍/JavaScript设计模式与开发实践.md)
 
-  - [知识](document/阅读笔记/知识/内燃机原理.md)
-
   - [读书](document/阅读笔记/读书/书单.md)
 
-  - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信2.md)
+  - [知识](document/阅读笔记/知识/内燃机原理.md)
+
+  - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信1.md)
 
 - 其他
 
-  - [收藏夹](document/其他/收藏夹/收藏.md)
-
   - [更新日志](document/其他/更新日志/更新日志.md)
+
+  - [收藏夹](document/其他/收藏夹/收藏.md)
 
 - [📅](https://static-286256a4-a870-41b5-ac26-2f5948f9de9a.bspapp.com/#/)
