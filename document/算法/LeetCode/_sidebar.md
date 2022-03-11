@@ -12,8 +12,9 @@
   - [最大子序和-53](document/算法/LeetCode/LeetCode精选TOP面试题/最大子序和-53.md)
   - [杨辉三角-118](document/算法/LeetCode/LeetCode精选TOP面试题/杨辉三角-118.md)
   - [爬楼梯-70](document/算法/LeetCode/LeetCode精选TOP面试题/爬楼梯-70.md)
+  - [跳跃游戏-55](document/算法/LeetCode/LeetCode精选TOP面试题/跳跃游戏-55.md)
 
 - 剑指Offer2
 
-  - [前n个数字二进制中1的个数-2325](document/算法/LeetCode/剑指Offer2/前n个数字二进制中1的个数-2325.md)
+  - [前n个数字二进制中1的个数-003](document/算法/LeetCode/剑指Offer2/前n个数字二进制中1的个数-003.md)
 
