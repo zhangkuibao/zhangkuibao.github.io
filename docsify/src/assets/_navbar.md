@@ -1,6 +1,6 @@
 - 算法
 
-  - [LeetCode](document/算法/LeetCode/目录.md)
+  - [LeetCode](document/算法/LeetCode/如何在LeetCode学习.md)
 
   - [算法记录](document/算法/算法记录/判断一个正整数是否为2的整数次幂.md)
 
@@ -10,11 +10,11 @@
 
 - 技术笔记
 
-  - [代码库](document/技术笔记/代码库/常用代码/CSS.md)
+  - [代码库](document/技术笔记/代码库/功能实现/blob转base64.md)
 
   - [学习规划](document/技术笔记/学习规划/如何提高.md)
 
-  - [工具](document/技术笔记/工具/nginx/启动、停止和重新加载配置.md)
+  - [工具](document/技术笔记/工具/git/git使用手册.md)
 
   - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
 
@@ -30,9 +30,9 @@
 
   - [电子栏目](document/阅读笔记/电子栏目/硅谷来信/硅谷来信1.md)
 
-  - [读书](document/阅读笔记/读书/书单.md)
-
   - [知识](document/阅读笔记/知识/内燃机原理.md)
+
+  - [读书](document/阅读笔记/读书/书单.md)
 
 - 其他
 
