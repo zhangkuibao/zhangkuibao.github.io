@@ -12,13 +12,15 @@
 
   - [代码库](document/技术笔记/代码库/功能实现/blob转base64.md)
 
-  - [学习规划](document/技术笔记/学习规划/如何提高.md)
+  - [学习规划](document/技术笔记/学习规划/待学习.md)
 
   - [工具](document/技术笔记/工具/git/git使用手册.md)
 
   - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
 
   - [编程基础](document/技术笔记/编程基础/数据库/MongoDB/mongodb.md)
+
+  - [底层知识](document/技术笔记/底层知识/图片/图片格式.md)
 
   - [解决方案](document/技术笔记/解决方案/上传图片前查看缩略图.md)
 
