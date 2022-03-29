@@ -3,43 +3,25 @@
  * @return {number}
  */
 
-// f(i)表示用了i个字符进行编码的编码方式
+// 一次遍历中记录偷第i家时的最大利润和不偷第i家时的最大利润
+// 偷第i家的最大利润等于不偷上一家时的利润加上nums[i]的值
+// 不偷第i家的最大利润等于偷上一家的利润与不偷上一家利润的最大值
+// iTCountList[i] = iBTCountList[i - 1] + nums[i]
+// iBTCountList[i] = Math.max(iTCountList[i - 1], iBTCountList[i - 1]);
 
-// // s[i] 为1和2时考虑有两种编码方式
-// if (s[i] === "1" || s[i] === "2") {
-//   // 1. s[i]
-//   // 2. s[i] + s[i + 1]
-// }
-
-// 用 f(i) 表示前i个字符的编码方式数量
-// 判断最后一次解码用了s中的几个字符
-// 用一个：s[i]，f(i) = f(i - 1)
-// 用两个：s[i-1] s[i]，f(i) = f(i - 2)
-// f(n) = f(n - 1) + f(n - 2) 
-
-var numDecodings = function (s) {
-  const n = s.length;
-  const f = new Array(n).fill(0);
-  if (s[0] !== "0") {
-    f[0] = 1;
+var rob = function (nums) {
+  let iTCountList = [nums[0]]; // 偷第i位时的最大金额
+  let iBTCountList = [0]; // 不偷第i位时的最大金额
+  for (let i = 1; i < nums.length; i++) {
+    let num = nums[i];
+    iTCountList[i] = iBTCountList[i - 1] + num;
+    iBTCountList[i] = Math.max(iTCountList[i - 1], iBTCountList[i - 1]);
   }
-  for (let i = 1; i < n; i++) {
-    // 一位解码，s[i] 不等于0即可单独解码
-    if (s[i] !== "0") {
-      f[i] = f[i - 1];
-    }
-    // 两位解码，与前一位组合小于26即可两位解码
-    if (s[i - 1] !== "0" && s[i - 1] + s[i] <= 26) {
-        // 避免超出边界
-      if (i === 1) {
-        f[i] += 1;
-      } else {
-        f[i] += f[i - 2];
-      }
-    }
-  }
-  return f[n - 1];
+  return Math.max(iTCountList[nums.length - 1], iBTCountList[nums.length - 1]);
 };
+let result = rob([1, 2, 3, 1]);
 
-let result = numDecodings("03");
+//      2 1 1 2
+// t:   2 1 3 4
+// bt:  0 2 2 3
 console.log(result);
