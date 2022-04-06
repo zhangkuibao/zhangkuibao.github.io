@@ -3,25 +3,21 @@
  * @return {number}
  */
 
-// 一次遍历中记录偷第i家时的最大利润和不偷第i家时的最大利润
-// 偷第i家的最大利润等于不偷上一家时的利润加上nums[i]的值
-// 不偷第i家的最大利润等于偷上一家的利润与不偷上一家利润的最大值
-// iTCountList[i] = iBTCountList[i - 1] + nums[i]
-// iBTCountList[i] = Math.max(iTCountList[i - 1], iBTCountList[i - 1]);
-
-var rob = function (nums) {
-  let iTCountList = [nums[0]]; // 偷第i位时的最大金额
-  let iBTCountList = [0]; // 不偷第i位时的最大金额
-  for (let i = 1; i < nums.length; i++) {
-    let num = nums[i];
-    iTCountList[i] = iBTCountList[i - 1] + num;
-    iBTCountList[i] = Math.max(iTCountList[i - 1], iBTCountList[i - 1]);
+// dp[i] 为组成i所需要的最小完全平方数的数量
+var numSquares = function (n) {
+  const dp = new Array(n + 1).fill(0);
+  for (let i = 1; i <= n; i++) {
+    dp[i] = i; // 最坏的情况，由若干个1组成该数字
+    // 能组成i的平方数必然小于sqrt(9)，如：能组成9的完全平方数必然小于3。
+    for (let j = 1; i - j * j >= 0; j++) {
+      // j * j 是一个完全平方数，则组成 j * j 的最少完全平方数的个数为 1（j）
+      // 此时（将 i 分为 i - j * j 和 j * j）组成 i 的最小完全平方数数量等于组成 i - j * j 的最小平方数加 1，则：dp[i] = dp[i - j * j] + 1
+      // 如果当前组合的完全平方数个数少于当前记录的数量，则更新dp[i]
+      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+    }
   }
-  return Math.max(iTCountList[nums.length - 1], iBTCountList[nums.length - 1]);
+  return dp[n];
 };
-let result = rob([1, 2, 3, 1]);
 
-//      2 1 1 2
-// t:   2 1 3 4
-// bt:  0 2 2 3
+let result = numSquares(999);
 console.log(result);
