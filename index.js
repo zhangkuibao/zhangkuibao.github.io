@@ -1,23 +1,34 @@
-/**
- * @param {string} s
- * @return {number}
- */
+// dp[i] 和 dp[i - 1] 的关系
+// coins = [1, 2, 5];
+// amount = 11
+// 假设最后一枚硬币取的是1，则dp[i] = dp[11 - 1] + 1 = dp[10] + 1
+// 假设最后一枚硬币取的是2，则dp[i] = dp[11 - 2] + 1 = dp[9] + 1
+// 假设最后一枚硬币取的是5，则dp[i] = dp[11 - 5] + 1 = dp[6] + 1
+// 取最小值作为 dp[i] 的值，dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1)
 
-// dp[i] 为组成i所需要的最小完全平方数的数量
-var numSquares = function (n) {
-  const dp = new Array(n + 1).fill(0);
-  for (let i = 1; i <= n; i++) {
-    dp[i] = i; // 最坏的情况，由若干个1组成该数字
-    // 能组成i的平方数必然小于sqrt(9)，如：能组成9的完全平方数必然小于3。
-    for (let j = 1; i - j * j >= 0; j++) {
-      // j * j 是一个完全平方数，则组成 j * j 的最少完全平方数的个数为 1（j）
-      // 此时（将 i 分为 i - j * j 和 j * j）组成 i 的最小完全平方数数量等于组成 i - j * j 的最小平方数加 1，则：dp[i] = dp[i - j * j] + 1
-      // 如果当前组合的完全平方数个数少于当前记录的数量，则更新dp[i]
-      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+var coinChange = function (coins, amount) {
+  if(amount === 0) {
+    return 0
+  }
+
+  const dp = new Array(amount + 1).fill(Infinity);
+  const minCoins = Math.min(...coins);
+
+  if (amount < minCoins) {
+    return -1;
+  }
+
+  dp[0] = 0
+
+  for (let i = 1; i <= amount; i++) {
+    for (let j = 0; j < coins.length; j++) {
+      if(i - coins[j] >= 0) {
+        dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1)
+      }
     }
   }
-  return dp[n];
+  return dp[amount] === Infinity ? -1 : dp[amount]
 };
 
-let result = numSquares(999);
+let result = coinChange([1, 2, 5], 11);
 console.log(result);
