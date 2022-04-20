@@ -1,4 +1,4 @@
-<author-info date="1650428388165"></author-info>
+<author-info date="1650451464128"></author-info>
 
 # clip-path
 
@@ -18,7 +18,7 @@
 
 语法：`inset( <length-percentage>{1,4} [ round <'border-radius'> ]? )`。
 
-- `length-percentage` 指各方向裁剪的长度（px）/程度（%），属性设置类似于 `margin`。
+- `length-percentage` 各方向裁剪的长度（px）/程度（%），属性设置类似于 `margin`。
 
   - `clip-path:inset(10px)`，上下左右均沿边界向内裁剪 `10px`。
   - `clip-path:inset(10px 20%)`，上下裁剪 `10px`， 左右裁剪 `20%`。
@@ -31,8 +31,44 @@
 
 #### inset 演示
 
-<page-example-css-clip-path-inset />
+<page-example-css-clip-path-inset></page-example-css-clip-path-inset>
 
+### 圆形裁剪 circle
+
+语法：`circle( [ <shape-radius> ]? [ at <position> ]? )`
+
+- `shape-radius` 裁剪的长度（px）/程度（%）。
+
+  - `clip-path:circle(10px)`，以图形中心点作为圆心裁剪出半径为 `10px` 的圆。
+
+- `position` 圆心位置。
+  - `clip-path:circle(60px at 10% 20%)`，以图形`(10%, 20%)`作为圆心，裁剪出半径为 `10px` 的圆。
+
+#### circle 演示
+
+<page-example-css-clip-path-circle></page-example-css-clip-path-circle>
+
+### 椭圆形裁剪 ellipse
+
+语法：`ellipse( [ <shape-radius>{2} ]? [ at <position> ]? )`
+
+- `shape-radius` 裁剪的长度（px）/程度（%），可设两个值，分别表示 `x轴` 裁剪长度和 `y轴` 裁剪长度。
+  - `clip-path:ellipse(20px 50px at 10% 20%)`，以图形 `(10%, 20%)` 作为圆心，裁剪出 `x轴` 半径为 `20px`，`y轴` 半径为 `50px` 的椭圆。
+- `position` 圆心位置，同 `circle`。
+
+#### ellipse 演示
+
+<page-example-css-clip-path-ellipse></page-example-css-clip-path-ellipse>
+
+### 几何裁剪 polygon
+
+语法：`polygon([ <vertexX vertexY> ])`
+
+- `vertexX vertexY`
+
+#### polygon 演示
+
+<page-example-css-clip-path-polygon></page-example-css-clip-path-polygon>
 ## 参考
 
 [clip-path - MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path)
