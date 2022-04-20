@@ -1,4 +1,4 @@
-<author-info date="1650451464128"></author-info>
+<author-info date="1650462834271"></author-info>
 
 # clip-path
 
@@ -64,11 +64,13 @@
 
 语法：`polygon([ <vertexX vertexY> ])`
 
-- `vertexX vertexY`
+- `<vertexX vertexY>`，`polygon` 属性通过设置多个顶点来裁剪图形，`<vertexX vertexY>` 表示顶点的位置，顶点数量最少三个。
+  - `clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)`，从顶点 `<50%, 0%>` 到顶点 `<100% 50%>` 再到顶点 `<50%, 100%>` 最后到顶点 `<0%, 50%>`，裁剪出一个菱形。
 
 #### polygon 演示
 
 <page-example-css-clip-path-polygon></page-example-css-clip-path-polygon>
+
 ## 参考
 
 [clip-path - MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path)
