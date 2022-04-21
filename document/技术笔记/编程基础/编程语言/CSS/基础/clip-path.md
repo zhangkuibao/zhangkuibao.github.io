@@ -1,4 +1,4 @@
-<author-info date="1650462834271"></author-info>
+<author-info date="1650508087254"></author-info>
 
 # clip-path
 
@@ -7,6 +7,8 @@
 > `clip-path` 属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。
 
 `clip-path` 支持三种类型的裁剪：`clip-source`、`geometry-box`、`basic-shape`。
+
+`geometry-box` 属性值设置以盒模型的哪个盒子作为边界裁剪，可在[火狐浏览器查看效果](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path#fill-rule)。
 
 这里只演示 `basic-shape` 的裁剪。
 
@@ -71,6 +73,15 @@
 
 <page-example-css-clip-path-polygon></page-example-css-clip-path-polygon>
 
+### svg 路径裁剪 path
+
+语法：`path( <svg-path-string> )`
+
+- `<svg-path-string>`，`path` 属性通过 `svg path` 字符串来裁剪图形，[Svg Path 用法见这篇博客](https://blog.csdn.net/weixin_39868379/article/details/114403129)。
+  - `clip-path: path('M 0 200 L 0,75 A 5,5 0,0,1 150,75 L 200 200 z')`，裁剪出一个拱形。
+
 ## 参考
 
 [clip-path - MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path)
+
+[Svg Path 用法详解](https://blog.csdn.net/weixin_39868379/article/details/114403129)
