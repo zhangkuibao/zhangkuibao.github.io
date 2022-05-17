@@ -1,8 +1,8 @@
 - 算法
 
-  - [算法记录](document/算法/算法记录/判断一个正整数是否为2的整数次幂.md)
-
   - [LeetCode](document/算法/LeetCode/如何在LeetCode学习.md)
+
+  - [算法记录](document/算法/算法记录/判断一个正整数是否为2的整数次幂.md)
 
 - 计硕408
 
