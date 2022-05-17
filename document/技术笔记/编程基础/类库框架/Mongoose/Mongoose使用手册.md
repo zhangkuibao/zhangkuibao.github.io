@@ -1,4 +1,4 @@
-<author-info date="1652779069670"></author-info>
+<author-info date="1652779228833"></author-info>
 
 # Mongoose 使用手册
 
@@ -103,6 +103,11 @@ await Kitten.find({
   name: "zhangkb",
 }).where({
   age: 19,
+});
+
+// 找到第一个匹配的文档，成功则返回对应文档，否则返回null
+await Kitten.findOne({
+  name: "zhangkb",
 });
 
 // 找到第一个匹配的文档并删除它，成功则返回对应文档，否则返回null
