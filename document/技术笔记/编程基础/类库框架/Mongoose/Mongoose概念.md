@@ -1,4 +1,4 @@
-<author-info date="1652778997246"></author-info>
+<author-info date="1652780479025"></author-info>
 
 # Mongoose 概念
 
@@ -40,9 +40,18 @@ const schema = new Schema({
     type: String, // 类型
     required: true, // 是否必填
     alias: "name", // 别名
+    timestamps: false, // 是否自动添加时间戳：createdAt and updatedAt
   },
 });
 ```
+
+#### timestamps 时间戳
+
+`timestamps` 属性设置为 `true` 后会自动在文档中添加两个 `Date` 类型的属性，`createdAt` 为创建时的时间戳，`updatedAt` 为最后一次更新的时间戳。
+
+会修改 `updatedAt` 的方法：`save()` 、`updateOne()` 、`updateMany()` 、`findOneAndUpdate()` 、`update()` 、`replaceOne()` 、`bulkWrite()`。
+
+这些方法都可以通过设置 `timestamps: false` 不修改 `updatedAt`。
 
 ### 实例方法
 

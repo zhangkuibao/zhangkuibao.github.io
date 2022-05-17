@@ -1,4 +1,4 @@
-<author-info date="1652779228833"></author-info>
+<author-info date="1652781238312"></author-info>
 
 # Mongoose 使用手册
 
@@ -73,15 +73,22 @@ mongoose.connect("mongodb://localhost:27017", {
 ### 插入
 
 ```js
-// 插入多条数据
-await Kitten.insertMany([
+// 插入多条数据，如果有一条数据错误则插入失败，所有文档都不会被插入。
+// 在方法选项中设置 ordered:false 会进行无序插入，但可能会将数据重新排序。
+// https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/#execution-of-operations
+await Kitten.insertMany(
+  [
+    {
+      name: "zhangkb",
+    },
+    {
+      name: "ny",
+    },
+  ],
   {
-    name: "zhangkb",
-  },
-  {
-    name: "ny",
-  },
-]); // 返回插入的文档
+    ordered: true,
+  }
+); // 返回插入的文档
 ```
 
 ### 查询
