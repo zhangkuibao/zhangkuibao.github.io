@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百度地图</title>
+</head>
+<body>
+    <div> <!-- 外层wrapper -->
+        <div class="1_可以实现的功能"> <!-- 一级标题,以下划线分隔 -->
+            <div class="1_1_操作地图"> <!-- 二级标题 -->
+                1.第一步必须先初始化地图,否则无法操作,map.centerAndZoom(); 传入中心点和地图级别
+                2.设置/获取鼠标指针样式, 获取两点间的距离(米)
+                3.设置地图允许的最小/最大级别(放大缩小的范围)
+                4.获取地图可视范围(矩形,bounds类),可判断点是否在范围内
+                5.设置地图中心点, 移动地图, 重置初始设置, 切换地图缩放等级(已打开信息窗口坐标位置不变)
+                6.放大/缩小一级, 添加右键菜单, 获取打开的信息窗口实例
+                7.---像素坐标与经纬度坐标转换,pixelToPoint
+            </div>
+            <div class="1_2_基础类">
+                1.判断两点(坐标点/像素点)是否相等 Point Pixel
+                2.根据西南角和东北角创建一个矩形区域 Bounds
+                3.根据给定像素创建一个矩形区域 Size
+            </div>
+            <div class="1_3_控件类">
+                1.控制控件位置(可选四个角)
+                2.平移缩放控件, 地图定位控件, 缩略图控件, 比例尺控件, 版权控件, 切换地图控件, 切换全景地图控件
+            </div>
+            <div class="1_4_覆盖物类,Overlay是所有覆盖物的基类">
+                1.自定义 覆盖物,继承Overlay后自行实现
+                2.Marker 图像标注, 展示文字,气泡等, 可以设置动画效果(跳动,坠落),右键菜单,事件,拖拽等
+                3.Icon 覆盖物使用的图标
+                4.InfoWindow 信息窗口,可获取内容/位置,可设置最大化后窗口内容,点击地图关闭窗口
+                5.Label 文本标注, 可设置样式(作用在标注的容器元素上), 内容支持dom元素
+                6.Polyline 折线, 设置颜色,透明度,宽度(>=1),实线/虚线, 获取区域范围(矩形区域), 可编辑
+                7.Polygon 多边形, 设置点数组,边线/填充颜色,填充/边线透明度, 获取区域范围(矩形区域), 可编辑
+                8.Circle 圆形, 设置中心点,半径,获取区域范围(矩形区域),填充/边线的颜色/透明度
+                9.GroundOverlay 地面叠加层; PointCollection 海量点; Hotspot 热区; Symbol 矢量图标
+            </div>
+            <div class="1_5_右键菜单">
+                1.可以自定义菜单项,图标,事件;可在地图或覆盖物上添加
+            </div>
+            <div class="1_6_地图类型">
+                1.可设置道路图, 卫星图, 卫星道路混合图
+                2.可进行球面坐标与平面坐标的转换
+            </div>
+            <div class="1_7_图层">
+                1.TrafficLayer: 交通流量,在道路上添加红黄绿来标识交通是否堵塞
+                2.PanoramaCoverageLayer: 展示全景覆盖的区域(哪里能看全景地图)
+            </div>
+            <div class="1_8_服务类">
+                <!-- 离线地图中搜索没有效果(未引入数据?) -->
+                1.LocalSearch: 周边搜索
+                2.TransitRoute: 公交线路规划
+                3.WalkingRoute: 步行路线规划
+                4.DrivingRoute: 驾车路线规划
+                5.Geocoder: 解析用户地址
+                6.LocalCity: 获取所在位置城市信息
+                7.Geolocation: 获取当前位置(依赖浏览器的geolocation)
+                8.Convertor: 将其他坐标系坐标转化为百度坐标
+            </div>
+            <div class="1_9_全景">
+                1.Panorama: 展示某位置的全景地图
+            </div>
+        </div>
+        <div class='2_使用方法'>
+            <div class='2_1_自定义覆盖物'>
+                1.封装一个函数,用来继承Overlay基类
+                2.实现initialize方法, 初始化, 当调用map.addOverlay时会隐式调用此方法
+                3.实现draw方法, 绘制, 地图状态发生变化时隐式调用该方法对覆盖物进行绘制
+                <script>
+                    try {
+                        // 自定义标注的构造函数, 构造调用时返回一个实例
+                        function ComplexCustomOverlay(point, details, type, active) {
+                            this._point = point;
+                            this._type = type;
+                            this._active = active;
+                            this._details = details;
+                        }
+                        // 继承Overlay基类
+                        ComplexCustomOverlay.prototype = new BMap.Overlay();
+                        // 初始化自定义覆盖物时调用的方法
+                        ComplexCustomOverlay.prototype.initialize = function (map) {
+                            this._map = map;
+                            var color = "#F33018",
+                                shadow = '0 0 4px 0 #FF8080',
+                                size = 6;
+                            if (this._type == 1) {
+                                color = "#1ECEB3";
+                                shadow = '0 0 4px 0 #4CFFE8';
+                            }
+                            if (this._active == 1) {
+                                size = 10;
+                            }
+                            var $div = $('<div class="mapPoint"></div>').css({
+                                position: 'absolute',
+                                zIndex: BMap.Overlay.getZIndex(this._point.lat),
+                                height: size + 'px',
+                                width: size + 'px',
+                                borderRadius: '50%',
+                                backgroundColor: color,
+                                boxShadow: shadow
+                            })
+                            var _this = this;
+                            $div.on('click', function () {
+                                pointDetail(_this._details, _this._point)
+                            })
+                            var div = this._div = $div[0];
+                            map.getPanes().labelPane.appendChild(div);
+                            return div;
+                        }
+                        // 绘制覆盖物时调用的方法
+                        ComplexCustomOverlay.prototype.draw = function () {
+                            var map = this._map;
+                            var pixel = map.pointToOverlayPixel(this._point);
+                            this._div.style.left = pixel.x + "px";
+                            this._div.style.top = pixel.y + "px";
+                        }
+                        var marker = new ComplexCustomOverlay(new BMap.Point(ele.wz[0], ele.wz[1]), ele.name, ele.type, ele.active);
+                        map.addOverlay(marker); // 隐式调用initialize方法
+                    } catch{}
+                </script>
+            </div>
+            <div class='2_2_右键菜单'>
+                <script>
+                    try {
+                        var menu = new BMap.ContextMenu();
+                        menu.addItem(new BMap.MenuItem('第一', function (q, w, e, r) {
+                            log(q, w, e, r)
+                        }, {
+                                width: 100,
+                                iconUrl: BMAP_CONTEXT_MENU_ICON_ZOOMIN
+                            }))
+                    } catch{}
+                </script>
+            </div>
+            <div class='2_3_图层'>
+                <script>
+                    try{
+                        var layer = new BMap.TrafficLayer();
+                        map.addTileLayer(layer)
+                    }catch{}
+                </script>
+            </div>
+        </div>
+        <div class='3_tips'>
+            1.信息窗口传入的如果是dom元素,关闭窗口时会删除该元素
+        </div>
+    </div>
+</body>
+</html>
