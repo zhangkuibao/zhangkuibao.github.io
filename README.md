@@ -51,17 +51,3 @@ github https url: `https://github.com/zhangkuibao/zhangkuibao.github.io.git`
 二级目录作为文章分类
 
 三级目录作为文章标签
-
-## 技术
-
-### 计算机原理
-
-#### 计算机网络
-
-#### 操作系统
-
-### 浏览器
-
-### 小程序
-
-## 阅读
