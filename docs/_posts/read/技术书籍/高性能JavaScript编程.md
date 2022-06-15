@@ -1,11 +1,7 @@
 ---
 date: 2022-02-28 11:00:50
-title: 高性能 JavaScript 编程
+title: 【技术书籍】高性能JavaScript编程
 tags:
-  - myGit
-  - learning-Notes
-  - document
-  - read
   - 技术书籍
 ---
 

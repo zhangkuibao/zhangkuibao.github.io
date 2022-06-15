@@ -1,0 +1,81 @@
+---
+date: 2021-09-08 17:17:32
+title: 【CSS属性】伪元素
+tags:
+  - CSS
+  - CSS属性
+---
+
+## 介绍
+
+伪元素不受文档约束，也不影响文档本身，只影响最终样式。这些添加的内容不会出现在 DOM 中，仅仅是在 CSS 渲染层中加入。
+
+## 可用的伪元素
+
+伪元素只能与块级元素关联。
+
+### ::after (:after)
+
+在元素内容的最后插入生成内容，继承元素可继承的属性。
+
+### ::before (:before)
+
+在元素内容的最开始插入生成内容，继承元素可继承的属性。
+
+### ::first-letter (:first-letter)
+
+指定一个元素第一个字母的样式。所有前导标点符号与第一个字母均应用该样式。
+
+### ::first-line (:first-line)
+
+设置元素中第一行文本的样式。
+
+### ::selection
+
+匹配被用户选择的部分。
+
+只支持双冒号写法。
+
+只支持颜色和背景颜色两个样式。
+
+firefox 浏览器需要添加-moz-前缀。
+
+### ::inactive-selection
+
+选取非活动状态时文档中高亮(反白)的部分
+
+### ::spelling-error
+
+选取被 UA 标记为拼写错误的文本
+
+### ::grammar-error
+
+选取被 UA 标记为语法错误的文本
+
+### ::marker
+
+选取列表自动生成的项目标记符号
+
+### ::placeholder
+
+选取字段的占位符文本(提示信息)
+
+### ::cue
+
+匹配所选元素中 WebVTT 提示
+
+### ::backdrop
+
+匹配全屏模式下的背景
+
+## 伪元素相关 API
+
+### window.getComputedStyle(element, pseudoElement?)
+
+获取伪元素样式表
+
+## 参考
+
+[伪元素——MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)
+[JS 控制伪元素的方法汇总](https://www.jb51.net/article/81984.htm)
+[深入理解伪元素](https://www.cnblogs.com/xiaohuochai/p/5021121.html)

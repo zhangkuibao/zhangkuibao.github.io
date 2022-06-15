@@ -1,11 +1,7 @@
 ---
 date: 2022-02-28 16:39:15
-title: JavaScript 设计模式与开发实践
+title: 【技术书籍】JavaScript设计模式与开发实践
 tags:
-  - myGit
-  - learning-Notes
-  - document
-  - read
   - 技术书籍
 ---
 

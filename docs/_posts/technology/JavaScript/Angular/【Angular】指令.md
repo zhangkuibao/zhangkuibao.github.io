@@ -1,0 +1,210 @@
+---
+date: 2021-09-09 09:44:16
+title: 【Angular】指令
+tags:
+  - JavaScript
+  - Angular
+---
+
+在 Angular 中有三种类型的指令：
+
+1. 组件 — 拥有模板的指令
+
+2. 结构型指令 — 通过添加和移除 DOM 元素改变 DOM 布局的指令，如 `NgFor` 和 `NgIf`
+
+3. 属性型指令 — 改变元素、组件或其它指令的外观和行为的指令，如 `NgStyle`
+
+## 属性型指令
+
+`Angular` 会在模板中定位每个拥 `[指令selector]` **属性**的元素，并且为这些元素加上本指令的逻辑。
+
+### 创建属性型指令
+
+使用指令前需要在当前模块或根模块中引入指令
+
+- 定义指令
+
+  ```js
+  import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+  @Directive({
+  selector: '[appHighlight]'
+  })
+  export class HighlightDirective {
+
+  constructor(private el: ElementRef) {}
+
+  /*********** 使用指令名属性接收参数，[appHighlight]="'red' ***********/
+  @Input()
+  appHighlight: string; // 直接定义同名变量
+
+  @Input('appHighlight') // 使用别名
+  highlightColor: string;
+
+  /*********** 使用指令名属性接收参数end ***********/
+
+  @Input()
+  defaultColor: string; // 接收其他参数
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+      this.highlight(this.appHighlight)
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+      this.highlight(null);
+  }
+
+  private highlight(color: string) {
+      this.el.nativeElement.style.backgroundColor = color;
+    }
+  }
+
+  ```
+
+- 使用指令
+
+  需要在使用指令的模块引入该指令
+
+  ```js
+  import { HighlightDirective } from "../directive/highlight/highlight";
+  ```
+
+  属性型指令可接收到指令绑定元素上的其他属性值
+
+  ```html
+  <p [appHighlight]="'red'" defaultColor="violet">子组件-{{name}}</p>
+  ```
+
+## 结构型指令
+
+### 创建结构型指令
+
+- 定义指令
+
+  ```js
+  import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+  @Directive({ selector: '[appUnless]' })
+  export class UnLessDirective {
+  constructor(
+      private templateRef: TemplateRef<any>,
+      private viewContainer: ViewContainerRef) { }
+
+  private hasView = false;
+  @Input()
+  set appUnless(condition: boolean) {
+      if (!condition && !this.hasView) {
+        this.viewContainer.createEmbeddedView(this.templateRef);
+        this.hasView = true;
+      } else if (condition && this.hasView) {
+        this.viewContainer.clear();
+        this.hasView = false;
+      }
+    }
+  }
+  ```
+
+- 使用指令
+
+  ```html
+  <p *appUnless="true">子组件-{{name}}</p>
+  ```
+
+### 内置指令
+
+#### \*ngFor
+
+##### 全特性应用
+
+```html
+<div
+  *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById"
+  [class.odd]="odd"
+>
+  ({{i}}) {{hero.name}}
+</div>
+
+<ng-template
+  ngFor
+  let-hero
+  [ngForOf]="heroes"
+  let-i="index"
+  let-odd="odd"
+  [ngForTrackBy]="trackById"
+>
+  <div [class.odd]="odd">({{i}}) {{hero.name}}</div>
+</ng-template>
+```
+
+##### trackBy
+
+避免重复渲染
+
+- 有了 `trackBy`，只有 `id` 变化的数据才会被更新
+
+```html
+<div *ngFor="let item of items; trackBy: trackByItems">
+  ({{item.id}}) {{item.name}}
+</div>
+```
+
+```js
+trackByItems(index: number, item: Item): number { return item.id; }
+```
+
+#### \*ngSwitch
+
+```html
+<div [ngSwitch]="currentItem.feature">
+  <app-stout-item *ngSwitchCase="'stout'" [item]="currentItem"></app-stout-item>
+  <app-device-item
+    *ngSwitchCase="'slim'"
+    [item]="currentItem"
+  ></app-device-item>
+  <app-lost-item *ngSwitchCase="'vintage'" [item]="currentItem"></app-lost-item>
+  <app-best-item *ngSwitchCase="'bright'" [item]="currentItem"></app-best-item>
+  <app-unknown-item *ngSwitchDefault [item]="currentItem"></app-unknown-item>
+</div>
+```
+
+## 星号（\*）前缀
+
+`Angular` 的语法糖，从内部实现来说，`Angular` 把 `*ngIf` **属性** 翻译成一个 `<ng-template>` **元素** 并用它来包裹宿主元素
+
+### \*ngIf 内部转化
+
+```html
+<div *ngIf="hero" class="name">{{hero.name}}</div>
+
+<!-- 转化为 -->
+
+<ng-template [ngIf]="hero">
+  <div class="name">{{hero.name}}</div>
+</ng-template>
+```
+
+### \*ngFor 内部转化
+
+```html
+<div
+  *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById"
+  [class.odd]="odd"
+>
+  ({{i}}) {{hero.name}}
+</div>
+
+<!-- 转化为 -->
+
+<ng-template
+  ngFor
+  let-hero
+  [ngForOf]="heroes"
+  let-i="index"
+  let-odd="odd"
+  [ngForTrackBy]="trackById"
+>
+  <div [class.odd]="odd">({{i}}) {{hero.name}}</div>
+</ng-template>
+```

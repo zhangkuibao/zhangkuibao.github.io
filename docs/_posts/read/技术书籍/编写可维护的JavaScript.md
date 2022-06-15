@@ -1,11 +1,7 @@
 ---
 date: 2021-12-29 11:06:33
-title: 编写可维护的 JavaScript
+title: 【技术书籍】编写可维护的JavaScript
 tags:
-  - myGit
-  - learning-Notes
-  - document
-  - read
   - 技术书籍
 ---
 

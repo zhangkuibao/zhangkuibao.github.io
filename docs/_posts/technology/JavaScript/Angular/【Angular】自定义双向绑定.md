@@ -1,0 +1,45 @@
+---
+date: 2021-09-09 09:48:44
+title: 【Angular】自定义双向绑定
+tags:
+  - JavaScript
+  - Angular
+---
+
+与 vue 的 sync 修饰符相同，即给组件双向绑定一个变量 variable，angular 隐式地给组件绑定一个 variableChange 事件
+
+- app-activation-staff-select 组件
+
+```js
+import { Component, Input, EventEmitter, Output } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+@Component({
+  selector: "app-activation-staff-select",
+  templateUrl: "./activation-staff-select.component.html",
+  styleUrls: ["./activation-staff-select.component.css"],
+})
+export class ActivationStaffSelectComponent {
+  @Input() selectStaffList;
+  @Output() selectStaffListChange = new EventEmitter();
+
+  selectChange(select) {
+    // 组件数据修改时同步修改到上级组件
+    this.selectStaffListChange.emit(select);
+  }
+}
+```
+
+- app-activation-staff-select 上级组件
+
+```html
+<app-activation-staff-select [(selectStaffList)]="list" />
+```
+
+相当于
+
+```html
+<app-activation-staff-select
+  [selectStaffList]="list"
+  (selectStaffListChange)="list = $event"
+/>
+```
