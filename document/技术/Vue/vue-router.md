@@ -201,7 +201,7 @@ routes = [
 
 通过 `$router` 上的 API 来控制当前路由位置
 
-1. `$router.push()` 导航到指定的 `url` ,相当于点击<router-link>, 此方法会在 `history` 栈中添加一个记录,点击浏览器后退按钮时回到之前的 `url`, 类似`window.history.pushState()`,参数如下:
+1. `$router.push()` 导航到指定的 `url` ,相当于点击`<router-link>`, 此方法会在 `history` 栈中添加一个记录,点击浏览器后退按钮时回到之前的 `url`, 类似`window.history.pushState()`,参数如下:
 
 ```js
 params: ''; // 直接传url,不写/时为相对路径,添加到当前路径后
