@@ -11,11 +11,26 @@
       />
     </div>
     <div class="image_view-operate">
-      <div class="image_view-operate-item icon icon-zoom-in" @click="imageScale(-1 * scaleMagnificationClick)"></div>
-      <div class="image_view-operate-item icon icon-zoom-out" @click="imageScale(scaleMagnificationClick)"></div>
-      <div class="image_view-operate-item icon icon-reset" @click="reset()"></div>
-      <div class="image_view-operate-item icon icon-turn-left" @click="roteteImage(-1)"></div>
-      <div class="image_view-operate-item icon icon-turn-right" @click="roteteImage(1)"></div>
+      <div
+        class="image_view-operate-item el-icon-zoom-out"
+        @click="imageScale(-1 * scaleMagnificationClick)"
+      ></div>
+      <div
+        class="image_view-operate-item iconfont el-icon-zoom-in"
+        @click="imageScale(scaleMagnificationClick)"
+      ></div>
+      <div
+        class="image_view-operate-item iconfont el-icon-refresh"
+        @click="reset()"
+      ></div>
+      <div
+        class="image_view-operate-item iconfont el-icon-refresh-left"
+        @click="roteteImage(-1)"
+      ></div>
+      <div
+        class="image_view-operate-item iconfont el-icon-refresh-right"
+        @click="roteteImage(1)"
+      ></div>
     </div>
   </div>
 </template>
@@ -29,7 +44,7 @@ export default {
       imageSrc: "",
       scaleMagnificationWhell: 0.05, // 滚轮缩放倍率
       scaleMagnificationClick: 0.5, // 按钮缩放倍率
-      minScale: 0.3,  // 最小缩小比例
+      minScale: 0.3, // 最小缩小比例
       stepDeg: 90, // 一次旋转的角度
       dragKey: false,
       transform: {
@@ -37,19 +52,19 @@ export default {
         offsetY: 0,
         scale: 1,
         rotate: 0,
-      }
+      },
     };
   },
   computed: {
     imageContainerStyle() {
       return {
         transform: `translate3d(${this.transform.offsetX}px,${this.transform.offsetY}px, 0)`,
-      }
+      };
     },
     imageStyle() {
       return {
         transform: `rotate(${this.transform.rotate}deg) scale(${this.transform.scale})`,
-        cursor: this.dragKey ? 'grabbing' : 'grab'
+        cursor: this.dragKey ? "grabbing" : "grab",
       };
     },
   },
@@ -88,13 +103,13 @@ export default {
     },
 
     imageScale(magnification = 1) {
-      if(this.transform.scale <= 0.5 && magnification < 0) {
+      if (this.transform.scale <= 0.5 && magnification < 0) {
         this.transform.scale = this.minScale;
         return;
       }
-      
+
       // 控制缩放
-      this.transform.scale *= (magnification + 1);
+      this.transform.scale *= magnification + 1;
     },
 
     handleMousewheel(e) {
@@ -189,7 +204,7 @@ export default {
 
     img {
       max-height: 100%;
-      transition: transform .3s cubic-bezier(.215,.61,.355,1) 0s;
+      transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
     }
   }
 

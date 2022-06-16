@@ -1,6 +1,7 @@
 module.exports = {
   title: "ZHANGKB",
   description: "张魁堡的个人网站",
+  plugins: [require("./plugins/image-preview/index.js")],
   themeConfig: {
     nav: [
       {

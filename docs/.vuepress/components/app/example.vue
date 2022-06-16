@@ -18,27 +18,10 @@
 </template>
 
 <script>
-import {
-  Tabs,
-  TabPane,
-  Card,
-  Button,
-  // Collapse,
-  // CollapseItem,
-} from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
 // import Prism from "prismjs";
 export default {
   name: "app-example",
   props: ["title"],
-  components: {
-    [Tabs.name]: Tabs,
-    [TabPane.name]: TabPane,
-    [Card.name]: Card,
-    [Button.name]: Button,
-    // [Collapse.name]: Collapse,
-    // [CollapseItem.name]: CollapseItem,
-  },
   data() {
     return {
       codeHtml: "",
