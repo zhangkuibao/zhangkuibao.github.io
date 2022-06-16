@@ -4,6 +4,7 @@ title: 【CSS属性】clip-path
 tags:
   - CSS
   - CSS属性
+vuepage: clip-path
 ---
 
 ## 简介
@@ -37,7 +38,7 @@ tags:
 
 #### inset 演示
 
-<page-example-css-clip-path-inset></page-example-css-clip-path-inset>
+<page-clip-path-inset></page-clip-path-inset>
 
 ### 圆形裁剪 circle
 
@@ -52,7 +53,7 @@ tags:
 
 #### circle 演示
 
-<page-example-css-clip-path-circle></page-example-css-clip-path-circle>
+<page-clip-path-circle></page-clip-path-circle>
 
 ### 椭圆形裁剪 ellipse
 
@@ -64,7 +65,7 @@ tags:
 
 #### ellipse 演示
 
-<page-example-css-clip-path-ellipse></page-example-css-clip-path-ellipse>
+<page-clip-path-ellipse></page-clip-path-ellipse>
 
 ### 几何裁剪 polygon
 
@@ -75,7 +76,7 @@ tags:
 
 #### polygon 演示
 
-<page-example-css-clip-path-polygon></page-example-css-clip-path-polygon>
+<page-clip-path-polygon></page-clip-path-polygon>
 
 ### svg 路径裁剪 path
 
