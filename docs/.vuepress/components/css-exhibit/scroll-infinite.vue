@@ -9,7 +9,7 @@
             height: `calc(${viewCount} * 25px)`,
           }"
         >
-          <div class="list-item" v-for="item in list" :key="item">
+          <div class="list-item" v-for="(item, index) in list" :key="index">
             {{ item }}
           </div>
         </div>

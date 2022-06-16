@@ -15,6 +15,10 @@ module.exports = {
         text: "标签",
         link: "/tag/",
       },
+      {
+        text: "样式效果",
+        link: "/css-exhibit",
+      },
     ],
     footer: {
       contact: [

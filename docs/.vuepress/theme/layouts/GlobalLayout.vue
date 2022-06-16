@@ -1,8 +1,6 @@
 <template>
   <div id="vuepress-theme-blog__global-layout">
-    <template v-if="$page.frontmatter.home">
-      <Home />
-    </template>
+    <component v-if="$frontmatter['vue-page']" :is="$frontmatter['vue-page']" />
     <template v-else>
       <Header />
       <MobileHeader
@@ -23,6 +21,7 @@ import Header from "@parent-theme/components/Header.vue";
 import MobileHeader from "@parent-theme/components/MobileHeader.vue";
 import Footer from "@parent-theme/components/Footer.vue";
 import Home from "@theme/components/page/Home.vue";
+import CssExhibit from "@theme/components/page/CssExhibit.vue";
 
 export default {
   components: {
@@ -31,6 +30,7 @@ export default {
     MobileHeader,
     Footer,
     Home,
+    CssExhibit,
   },
 
   data() {

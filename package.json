@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@vuepress/plugin-blog": "^1.9.4",
     "@vuepress/theme-blog": "^2.3.3",
-    "vuepress": "^1.9.7"
+    "vuepress": "^1.9.7",
+    "core-js": "^2.6.12"
   }
 }

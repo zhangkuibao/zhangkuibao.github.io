@@ -11,14 +11,14 @@ export default {
   name: "css-exhibit-paper",
   "css-exhibit-component": true,
   mounted() {
-    // 点击涟漪效果
-    this.$refs.paper.onmousedown = (e) => {
-      var ripple = this.$refs.paper.querySelector(".ripple");
-      ripple.classList.remove("animate");
-      ripple.style.top = e.offsetY + 'px';
-      ripple.style.left = e.offsetX + 'px';
-      ripple.classList.add('animate');
-    };
+    // // 点击涟漪效果
+    // this.$refs.paper.onmousedown = (e) => {
+    //   var ripple = this.$refs.paper.querySelector(".ripple");
+    //   ripple.classList.remove("animate");
+    //   ripple.style.top = e.offsetY + 'px';
+    //   ripple.style.left = e.offsetX + 'px';
+    //   ripple.classList.add('animate');
+    // };
   },
 };
 </script>
