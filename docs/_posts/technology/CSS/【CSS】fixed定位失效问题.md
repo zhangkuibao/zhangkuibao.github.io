@@ -21,7 +21,7 @@ MDN 中 position: fixed 的定义如下：
 
 ## 演示
 
-<page-example-fixed-invalid></page-example-fixed-invalid>
+<page-fixed-invalid></page-fixed-invalid>
 
 # 参考
 
