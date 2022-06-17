@@ -24,8 +24,8 @@ import GlobalLayout from "@app/components/GlobalLayout.vue";
 import Header from "@theme/components/Header.vue";
 import MobileHeader from "@theme/components/MobileHeader.vue";
 import Footer from "@parent-theme/components/Footer.vue";
-import Home from "@theme/components/page/Home.vue";
-import CssExhibit from "@theme/components/page/CssExhibit.vue";
+import Home from "@theme/page-components/Home.vue";
+import CssExhibit from "@theme/page-components/CssExhibit.vue";
 
 export default {
   components: {

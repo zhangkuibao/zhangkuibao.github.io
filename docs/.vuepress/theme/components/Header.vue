@@ -19,7 +19,7 @@
                 trigger="hover"
                 v-else-if="item.children"
                 placement="top"
-                width="160"
+                :close-delay="0"
               >
                 <ul class="nav-child-ul">
                   <li
