@@ -5,20 +5,50 @@ module.exports = {
   themeConfig: {
     nav: [
       {
-        text: "技术",
-        link: "/category/technology/",
-      },
-      {
-        text: "阅读",
-        link: "/category/read/",
+        text: "HOME",
+        link: "/",
       },
       {
         text: "标签",
         link: "/tag/",
       },
       {
-        text: "样式效果",
-        link: "/css-exhibit",
+        text: "博客",
+        children: [
+          {
+            text: "技术",
+            link: "/category/technology/",
+          },
+          {
+            text: "阅读",
+            link: "/category/read/",
+          },
+          {
+            text: "常用代码",
+            link: "/category/code/",
+          },
+          {
+            text: "文章",
+            link: "/category/article/",
+          },
+        ],
+      },
+      {
+        text: "其他页面",
+        children: [
+          {
+            text: "样式效果",
+            link: "/css-exhibit",
+          },
+          {
+            text: "收藏",
+            link: "/collect",
+          },
+          {
+            text: "工作日程",
+            link: "/diary",
+          },
+        ],
       },
     ],
     footer: {
@@ -55,6 +85,18 @@ module.exports = {
         dirname: "_posts/read",
         path: "/category/read/",
         itemPermalink: "/category/read/:slug",
+      },
+      {
+        id: "code",
+        dirname: "_posts/code",
+        path: "/category/code/",
+        itemPermalink: "/category/code/:slug",
+      },
+      {
+        id: "article",
+        dirname: "_posts/article",
+        path: "/category/article/",
+        itemPermalink: "/category/article/:slug",
       },
     ],
   },

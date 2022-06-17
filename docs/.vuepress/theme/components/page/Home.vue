@@ -1,23 +1,28 @@
 <template>
   <div>
     <Header />
+    <MobileHeader
+      :is-open="isMobileHeaderOpen"
+      @toggle-sidebar="isMobileHeaderOpen = !isMobileHeaderOpen"
+    />
     <div class="home">首页</div>
   </div>
 </template>
 
 <script>
-import Header from "@parent-theme/components/Header.vue";
+import Header from "@theme/components/Header.vue";
+import MobileHeader from "@theme/components/MobileHeader.vue";
 
 export default {
   name: "Home",
 
-  components: { Header },
-
+  components: { Header, MobileHeader },
+  data() {
+    return {
+      isMobileHeaderOpen: false,
+    };
+  },
   computed: {
-    data() {
-      return this.$page.frontmatter;
-    },
-
     actionLink() {
       return {
         link: this.data.actionLink,

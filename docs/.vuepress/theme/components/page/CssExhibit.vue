@@ -1,6 +1,10 @@
 <template>
   <div>
     <Header />
+    <MobileHeader
+      :is-open="isMobileHeaderOpen"
+      @toggle-sidebar="isMobileHeaderOpen = !isMobileHeaderOpen"
+    />
     <div class="container">
       <component
         v-for="item in componentsNames"
@@ -13,15 +17,15 @@
 </template>
 
 <script>
-import Header from "@parent-theme/components/Header.vue";
+import Header from "@theme/components/Header.vue";
+import MobileHeader from "@theme/components/MobileHeader.vue";
 
 export default {
   name: "CssExhibit",
-
-  components: { Header },
-
+  components: { Header, MobileHeader },
   data() {
     return {
+      isMobileHeaderOpen: false,
       componentsNames: [
         "css-exhibit-auto-margin",
         "css-exhibit-center-vertical",

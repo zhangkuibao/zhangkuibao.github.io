@@ -1,6 +1,10 @@
 <template>
   <div id="vuepress-theme-blog__global-layout">
-    <component v-if="$frontmatter['vue-page']" :is="$frontmatter['vue-page']" />
+    <component
+      v-if="$frontmatter['vue-page']"
+      :is="$frontmatter['vue-page']"
+      :isMobileHeaderOpen="isMobileHeaderOpen"
+    />
     <template v-else>
       <Header />
       <MobileHeader
@@ -17,8 +21,8 @@
 
 <script>
 import GlobalLayout from "@app/components/GlobalLayout.vue";
-import Header from "@parent-theme/components/Header.vue";
-import MobileHeader from "@parent-theme/components/MobileHeader.vue";
+import Header from "@theme/components/Header.vue";
+import MobileHeader from "@theme/components/MobileHeader.vue";
 import Footer from "@parent-theme/components/Footer.vue";
 import Home from "@theme/components/page/Home.vue";
 import CssExhibit from "@theme/components/page/CssExhibit.vue";
