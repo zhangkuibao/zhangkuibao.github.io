@@ -4,7 +4,6 @@ title: 【CSS属性】clip-path
 tags:
   - CSS
   - CSS属性
-vuepage: clip-path
 ---
 
 ## 简介

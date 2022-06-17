@@ -1,0 +1,58 @@
+---
+date: 2021-09-09 14:22:32
+title: 【常用代码-JS】数组
+tags:
+  - 常用代码
+  - 常用代码-JS
+---
+
+## 数组按指定顺序排序
+
+- 一参：目标数组。
+- 二参：排序规则，一参中的数组按照这个数组元素顺序排序。
+- 三参：被排序元素相对其他元素的位置，默认放在其他元素后面。
+
+```js
+function arrLaggingSort(target, sortList, insertHead = false) {
+  if (insertHead) {
+    sortList.reverse();
+  }
+  sortList.forEach((ele) => {
+    let index = target.indexOf(ele);
+    if (index !== -1) {
+      target.splice(index, 1);
+      if (insertHead) {
+        target.unshift(ele);
+      } else {
+        target.push(ele);
+      }
+    }
+  });
+  return target;
+}
+```
+
+- 示例
+
+```js
+let arr = [1, 2, 3, 4, 5, 6];
+let sortList = [3, 5];
+arrLaggingSort(arr, sortList, true); // [3, 5, 1, 2, 4, 6]
+arrLaggingSort(arr, sortList); //[(1, 2, 4, 6, 3, 5)];
+```
+
+## 多层数组扁平化
+
+> reduce 函数不接收二参时，回调函数的一参是数组的第一位，二参是第二位
+>
+> 接收二参时，reduce 回调函数的第一个参数就是输入的参数，二参是数组的第一位
+
+```js
+function flattenDeep(arr) {
+  return arr.reduce((acc, cur) => {
+    const _val = Array.isArray(cur) ? flattenDeep(cur) : [cur];
+    return [...acc, ..._val];
+  }, []);
+}
+flattenDeep([[1, [3, 2]], { name: 234 }, 3, [2, 3, 4, [342, [2]], 999], 0]);
+```
