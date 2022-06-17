@@ -54,21 +54,29 @@ module.exports = {
     footer: {
       contact: [
         {
-          type: "github",
-          link: "https://github.com/vuejs/vuepress",
+          type: "CSDN",
+          link: "https://blog.csdn.net/qq_37012965",
         },
         {
-          type: "twitter",
-          link: "https://github.com/vuejs/vuepress",
+          type: "gitee",
+          link: "https://gitee.com/zhangkb",
+        },
+        {
+          type: "github",
+          link: "https://github.com/zhangkuibao",
+        },
+        {
+          type: "mail",
+          link: "zkbcrow@163.com",
         },
       ],
       copyright: [
         {
-          text: "Privacy Policy",
-          link: "https://policies.google.com/privacy?hl=en-US",
+          text: "© zhangkb |",
         },
         {
-          text: "MIT Licensed | Copyright © 2018-present Vue.js",
+          text: "Powered by vuepress",
+          link: "https://www.vuepress.cn/",
         },
       ],
     },
@@ -99,5 +107,6 @@ module.exports = {
         itemPermalink: "/category/article/:slug",
       },
     ],
+    dateFormat: "YYYY-MM-DD HH:mm:ss",
   },
 };
