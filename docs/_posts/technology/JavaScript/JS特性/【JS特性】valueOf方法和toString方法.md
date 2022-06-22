@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:13:42
+date: '2021-09-08 18:13:42'
 title: 【JS特性】valueOf方法和toString方法
 tags:
   - JavaScript

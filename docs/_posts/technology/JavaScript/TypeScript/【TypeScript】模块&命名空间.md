@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:36:33
+date: '2021-09-09 09:36:33'
 title: 【TypeScript】模块&命名空间
 tags:
   - JavaScript

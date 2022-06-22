@@ -1,5 +1,5 @@
 ---
-date: 2022-02-28 10:56:36
+date: '2022-02-28 10:56:36'
 title: 【JavaScript】闭包和内存管理
 tags:
   - JavaScript

@@ -1,5 +1,5 @@
 ---
-date: 2022-05-23 18:12:04
+date: '2022-05-23 18:12:04'
 title: 【Log4js】Log4js使用手册
 tags:
   - Node

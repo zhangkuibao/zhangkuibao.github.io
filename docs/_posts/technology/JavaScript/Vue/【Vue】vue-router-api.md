@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:11:34
+date: '2021-09-09 10:11:34'
 title: 【Vue】vue-router-api
 tags:
   - JavaScript

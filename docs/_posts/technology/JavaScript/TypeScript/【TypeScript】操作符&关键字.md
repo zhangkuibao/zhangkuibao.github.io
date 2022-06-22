@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:34:04
+date: '2021-09-09 09:34:04'
 title: 【TypeScript】操作符&关键字
 tags:
   - JavaScript

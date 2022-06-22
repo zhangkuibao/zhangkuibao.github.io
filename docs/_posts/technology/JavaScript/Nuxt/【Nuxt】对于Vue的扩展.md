@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:01:41
+date: '2021-09-09 10:01:41'
 title: 【Nuxt】对于Vue的扩展
 tags:
   - JavaScript

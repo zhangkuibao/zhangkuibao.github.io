@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:36:55
+date: '2021-09-09 09:36:55'
 title: 【TypeScript】声明文件&规范
 tags:
   - JavaScript

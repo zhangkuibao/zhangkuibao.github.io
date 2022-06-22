@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:15:04
+date: '2021-09-09 10:15:04'
 title: 【Vue】深入理解Vue
 tags:
   - JavaScript

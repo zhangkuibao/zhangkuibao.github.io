@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 14:32:11
+date: '2021-09-09 14:32:11'
 title: 【浏览器离线缓存】ApplicationCache
 tags:
   - 浏览器

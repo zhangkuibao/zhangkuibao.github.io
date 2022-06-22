@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:03:33
+date: '2021-09-08 18:03:33'
 title: 【JS内置对象】Number
 tags:
   - JavaScript

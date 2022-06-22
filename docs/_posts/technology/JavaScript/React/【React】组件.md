@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:02:33
+date: '2021-09-09 10:02:33'
 title: 【React】组件
 tags:
   - JavaScript

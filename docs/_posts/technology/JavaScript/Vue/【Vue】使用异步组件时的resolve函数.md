@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:17:15
+date: '2021-09-09 10:17:15'
 title: 【Vue】使用异步组件时的resolve函数
 tags:
   - JavaScript

@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:41:16
+date: '2021-09-09 09:41:16'
 title: 【Angular】管道
 tags:
   - JavaScript

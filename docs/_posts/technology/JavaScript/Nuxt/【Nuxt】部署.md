@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:01:29
+date: '2021-09-09 10:01:29'
 title: 【Nuxt】部署
 tags:
   - JavaScript

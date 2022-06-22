@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:36:40
+date: '2021-09-09 09:36:40'
 title: 【TypeScript】配置
 tags:
   - JavaScript

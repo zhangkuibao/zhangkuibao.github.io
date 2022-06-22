@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:36:25
+date: '2021-09-09 09:36:25'
 title: 【TypeScript】类型兼容性&声明合并
 tags:
   - JavaScript

@@ -3,6 +3,7 @@ title: 【JSAPI】媒体录制
 tags:
   - JavaScript
   - JSAPI
+date: '2022-03-08 22:50:04'
 ---
 
 本文章介绍一些与媒体录制（音视频）相关的内容，包括：获取设备权限的 MediaDevices API、媒体流 MediaStream、控制媒体录制的 MediaRecorder API 和录制媒体的流程。

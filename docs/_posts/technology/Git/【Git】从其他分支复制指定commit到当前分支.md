@@ -2,6 +2,7 @@
 title: 【Git】从其他分支复制指定commit到当前分支
 tags:
   - Git
+date: '2022-03-08 22:50:04'
 ---
 
 `git cherry-pick <commit SHA>`

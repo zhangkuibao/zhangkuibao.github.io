@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 17:57:19
+date: '2021-09-08 17:57:19'
 title: 【JavaScript】dom和bom的包含关系
 tags:
   - JavaScript

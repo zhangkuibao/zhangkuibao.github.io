@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:05:44
+date: '2021-09-09 10:05:44'
 title: 【Vue】服务端渲染
 tags:
   - JavaScript

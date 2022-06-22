@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:10:15
+date: '2021-09-09 10:10:15'
 title: 【Vue】组件
 tags:
   - JavaScript

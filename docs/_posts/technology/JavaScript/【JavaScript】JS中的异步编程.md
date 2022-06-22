@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:17:50
+date: '2021-09-08 18:17:50'
 title: 【JavaScript】JS中的异步编程
 tags:
   - JavaScript

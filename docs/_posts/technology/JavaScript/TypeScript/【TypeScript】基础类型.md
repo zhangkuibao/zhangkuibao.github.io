@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:35:55
+date: '2021-09-09 09:35:55'
 title: 【TypeScript】基础类型
 tags:
   - JavaScript

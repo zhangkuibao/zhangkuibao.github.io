@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:14:17
+date: '2021-09-09 10:14:17'
 title: 【Vue】查看vue.config.js生成的webpack配置
 tags:
   - JavaScript

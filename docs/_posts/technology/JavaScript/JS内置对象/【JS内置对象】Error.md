@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:03:07
+date: '2021-09-08 18:03:07'
 title: 【JS内置对象】Error
 tags:
   - JavaScript

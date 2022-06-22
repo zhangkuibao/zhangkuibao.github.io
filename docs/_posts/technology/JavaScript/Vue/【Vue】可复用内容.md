@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:06:43
+date: '2021-09-09 10:06:43'
 title: 【Vue】可复用内容
 tags:
   - JavaScript

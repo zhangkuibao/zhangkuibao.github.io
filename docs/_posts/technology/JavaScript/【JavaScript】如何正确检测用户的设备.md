@@ -2,6 +2,7 @@
 title: 【JavaScript】如何正确检测用户的设备
 tags:
   - JavaScript
+date: '2022-03-08 22:50:04'
 ---
 
 ## 为什么要检测设备

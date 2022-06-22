@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 14:54:16
+date: '2021-09-09 14:54:16'
 title: 【JavaScript】跨域解决方案
 tags:
   - JavaScript

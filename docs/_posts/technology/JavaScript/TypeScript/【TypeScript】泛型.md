@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:35:17
+date: '2021-09-09 09:35:17'
 title: 【TypeScript】泛型
 tags:
   - JavaScript

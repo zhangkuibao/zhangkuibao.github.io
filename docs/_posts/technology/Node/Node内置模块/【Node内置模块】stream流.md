@@ -1,5 +1,5 @@
 ---
-date: 2021-12-07 15:25:49
+date: '2021-12-07 15:25:49'
 title: 【Node内置模块】stream流
 tags:
   - Node

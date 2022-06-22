@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:12:58
+date: '2021-09-08 18:12:58'
 title: 【JavaScript】惰性载入函数
 tags:
   - JavaScript

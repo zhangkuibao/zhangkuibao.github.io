@@ -3,6 +3,7 @@ title: 【NPM】npx
 tags:
   - Node
   - NPM
+date: '2022-03-08 22:50:04'
 ---
 
 npm 从 5.2 版开始，增加了 npx 命令。npx 是一个工具，一个 npm 包执行器，旨在提高从 npm 注册表使用软件包时的体验。

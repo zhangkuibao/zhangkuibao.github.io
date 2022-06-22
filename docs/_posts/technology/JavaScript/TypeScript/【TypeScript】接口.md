@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:36:06
+date: '2021-09-09 09:36:06'
 title: 【TypeScript】接口
 tags:
   - JavaScript

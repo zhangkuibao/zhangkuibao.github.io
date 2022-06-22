@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:42:35
+date: '2021-09-09 09:42:35'
 title: 【Angular】模板语法
 tags:
   - JavaScript

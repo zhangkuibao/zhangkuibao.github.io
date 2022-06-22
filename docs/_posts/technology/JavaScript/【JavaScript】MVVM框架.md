@@ -1,5 +1,5 @@
 ---
-date: 2021-09-06 10:56:06
+date: '2021-09-06 10:56:06'
 title: 【JavaScript】MVVM框架
 tags:
   - JavaScript

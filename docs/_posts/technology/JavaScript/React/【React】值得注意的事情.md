@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:04:42
+date: '2021-09-09 10:04:42'
 title: 【React】值得注意的事情
 tags:
   - JavaScript

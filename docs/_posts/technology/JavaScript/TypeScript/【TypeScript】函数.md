@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 09:35:44
+date: '2021-09-09 09:35:44'
 title: 【TypeScript】函数
 tags:
   - JavaScript

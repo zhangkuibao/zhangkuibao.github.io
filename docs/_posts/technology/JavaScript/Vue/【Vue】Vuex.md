@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:13:45
+date: '2021-09-09 10:13:45'
 title: 【Vue】Vuex
 tags:
   - JavaScript

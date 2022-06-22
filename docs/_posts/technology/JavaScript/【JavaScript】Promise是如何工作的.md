@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:18:13
+date: '2021-09-08 18:18:13'
 title: 【JavaScript】Promise是如何工作的
 tags:
   - JavaScript

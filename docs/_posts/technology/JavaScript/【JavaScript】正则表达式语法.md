@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:10:45
+date: '2021-09-08 18:10:45'
 title: 【JavaScript】正则表达式语法
 tags:
   - JavaScript

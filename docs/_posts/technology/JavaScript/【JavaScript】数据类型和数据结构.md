@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:15:29
+date: '2021-09-08 18:15:29'
 title: 【JavaScript】数据类型和数据结构
 tags:
   - JavaScript

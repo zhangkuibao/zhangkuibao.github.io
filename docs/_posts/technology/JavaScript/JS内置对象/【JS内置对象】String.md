@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:05:30
+date: '2021-09-08 18:05:30'
 title: 【JS内置对象】String
 tags:
   - JavaScript

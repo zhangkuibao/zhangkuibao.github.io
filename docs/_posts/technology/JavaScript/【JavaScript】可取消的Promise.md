@@ -2,6 +2,7 @@
 title: 【JavaScript】可取消的Promise
 tags:
   - JavaScript
+date: '2022-03-08 22:50:04'
 ---
 
 ```js

@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 12:15:47
+date: '2021-09-09 12:15:47'
 title: 【JavaScript】循环选取数组元素
 tags:
   - JavaScript

@@ -1,5 +1,5 @@
 ---
-date: 2021-09-09 10:19:34
+date: '2021-09-09 10:19:34'
 title: 【Vue】路由懒加载
 tags:
   - JavaScript

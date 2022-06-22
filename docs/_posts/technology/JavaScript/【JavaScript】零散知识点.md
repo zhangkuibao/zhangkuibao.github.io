@@ -1,5 +1,5 @@
 ---
-date: 2021-09-08 18:14:59
+date: '2021-09-08 18:14:59'
 title: 【JavaScript】零散知识点
 tags:
   - JavaScript

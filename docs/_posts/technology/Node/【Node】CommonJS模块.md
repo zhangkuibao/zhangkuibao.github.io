@@ -1,5 +1,5 @@
 ---
-date: 2021-11-25 12:25:19
+date: '2021-11-25 12:25:19'
 title: 【Node】CommonJS模块
 tags:
   - Node
