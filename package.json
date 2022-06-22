@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev docs",
+    "dev": "node ./src/entry/dev.js",
     "build": "vuepress build docs"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chalk": "^4.1.2",
+    "moment": "^2.29.3",
+    "gray-matter": "^4.0.3",
+    "chokidar": "^3.5.2",
     "@vuepress/plugin-medium-zoom": "^1.9.7",
     "@vuepress/theme-blog": "^2.3.3",
     "core-js": "^2.6.12",
