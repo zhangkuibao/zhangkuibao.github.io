@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 图片提取工具 (自动去重版)</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --danger-color: #ef4444;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #1e293b;
+        }
+
+        /* 输入区域 */
+        .input-wrapper {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: all 0.2s;
+            display: block;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .btn-extract {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: 500;
+        }
+
+        .btn-extract:hover {
+            background-color: #1d4ed8;
+        }
+
+        .status-bar {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .status-bar span.highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .status-bar span.removed {
+            color: #ef4444;
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        /* 瀑布流布局 */
+        #gallery {
+            column-count: 5;
+            column-gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        @media (max-width: 1600px) { #gallery { column-count: 4; } }
+        @media (max-width: 1200px) { #gallery { column-count: 3; } }
+        @media (max-width: 800px) { #gallery { column-count: 2; } }
+        @media (max-width: 500px) { #gallery { column-count: 1; } }
+
+        .img-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+            margin-bottom: 20px;
+            break-inside: avoid;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .img-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        /* 删除按钮 */
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .delete-btn:hover {
+            background-color: var(--danger-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .img-card:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .img-card .url-hint {
+            padding: 10px;
+            font-size: 12px;
+            color: #64748b;
+            background: #fff;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* 提示框 Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 10px 20px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(20px);
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🖼️ Markdown 图片提取器</h1>
+    
+    <div class="input-wrapper">
+        <textarea id="inputText" placeholder="在此粘贴包含 ![](url) 的文本..."></textarea>
+        <div class="controls">
+            <button class="btn-extract" onclick="manualExtract()">🔄 重新提取图片</button>
+            <div class="status-bar" id="stats">准备就绪</div>
+        </div>
+    </div>
+
+    <div id="gallery">
+        </div>
+</div>
+
+<div id="toast">链接已复制</div>
+
+<script>
+    const textArea = document.getElementById('inputText');
+    const gallery = document.getElementById('gallery');
+    const stats = document.getElementById('stats');
+
+    // 监听输入事件（自动提取）
+    textArea.addEventListener('input', () => {
+        extractImages(textArea.value);
+    });
+
+    // 手动提取按钮（强制刷新）
+    function manualExtract() {
+        extractImages(textArea.value);
+        showToast("已重新提取所有图片");
+    }
+
+    function extractImages(text) {
+        // 如果文本为空，清空画廊
+        if (!text.trim()) {
+            gallery.innerHTML = '';
+            stats.innerText = '准备就绪';
+            return;
+        }
+
+        // 正则表达式匹配 Markdown 图片
+        const regex = /!\[.*?\]\((.*?)\)/g;
+        
+        let match;
+        const allUrls = [];
+
+        // 1. 获取所有链接
+        while ((match = regex.exec(text)) !== null) {
+            if(match[1]) {
+                allUrls.push(match[1].trim()); // trim去掉可能的首尾空格
+            }
+        }
+
+        // 2. 去重 (使用 Set 数据结构)
+        const uniqueUrls = [...new Set(allUrls)];
+        
+        // 计算被移除的重复数量
+        const duplicateCount = allUrls.length - uniqueUrls.length;
+
+        // 3. 渲染
+        renderGallery(uniqueUrls, duplicateCount);
+    }
+
+    function renderGallery(urls, duplicateCount) {
+        gallery.innerHTML = ''; // 清空当前展示
+
+        if (urls.length === 0) {
+            stats.innerText = "未检测到图片链接";
+            return;
+        }
+
+        urls.forEach((url, index) => {
+            const card = document.createElement('div');
+            card.className = 'img-card';
+            card.title = '点击复制链接';
+            
+            // 点击卡片本体：复制链接
+            card.onclick = () => copyToClipboard(url);
+
+            // 创建删除按钮
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '&times;';
+            deleteBtn.title = '移除此图 (不删除文本)';
+            
+            // 删除按钮点击事件
+            deleteBtn.onclick = (e) => {
+                e.stopPropagation(); 
+                removeCard(card);
+            };
+
+            const img = document.createElement('img');
+            img.src = url;
+            img.loading = "lazy";
+            
+            img.onerror = function() {
+                this.style.display = 'none';
+                card.style.display = 'none'; 
+            };
+
+            const hint = document.createElement('div');
+            hint.className = 'url-hint';
+            hint.innerText = '点击复制 URL';
+
+            card.appendChild(deleteBtn);
+            card.appendChild(img);
+            card.appendChild(hint);
+            gallery.appendChild(card);
+        });
+
+        // 更新状态栏文本
+        let statusText = `共提取 <span class="highlight">${urls.length}</span> 张图片`;
+        if (duplicateCount > 0) {
+            statusText += `<span class="removed">(已自动去重 ${duplicateCount} 张)</span>`;
+        }
+        stats.innerHTML = statusText;
+    }
+
+    // 移除卡片功能
+    function removeCard(element) {
+        element.style.opacity = '0';
+        element.style.transform = 'scale(0.9)';
+        
+        setTimeout(() => {
+            element.remove();
+            // 更新一下计数 (仅更新显示数量，不去管重复数了)
+            const currentCount = document.querySelectorAll('.img-card').length;
+            // 获取当前显示的重复提示（如果有）
+            const removedSpan = stats.querySelector('.removed');
+            let removedText = removedSpan ? removedSpan.outerHTML : '';
+            
+            stats.innerHTML = `显示 <span class="highlight">${currentCount}</span> 张图片 ${removedText}`;
+        }, 200);
+    }
+
+    // 复制功能
+    async function copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+            showToast(`已复制链接`);
+        } catch (err) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            showToast(`已复制链接`);
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.innerText = message;
+        toast.className = "show";
+        if (window.toastTimeout) clearTimeout(window.toastTimeout);
+        window.toastTimeout = setTimeout(() => { 
+            toast.className = toast.className.replace("show", ""); 
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>

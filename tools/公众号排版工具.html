@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号排版工具 v11.0 (位置可调版)</title>
+    <style>
+        :root {
+            --primary-color: #07C160;
+            --bg-color: #f0f2f5;
+            --border-color: #e1e4e8;
+            --text-color: #333;
+            --hover-ui-color: #e9e9e9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            background-color: var(--bg-color);
+        }
+
+        /* --- 布局样式 --- */
+        .preview-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex-shrink: 0;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .preview-tip {
+            font-weight: normal;
+            color: #666;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        .preview-scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-simulator {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 40px 30px;
+            height: fit-content;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .control-panel {
+            width: 320px;
+            background: white;
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.02);
+        }
+
+        .panel-title {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .settings-group {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-val {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .input-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            flex: 1;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            resize: none;
+            font-size: 13px;
+            line-height: 1.5;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .btn:hover { opacity: 0.9; }
+
+        .btn-copy {
+            width: auto;
+            padding: 8px 20px;
+            background-color: #333;
+        }
+        
+        .btn-copy.success { background-color: var(--primary-color); }
+
+        /* --- 核心文章与交互样式 --- */
+        
+        /* 1. 文本段落容器 */
+        .text-line-wrapper {
+            position: relative; /* 为了定位加号按钮 */
+        }
+        
+        .wx-article p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            padding: 2px 5px; 
+            position: relative;
+        }
+
+        .interactive-p {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .interactive-p:hover {
+            background-color: #f0f8ff;
+        }
+
+        /* 2. 添加图片按钮 (Hover显示) */
+        .add-img-btn {
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 鼠标悬停在段落上时，显示加号 */
+        .text-line-wrapper:hover .add-img-btn {
+            display: block;
+        }
+
+        /* 3. 图片占位符 (可删除) */
+        .img-placeholder-wrapper {
+            margin: 40px 0; /* 默认大间距 */
+            position: relative;
+            cursor: pointer;
+            border: 1px dashed transparent; /* 默认无边框 */
+            transition: all 0.2s;
+        }
+
+        .img-placeholder-wrapper:hover {
+            border-color: #ff4d4f;
+            background-color: rgba(255, 77, 79, 0.05);
+        }
+
+        /* 删除提示文字 */
+        .del-hint {
+            display: none;
+            text-align: center;
+            color: #ff4d4f;
+            font-size: 12px;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none; /* 点击穿透 */
+        }
+
+        .img-placeholder-wrapper:hover .del-hint {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column-reverse; overflow: auto; }
+            .control-panel { width: 100%; height: auto; border-left: none; border-bottom: 1px solid #ddd; }
+            .preview-panel { height: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preview-panel">
+        <div class="preview-header">
+            <div>
+                <span class="preview-title">效果预览</span>
+                <span class="preview-tip">hover文字显示[+]插图 / 点击空行删除</span>
+            </div>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyResult()">复制结果</button>
+        </div>
+        
+        <div class="preview-scroll-area">
+            <div class="phone-simulator">
+                <div id="output" class="wx-article">
+                    <p style="color:#999; text-align:center; padding-top:50px;">在右侧输入文字开始排版</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <h2 class="panel-title">排版助手 v11.0</h2>
+        
+        <div class="settings-group">
+            <div class="stat-row">
+                <span>总字数</span>
+                <span class="stat-val" id="charCount">0</span>
+            </div>
+            <div class="stat-row">
+                <span>图片空行数</span>
+                <input type="number" id="imgInput" value="0" min="0" oninput="manualImgUpdate()">
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <div class="label">原文输入</div>
+            <textarea id="input" placeholder="请粘贴文章..." oninput="handleTextInput()"></textarea>
+        </div>
+
+        <button class="btn" onclick="handleTextInput()">刷新排版 & 随机高亮</button>
+    </div>
+
+    <script>
+        let globalLines = []; 
+        let globalImgCount = 0;
+
+        // --- 事件委托：处理点击交互 ---
+        document.getElementById('output').addEventListener('click', function(e) {
+            const target = e.target;
+
+            // 1. 点击加号：插入图片空行
+            if (target.classList.contains('add-img-btn')) {
+                insertPlaceholder(target);
+                return;
+            }
+
+            // 2. 点击图片占位符：删除
+            // 可能点到 wrapper 或内部的 br/hint
+            const placeholder = target.closest('.img-placeholder-wrapper');
+            if (placeholder) {
+                placeholder.remove();
+                updateImgCountDisplay(); // 更新计数器
+                return;
+            }
+
+            // 3. 点击文本：切换高亮
+            if (target.tagName === 'P' && target.classList.contains('interactive-p')) {
+                if (target.style.color === 'red') {
+                    target.style.color = '';
+                    target.style.fontWeight = '';
+                } else {
+                    target.style.color = 'red';
+                    target.style.fontWeight = 'bold';
+                }
+            }
+        });
+
+        // 插入图片空行逻辑
+        function insertPlaceholder(btn) {
+            const lineWrapper = btn.closest('.text-line-wrapper');
+            
+            const div = document.createElement('div');
+            div.className = 'img-placeholder-wrapper';
+            // 内部放一个 br 撑开高度，放一个提示语
+            div.innerHTML = '<span class="del-hint">点击删除此空行</span><br>';
+            
+            // 插入到当前行后面
+            lineWrapper.after(div);
+            
+            updateImgCountDisplay();
+        }
+
+        // 更新左侧输入框的数字显示
+        function updateImgCountDisplay() {
+            const count = document.querySelectorAll('.img-placeholder-wrapper').length;
+            document.getElementById('imgInput').value = count;
+            globalImgCount = count;
+        }
+
+        function handleTextInput() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                resetStats();
+                return;
+            }
+
+            // 清洗
+            let text = input.replace(/\*/g, '').replace(/[\r\n]/g, '');
+            text = text.replace(/“([^”]{0,5})”/g, '$1')
+                       .replace(/‘([^’]{0,5})’/g, '$1')
+                       .replace(/"([^"]{0,5})"/g, '$1');
+
+            const charLen = text.replace(/\s/g, '').length;
+            document.getElementById('charCount').innerText = charLen;
+
+            globalLines = splitIntoLines(text);
+
+            let numImages = 0;
+            if (charLen > 100) { 
+                numImages = Math.floor(charLen / 200);
+                if (numImages === 0 && charLen > 150) numImages = 1; 
+            }
+            document.getElementById('imgInput').value = numImages;
+            globalImgCount = numImages;
+
+            renderOutput();
+        }
+
+        function manualImgUpdate() {
+            const val = document.getElementById('imgInput').value;
+            globalImgCount = parseInt(val) || 0;
+            renderOutput();
+        }
+
+        function splitIntoLines(text) {
+            let parts = text.replace(/([。；？][”’]?)/g, "$1###SPLIT###").split('###SPLIT###');
+            let lines = [];
+            let currentLine = '';
+
+            parts.forEach(part => {
+                if (!part) return;
+                if (currentLine.length + part.length > 30) {
+                    if (currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = part;
+                    } else {
+                        lines.push(part);
+                        currentLine = '';
+                    }
+                } else {
+                    currentLine += part;
+                }
+            });
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        }
+
+        function renderOutput() {
+            if (globalLines.length === 0) return;
+            
+            let mixedContent = [];
+            
+            if (globalImgCount > 0) {
+                const step = Math.ceil(globalLines.length / (globalImgCount + 1));
+                let imgInsertedCount = 0;
+
+                globalLines.forEach((line, index) => {
+                    mixedContent.push({ type: 'text', content: line, highlight: false });
+                    
+                    if (index < globalLines.length - 1 && (index + 1) % step === 0 && imgInsertedCount < globalImgCount) {
+                        imgInsertedCount++;
+                        mixedContent.push({ type: 'img', content: '' });
+                    }
+                });
+            } else {
+                mixedContent = globalLines.map(line => ({ type: 'text', content: line, highlight: false }));
+            }
+
+            // 随机高亮
+            let currentBlockIndices = [];
+            for (let i = 0; i < mixedContent.length; i++) {
+                if (mixedContent[i].type === 'text') {
+                    currentBlockIndices.push(i);
+                } else if (mixedContent[i].type === 'img') {
+                    applyRandomHighlight(mixedContent, currentBlockIndices);
+                    currentBlockIndices = []; 
+                }
+            }
+            applyRandomHighlight(mixedContent, currentBlockIndices);
+
+            // 生成 HTML
+            let htmlOutput = mixedContent.map(item => {
+                if (item.type === 'img') {
+                    // 图片占位符结构
+                    return `<div class="img-placeholder-wrapper"><span class="del-hint">点击删除此空行</span><br></div>`;
+                } else {
+                    // 文本行结构：外面包一层 div 用于定位加号按钮
+                    const styleStr = item.highlight ? 'font-weight: bold; color: red;' : '';
+                    return `
+                        <div class="text-line-wrapper">
+                            <p class="interactive-p" style="${styleStr}">${item.content}</p>
+                            <span class="add-img-btn" title="在此处插入空行">+</span>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            document.getElementById('output').innerHTML = htmlOutput;
+        }
+
+        function applyRandomHighlight(contentArray, indices) {
+            if (indices.length === 0) return;
+            const randomIndex = Math.floor(Math.random() * indices.length);
+            const targetIndexInMainArray = indices[randomIndex];
+            contentArray[targetIndexInMainArray].highlight = true;
+        }
+
+        function resetStats() {
+            globalLines = [];
+            document.getElementById('output').innerHTML = '<p style="color:#999; text-align:center; padding-top:50px;">在右侧输入文字开始排版</p>';
+            document.getElementById('charCount').innerText = '0';
+            document.getElementById('imgInput').value = '0';
+        }
+
+        // --- 复制逻辑：深度清洗 ---
+        function copyResult() {
+            const output = document.getElementById('output');
+            const clone = output.cloneNode(true);
+
+            // 1. 移除所有的 Add 按钮
+            const addBtns = clone.querySelectorAll('.add-img-btn');
+            addBtns.forEach(el => el.remove());
+
+            // 2. 处理文本行
+            // 我们需要把 <div class="text-line-wrapper"><p>...</p></div> 结构
+            // 简化为直接的 <p>...</p>，否则公众号编辑器可能会有 weird behavior
+            const wrappers = clone.querySelectorAll('.text-line-wrapper');
+            wrappers.forEach(wrapper => {
+                const p = wrapper.querySelector('p');
+                if (p) {
+                    // 清洗 P 的交互样式
+                    p.classList.remove('interactive-p');
+                    p.style.cursor = 'auto';
+                    p.style.backgroundColor = 'transparent';
+                    // 把 P 移出来，替换掉 Wrapper
+                    wrapper.parentNode.replaceChild(p, wrapper);
+                }
+            });
+
+            // 3. 处理图片占位符
+            // 移除提示文字，移除 wrapper 的交互类/边框，只保留 margin 和 br
+            const placeHolders = clone.querySelectorAll('.img-placeholder-wrapper');
+            placeHolders.forEach(ph => {
+                const hint = ph.querySelector('.del-hint');
+                if (hint) hint.remove();
+                
+                // 将 div 替换为 p，为了更好的兼容性
+                const p = document.createElement('p');
+                // 关键样式：保留空行的大间距，并确保背景透明
+                p.style.margin = '40px 0';
+                p.style.textAlign = 'center';
+                p.innerHTML = '<br>'; // 必须有内容才能占位
+                
+                ph.parentNode.replaceChild(p, ph);
+            });
+
+            // 4. 创建白底容器复制
+            const tempDiv = document.createElement('div');
+            tempDiv.style.position = 'absolute';
+            tempDiv.style.left = '-9999px';
+            tempDiv.style.backgroundColor = '#ffffff'; 
+            tempDiv.appendChild(clone);
+            document.body.appendChild(tempDiv);
+
+            const range = document.createRange();
+            range.selectNodeContents(clone);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerText;
+                btn.innerText = '✔ 已复制';
+                btn.classList.add('success');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('success');
+                }, 2000);
+            } catch (err) {
+                alert('复制失败');
+            }
+            
+            selection.removeAllRanges();
+            document.body.removeChild(tempDiv);
+        }
+    </script>
+</body>
+</html>

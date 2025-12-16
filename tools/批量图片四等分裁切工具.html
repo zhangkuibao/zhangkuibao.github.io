@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片裁切工具 - 缩放预览版</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .upload-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s;
+            margin-bottom: 40px;
+        }
+
+        .upload-container:hover {
+            border-color: var(--primary-color);
+            background-color: #fafbfc;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 12px 30px;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s;
+            box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+        }
+
+        .custom-file-upload:hover {
+            background-color: #357abd;
+        }
+
+        #gallery {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .image-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .file-info {
+            font-weight: bold;
+            color: #444;
+            font-size: 1.1em;
+        }
+
+        .file-meta {
+            font-size: 0.8em;
+            color: #888;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .grid-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grid-item img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: zoom-in;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .grid-item img:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        .download-btn {
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: background 0.2s;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .download-btn:hover {
+            background-color: #218838;
+        }
+
+        .pos-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            padding: 10px;
+            background: #ffe6e6;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* --- 灯箱 (Lightbox) 样式 --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 防止图片放大时出现滚动条 */
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            user-select: none; /* 防止拖拽时选中文本 */
+        }
+
+        .lightbox-content {
+            /* 移除 max-width/height 限制，完全由 JS 控制尺寸 */
+            display: block;
+            cursor: grab; /* 抓手图标 */
+            transform-origin: center center;
+            /* 关键：使用 transform 进行缩放，不使用 transition 以保证拖拽流畅 */
+            will-change: transform; 
+        }
+
+        .lightbox-content:active {
+            cursor: grabbing; /* 按下时变成抓住图标 */
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1001;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+        
+        /* 缩放提示文字 */
+        .zoom-hint {
+            position: absolute;
+            bottom: 20px;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✂️ 图片裁切工具</h1>
+        <div class="subtitle">滚轮缩放 • 拖拽查看 • 本地处理</div>
+    </header>
+
+    <div class="upload-container">
+        <label for="file-upload" class="custom-file-upload">
+            选择图片 (支持多选)
+        </label>
+        <input id="file-upload" type="file" multiple accept="image/*"/>
+        <p style="margin-top: 15px; color: #999; font-size: 0.9em;">
+            按住 Ctrl 或 Shift 可批量选择
+        </p>
+    </div>
+
+    <div id="error-container" class="error-msg"></div>
+
+    <div id="gallery"></div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="zoom-hint">🖱️ 滚轮缩放 • 按住拖拽</div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const gallery = document.getElementById('gallery');
+        const errorContainer = document.getElementById('error-container');
+        
+        // --- 灯箱变量与逻辑 ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        // 状态变量
+        let scale = 1;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let translateX = 0;
+        let translateY = 0;
+
+        // 打开灯箱
+        function openLightbox(src) {
+            lightbox.style.display = "flex";
+            lightboxImg.src = src;
+            
+            // 重置状态
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+            
+            // 限制初始图片大小不爆屏 (模拟 object-fit: contain)
+            // 这里我们简单限制一下宽度，缩放完全交给 transform
+            if(lightboxImg.naturalWidth > window.innerWidth * 0.9) {
+                lightboxImg.style.width = '80%';
+            } else {
+                lightboxImg.style.width = 'auto';
+            }
+        }
+
+        // 关闭灯箱
+        function closeLightbox() {
+            lightbox.style.display = "none";
+            lightboxImg.src = "";
+        }
+        
+        closeBtn.onclick = closeLightbox;
+
+        // 更新图片的 CSS 变换
+        function updateTransform() {
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+
+        // 1. 滚轮缩放事件
+        lightbox.addEventListener('wheel', function(e) {
+            e.preventDefault(); // 阻止页面滚动
+
+            const zoomIntensity = 0.1;
+            const delta = e.deltaY > 0 ? -zoomIntensity : zoomIntensity;
+            
+            // 计算新的缩放比例
+            let newScale = scale + delta;
+            
+            // 限制缩放范围 (0.1倍 到 10倍)
+            newScale = Math.min(Math.max(0.1, newScale), 10);
+            
+            scale = newScale;
+            updateTransform();
+        }, { passive: false });
+
+        // 2. 鼠标按下 (开始拖拽)
+        lightboxImg.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            e.preventDefault(); // 防止默认拖拽图片行为
+        });
+
+        // 3. 鼠标移动 (拖拽中)
+        window.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            
+            updateTransform();
+        });
+
+        // 4. 鼠标松开 (结束拖拽)
+        window.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        // 点击背景关闭 (但如果是在拖拽图片则不关闭)
+        lightbox.onclick = function(event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        }
+        
+        // ESC 关闭
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+        });
+
+        // --- 文件处理逻辑 (保持不变) ---
+        fileInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+
+            errorContainer.style.display = 'none';
+            gallery.innerHTML = ''; 
+
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) return;
+                processSingleFile(file);
+            });
+        });
+
+        function processSingleFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    createImageCard(img, file.name, file.size);
+                    URL.revokeObjectURL(img.src);
+                };
+                img.onerror = function() { showError(`无法加载图片: ${file.name}`); };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function createImageCard(img, fileName, fileSize) {
+            const width = img.width;
+            const height = img.height;
+            const halfW = Math.floor(width / 2);
+            const halfH = Math.floor(height / 2);
+            const sizeStr = (fileSize / 1024).toFixed(1) + ' KB';
+            const baseName = fileName.substring(0, fileName.lastIndexOf('.')) || fileName;
+
+            const card = document.createElement('div');
+            card.className = 'image-card';
+            
+            const header = document.createElement('div');
+            header.className = 'card-header';
+            header.innerHTML = `
+                <div>
+                    <span class="file-info">${fileName}</span>
+                    <span class="file-meta">${width}x${height}px • ${sizeStr}</span>
+                </div>`;
+            card.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.className = 'split-grid';
+
+            const parts = [
+                { x: 0, y: 0, label: '左上', suffix: '_01_TL' },
+                { x: halfW, y: 0, label: '右上', suffix: '_02_TR' },
+                { x: 0, y: halfH, label: '左下', suffix: '_03_BL' },
+                { x: halfW, y: halfH, label: '右下', suffix: '_04_BR' }
+            ];
+
+            parts.forEach(part => {
+                const canvas = document.createElement('canvas');
+                canvas.width = halfW;
+                canvas.height = halfH;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, part.x, part.y, halfW, halfH, 0, 0, halfW, halfH);
+                
+                const dataUrl = canvas.toDataURL('image/png');
+
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+                
+                const imgEl = document.createElement('img');
+                imgEl.src = dataUrl;
+                imgEl.title = "点击放大预览"; 
+                
+                // 绑定点击事件到我们新的 openLightbox 函数
+                imgEl.onclick = function() {
+                    openLightbox(dataUrl);
+                };
+
+                const label = document.createElement('span');
+                label.className = 'pos-label';
+                label.innerText = part.label;
+
+                const btn = document.createElement('a');
+                btn.className = 'download-btn';
+                btn.innerText = '下载';
+                btn.href = dataUrl;
+                btn.download = `${baseName}${part.suffix}.png`;
+
+                item.appendChild(label);
+                item.appendChild(imgEl);
+                item.appendChild(btn);
+                grid.appendChild(item);
+            });
+
+            card.appendChild(grid);
+            gallery.appendChild(card);
+        }
+
+        function showError(msg) {
+            errorContainer.textContent = msg;
+            errorContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
