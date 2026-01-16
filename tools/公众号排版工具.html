@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号排版工具 v13.0 (智能混合版)</title>
+    <style>
+        :root {
+            --primary-color: #07C160;
+            --bg-color: #f0f2f5;
+            --border-color: #e1e4e8;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            background-color: var(--bg-color);
+        }
+
+        /* --- 布局样式 --- */
+        .preview-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex-shrink: 0;
+        }
+
+        .preview-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .preview-tip {
+            font-weight: normal;
+            color: #666;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        .preview-scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-simulator {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 40px 30px;
+            height: fit-content;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .control-panel {
+            width: 320px;
+            background: white;
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.02);
+        }
+
+        .panel-title {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .settings-group {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-val {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            flex: 1;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            resize: none;
+            font-size: 13px;
+            line-height: 1.5;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        
+        /* 辅助按钮 */
+        .btn-secondary {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        .btn-secondary:hover { background-color: #f5f5f5; }
+
+        .btn-copy {
+            width: auto;
+            padding: 8px 20px;
+            background-color: #333;
+            margin-bottom: 0;
+        }
+        
+        .btn-copy.success { background-color: var(--primary-color); }
+
+        /* --- 核心交互样式 --- */
+        .text-line-wrapper {
+            position: relative;
+        }
+        
+        .wx-article p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            padding: 2px 5px; 
+            position: relative;
+        }
+
+        .interactive-p {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .interactive-p:hover {
+            background-color: #f0f8ff;
+        }
+
+        /* 悬浮加号按钮 */
+        .add-img-btn {
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .text-line-wrapper:hover .add-img-btn {
+            display: block;
+        }
+
+        /* 图片占位符 */
+        .img-placeholder-wrapper {
+            margin: 40px 0;
+            position: relative;
+            cursor: pointer;
+            border: 1px dashed transparent;
+            transition: all 0.2s;
+        }
+
+        .img-placeholder-wrapper:hover {
+            border-color: #ff4d4f;
+            background-color: rgba(255, 77, 79, 0.05);
+        }
+
+        .del-hint {
+            display: none;
+            text-align: center;
+            color: #ff4d4f;
+            font-size: 12px;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .img-placeholder-wrapper:hover .del-hint {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column-reverse; overflow: auto; }
+            .control-panel { width: 100%; height: auto; border-left: none; border-bottom: 1px solid #ddd; }
+            .preview-panel { height: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preview-panel">
+        <div class="preview-header">
+            <div>
+                <span class="preview-title">效果预览</span>
+                <span class="preview-tip">hover文字插图 / 点击空行删除</span>
+            </div>
+            <button class="btn btn-copy" id="copyBtn" onclick="copyResult()">复制结果</button>
+        </div>
+        
+        <div class="preview-scroll-area">
+            <div class="phone-simulator">
+                <div id="output" class="wx-article">
+                    <p style="color:#999; text-align:center; padding-top:50px;">在右侧输入文字开始排版</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <h2 class="panel-title">排版助手 v13.0</h2>
+        
+        <div class="settings-group">
+            <div class="stat-row">
+                <span>总字数</span>
+                <span class="stat-val" id="charCount">0</span>
+            </div>
+            <div class="stat-row">
+                <span>图片空行数</span>
+                <span class="stat-val" id="imgCountDisplay">0</span>
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <div class="label">原文输入</div>
+            <textarea id="input" placeholder="请粘贴文章..." oninput="handleTextInput()"></textarea>
+        </div>
+
+        <button class="btn" onclick="forceResetAuto()">重置排版 (自动生成)</button>
+        <button class="btn btn-secondary" onclick="clearAllStyles()">清除所有高亮和图片</button>
+    </div>
+
+    <script>
+        let globalLines = []; 
+        
+        // 状态记忆容器
+        let memoryHighlights = new Set();
+        let memoryImgAnchors = new Map();
+        
+        // 标记是否已经初始化过（第一次粘贴为初始化，后续为编辑）
+        let isInitialized = false;
+
+        // --- 事件委托 ---
+        document.getElementById('output').addEventListener('click', function(e) {
+            const target = e.target;
+            
+            // 插入图片
+            if (target.classList.contains('add-img-btn')) {
+                insertPlaceholder(target);
+                captureState();
+                return;
+            }
+
+            // 删除图片
+            const placeholder = target.closest('.img-placeholder-wrapper');
+            if (placeholder) {
+                placeholder.remove();
+                updateImgCountDisplay();
+                captureState();
+                return;
+            }
+
+            // 切换高亮
+            if (target.tagName === 'P' && target.classList.contains('interactive-p')) {
+                if (target.style.color === 'red') {
+                    target.style.color = '';
+                    target.style.fontWeight = '';
+                } else {
+                    target.style.color = 'red';
+                    target.style.fontWeight = 'bold';
+                }
+                captureState();
+            }
+        });
+
+        function insertPlaceholder(btn) {
+            const lineWrapper = btn.closest('.text-line-wrapper');
+            const div = document.createElement('div');
+            div.className = 'img-placeholder-wrapper';
+            div.innerHTML = '<span class="del-hint">点击删除此空行</span><br>';
+            lineWrapper.after(div);
+            updateImgCountDisplay();
+        }
+
+        function updateImgCountDisplay() {
+            const count = document.querySelectorAll('.img-placeholder-wrapper').length;
+            document.getElementById('imgCountDisplay').innerText = count;
+        }
+
+        // --- 核心：状态捕捉 ---
+        // 将当前的 UI 状态保存到内存变量中
+        function captureState() {
+            memoryHighlights.clear();
+            memoryImgAnchors.clear();
+
+            const container = document.getElementById('output');
+            const children = Array.from(container.children);
+
+            children.forEach((child, index) => {
+                // 记录高亮
+                if (child.classList.contains('text-line-wrapper')) {
+                    const p = child.querySelector('p');
+                    if (p && p.style.color === 'red') {
+                        memoryHighlights.add(p.innerText);
+                    }
+                }
+                
+                // 记录图片位置（记录其前一行的文本作为锚点）
+                if (child.classList.contains('img-placeholder-wrapper')) {
+                    const prev = children[index - 1];
+                    if (prev && prev.classList.contains('text-line-wrapper')) {
+                        const p = prev.querySelector('p');
+                        if (p) {
+                            const text = p.innerText;
+                            memoryImgAnchors.set(text, (memoryImgAnchors.get(text) || 0) + 1);
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- 输入处理 ---
+        function handleTextInput() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                resetStats();
+                return;
+            }
+
+            // 1. 如果是第一次输入，或者输入框被清空过，视为初始化 -> 走自动逻辑
+            // 2. 如果已经初始化过，且正在修改 -> 走记忆逻辑 (先捕捉，再重绘)
+            if (isInitialized) {
+                captureState(); // 编辑前先保存当前的修改
+            }
+
+            // 清洗与切分
+            let text = input.replace(/\*/g, '').replace(/[\r\n]/g, '');
+            text = text.replace(/“([^”]{0,5})”/g, '$1').replace(/‘([^’]{0,5})’/g, '$1').replace(/"([^"]{0,5})"/g, '$1');
+            const charLen = text.replace(/\s/g, '').length;
+            document.getElementById('charCount').innerText = charLen;
+            
+            globalLines = splitIntoLines(text);
+
+            if (!isInitialized) {
+                // 首次：自动生成布局并保存
+                generateAutoLayout(globalLines, charLen);
+                isInitialized = true;
+                captureState(); // 保存初始化的状态
+            } else {
+                // 后续：基于记忆还原布局
+                renderFromMemory();
+            }
+        }
+
+        // 强制重置：手动触发自动逻辑
+        function forceResetAuto() {
+            const input = document.getElementById('input').value;
+            if (!input) return;
+            
+            // 清空记忆，重置状态
+            memoryHighlights.clear();
+            memoryImgAnchors.clear();
+            isInitialized = false; 
+            
+            handleTextInput(); // 重新执行，这会触发 generateAutoLayout
+        }
+        
+        // 清除样式：保留文字，变成纯净版
+        function clearAllStyles() {
+            memoryHighlights.clear();
+            memoryImgAnchors.clear();
+            // 不重置 isInitialized，因为我们只是想清空样式，不是想重新自动生成
+            captureState(); // 捕捉空状态
+            renderFromMemory(); // 重绘
+        }
+
+        // --- 逻辑A：自动生成布局 (First Run) ---
+        function generateAutoLayout(lines, charLen) {
+            // 计算图片数量
+            let numImages = 0;
+            if (charLen > 100) {
+                numImages = Math.floor(charLen / 200);
+                if (numImages === 0 && charLen > 150) numImages = 1;
+            }
+
+            let htmlOutput = '';
+            
+            if (numImages > 0) {
+                const step = Math.ceil(lines.length / (numImages + 1));
+                let imgInsertedCount = 0;
+
+                // 随机高亮：挑选约 5-10% 的行
+                let autoHighlights = new Set();
+                lines.forEach(line => {
+                    if (Math.random() < 0.08) autoHighlights.add(line);
+                });
+
+                lines.forEach((line, index) => {
+                    const isHighlight = autoHighlights.has(line);
+                    const styleStr = isHighlight ? 'font-weight: bold; color: red;' : '';
+
+                    htmlOutput += `
+                        <div class="text-line-wrapper">
+                            <p class="interactive-p" style="${styleStr}">${line}</p>
+                            <span class="add-img-btn" title="在此处插入空行">+</span>
+                        </div>
+                    `;
+
+                    // 自动插入空行
+                    if (index < lines.length - 1 && (index + 1) % step === 0 && imgInsertedCount < numImages) {
+                        imgInsertedCount++;
+                        htmlOutput += `<div class="img-placeholder-wrapper"><span class="del-hint">点击删除此空行</span><br></div>`;
+                    }
+                });
+            } else {
+                // 字数太少，不自动插图，但可以随机高亮
+                lines.forEach(line => {
+                    const isHighlight = Math.random() < 0.05;
+                    const styleStr = isHighlight ? 'font-weight: bold; color: red;' : '';
+                    htmlOutput += `
+                        <div class="text-line-wrapper">
+                            <p class="interactive-p" style="${styleStr}">${line}</p>
+                            <span class="add-img-btn" title="在此处插入空行">+</span>
+                        </div>`;
+                });
+            }
+
+            document.getElementById('output').innerHTML = htmlOutput;
+            updateImgCountDisplay();
+        }
+
+        // --- 逻辑B：基于记忆还原 (Editing) ---
+        function renderFromMemory() {
+            if (globalLines.length === 0) return;
+
+            let tempImgAnchors = new Map(memoryImgAnchors);
+            let htmlOutput = '';
+
+            globalLines.forEach(lineText => {
+                // 1. 还原高亮
+                const isHighlight = memoryHighlights.has(lineText);
+                const styleStr = isHighlight ? 'font-weight: bold; color: red;' : '';
+
+                htmlOutput += `
+                    <div class="text-line-wrapper">
+                        <p class="interactive-p" style="${styleStr}">${lineText}</p>
+                        <span class="add-img-btn" title="在此处插入空行">+</span>
+                    </div>
+                `;
+
+                // 2. 还原图片 (锚点匹配)
+                if (tempImgAnchors.has(lineText)) {
+                    let count = tempImgAnchors.get(lineText);
+                    if (count > 0) {
+                        htmlOutput += `<div class="img-placeholder-wrapper"><span class="del-hint">点击删除此空行</span><br></div>`;
+                        tempImgAnchors.set(lineText, count - 1);
+                    }
+                }
+            });
+
+            document.getElementById('output').innerHTML = htmlOutput;
+            updateImgCountDisplay();
+        }
+
+        function splitIntoLines(text) {
+            let parts = text.replace(/([。；？][”’]?)/g, "$1###SPLIT###").split('###SPLIT###');
+            let lines = [];
+            let currentLine = '';
+
+            parts.forEach(part => {
+                if (!part) return;
+                if (currentLine.length + part.length > 30) {
+                    if (currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = part;
+                    } else {
+                        lines.push(part);
+                        currentLine = '';
+                    }
+                } else {
+                    currentLine += part;
+                }
+            });
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        }
+
+        function resetStats() {
+            globalLines = [];
+            document.getElementById('output').innerHTML = '<p style="color:#999; text-align:center; padding-top:50px;">在右侧输入文字开始排版</p>';
+            document.getElementById('charCount').innerText = '0';
+            document.getElementById('imgCountDisplay').innerText = '0';
+            memoryHighlights.clear();
+            memoryImgAnchors.clear();
+            isInitialized = false; // 重置初始化状态
+        }
+
+        function copyResult() {
+            const output = document.getElementById('output');
+            const clone = output.cloneNode(true);
+
+            // 清洗
+            clone.querySelectorAll('.add-img-btn').forEach(el => el.remove());
+
+            clone.querySelectorAll('.text-line-wrapper').forEach(wrapper => {
+                const p = wrapper.querySelector('p');
+                if (p) {
+                    p.classList.remove('interactive-p');
+                    p.style.cursor = 'auto';
+                    p.style.backgroundColor = 'transparent';
+                    wrapper.parentNode.replaceChild(p, wrapper);
+                }
+            });
+
+            clone.querySelectorAll('.img-placeholder-wrapper').forEach(ph => {
+                ph.querySelector('.del-hint')?.remove();
+                const p = document.createElement('p');
+                p.style.margin = '40px 0';
+                p.style.textAlign = 'center';
+                p.innerHTML = '<br>'; 
+                ph.parentNode.replaceChild(p, ph);
+            });
+
+            const tempDiv = document.createElement('div');
+            tempDiv.style.position = 'absolute';
+            tempDiv.style.left = '-9999px';
+            tempDiv.style.backgroundColor = '#ffffff'; 
+            tempDiv.appendChild(clone);
+            document.body.appendChild(tempDiv);
+
+            const range = document.createRange();
+            range.selectNodeContents(clone);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerText;
+                btn.innerText = '✔ 已复制';
+                btn.classList.add('success');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('success');
+                }, 2000);
+            } catch (err) {
+                alert('复制失败');
+            }
+            
+            selection.removeAllRanges();
+            document.body.removeChild(tempDiv);
+        }
+    </script>
+</body>
+</html>

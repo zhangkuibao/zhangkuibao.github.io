@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频逐帧提取 (大图大字版)</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f0f2f5;
+            --border-color: #dcdfe6;
+            --success-color: #67c23a;
+            --danger-color: #f56c6c;
+            --warning-color: #e6a23c;
+            --dark-panel: #2c3e50;
+            --panel-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        /* --- 核心布局：双栏结构 --- */
+        .app-layout {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* 1. 左侧主区域 (控制台 + 画廊) */
+        .layout-main {
+            flex-grow: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* 2. 右侧侧边栏 (标尺 + 拼接) */
+        .layout-sidebar {
+            width: 380px; /*稍微加宽以适应大标尺图*/
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        h2, h3 { margin: 0 0 15px 0; font-size: 16px; font-weight: 700; color: #333; }
+
+        /* 左侧：控制面板 */
+        .controls-panel {
+            background: white; padding: 20px; border-radius: var(--panel-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); flex-shrink: 0;
+        }
+        #drop-zone {
+            width: 100%; height: 100px; border: 2px dashed var(--primary-color); border-radius: 8px;
+            background-color: #fafafa; display: flex; justify-content: center; align-items: center; flex-direction: column;
+            cursor: pointer; transition: all 0.3s; margin-bottom: 15px;
+        }
+        #drop-zone:hover { background-color: #e6f1fc; }
+        
+        .control-row { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; margin-bottom: 10px; }
+        label { font-size: 14px; font-weight: 600; color: #555; }
+        input[type="number"] { padding: 6px; border: 1px solid var(--border-color); border-radius: 4px; width: 70px; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        button {
+            padding: 8px 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 6px; 
+            cursor: pointer; font-size: 13px; transition: opacity 0.2s; white-space: nowrap;
+        }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+        button:hover:not(:disabled) { opacity: 0.9; }
+
+        /* 左侧：画廊 (修改了最小宽度，使图片变大) */
+        #gallery {
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 20px; 
+            padding-bottom: 40px;
+        }
+        .frame-item { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); position: relative; }
+        .frame-item.selected { outline: 4px solid var(--success-color); } /* 加粗选中框 */
+        .img-container { cursor: pointer; overflow: hidden; border-radius: 4px; background: #eee; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; display: block; }
+        .frame-info { font-size: 14px; color: #666; margin-top: 8px; display: flex; justify-content: space-between; align-items: center; font-weight: 500;}
+        .select-checkbox { transform: scale(1.5); accent-color: var(--success-color); cursor: pointer; } /* 加大复选框 */
+
+        /* 右侧面板通用 */
+        .sidebar-panel {
+            background: white; padding: 15px; border-radius: var(--panel-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column;
+        }
+
+        /* 右侧上部：标尺 */
+        .panel-ruler {
+            flex-shrink: 0; max-height: 45%; overflow-y: auto;
+        }
+        .sidebar-img-wrapper {
+            width: 100%; background: #eee; border-radius: 8px; overflow: hidden; cursor: pointer; 
+            margin-bottom: 10px; display: flex; justify-content: center; min-height: 100px;
+        }
+        .sidebar-img-wrapper img { width: 100%; height: auto; display: block; }
+        .dl-mini-btn { display: block; width: 100%; text-align: center; background: #666; color: white; padding: 8px; border-radius: 4px; text-decoration: none; font-size: 13px; box-sizing: border-box; }
+
+        /* 右侧下部：拼接工坊 */
+        .panel-stitcher {
+            flex-grow: 1; background: var(--dark-panel); color: white; min-height: 0;
+        }
+        .panel-stitcher h3 { color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+        
+        .stitcher-actions { display: flex; gap: 8px; margin-bottom: 10px; }
+        .stitcher-actions button { flex: 1; font-size: 12px; background: rgba(255,255,255,0.15); padding: 5px; }
+
+        .stitcher-queue {
+            flex: 1; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 8px;
+            overflow-y: auto; margin-bottom: 10px;
+        }
+        .queue-item { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 5px; border-radius: 4px; margin-bottom: 6px; }
+        .queue-item img { width: 50px; height: 35px; object-fit: cover; border-radius: 3px; }
+        .queue-item-info { flex: 1; font-size: 12px; color: #ccc; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .queue-remove { color: #ff6b6b; cursor: pointer; padding: 4px; }
+
+        .stitcher-preview {
+            flex-shrink: 0; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px; text-align: center;
+        }
+        #stitch-result-img { max-width: 100%; max-height: 200px; display: none; margin: 0 auto 10px auto; border-radius: 4px; object-fit: contain; }
+        .stitch-btn { width: 100%; background: var(--success-color); padding: 12px; font-weight: bold; font-size: 15px; margin-bottom: 5px; }
+        
+        /* 编辑器 */
+        #editor-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); flex-direction: column; align-items: center; justify-content: center; }
+        .editor-container { background: #333; padding: 20px; border-radius: 12px; max-width: 95%; max-height: 95%; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .editor-toolbar { display: flex; gap: 10px; margin-bottom: 15px; background: #222; padding: 10px; border-radius: 8px; flex-wrap: wrap; }
+        .editor-toolbar button.active { background: var(--primary-color); }
+        .editor-canvas-wrapper { overflow: hidden; flex: 1; display: flex; justify-content: center; align-items: center; background: repeating-conic-gradient(#444 0% 25%, #333 0% 50%) 50% / 20px 20px; }
+        #editor-canvas { box-shadow: 0 0 20px rgba(0,0,0,0.5); cursor: default; display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        #hidden-elements, #file-input, #file-input-stitch { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="app-layout">
+
+    <div class="layout-main">
+        <div class="controls-panel">
+            <h2 style="margin-bottom:10px;">🎬 视频逐帧提取</h2>
+            <div style="display:flex; gap:20px; align-items:start;">
+                <div id="drop-zone" style="flex:1; height:80px; margin-bottom:0;">
+                    <p style="font-size:16px;">点击上传视频 或 拖拽至此</p>
+                </div>
+                <div style="flex:2;">
+                    <div class="control-row">
+                        <label>频率(FPS): <input type="number" id="fps-input" value="1" min="0.1" max="60" step="0.1"></label>
+                        <div style="width:1px; height:20px; background:#eee; margin:0 10px;"></div>
+                        <label>全局裁剪(px): 上 <input type="number" id="crop-top" value="0" min="0" step="20" class="auto-trigger"></label>
+                        <label>下 <input type="number" id="crop-bottom" value="0" min="0" step="20" class="auto-trigger"></label>
+                    </div>
+                    <div class="btn-group">
+                        <button id="restart-btn" style="background:var(--warning-color);" disabled>🔄 重新提取</button>
+                        <button id="stop-btn" style="background:var(--danger-color);" disabled>⏹ 停止</button>
+                        <button id="clear-btn" style="background:#909399;">🗑 清空全部</button>
+                    </div>
+                    <div id="status" style="font-size:12px; color:#666; margin-top:5px;">等待视频...</div>
+                    <div class="progress-container" style="width:100%; height:4px; background:#eee; margin-top:5px; display:none;"><div id="progress-bar" style="width:0; height:100%; background:var(--success-color);"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery"></div>
+    </div>
+
+    <div class="layout-sidebar">
+        
+        <div class="sidebar-panel panel-ruler">
+            <h3>📏 标尺 (原图参考)</h3>
+            <p style="font-size:12px; color:#666; margin-bottom:10px;">红色区域为被裁剪部分。</p>
+            <div id="ruler-placeholder" style="text-align:center; padding:20px; color:#999; border:2px dashed #eee; border-radius:8px;">等待提取...</div>
+            <div id="ruler-result-container" style="display:none; flex-direction:column;">
+                <div class="sidebar-img-wrapper" onclick="openEditorFromElement(this.querySelector('img'))">
+                    <img id="ruler-sidebar-img" alt="标尺图">
+                </div>
+                <a id="ruler-download-btn" class="dl-mini-btn">下载标尺图</a>
+            </div>
+        </div>
+
+        <div class="sidebar-panel panel-stitcher">
+            <h3>🧩 拼接工坊 <span id="queue-count" style="font-size:12px; background:rgba(255,255,255,0.2); padding:2px 6px; border-radius:4px;">0</span></h3>
+            
+            <div class="stitcher-actions">
+                <button onclick="document.getElementById('file-input-stitch').click()">📂 上传本地</button>
+                <button onclick="clearStitchQueue()">🗑 清空</button>
+            </div>
+
+            <div class="stitcher-queue" id="stitcher-queue">
+                <div style="text-align:center; color:#aaa; padding:20px 0; font-size:12px;">暂无图片<br>请勾选左侧列表</div>
+            </div>
+
+            <div class="stitcher-preview">
+                <button onclick="generateLongImage()" class="stitch-btn">✨ 生成拼接长图</button>
+                <div style="margin-top:10px;">
+                    <p id="stitch-placeholder" style="color:#aaa; font-size:12px; margin:0;">结果显示区</p>
+                    <img id="stitch-result-img" alt="拼接结果">
+                    <a id="stitch-download-btn" class="dl-mini-btn" style="display:none; background:var(--primary-color);">下载长图</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<input type="file" id="file-input" accept="video/*">
+<input type="file" id="file-input-stitch" multiple accept="image/*">
+<div id="hidden-elements">
+    <video id="video-source" muted playsinline crossOrigin="anonymous"></video>
+    <canvas id="extract-canvas"></canvas>
+    <canvas id="stitch-canvas"></canvas>
+</div>
+
+<div id="editor-modal">
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <button id="btn-crop">✂️ 裁剪</button>
+            <button id="btn-apply-crop" style="display:none; background:var(--warning-color);">✓ 确认裁剪</button>
+            <div style="width: 1px; height: 20px; background: #555; margin: 0 5px;"></div>
+            <button id="btn-add-text">📝 加字</button>
+            <button id="btn-mosaic">⬛ 马赛克</button>
+            <button id="btn-undo" disabled>↩️ 撤销</button>
+            <div style="flex-grow:1"></div>
+            <button onclick="closeEditor()" style="background:#666;">取消</button>
+            <button id="btn-save-editor" style="background:var(--success-color);">💾 保存修改</button>
+        </div>
+        <div class="editor-canvas-wrapper">
+            <canvas id="editor-canvas"></canvas>
+        </div>
+        <p style="color:#999; font-size:12px; text-align:center; margin-top:10px;" id="editor-tip">提示：点击工具按钮开始编辑</p>
+    </div>
+</div>
+
+<script>
+    // --- 变量初始化 ---
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const video = document.getElementById('video-source');
+    const extractCanvas = document.getElementById('extract-canvas');
+    const extractCtx = extractCanvas.getContext('2d');
+    const gallery = document.getElementById('gallery');
+    const statusText = document.getElementById('status');
+    let isProcessing = false;
+    let frameCount = 0;
+    let stitchList = []; 
+    let autoTriggerTimer = null;
+
+    // --- 视频提取核心逻辑 ---
+    dropZone.onclick = () => fileInput.click();
+    dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.background = '#e6f1fc'; };
+    dropZone.ondragleave = () => dropZone.style.background = '#fafafa';
+    dropZone.ondrop = (e) => { e.preventDefault(); dropZone.style.background = '#fafafa'; if(e.dataTransfer.files[0]) handleVideo(e.dataTransfer.files[0]); };
+    fileInput.onchange = (e) => { if(e.target.files[0]) handleVideo(e.target.files[0]); };
+
+    function handleVideo(file) {
+        if(!file.type.startsWith('video/')) return alert('请上传视频');
+        video.src = URL.createObjectURL(file);
+        statusText.textContent = "加载视频中...";
+        resetAll();
+        video.onloadedmetadata = () => {
+            statusText.textContent = `就绪: ${file.name}`;
+            document.getElementById('restart-btn').disabled = false;
+            startExtraction(); 
+        };
+    }
+
+    function resetAll() {
+        gallery.innerHTML = ''; clearStitchQueue();
+        document.getElementById('ruler-placeholder').style.display = 'block';
+        document.getElementById('ruler-result-container').style.display = 'none';
+        document.getElementById('stitch-result-img').style.display = 'none';
+        document.getElementById('stitch-download-btn').style.display = 'none';
+        document.getElementById('stitch-placeholder').style.display = 'block';
+    }
+
+    document.querySelectorAll('.auto-trigger').forEach(input => {
+        input.addEventListener('input', () => {
+            if(!video.src) return;
+            clearTimeout(autoTriggerTimer);
+            autoTriggerTimer = setTimeout(() => { startExtraction(); }, 500); 
+        });
+    });
+
+    document.getElementById('restart-btn').onclick = startExtraction;
+    document.getElementById('stop-btn').onclick = () => { isProcessing = false; document.getElementById('stop-btn').disabled = true; };
+    document.getElementById('clear-btn').onclick = resetAll;
+
+    function startExtraction() {
+        isProcessing = true;
+        gallery.innerHTML = ''; clearStitchQueue(); 
+        document.getElementById('stop-btn').disabled = false;
+        
+        const fps = parseFloat(document.getElementById('fps-input').value) || 1;
+        const cropTop = parseInt(document.getElementById('crop-top').value) || 0;
+        const cropBottom = parseInt(document.getElementById('crop-bottom').value) || 0;
+        
+        if(cropTop + cropBottom >= video.videoHeight) return alert("源裁剪过大");
+
+        extractCanvas.width = video.videoWidth;
+        extractCanvas.height = video.videoHeight - cropTop - cropBottom;
+        
+        let currentTime = 0;
+        const interval = 1/fps;
+        frameCount = 0;
+        document.querySelector('.progress-container').style.display = 'block';
+        statusText.textContent = `提取中... (裁剪: 上${cropTop} / 下${cropBottom})`;
+
+        const seek = () => {
+            if(!isProcessing || currentTime > video.duration) {
+                isProcessing = false;
+                document.getElementById('stop-btn').disabled = true;
+                statusText.textContent = `完成，共 ${frameCount} 帧`;
+                return;
+            }
+            video.currentTime = currentTime;
+        };
+
+        video.onseeked = () => {
+            if(!isProcessing) return;
+            
+            if(frameCount === 0) {
+                // 首帧：绘制全尺寸标尺
+                extractCanvas.width = video.videoWidth;
+                extractCanvas.height = video.videoHeight;
+                extractCtx.drawImage(video, 0, 0);
+                drawRuler(extractCanvas.width, extractCanvas.height, cropTop, cropBottom);
+                
+                const rulerUrl = extractCanvas.toDataURL('image/jpeg', 0.9);
+                document.getElementById('ruler-sidebar-img').src = rulerUrl;
+                document.getElementById('ruler-download-btn').href = rulerUrl;
+                document.getElementById('ruler-download-btn').download = 'ruler_ref.jpg';
+                document.getElementById('ruler-placeholder').style.display = 'none';
+                document.getElementById('ruler-result-container').style.display = 'flex';
+
+                // 恢复裁剪尺寸用于画廊
+                extractCanvas.width = video.videoWidth;
+                extractCanvas.height = video.videoHeight - cropTop - cropBottom;
+            }
+
+            // 绘制裁剪帧
+            extractCtx.drawImage(video, 0, cropTop, video.videoWidth, extractCanvas.height, 0, 0, extractCanvas.width, extractCanvas.height);
+            addFrameToGallery(extractCanvas.toDataURL('image/jpeg', 0.9), currentTime);
+
+            currentTime += interval;
+            frameCount++;
+            document.getElementById('progress-bar').style.width = (currentTime/video.duration*100) + '%';
+            setTimeout(seek, 0);
+        };
+        seek();
+    }
+
+    function drawRuler(w, h, cTop, cBottom) {
+        extractCtx.save();
+        extractCtx.fillStyle = 'rgba(245, 108, 108, 0.3)';
+        if(cTop > 0) extractCtx.fillRect(0, 0, w, cTop);
+        if(cBottom > 0) extractCtx.fillRect(0, h - cBottom, w, cBottom);
+
+        extractCtx.strokeStyle = 'rgba(255,255,255,0.7)'; 
+        extractCtx.lineWidth = 2; // 加粗线条
+        extractCtx.fillStyle = 'white'; 
+        extractCtx.font = 'bold 26px sans-serif'; // 字体放大到 26px
+        extractCtx.shadowColor = 'rgba(0,0,0,0.8)';
+        extractCtx.shadowBlur = 4;
+        
+        // 左侧：距顶距离
+        extractCtx.textAlign = 'left';
+        for(let y=50; y<h; y+=50) {
+            extractCtx.beginPath(); extractCtx.moveTo(0, y); extractCtx.lineTo(w, y); extractCtx.stroke();
+            extractCtx.fillText(y + 'px', 10, y - 5);
+        }
+
+        // 右侧：距底距离
+        extractCtx.textAlign = 'right';
+        for(let y=h-50; y>0; y-=50) {
+            extractCtx.fillText((h - y) + 'px', w - 10, y - 5);
+        }
+        extractCtx.restore();
+    }
+
+    function addFrameToGallery(url, time) {
+        const div = document.createElement('div');
+        div.className = 'frame-item';
+        const id = 'frame-' + Date.now() + Math.random();
+        div.innerHTML = `
+            <div class="img-container"><img src="${url}"></div>
+            <div class="frame-info">
+                <span>${time.toFixed(2)}s</span>
+                <label><input type="checkbox" class="select-checkbox" onchange="toggleStitch('${id}', this)"> 拼接</label>
+            </div>
+        `;
+        div.querySelector('.img-container').onclick = () => openEditorFromElement(div.querySelector('img'));
+        gallery.appendChild(div);
+    }
+
+    // --- 拼接逻辑 ---
+    window.toggleStitch = function(id, checkbox) {
+        const parent = checkbox.closest('.frame-item');
+        const img = parent.querySelector('img');
+        if(checkbox.checked) {
+            parent.classList.add('selected');
+            stitchList.push({ id, url: img.src, el: checkbox });
+        } else {
+            parent.classList.remove('selected');
+            stitchList = stitchList.filter(i => i.id !== id);
+        }
+        renderQueue();
+    };
+
+    document.getElementById('file-input-stitch').onchange = (e) => {
+        Array.from(e.target.files).forEach(f => {
+            stitchList.push({ id: 'local-'+Date.now()+Math.random(), url: URL.createObjectURL(f), isLocal: true });
+        });
+        renderQueue();
+        e.target.value = '';
+    };
+
+    function renderQueue() {
+        const el = document.getElementById('stitcher-queue');
+        document.getElementById('queue-count').textContent = stitchList.length;
+        el.innerHTML = '';
+        if(stitchList.length === 0) {
+            el.innerHTML = '<div style="text-align:center;color:#aaa;padding:20px 0;font-size:12px;">暂无图片</div>';
+            return;
+        }
+        stitchList.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'queue-item';
+            div.innerHTML = `
+                <img src="${item.url}">
+                <div class="queue-item-info">${idx+1}. ${item.isLocal?'本地':'帧'}</div>
+                <div class="queue-remove" onclick="removeItem('${item.id}')">×</div>
+            `;
+            el.appendChild(div);
+        });
+    }
+
+    window.removeItem = (id) => {
+        const item = stitchList.find(i => i.id === id);
+        if(item && item.el) {
+            item.el.checked = false;
+            item.el.closest('.frame-item').classList.remove('selected');
+        }
+        stitchList = stitchList.filter(i => i.id !== id);
+        renderQueue();
+    };
+
+    window.clearStitchQueue = () => {
+        stitchList.forEach(i => { if(i.el) { i.el.checked = false; i.el.closest('.frame-item').classList.remove('selected'); }});
+        stitchList = [];
+        renderQueue();
+    };
+
+    window.generateLongImage = () => {
+        if(stitchList.length === 0) return alert('队列为空');
+        Promise.all(stitchList.map(i => new Promise(res => {
+            const img = new Image(); img.onload = () => res(img); img.src = i.url;
+        }))).then(imgs => {
+            const w = imgs[0].width;
+            let h = 0; imgs.forEach(img => h += img.height);
+            const cvs = document.getElementById('stitch-canvas');
+            const ctx = cvs.getContext('2d');
+            cvs.width = w; cvs.height = h;
+            let y = 0;
+            imgs.forEach(img => {
+                ctx.drawImage(img, 0, 0, w, img.height, 0, y, w, img.height);
+                y += img.height;
+            });
+            const url = cvs.toDataURL('image/jpeg', 0.95);
+            const resImg = document.getElementById('stitch-result-img');
+            resImg.src = url; resImg.style.display = 'block';
+            document.getElementById('stitch-placeholder').style.display = 'none';
+            const btn = document.getElementById('stitch-download-btn');
+            btn.href = url; btn.download = `stitch_${Date.now()}.jpg`; btn.style.display = 'block';
+            
+            // 滚动到底部
+            const rightPanel = document.querySelector('.panel-stitcher');
+            // 简单的滚动尝试
+            if(rightPanel) rightPanel.scrollTop = rightPanel.scrollHeight;
+        });
+    };
+
+    // --- 编辑器核心逻辑 ---
+    const editorModal = document.getElementById('editor-modal');
+    const eCanvas = document.getElementById('editor-canvas');
+    const eCtx = eCanvas.getContext('2d', { willReadFrequently: true });
+    let currentEditImg, activeMode, isDrawing, cropStart, savedData;
+    let editHistory = [];
+    let oldSrc = ""; 
+
+    window.openEditorFromElement = (img) => {
+        currentEditImg = img;
+        oldSrc = img.src; 
+        const temp = new Image();
+        temp.onload = () => {
+            eCanvas.width = temp.width; eCanvas.height = temp.height;
+            eCtx.drawImage(temp, 0, 0);
+            editHistory = []; saveState();
+            resetMode();
+            editorModal.style.display = 'flex';
+        };
+        temp.src = img.src;
+    };
+    window.closeEditor = () => editorModal.style.display = 'none';
+
+    function resetMode() {
+        activeMode = null; isDrawing = false;
+        document.getElementById('btn-apply-crop').style.display = 'none';
+        document.querySelectorAll('.editor-toolbar button').forEach(b => b.classList.remove('active'));
+        eCanvas.style.cursor = 'default';
+        document.getElementById('editor-tip').textContent = "提示：点击工具按钮开始编辑";
+    }
+
+    document.getElementById('btn-crop').onclick = function() {
+        if(activeMode === 'crop') { resetMode(); return; }
+        resetMode(); activeMode = 'crop'; this.classList.add('active'); eCanvas.style.cursor = 'crosshair';
+        document.getElementById('editor-tip').textContent = "裁剪模式：拖动鼠标选择区域";
+    };
+    document.getElementById('btn-mosaic').onclick = function() {
+        if(activeMode === 'mosaic') { resetMode(); return; }
+        resetMode(); activeMode = 'mosaic'; this.classList.add('active');
+        document.getElementById('editor-tip').textContent = "马赛克模式：在图片上涂抹";
+    };
+    document.getElementById('btn-add-text').onclick = () => {
+        const t = prompt("文字:");
+        if(t) { saveState(); eCtx.font="bold 40px Arial"; eCtx.fillStyle="red"; eCtx.textAlign="center"; eCtx.fillText(t, eCanvas.width/2, eCanvas.height/2); }
+    };
+
+    document.getElementById('btn-apply-crop').onclick = () => {
+        if(cropW>0 && cropH>0) {
+            saveState();
+            const data = eCtx.getImageData(Math.floor(cropStart.x), Math.floor(cropStart.y), Math.floor(cropW), Math.floor(cropH));
+            eCanvas.width = Math.floor(cropW); eCanvas.height = Math.floor(cropH);
+            eCtx.putImageData(data, 0, 0);
+            resetMode();
+        }
+    };
+
+    document.getElementById('btn-save-editor').onclick = () => {
+        const url = eCanvas.toDataURL('image/jpeg', 0.95);
+        currentEditImg.src = url; 
+        const item = stitchList.find(i => i.url === oldSrc);
+        if(item) {
+            item.url = url;
+            renderQueue(); 
+        }
+        closeEditor();
+    };
+
+    let cropW, cropH;
+    eCanvas.onmousedown = (e) => {
+        isDrawing = true;
+        const pos = getPos(e);
+        if(activeMode === 'crop') {
+            cropStart = pos; 
+            savedData = eCtx.getImageData(0,0,eCanvas.width,eCanvas.height);
+            document.getElementById('btn-apply-crop').style.display = 'none';
+        } else if(activeMode === 'mosaic') mosaic(pos);
+    };
+    eCanvas.onmousemove = (e) => {
+        if(!isDrawing) return;
+        const pos = getPos(e);
+        if(activeMode === 'crop') {
+            eCtx.putImageData(savedData, 0, 0); 
+            cropW = pos.x - cropStart.x; cropH = pos.y - cropStart.y;
+            eCtx.strokeStyle='red'; eCtx.lineWidth=2; eCtx.setLineDash([5,5]);
+            eCtx.strokeRect(cropStart.x, cropStart.y, cropW, cropH);
+        } else if(activeMode === 'mosaic') mosaic(pos);
+    };
+    eCanvas.onmouseup = () => {
+        if(isDrawing) {
+            isDrawing = false;
+            if(activeMode === 'crop') {
+                if(cropW < 0) { cropStart.x += cropW; cropW = -cropW; }
+                if(cropH < 0) { cropStart.y += cropH; cropH = -cropH; }
+                if(cropW>5 && cropH>5) document.getElementById('btn-apply-crop').style.display = 'block';
+            } else if(activeMode === 'mosaic') saveState();
+        }
+    };
+
+    function getPos(e) {
+        const r = eCanvas.getBoundingClientRect();
+        return { 
+            x: (e.clientX - r.left) * (eCanvas.width / r.width), 
+            y: (e.clientY - r.top) * (eCanvas.height / r.height) 
+        };
+    }
+    
+    function mosaic(p) {
+        const s = 20, gx = Math.floor(p.x/s)*s, gy = Math.floor(p.y/s)*s;
+        const d = eCtx.getImageData(gx,gy,s,s).data;
+        eCtx.fillStyle = `rgb(${d[0]},${d[1]},${d[2]})`; eCtx.fillRect(gx,gy,s,s);
+    }
+    
+    function saveState() {
+        if(editHistory.length > 10) editHistory.shift();
+        editHistory.push(eCanvas.toDataURL());
+        document.getElementById('btn-undo').disabled = false;
+    }
+    document.getElementById('btn-undo').onclick = () => {
+        if(editHistory.length) {
+            const img = new Image(); img.onload = () => { eCanvas.width=img.width; eCanvas.height=img.height; eCtx.drawImage(img,0,0); };
+            img.src = editHistory.pop();
+            if(!editHistory.length) document.getElementById('btn-undo').disabled = true;
+        }
+    };
+</script>
+</body>
+</html>

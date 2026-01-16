@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-beta.51" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <meta property="og:url" content="https://zhangkuibao.github.io/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html"><meta property="og:site_name" content="ZHANGKB"><meta property="og:title" content="【Sass】语法"><meta property="og:type" content="article"><meta property="og:updated_time" content="2023-07-25T04:09:17.000Z"><meta property="og:locale" content="zh-CN"><meta property="article:tag" content="Sass"><meta property="article:published_time" content="2021-09-09T09:32:10.000Z"><meta property="article:modified_time" content="2023-07-25T04:09:17.000Z"><link rel="icon" href="/favicon.ico"><link rel="icon" href="/assets/icon/chrome-mask-512.png" type="image/png" sizes="512x512"><link rel="icon" href="/assets/icon/chrome-mask-192.png" type="image/png" sizes="192x192"><link rel="icon" href="/assets/icon/chrome-512.png" type="image/png" sizes="512x512"><link rel="icon" href="/assets/icon/chrome-192.png" type="image/png" sizes="192x192"><link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials"><meta name="theme-color" content="#46bd87"><link rel="apple-touch-icon" href="/assets/icon/apple-icon-152.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144.png"><meta name="msapplication-TileColor" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><title>【Sass】语法 | ZHANGKB</title><meta name="description" content="">
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d2025;
+      }
+
+      html,
+      body {
+        background-color: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.querySelector("html").setAttribute("data-theme", "dark");
+      }
+    </script>
+    <link rel="stylesheet" href="/assets/style.0220951c.css">
+    <link rel="modulepreload" href="/assets/app.382dc3cd.js"><link rel="modulepreload" href="/assets/语法.html.b491fe25.js"><link rel="modulepreload" href="/assets/_plugin-vue_export-helper.cdc0426e.js"><link rel="modulepreload" href="/assets/语法.html.61f53117.js">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="skip-link sr-only">Skip to content</a><!--]--><div class="theme-container no-sidebar has-toc"><!--[--><!--[--><header class="navbar"><div class="navbar-left"><button class="toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!----><a href="/" class="brand"><!----><!----><span class="site-name">ZHANGKB</span></a><!----></div><div class="navbar-center"><!----><nav class="nav-links"><div class="nav-item hide-in-mobile"><a href="/" class="nav-link" aria-label="主页"><span class="icon iconfont icon-home"></span>主页<!----></a></div><div class="nav-item hide-in-mobile"><a href="/tools.html" class="nav-link" aria-label="在线工具"><span class="icon iconfont icon-home"></span>在线工具<!----></a></div><div class="nav-item hide-in-mobile"><a href="/tag" class="nav-link" aria-label="标签"><span class="icon iconfont icon-tag"></span>标签<!----></a></div><div class="nav-item hide-in-mobile"><a href="/category" class="nav-link" aria-label="专栏"><span class="icon iconfont icon-categoryselected"></span>专栏<!----></a></div><div class="nav-item hide-in-mobile"><a href="/timeline" class="nav-link" aria-label="时间轴"><span class="icon iconfont icon-time"></span>时间轴<!----></a></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="计划"><span class="title"><span class="icon iconfont icon-enum"></span>计划</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-2023-11-22.html" class="nav-link" aria-label="学习计划-2023-11-22"><span class="icon iconfont icon-page"></span>学习计划-2023-11-22<!----></a></li><li class="dropdown-item"><a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-2023-06-07.html" class="nav-link" aria-label="学习计划-2023-06-07"><span class="icon iconfont icon-page"></span>学习计划-2023-06-07<!----></a></li><li class="dropdown-item"><a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-2023-01-05.html" class="nav-link" aria-label="学习计划-2023-01-05"><span class="icon iconfont icon-page"></span>学习计划-2023-01-05<!----></a></li></ul></button></div></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label><span class="title"><span class="icon iconfont icon-more"></span></span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.html" class="nav-link" aria-label="知识体系"><span class="icon iconfont icon-condition"></span>知识体系<!----></a></li><li class="dropdown-item"><a href="/%E7%AC%94%E8%AE%B0%E6%A8%A1%E6%9D%BF.html" class="nav-link" aria-label="笔记模板"><span class="icon iconfont icon-page"></span>笔记模板<!----></a></li><li class="dropdown-item"><a href="/%E4%B9%A6%E5%8D%95.html" class="nav-link" aria-label="书单"><span class="icon iconfont icon-list"></span>书单<!----></a></li><li class="dropdown-item"><a href="/diary.html" class="nav-link" aria-label="日记"><span class="icon iconfont icon-note"></span>日记<!----></a></li><li class="dropdown-item"><a href="/%E6%96%87%E6%91%98.html" class="nav-link" aria-label="文摘"><span class="icon iconfont icon-note"></span>文摘<!----></a></li><li class="dropdown-item"><a href="/inbox.html" class="nav-link" aria-label="inbox"><span class="icon iconfont icon-enum"></span>inbox<!----></a></li><li class="dropdown-item"><a href="/effects.html" class="nav-link" aria-label="样式效果"><span class="icon iconfont icon-style"></span>样式效果<!----></a></li><li class="dropdown-item"><a href="/collect.html" class="nav-link" aria-label="收藏夹"><span class="icon iconfont icon-box"></span>收藏夹<!----></a></li></ul></button></div></div></nav><!----></div><div class="navbar-right"><!----><!----><div class="nav-item"><a class="repo-link" href="https://gitee.com/zhangkb/zhangkb.git" target="_blank" rel="noopener noreferrer" aria-label="Gitee"><svg xmlns="http://www.w3.org/2000/svg" class="icon gitee-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="gitee icon" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M512 992C246.92 992 32 777.08 32 512S246.92 32 512 32s480 214.92 480 480-214.92 480-480 480zm242.97-533.34H482.39a23.7 23.7 0 0 0-23.7 23.7l-.03 59.28c0 13.08 10.59 23.7 23.7 23.7h165.96a23.7 23.7 0 0 1 23.7 23.7v11.85a71.1 71.1 0 0 1-71.1 71.1H375.71a23.7 23.7 0 0 1-23.7-23.7V423.11a71.1 71.1 0 0 1 71.1-71.1h331.8a23.7 23.7 0 0 0 23.7-23.7l.06-59.25a23.73 23.73 0 0 0-23.7-23.73H423.11a177.78 177.78 0 0 0-177.78 177.75v331.83c0 13.08 10.62 23.7 23.7 23.7h349.62a159.99 159.99 0 0 0 159.99-159.99V482.33a23.7 23.7 0 0 0-23.7-23.7z"></path></svg></a></div><div class="nav-item hide-in-mobile"><button id="appearance-switch"><svg xmlns="http://www.w3.org/2000/svg" class="icon auto-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="auto icon" style="display:block;"><path d="M512 992C246.92 992 32 777.08 32 512S246.92 32 512 32s480 214.92 480 480-214.92 480-480 480zm0-840c-198.78 0-360 161.22-360 360 0 198.84 161.22 360 360 360s360-161.16 360-360c0-198.78-161.22-360-360-360zm0 660V212c165.72 0 300 134.34 300 300 0 165.72-134.28 300-300 300z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon dark-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="dark icon" style="display:none;"><path d="M524.8 938.667h-4.267a439.893 439.893 0 0 1-313.173-134.4 446.293 446.293 0 0 1-11.093-597.334A432.213 432.213 0 0 1 366.933 90.027a42.667 42.667 0 0 1 45.227 9.386 42.667 42.667 0 0 1 10.24 42.667 358.4 358.4 0 0 0 82.773 375.893 361.387 361.387 0 0 0 376.747 82.774 42.667 42.667 0 0 1 54.187 55.04 433.493 433.493 0 0 1-99.84 154.88 438.613 438.613 0 0 1-311.467 128z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon light-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="light icon" style="display:none;"><path d="M952 552h-80a40 40 0 0 1 0-80h80a40 40 0 0 1 0 80zM801.88 280.08a41 41 0 0 1-57.96-57.96l57.96-58a41.04 41.04 0 0 1 58 58l-58 57.96zM512 752a240 240 0 1 1 0-480 240 240 0 0 1 0 480zm0-560a40 40 0 0 1-40-40V72a40 40 0 0 1 80 0v80a40 40 0 0 1-40 40zm-289.88 88.08-58-57.96a41.04 41.04 0 0 1 58-58l57.96 58a41 41 0 0 1-57.96 57.96zM192 512a40 40 0 0 1-40 40H72a40 40 0 0 1 0-80h80a40 40 0 0 1 40 40zm30.12 231.92a41 41 0 0 1 57.96 57.96l-57.96 58a41.04 41.04 0 0 1-58-58l58-57.96zM512 832a40 40 0 0 1 40 40v80a40 40 0 0 1-80 0v-80a40 40 0 0 1 40-40zm289.88-88.08 58 57.96a41.04 41.04 0 0 1-58 58l-57.96-58a41 41 0 0 1 57.96-57.96z"></path></svg></button></div><div id="docsearch-container"></div><!----><button class="toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span class="button-container"><span class="button-top"></span><span class="button-middle"></span><span class="button-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow left"></span></div><aside class="sidebar"><!--[--><!----><!--]--><ul class="sidebar-links"></ul><!--[--><!----><!--]--></aside><!--[--><main class="page" id="main-content"><!--[--><!----><nav class="breadcrumb disable"></nav><div class="page-title"><h1><!---->【Sass】语法</h1><div class="page-info"><!----><span class="date-info" aria-label="写作时间📅" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="calendar icon"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 01-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 01-33.473-33.473V143.657H180.6A134.314 134.314 0 0046.66 277.595v535.756A134.314 134.314 0 00180.6 947.289h669.74a134.36 134.36 0 00133.94-133.938V277.595a134.314 134.314 0 00-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 01-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 01-33.472 33.473z"></path></svg><span>2021/09/09 09:32:10</span><meta property="datePublished" content="2021/09/09 09:32:10"></span><!----><span aria-label="标签🏷" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon tag-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="tag icon"><path d="M939.902 458.563L910.17 144.567c-1.507-16.272-14.465-29.13-30.737-30.737L565.438 84.098h-.402c-3.215 0-5.726 1.005-7.634 2.913l-470.39 470.39a10.004 10.004 0 000 14.164l365.423 365.424c1.909 1.908 4.42 2.913 7.132 2.913s5.223-1.005 7.132-2.913l470.39-470.39c2.01-2.11 3.014-5.023 2.813-8.036zm-240.067-72.121c-35.458 0-64.286-28.828-64.286-64.286s28.828-64.285 64.286-64.285 64.286 28.828 64.286 64.285-28.829 64.286-64.286 64.286z"></path></svg><ul class="tags-wrapper"><li class="tag tag4 clickable" role="navigation">Sass</li></ul><meta property="keywords" content="Sass"></span></div><!----><hr></div><div class="toc-place-holder"><aside id="toc"><div class="toc-header">此页内容</div><div class="toc-wrapper"><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#杂项" class="router-link-active router-link-exact-active toc-link level2">杂项</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#sassscript" class="router-link-active router-link-exact-active toc-link level2">SassScript</a></li><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#变量" class="router-link-active router-link-exact-active toc-link level3">变量</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#数据类型" class="router-link-active router-link-exact-active toc-link level3">数据类型</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#导入" class="router-link-active router-link-exact-active toc-link level3">导入</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#扩展-extend" class="router-link-active router-link-exact-active toc-link level3">扩展(@extend)</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#指令" class="router-link-active router-link-exact-active toc-link level3">指令</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#混入-mixin" class="router-link-active router-link-exact-active toc-link level3">混入(@mixin)</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/posts/technology/CSS/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/Sass/%E8%AF%AD%E6%B3%95.html#自定义函数-function" class="router-link-active router-link-exact-active toc-link level3">自定义函数(@function)</a></li><!----><!--]--></ul><!--]--></ul></div></aside></div><!----><div class="theme-hope-content"><h2 id="杂项" tabindex="-1"><a class="header-anchor" href="#杂项" aria-hidden="true">#</a> 杂项</h2><ol><li><p>属性嵌套, 如 <code>font-family</code>, <code>font-size</code>, <code>font-weight</code> 都以 <code>font</code> 作为属性的命名空间</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token selector">.funky</span> <span class="token punctuation">{</span>
+  <span class="token selector">font:</span> <span class="token punctuation">{</span>
+    <span class="token property">family</span><span class="token punctuation">:</span> fantasy<span class="token punctuation">;</span>
+    <span class="token property">size</span><span class="token punctuation">:</span> 30em<span class="token punctuation">;</span>
+    <span class="token property">weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 命名空间可以包含自己的属性值</span>
+  <span class="token selector">font: 20px/24px</span> <span class="token punctuation">{</span>
+    <span class="token property">family</span><span class="token punctuation">:</span> fantasy<span class="token punctuation">;</span>
+    <span class="token property">weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>插值语句: <code>#{}</code>, 类似于 js 中的模板字符串, 可以在选择器活属性名中使用变量</p></li></ol><h2 id="sassscript" tabindex="-1"><a class="header-anchor" href="#sassscript" aria-hidden="true">#</a> SassScript</h2><h3 id="变量" tabindex="-1"><a class="header-anchor" href="#变量" aria-hidden="true">#</a> 变量</h3><ol><li><p>定义: 用 <code>$</code> 定义变量, 支持块级作用域</p></li><li><p>默认变量: 定义变量时如果在变量后添加 <code>!default</code> 代表当前定义的变量值是该变量的默认值, 如果该变量没有重新赋值则用默认值,否则用之后的值, 后赋的值会覆盖前面的</p></li></ol><h3 id="数据类型" tabindex="-1"><a class="header-anchor" href="#数据类型" aria-hidden="true">#</a> 数据类型</h3><ol><li>数字, <code>1, 2, 13, 10px</code></li><li>字符串, 有引号字符串与无引号字符串, <code>&quot;foo&quot;, &#39;bar&#39;, baz</code></li><li>颜色, <code>blue, #04a3f9, rgba(255,0,0,0.5)</code></li><li>布尔型, <code>true, false</code></li><li>空值, <code>null</code></li><li>数组 (list), 用空格或逗号分隔的属性值, <code>1.5em 1em 0 2em, Helvetica, Arial, sans-serif</code></li><li>maps, 相当于 JavaScript 的 object, <code>(key1: value1, key2: value2)</code></li></ol><h3 id="导入" tabindex="-1"><a class="header-anchor" href="#导入" aria-hidden="true">#</a> 导入</h3><p>用 <code>@import</code> 进行导入</p><ol><li>同时导入多个文件时用逗号分隔, 如: <code>@import &#39;foo.scss&#39;, &#39;foo2.scss&#39;</code></li><li>导入时使用变量只能作用域 <code>css</code> 的 <code>url()</code> 导入方式, 如: <code>@import url(&quot;http://fonts.googleapis.com/css?{$family}&quot;);</code></li><li>希望导入的 <code>sass</code>, <code>scss</code> 文件编译, 需要给被导入文件名前加下划线, 如: <code>_color.scss</code>, 导入时不需要加下划线 <code>@import &#39;color&#39;</code>, 实际上导入的文件是 <code>_color.scss</code>, 同时存在带下划线和不带下划线的同名文件时, 会忽略带下划线的</li><li><code>@import</code> 可以用在规则集里, 不一定非得写在全局</li><li>不能在混入中使用</li></ol><h4 id="仅作为普通-css-语句的情况" tabindex="-1"><a class="header-anchor" href="#仅作为普通-css-语句的情况" aria-hidden="true">#</a> 仅作为普通 css 语句的情况</h4><ol><li>文件拓展名是 <code>.css</code></li><li>文件名以 <code>http://</code> 开头</li><li>文件名是 <code>url()</code></li><li><code>@import</code> 包含 <code>media queries</code></li></ol><h3 id="扩展-extend" tabindex="-1"><a class="header-anchor" href="#扩展-extend" aria-hidden="true">#</a> 扩展(@extend)</h3><ol><li><p>把目标选择器下的规则继承到当前选择器上 <code>@extend .error</code>, <code>sass</code> 的搜索是模糊的, 类似于 <code>less</code> 的 <code>:extend(.error all)</code>, 效果等同于将当前选择器替换到对应位置</p></li><li><p><code>sass</code> 允许延伸任何定义给<strong>单个元素</strong>的选择器</p></li><li><p>同一个选择器的规则集可以扩展给多个选择器, 扩展多个时可用逗号分隔 <code>@extend .error, .attention</code>, 有相同属性时后者居上</p></li><li><p>嵌套扩展</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass语句</span>
+<span class="token selector">.error</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px #f00<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #fdd<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.seriousError</span> <span class="token punctuation">{</span>
+  <span class="token variable">@extend</span> .error<span class="token punctuation">;</span>
+  <span class="token property">border-width</span><span class="token punctuation">:</span> 3px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.criticalError</span> <span class="token punctuation">{</span>
+  <span class="token variable">@extend</span> .seriousError<span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">bottom</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">right</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 输出</span>
+<span class="token selector">.error,
+.seriousError,
+.criticalError</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px #f00<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #fdd<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.seriousError,
+.criticalError</span> <span class="token punctuation">{</span>
+  <span class="token property">border-width</span><span class="token punctuation">:</span> 3px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.criticalError</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">bottom</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+  <span class="token property">right</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>占位符选择器 <code>%</code>, 定义的规则集只用于扩展, 这样定义的规则集不会被编译到 <code>css</code> 文件中</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass语句</span>
+<span class="token selector">#context a %one</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.notice</span> <span class="token punctuation">{</span>
+  <span class="token variable">@extend</span> %one<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 编译后</span>
+<span class="token selector">#context a .notice</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>可选指令 <code>!optional</code></p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass语句</span>
+<span class="token selector">a.important</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token variable">@extend</span> .notice<span class="token punctuation">;</span> <span class="token comment">// 没有定义 .notice , 编译报错</span>
+  <span class="token variable">@extend</span> .notice
+      !optional<span class="token punctuation">;</span> <span class="token comment">// 使用了指令后不会报错, 编译结果只包含可用的样式</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li></ol><h3 id="指令" tabindex="-1"><a class="header-anchor" href="#指令" aria-hidden="true">#</a> 指令</h3><ol><li><p><code>@at-root</code> 使规则集定义在全局而不是当前父级下</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass 语句</span>
+<span class="token selector">.parent</span> <span class="token punctuation">{</span>
+  ... <span class="token atrule">@at-root .child</span> <span class="token punctuation">{</span>
+    ...<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token comment">// 包含单个选择器的用法</span>
+
+  <span class="token atrule">@at-root</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 包含多个选择器的用法</span>
+    <span class="token selector">.child1</span> <span class="token punctuation">{</span>
+      ...<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">.child2</span> <span class="token punctuation">{</span>
+      ...<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 编译后</span>
+<span class="token selector">.parent</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.child</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.child1</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.child2</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p><code>@debug</code> 调试, <code>@warn</code> 警告, <code>@error</code> 报错</p></li><li><p>流程控制 <code>@if</code>, <code>@else</code>, <code>@else if</code></p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass 语句</span>
+$<span class="token property">type</span><span class="token punctuation">:</span> monster<span class="token punctuation">;</span>
+<span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token atrule">@if $type==ocean</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token atrule">@else if $type==matador</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token atrule">@else if $type==monster</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token atrule">@else</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> black<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>循环 <code>@for</code><code>@for $var from &lt;start&gt; through &lt;end&gt;</code> 使用 <code>through</code> 会包含 <code>&lt;end&gt;</code> 的值 <code>@for $var from &lt;start&gt; to &lt;end&gt;</code> 使用 <code>to</code> 不会包含 <code>&lt;end&gt;</code> 的值 变量名不固定</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass 语句</span>
+<span class="token atrule">@for $i from 1 through 3</span> <span class="token punctuation">{</span> <span class="token comment">// 使用through时 , 调用三次 - 1,2,3</span>
+<span class="token selector">.item-#</span><span class="token punctuation">{</span>$i<span class="token punctuation">}</span> <span class="token punctuation">{</span> <span class="token property">width</span><span class="token punctuation">:</span> 2em <span class="token operator">*</span> $i<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule">@for $i from 1 to 3</span> <span class="token punctuation">{</span> <span class="token comment">// 使用to时 , 调用两次 - 1,2</span>
+<span class="token selector">.item-#</span><span class="token punctuation">{</span>$i<span class="token punctuation">}</span> <span class="token punctuation">{</span> <span class="token property">width</span><span class="token punctuation">:</span> 2em <span class="token operator">*</span> $i<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>循环 <code>@while</code></p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code>$<span class="token property">i</span><span class="token punctuation">:</span> 6<span class="token punctuation">;</span>
+<span class="token atrule">@while $i &gt; 0</span> <span class="token punctuation">{</span>
+    <span class="token selector">.item-#</span><span class="token punctuation">{</span>$i<span class="token punctuation">}</span> <span class="token punctuation">{</span> <span class="token property">width</span><span class="token punctuation">:</span> 2em <span class="token operator">*</span> $i<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    $<span class="token property">i</span><span class="token punctuation">:</span> $i <span class="token operator">-</span> 2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>遍历 <code>@each</code></p><p><code>$var in &lt;list&gt;</code> list 是值列表(空格或逗号分隔) 可以遍历嵌套列表 可以遍历 <code>map</code> 值</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass语句</span>
+$<span class="token property">list</span><span class="token punctuation">:</span> puma<span class="token punctuation">,</span> sea<span class="token operator">-</span>slug<span class="token punctuation">,</span> egret<span class="token punctuation">,</span> salamander<span class="token punctuation">;</span> <span class="token comment">// list是值列表(空格或逗号分隔)</span>
+<span class="token atrule">@each $animal in $list</span> <span class="token punctuation">{</span>
+    <span class="token selector">.#</span><span class="token punctuation">{</span>$animal<span class="token punctuation">}</span><span class="token selector">-icon</span> <span class="token punctuation">{</span>
+        <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">&#39;/images/#{$animal}.png&#39;</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 列表中包含列表的时候, 可以用多个变量接收对应的值</span>
+$<span class="token property">list2</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>puma<span class="token punctuation">,</span> black<span class="token punctuation">,</span> default<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>sea<span class="token operator">-</span>slug<span class="token punctuation">,</span> blue<span class="token punctuation">,</span> pointer<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>egret<span class="token punctuation">,</span> white<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token atrule">@each $animal, $color, $cursor in $list2</span> <span class="token punctuation">{</span>
+    <span class="token selector">.#</span><span class="token punctuation">{</span>$animal<span class="token punctuation">}</span><span class="token selector">-icon</span> <span class="token punctuation">{</span>
+        <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">&#39;/images/#{$animal}.png&#39;</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+        <span class="token property">border</span><span class="token punctuation">:</span> 2px solid $color<span class="token punctuation">;</span>
+        <span class="token property">cursor</span><span class="token punctuation">:</span> $cursor<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 遍历 map</span>
+<span class="token atrule">@each $header, $size in <span class="token punctuation">(</span>h1<span class="token punctuation">:</span> 2em, h2<span class="token punctuation">:</span> 1.5em, h3<span class="token punctuation">:</span> 1.2em<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+    <span class="token selector">#</span><span class="token punctuation">{</span>$header<span class="token punctuation">}</span> <span class="token punctuation">{</span>
+        <span class="token property">font-size</span><span class="token punctuation">:</span> $size<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li></ol><h3 id="混入-mixin" tabindex="-1"><a class="header-anchor" href="#混入-mixin" aria-hidden="true">#</a> 混入(@mixin)</h3><ol><li><p>基本用法</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass 语句</span>
+<span class="token comment">// 用 @mixin 语句定义</span>
+<span class="token atrule">@mixin large-text</span> <span class="token punctuation">{</span>
+  <span class="token selector">font:</span> <span class="token punctuation">{</span>
+    <span class="token property">family</span><span class="token punctuation">:</span> Arial<span class="token punctuation">;</span>
+    <span class="token property">size</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+    <span class="token property">weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #ff0000<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 用 @include 语句引入</span>
+<span class="token selector">a</span> <span class="token punctuation">{</span>
+  <span class="token variable">@include<span class="token punctuation">:</span></span> large<span class="token operator">-</span>text<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>参数 参数默认值 不定数量的参数</p><div class="language-less ext-less line-numbers-mode"><pre class="language-less"><code><span class="token comment">// sass语句</span>
+<span class="token comment">// 带参数的混入</span>
+<span class="token atrule">@mixin sexy-border<span class="token punctuation">(</span>$color<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">border:</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> $color<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 带默认值的混入, 参数可以用关键词</span>
+<span class="token atrule">@mixin sexy-border2<span class="token punctuation">(</span>$color<span class="token punctuation">:</span> green<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">border:</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> $color<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 不定数量的参数, 定义时在参数后加...</span>
+<span class="token atrule">@mixin box-shadow<span class="token punctuation">(</span>$shadows...<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> $shadows<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 固定数量参数的混入可以在引用时添加...来方便引用</span>
+<span class="token atrule">@mixin padding-box<span class="token punctuation">(</span>$pad1, $pad2, $pad3<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> $pad1 $pad2 $pad3<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">a</span> <span class="token punctuation">{</span>
+  <span class="token variable">@include<span class="token punctuation">:</span></span> <span class="token function">sexy-border</span><span class="token punctuation">(</span>red<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 没有默认值的混入必须传参, 否则报错</span>
+  <span class="token variable">@include<span class="token punctuation">:</span></span> sexy<span class="token operator">-</span>border2<span class="token punctuation">;</span> <span class="token comment">// 有默认值的混入可以不传参</span>
+  <span class="token variable">@include</span> <span class="token function">box-shadow</span><span class="token punctuation">(</span>
+    0px 4px 5px #666<span class="token punctuation">,</span>
+    2px 6px 10px #999
+  <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 定义时参数后加了...就能接收不定量的参数</span>
+
+  $<span class="token property">list</span><span class="token punctuation">:</span> 0px 4px 5px<span class="token punctuation">;</span>
+  <span class="token variable">@include</span> <span class="token function">padding-box</span><span class="token punctuation">(</span>$list...<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 在引用时使用... 可以将参数分割传入</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li><li><p>插槽 <code>@chontent</code></p></li></ol><blockquote><p>传递给 mixin 的内容块是在定义块的范围内而不是 mixin 的范围内进行评估的。这意味着无法在传递的样式块内使用 mixin 局部变量，并且变量将解析为全局值：</p></blockquote><pre><code>```less
+// sass 语句
+$color: white;
+@mixin colors($color: blue) { // 定义名为 $color 的参数并设置默认值
+    background-color: $color;
+    @content; // @content 作为占位符, 会将引入时 {} 中的内容放到这里
+    border-color: $color;
+}
+
+.colors {
+    @include colors(red) { // 可以传入参数
+        color: $color; // 这里用到的变量会沿着当前作用域向上找, 而不是混入中定义的变量
+    }
+}
+
+// 编译后
+.colors { background-color: red; color: white; border-color: red; }
+```
+</code></pre><h3 id="自定义函数-function" tabindex="-1"><a class="header-anchor" href="#自定义函数-function" aria-hidden="true">#</a> 自定义函数(@function)</h3><p>声明函数 <code>@function</code>, 函数名加前缀避免冲突, 方便辨别是内置函数还是自定义函数</p><p>返回值 <code>@return</code></p><pre><code>```less
+// sass 语句
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function z_grid-width($n) {
+    @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: z_grid-width(5); }
+
+// 编译后
+#sidebar { width: 240px; }
+
+```
+</code></pre></div><!----><footer class="page-meta"><!----><!----><!----></footer><!----><!----><!----><!--]--></main><!--]--><!----><!--]--></div><!--]--><!----><!----><!--]--></div>
+    <script type="module" src="/assets/app.382dc3cd.js" defer></script>
+  </body>
+</html>
